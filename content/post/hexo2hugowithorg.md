@@ -178,8 +178,9 @@ class Hexo2Hugo(object):
                 if 'categories' in meta and type(meta['categories']) == str:
                     meta['categories'] = meta['categories'].split(',')
 
-                if body.find("<!--more-->") == -1:
-                    body = body + "<!--more-->"
+                more_tag = "<! --more -->"
+                if body.find(more_tag.replace(" ", "")) == -1:
+                    body = body + more_tag.replace(" ", "")
 
 
                 meta_toml = toml.dumps(meta)
