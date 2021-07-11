@@ -1,4 +1,175 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2012-05-23-pygments-dot-rb-on-heroku/>pygments.rb on heroku</a></h1><div class=post-meta><span class=post-time>2012-05-23</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 60 字</span>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2012-05-24-get-chinese-pinyin-python/>python获取中文拼音首字母以进行检索</a></h1><div class=post-meta><span class=post-time>2012-05-24</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 1261 字</span>
+<span class=more-meta>预计阅读 3 分钟</span></div></header><div class=post-content><div class=post-summary><p>主要的原理是GBK汉字是按拼音顺序编码的。</p><p>源代码如下:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=ch>#!/usr/bin/env python</span>
+<span class=c1># -*- encoding: utf-8 -*-</span>
+
+<span class=k>def</span> <span class=nf>multi_get_letter</span><span class=p>(</span><span class=n>str_input</span><span class=p>):</span>
+    <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>str_input</span><span class=p>,</span> <span class=n>unicode</span><span class=p>):</span>
+        <span class=n>unicode_str</span> <span class=o>=</span> <span class=n>str_input</span>
+    <span class=k>else</span><span class=p>:</span>
+        <span class=k>try</span><span class=p>:</span>
+            <span class=n>unicode_str</span> <span class=o>=</span> <span class=n>str_input</span><span class=o>.</span><span class=n>decode</span><span class=p>(</span><span class=s1>&#39;utf8&#39;</span><span class=p>)</span>
+        <span class=k>except</span><span class=p>:</span>
+            <span class=k>try</span><span class=p>:</span>
+                <span class=n>unicode_str</span> <span class=o>=</span> <span class=n>str_input</span><span class=o>.</span><span class=n>decode</span><span class=p>(</span><span class=s1>&#39;gbk&#39;</span><span class=p>)</span>
+            <span class=k>except</span><span class=p>:</span>
+                <span class=nb>print</span> <span class=s1>&#39;unknown coding&#39;</span>
+                <span class=k>return</span>
+
+    <span class=n>return_list</span> <span class=o>=</span> <span class=p>[]</span>
+    <span class=k>for</span> <span class=n>one_unicode</span> <span class=ow>in</span> <span class=n>unicode_str</span><span class=p>:</span>
+        <span class=c1>#print single_get_first(one_unicode)</span>
+        <span class=n>return_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>single_get_first</span><span class=p>(</span><span class=n>one_unicode</span><span class=p>))</span>
+    <span class=k>return</span> <span class=s2>&#34;&#34;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>return_list</span><span class=p>)</span>    
+
+<span class=k>def</span> <span class=nf>single_get_first</span><span class=p>(</span><span class=n>unicode1</span><span class=p>):</span>
+    <span class=n>str1</span> <span class=o>=</span> <span class=n>unicode1</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;gbk&#39;</span><span class=p>)</span>
+    <span class=k>try</span><span class=p>:</span>        
+        <span class=nb>ord</span><span class=p>(</span><span class=n>str1</span><span class=p>)</span>
+        <span class=k>return</span> <span class=n>str1</span>
+    <span class=k>except</span><span class=p>:</span>
+        <span class=n>asc</span> <span class=o>=</span> <span class=nb>ord</span><span class=p>(</span><span class=n>str1</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span> <span class=o>*</span> <span class=mi>256</span> <span class=o>+</span> <span class=nb>ord</span><span class=p>(</span><span class=n>str1</span><span class=p>[</span><span class=mi>1</span><span class=p>])</span> <span class=o>-</span> <span class=mi>65536</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>20319</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>20284</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;a&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>20283</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>19776</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;b&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>19775</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>19219</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;c&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>19218</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>18711</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;d&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>18710</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>18527</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;e&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>18526</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>18240</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;f&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>18239</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>17923</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;g&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>17922</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>17418</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;h&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>17417</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>16475</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;j&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>16474</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>16213</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;k&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>16212</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>15641</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;l&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>15640</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>15166</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;m&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>15165</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>14923</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;n&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>14922</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>14915</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;o&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>14914</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>14631</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;p&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>14630</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>14150</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;q&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>14149</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>14091</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;r&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>14090</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>13119</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;s&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>13118</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>12839</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;t&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>12838</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>12557</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;w&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>12556</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>11848</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;x&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>11847</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>11056</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;y&#39;</span>
+        <span class=k>if</span> <span class=n>asc</span> <span class=o>&gt;=</span> <span class=o>-</span><span class=mi>11055</span> <span class=ow>and</span> <span class=n>asc</span> <span class=o>&lt;=</span> <span class=o>-</span><span class=mi>10247</span><span class=p>:</span>
+            <span class=k>return</span> <span class=s1>&#39;z&#39;</span>
+        <span class=k>return</span> <span class=s1>&#39;&#39;</span>
+
+<span class=k>def</span> <span class=nf>printresult</span><span class=p>(</span><span class=nb>str</span><span class=p>):</span>
+    <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;中文: &#34;</span><span class=si>%s</span><span class=s1>&#34; --&gt; 首字母拼音: &#34;</span><span class=si>%s</span><span class=s1>&#34;&#39;</span> <span class=o>%</span> <span class=p>(</span><span class=nb>str</span><span class=p>,</span> <span class=n>multi_get_letter</span><span class=p>(</span><span class=nb>str</span><span class=p>)))</span>
+    
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+    <span class=n>printresult</span><span class=p>(</span><span class=s1>&#39;木哈哈&#39;</span><span class=p>)</span>
+    <span class=n>printresult</span><span class=p>(</span><span class=s1>&#39;小李&#39;</span><span class=p>)</span>
+    <span class=n>printresult</span><span class=p>(</span><span class=s1>&#39;大王&#39;</span><span class=p>)</span>
+    <span class=n>printresult</span><span class=p>(</span><span class=s1>&#39;大d王m&#39;</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>我的修改版本:</p></div><div class=read-more><a href=/post/2012-05-24-get-chinese-pinyin-python/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2012-05-23-pygments-dot-rb-on-heroku/>pygments.rb on heroku</a></h1><div class=post-meta><span class=post-time>2012-05-23</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 60 字</span>
 <span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>如何在<code>heroku</code>中使用<code>pygments.rb</code>呢？在<code>plugin/pygments_code.rb</code>中添加：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-ruby data-lang=ruby><span class=nb>require</span> <span class=s1>&#39;rubypython&#39;</span>
@@ -21,8 +192,7 @@ layout: nil
 User-agent: *
 Disallow: 
 Sitemap: {{ site.url }}/sitemap.xml 
-</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2012-05-12-add-robots-dot-txt-to-octopress/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2012-05-12-octopress-useful-links/>octopress常用链接整理</a></h1><div class=post-meta><span class=post-time>2012-05-12</span><div class=post-category><a href=/categories/tools/>tools</a></div><span class=more-meta>约 206 字</span>
-<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><ol><li><p><a href=http://jasongarber.com/blog/2012/01/10/deploying-octopress-to-heroku-with-a-custom-buildpack>Heroku上搭建octopress自动deploy环境</a> &ndash; 这篇文章可以让你绕过生成静态页面的过程，通过heroku的build pack在push的时候自动将markdown编译成静态页面。</p></li><li><p><a href=http://geron.heroku.com/blog/2012/03/octo-cate-cn-spo/>Octopress博客分类添加中文支持</a></p></li><li><p><a href=http://blog.xdite.net/posts/2011/10/09/how-to-migrate-blog-from-wordpress-to-octopress/>如何從Wordpress Migrate到Octopress</a></p></li><li><p><a href=http://blog.xdite.net/posts/2011/10/09/how-to-migrate-blog-from-wordpress-to-octopress/>301轉址</a> &ndash; 重定向feed到atom.xml</p><p>比如我的设置:</p></li></ol></div><div class=read-more><a href=/post/2012-05-12-octopress-useful-links/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/10/><i class="iconfont icon-left"></i>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2012-05-12-add-robots-dot-txt-to-octopress/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/10/><i class="iconfont icon-left"></i>
 <span class=prev-text>上一页</span></a>
 <a class=next href=/page/12/><span class=next-text>下一页</span>
 <i class="iconfont icon-right"></i></a></nav></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>

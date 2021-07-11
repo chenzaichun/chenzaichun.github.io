@@ -1,0 +1,126 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Galera MySQL - 木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="全centos7环境 10.69.0.10 cmp-vi650rc4 10.69.0.11 cmp-d8uc6edi 10.69.0.5 cmp-g7msocxo 添加host到 /etc/hosts 创建 /etc/yum.repos.d/galera.repo 1 2 3 4 5 6 7 8 9 10 11 12 13 cat &amp;gt; /etc/yum.repos.d/galera.repo &amp;lt;&amp;lt;EOF [galera] name = Galera baseurl = http://releases.galeracluster.com/galera-3/centos/7/$basearch/ gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com gpgcheck = 1 [mysql-wsrep] name = MySQL-wsrep baseurl = http://releases.galeracluster.com/mysql-wsrep-5.7/centos/7/$basearch/ gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com gpgcheck = 1"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/post/galera_mysql/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Galera MySQL"><meta property="og:description" content="全centos7环境 10.69.0.10 cmp-vi650rc4 10.69.0.11 cmp-d8uc6edi 10.69.0.5 cmp-g7msocxo 添加host到 /etc/hosts 创建 /etc/yum.repos.d/galera.repo 1 2 3 4 5 6 7 8 9 10 11 12 13 cat > /etc/yum.repos.d/galera.repo <<EOF [galera] name = Galera baseurl = http://releases.galeracluster.com/galera-3/centos/7/$basearch/ gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com gpgcheck = 1 [mysql-wsrep] name = MySQL-wsrep baseurl = http://releases.galeracluster.com/mysql-wsrep-5.7/centos/7/$basearch/ gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com gpgcheck = 1"><meta property="og:type" content="article"><meta property="og:url" content="https://chenzaichun.github.io/post/galera_mysql/"><meta property="article:section" content="post"><meta property="article:published_time" content="2017-07-11T16:29:26+08:00"><meta property="article:modified_time" content="2021-07-11T22:18:38+08:00"><meta itemprop=name content="Galera MySQL"><meta itemprop=description content="全centos7环境 10.69.0.10 cmp-vi650rc4 10.69.0.11 cmp-d8uc6edi 10.69.0.5 cmp-g7msocxo 添加host到 /etc/hosts 创建 /etc/yum.repos.d/galera.repo 1 2 3 4 5 6 7 8 9 10 11 12 13 cat > /etc/yum.repos.d/galera.repo <<EOF [galera] name = Galera baseurl = http://releases.galeracluster.com/galera-3/centos/7/$basearch/ gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com gpgcheck = 1 [mysql-wsrep] name = MySQL-wsrep baseurl = http://releases.galeracluster.com/mysql-wsrep-5.7/centos/7/$basearch/ gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com gpgcheck = 1"><meta itemprop=datePublished content="2017-07-11T16:29:26+08:00"><meta itemprop=dateModified content="2021-07-11T22:18:38+08:00"><meta itemprop=wordCount content="282"><meta itemprop=keywords content="hugo,org,emacs,mysql,galera,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Galera MySQL"><meta name=twitter:description content="全centos7环境 10.69.0.10 cmp-vi650rc4 10.69.0.11 cmp-d8uc6edi 10.69.0.5 cmp-g7msocxo 添加host到 /etc/hosts 创建 /etc/yum.repos.d/galera.repo 1 2 3 4 5 6 7 8 9 10 11 12 13 cat > /etc/yum.repos.d/galera.repo <<EOF [galera] name = Galera baseurl = http://releases.galeracluster.com/galera-3/centos/7/$basearch/ gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com gpgcheck = 1 [mysql-wsrep] name = MySQL-wsrep baseurl = http://releases.galeracluster.com/mysql-wsrep-5.7/centos/7/$basearch/ gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com gpgcheck = 1"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Galera MySQL</h1><div class=post-meta><span class=post-time>2017-07-11</span><div class=post-category><a href=/categories/emacs/>emacs</a>
+<a href=/categories/linux/>linux</a>
+<a href=/categories/org/>org</a></div><span class=more-meta>约 282 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-content><p>全centos7环境</p><table><thead><tr><th>10.69.0.10</th><th>cmp-vi650rc4</th></tr></thead><tbody><tr><td>10.69.0.11</td><td>cmp-d8uc6edi</td></tr><tr><td>10.69.0.5</td><td>cmp-g7msocxo</td></tr></tbody></table><p>添加host到 <code>/etc/hosts</code></p><p>创建 <code>/etc/yum.repos.d/galera.repo</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>cat &gt; /etc/yum.repos.d/galera.repo <span class=s>&lt;&lt;EOF
+</span><span class=s>[galera]
+</span><span class=s>name = Galera
+</span><span class=s>baseurl = http://releases.galeracluster.com/galera-3/centos/7/$basearch/
+</span><span class=s>gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com
+</span><span class=s>gpgcheck = 1
+</span><span class=s>
+</span><span class=s>[mysql-wsrep]
+</span><span class=s>name = MySQL-wsrep
+</span><span class=s>baseurl =  http://releases.galeracluster.com/mysql-wsrep-5.7/centos/7/$basearch/
+</span><span class=s>gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com
+</span><span class=s>gpgcheck = 1
+</span><span class=s>EOF</span>
+</code></pre></td></tr></table></div></div><p>安装 <code>galera</code> 和 <code>mysql-wsrep</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>yum update -y <span class=o>&amp;&amp;</span> yum install -y galera-3 mysql-wsrep-server-5.7 rsync
+</code></pre></td></tr></table></div></div><p>selinux 开启mysql的其他端口</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>semanage permissive -a mysqld_t
+</code></pre></td></tr></table></div></div><p>如果semanage找不到，请安装</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>yum install policycoreutils-python
+</code></pre></td></tr></table></div></div><p>启动mysql</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>systemctl start mysqld
+</code></pre></td></tr></table></div></div><p>修改mysql root 密码:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=nv>password_match</span><span class=o>=</span><span class=sb>`</span>awk <span class=s1>&#39;/A temporary password is generated for/ {a=$0} END{ print a }&#39;</span> /var/log/mysqld.log <span class=p>|</span> awk <span class=s1>&#39;{print $(NF)}&#39;</span><span class=sb>`</span>
+<span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$password_match</span><span class=s2>&#34;</span>
+mysql  -uroot -p<span class=nv>$password_match</span> --connect-expired-password -e <span class=s2>&#34;ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY  &#39;Root-mysql-pw@2017&#39;; FLUSH PRIVILEGES; &#34;</span>
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>grant</span><span class=w> </span><span class=k>all</span><span class=w> </span><span class=k>privileges</span><span class=w> </span><span class=k>on</span><span class=w> </span><span class=o>*</span><span class=p>.</span><span class=o>*</span><span class=w> </span><span class=k>to</span><span class=w> </span><span class=n>sst</span><span class=o>@</span><span class=s1>&#39;%&#39;</span><span class=w> </span><span class=n>identified</span><span class=w> </span><span class=k>by</span><span class=w> </span><span class=s1>&#39;123456&#39;</span><span class=p>;</span><span class=w>
+</span><span class=w></span><span class=n>flush</span><span class=w> </span><span class=k>privileges</span><span class=p>;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>GRANT</span><span class=w> </span><span class=k>ALL</span><span class=w> </span><span class=k>PRIVILEGES</span><span class=w> </span><span class=k>ON</span><span class=w> </span><span class=o>*</span><span class=p>.</span><span class=o>*</span><span class=w> </span><span class=k>TO</span><span class=w> </span><span class=s1>&#39;root&#39;</span><span class=o>@</span><span class=s1>&#39;%&#39;</span><span class=w> </span><span class=n>identified</span><span class=w> </span><span class=k>by</span><span class=w> </span><span class=s1>&#39;Root-mysql-pw@2017&#39;</span><span class=p>;</span><span class=w>
+</span><span class=w></span><span class=n>flush</span><span class=w> </span><span class=k>privileges</span><span class=p>;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><p>修改 <code>/etc/my.cnf</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+binlog_format=ROW
+bind-address=0.0.0.0
+default_storage_engine=innodb
+innodb_autoinc_lock_mode=2
+innodb_flush_log_at_trx_commit=0
+innodb_buffer_pool_size=122M
+wsrep_provider=/usr/lib64/galera-3/libgalera_smm.so
+wsrep_provider_options=&#34;gcache.size=300M; gcache.page_size=300M&#34;
+wsrep_sst_method=rsync
+wsrep_cluster_address=&#34;gcomm://10.69.0.10,10.69.0.11&#34;
+wsrep_cluster_name=&#34;mysql_cluster&#34;
+
+wsrep_node_address=&#39;10.69.0.10&#39;
+wsrep_node_name=&#39;node1&#39;
+
+!includedir /etc/my.cnf.d/
+
+[mysql_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+</code></pre></td></tr></table></div></div><p>在其他node上修改</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>wsrep_node_address=&#39;10.69.0.11&#39;
+wsrep_node_name=&#39;node2&#39;
+</code></pre></td></tr></table></div></div><p>在第一台机器上执行:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>/usr/bin/mysqld_bootstrap
+</code></pre></td></tr></table></div></div><p>后面的机器普通启动就好了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>systemctl start mysqld
+</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>Chen, Zai-Chun</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2021-07-11</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/hugo/>hugo</a>
+<a href=/tags/org/>org</a>
+<a href=/tags/emacs/>emacs</a>
+<a href=/tags/mysql/>mysql</a>
+<a href=/tags/galera/>galera</a></div><nav class=post-nav><a class=prev href=/post/test-easy-hugo/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Writing Hugo blog in Org (File Export)</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/2015-08-25-ios-webrtc/><span class="next-text nav-default">编译iOS版本WebRTC</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=chenzaichun/chenzaichun-utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2009 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chen, Zai-Chun</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin=anonymous></script><script>var languageCode="en".replace(/-/g,'_').replace(/_(.*)/,function(b,a){return b.replace(a,a.toUpperCase())});timeago().render(document.querySelectorAll('.timeago'),languageCode),timeago.cancel()</script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js integrity=sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css integrity=sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF crossorigin=anonymous><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>
