@@ -1,7 +1,8 @@
 <!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>从hexo迁移到hugo - 木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="从hexo迁移到hugo hexo2hugo.py 这里有个脚本：https://github.com/wd/hexo2hugo ，但是有些问题，使用的是 python3 ，一定要注意。 categories 如果是列表会出错, 添加转换
 1 2 3 4 5  if &amp;#39;tags&amp;#39; in meta and type(meta[&amp;#39;tags&amp;#39;]) == str: meta[&amp;#39;tags&amp;#39;] = meta[&amp;#39;tags&amp;#39;].split(&amp;#39;,&amp;#39;) if &amp;#39;categories&amp;#39; in meta and type(meta[&amp;#39;categories&amp;#39;]) == str: meta[&amp;#39;categories&amp;#39;] = meta[&amp;#39;categories&amp;#39;].split(&amp;#39;,&amp;#39;)   时间不对的时候要出错:
 1 2 3 4 5 6 7  no_tz_date = meta[&amp;#39;date&amp;#39;] try: if type(no_tz_date) == str: no_tz_date = datetime.datetime.strptime(no_tz_date, &amp;#39;%Y-%m-%d%H:%M&amp;#39;) except: if type(no_tz_date) == str: no_tz_date = datetime.datetime.strptime(no_tz_date, &amp;#39;%Y-%m-%d%H:%M:%S&amp;#39;)   因为没有 more tag，在主页summary不好看，给加上
-1 2 3 4 5 6 7  "><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/post/hexo2hugowithorg/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="从hexo迁移到hugo"><meta property="og:description" content="从hexo迁移到hugo
+1 2 3  more_tag=r&amp;#34;&amp;lt;! --more--&amp;gt;&amp;#34; if body.find(more_tag) == -1: body = body + more_tag   完整代码见这里
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163  "><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/post/hexo2hugowithorg/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="从hexo迁移到hugo"><meta property="og:description" content="从hexo迁移到hugo
 hexo2hugo.py
 这里有个脚本：https://github.com/wd/hexo2hugo ，但是有些问题，使用的是 python3 ，一定要注意。 categories 如果是列表会出错, 添加转换
 
@@ -47,10 +48,179 @@ except:
 1
 2
 3
-4
-5
-6
-7
+
+
+more_tag=r&#34;<! --more-->&#34;
+if body.find(more_tag) == -1:
+    body = body + more_tag
+
+
+完整代码见这里
+
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
 
 "><meta property="og:type" content="article"><meta property="og:url" content="https://chenzaichun.github.io/post/hexo2hugowithorg/"><meta property="article:section" content="post"><meta property="article:published_time" content="2017-11-26T00:00:00+00:00"><meta property="article:modified_time" content="2017-11-26T17:39:50+08:00"><meta itemprop=name content="从hexo迁移到hugo"><meta itemprop=description content="从hexo迁移到hugo
 hexo2hugo.py
@@ -98,12 +268,181 @@ except:
 1
 2
 3
-4
-5
-6
-7
 
-"><meta itemprop=datePublished content="2017-11-26T00:00:00+00:00"><meta itemprop=dateModified content="2017-11-26T17:39:50+08:00"><meta itemprop=wordCount content="740"><meta itemprop=keywords content="hugo,org,hexo,"><meta name=twitter:card content="summary"><meta name=twitter:title content="从hexo迁移到hugo"><meta name=twitter:description content="从hexo迁移到hugo
+
+more_tag=r&#34;<! --more-->&#34;
+if body.find(more_tag) == -1:
+    body = body + more_tag
+
+
+完整代码见这里
+
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+
+"><meta itemprop=datePublished content="2017-11-26T00:00:00+00:00"><meta itemprop=dateModified content="2017-11-26T17:39:50+08:00"><meta itemprop=wordCount content="362"><meta itemprop=keywords content="hugo,org,hexo,"><meta name=twitter:card content="summary"><meta name=twitter:title content="从hexo迁移到hugo"><meta name=twitter:description content="从hexo迁移到hugo
 hexo2hugo.py
 这里有个脚本：https://github.com/wd/hexo2hugo ，但是有些问题，使用的是 python3 ，一定要注意。 categories 如果是列表会出错, 添加转换
 
@@ -149,13 +488,182 @@ except:
 1
 2
 3
-4
-5
-6
-7
 
-"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>从hexo迁移到hugo</h1><div class=post-meta><span class=post-time>2017-11-26</span><div class=post-category><a href=/categories/emacs/>emacs</a></div><span class=more-meta>约 740 字</span>
-<span class=more-meta>预计阅读 2 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#从hexo迁移到hugo>从hexo迁移到hugo</a><ul><li><a href=#hexo2hugo-dot-py>hexo2hugo.py</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-outdated><div class=warn><p>【注意】最后更新于 <span class=timeago datetime=2017-11-26T17:39:50 title="November 26, 2017">November 26, 2017</span>，文中内容可能已过时，请谨慎使用。</p></div></div><div class=post-content><h2 id=从hexo迁移到hugo>从hexo迁移到hugo</h2><h3 id=hexo2hugo-dot-py>hexo2hugo.py</h3><p>这里有个脚本：<a href=https://github.com/wd/hexo2hugo>https://github.com/wd/hexo2hugo</a> ，但是有些问题，使用的是 <code>python3</code> ，一定要注意。 <code>categories</code> 如果是列表会出错, 添加转换</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+
+more_tag=r&#34;<! --more-->&#34;
+if body.find(more_tag) == -1:
+    body = body + more_tag
+
+
+完整代码见这里
+
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+
+"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>从hexo迁移到hugo</h1><div class=post-meta><span class=post-time>2017-11-26</span><div class=post-category><a href=/categories/emacs/>emacs</a></div><span class=more-meta>约 362 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#从hexo迁移到hugo>从hexo迁移到hugo</a><ul><li><a href=#hexo2hugo-dot-py>hexo2hugo.py</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-outdated><div class=warn><p>【注意】最后更新于 <span class=timeago datetime=2017-11-26T17:39:50 title="November 26, 2017">November 26, 2017</span>，文中内容可能已过时，请谨慎使用。</p></div></div><div class=post-content><h2 id=从hexo迁移到hugo>从hexo迁移到hugo</h2><h3 id=hexo2hugo-dot-py>hexo2hugo.py</h3><p>这里有个脚本：<a href=https://github.com/wd/hexo2hugo>https://github.com/wd/hexo2hugo</a> ，但是有些问题，使用的是 <code>python3</code> ，一定要注意。 <code>categories</code> 如果是列表会出错, 添加转换</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -182,11 +690,10 @@ except:
 </code></pre></td></tr></table></div></div><p>因为没有 <code>more</code> tag，在主页summary不好看，给加上</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span></code></pre></td><td class=lntd>e></td></tr></table></div></div><p>完整代码见这里</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=n>more_tag</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;&lt;! --more--&gt;&#34;</span>
+<span class=k>if</span> <span class=n>body</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=n>more_tag</span><span class=p>)</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span><span class=p>:</span>
+    <span class=n>body</span> <span class=o>=</span> <span class=n>body</span> <span class=o>+</span> <span class=n>more_tag</span>
+</code></pre></td></tr></table></div></div><p>完整代码见这里</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
 </span><span class=lnt>  2
 </span><span class=lnt>  3
 </span><span class=lnt>  4
@@ -345,166 +852,11 @@ except:
 </span><span class=lnt>157
 </span><span class=lnt>158
 </span><span class=lnt>159
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=ch>#!/usr/bin/env python</span>
-<span class=c1># -*- coding: utf-8 -*-</span>
-
-<span class=kn>import</span> <span class=nn>argparse</span>
-<span class=kn>import</span> <span class=nn>os</span>
-<span class=kn>import</span> <span class=nn>logging</span>
-<span class=kn>import</span> <span class=nn>yaml</span>
-<span class=kn>import</span> <span class=nn>pytoml</span> <span class=k>as</span> <span class=nn>toml</span>
-<span class=kn>import</span> <span class=nn>datetime</span>
-<span class=kn>import</span> <span class=nn>re</span>
-
-<span class=n>default_logging_level</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>WARNING</span>
-<span class=n>default_timezome_offset</span> <span class=o>=</span> <span class=o>+</span><span class=n>datetime</span><span class=o>.</span><span class=n>timedelta</span><span class=p>(</span><span class=n>hours</span><span class=o>=</span><span class=mi>8</span><span class=p>)</span>
-
-
-<span class=k>class</span> <span class=nc>Logger</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
-    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>name</span><span class=p>):</span>
-        <span class=n>logformat</span> <span class=o>=</span> <span class=s1>&#39;Hexo2hugo (</span><span class=si>%(name)s</span><span class=s1>): [</span><span class=si>%(levelname)s</span><span class=s1>] </span><span class=si>%(message)s</span><span class=s1>&#39;</span>
-
-        <span class=bp>self</span><span class=o>.</span><span class=n>logger</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>getLogger</span><span class=p>(</span><span class=n>name</span> <span class=ow>or</span> <span class=vm>__name__</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>logger</span><span class=o>.</span><span class=n>setLevel</span><span class=p>(</span><span class=n>default_logging_level</span><span class=p>)</span>
-        <span class=n>myhandler</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>StreamHandler</span><span class=p>()</span>
-        <span class=n>myhandler</span><span class=o>.</span><span class=n>setFormatter</span><span class=p>(</span><span class=n>logging</span><span class=o>.</span><span class=n>Formatter</span><span class=p>(</span><span class=n>logformat</span><span class=p>))</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>logger</span><span class=o>.</span><span class=n>addHandler</span><span class=p>(</span><span class=n>myhandler</span><span class=p>)</span>
-
-
-<span class=k>class</span> <span class=nc>Hexo2Hugo</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
-    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>src</span><span class=p>,</span> <span class=n>dest</span><span class=p>,</span> <span class=n>remove_date</span><span class=p>):</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>root_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>expanduser</span><span class=p>(</span><span class=n>src</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>dest_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>expanduser</span><span class=p>(</span><span class=n>dest</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>remove_date</span> <span class=o>=</span> <span class=n>remove_date</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>logger</span> <span class=o>=</span> <span class=n>Logger</span><span class=p>(</span><span class=s2>&#34;Hexo&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>logger</span>
-
-        <span class=bp>self</span><span class=o>.</span><span class=n>_find_all_files</span><span class=p>()</span>
-
-    <span class=k>def</span> <span class=nf>go</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=k>for</span> <span class=n>post</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>_process_files</span><span class=p>():</span>
-            <span class=n>name</span> <span class=o>=</span> <span class=n>post</span><span class=p>[</span><span class=s1>&#39;name&#39;</span><span class=p>]</span>
-            <span class=n>meta</span> <span class=o>=</span> <span class=n>post</span><span class=p>[</span><span class=s1>&#39;meta&#39;</span><span class=p>]</span>
-            <span class=n>body</span> <span class=o>=</span> <span class=n>post</span><span class=p>[</span><span class=s1>&#39;body&#39;</span><span class=p>]</span>
-
-            <span class=k>if</span> <span class=bp>self</span><span class=o>.</span><span class=n>remove_date</span><span class=p>:</span>
-                <span class=n>name</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>_remove_date</span><span class=p>(</span><span class=n>name</span><span class=p>)</span>
-
-            <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>dest_path</span><span class=p>,</span> <span class=n>name</span><span class=p>),</span> <span class=s1>&#39;w+&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>fp</span><span class=p>:</span>
-                <span class=bp>self</span><span class=o>.</span><span class=n>logger</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=s2>&#34;Write to </span><span class=si>{}</span><span class=s2>, meta: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=n>meta</span><span class=p>))</span>
-                <span class=n>fp</span><span class=o>.</span><span class=n>writelines</span><span class=p>(</span><span class=s2>&#34;+++</span><span class=se>\n</span><span class=si>{}</span><span class=s2>+++</span><span class=se>\n\n</span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>meta</span><span class=p>,</span> <span class=n>body</span><span class=p>))</span>
-
-    <span class=k>def</span> <span class=nf>_remove_date</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>name</span><span class=p>):</span>
-        <span class=n>new_name</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=s1>&#39;^\d+-\d+-\d+-(.*)&#39;</span><span class=p>,</span> <span class=sa>r</span><span class=s1>&#39;\1&#39;</span><span class=p>,</span> <span class=n>name</span><span class=p>)</span>
-        <span class=k>if</span> <span class=n>new_name</span><span class=p>:</span>
-            <span class=k>return</span> <span class=n>new_name</span>
-        <span class=k>return</span> <span class=n>name</span>
-
-    <span class=k>def</span> <span class=nf>_find_all_files</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>files</span> <span class=o>=</span> <span class=p>[]</span>
-        <span class=k>for</span> <span class=n>file</span> <span class=ow>in</span> <span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>root_path</span><span class=p>):</span>
-            <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>isfile</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>root_path</span><span class=p>,</span> <span class=n>file</span><span class=p>)):</span>
-                <span class=bp>self</span><span class=o>.</span><span class=n>files</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>file</span><span class=p>)</span>
-        <span class=bp>self</span><span class=o>.</span><span class=n>logger</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=s2>&#34;Total </span><span class=si>{}</span><span class=s2> files found&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>files</span><span class=p>)))</span>
-
-    <span class=k>def</span> <span class=nf>_extract_date_from_filename</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>filename</span><span class=p>):</span>
-        <span class=n>m</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>match</span><span class=p>(</span><span class=s1>&#39;^(\d+-\d+-\d+)-.*$&#39;</span><span class=p>,</span> <span class=n>filename</span><span class=p>)</span>
-        <span class=k>if</span> <span class=n>m</span><span class=p>:</span>
-            <span class=k>return</span> <span class=n>m</span><span class=o>.</span><span class=n>group</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
-
-    <span class=k>def</span> <span class=nf>_process_files</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
-        <span class=k>for</span> <span class=n>hexo_file</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>files</span><span class=p>:</span>
-            <span class=n>date_from_filename</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>_extract_date_from_filename</span><span class=p>(</span><span class=n>hexo_file</span><span class=p>)</span>
-            <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>root_path</span><span class=p>,</span> <span class=n>hexo_file</span><span class=p>),</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>fp</span><span class=p>:</span>
-                <span class=n>meta_yaml</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
-                <span class=n>body</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
-                <span class=n>is_meta</span> <span class=o>=</span> <span class=kc>True</span>
-                <span class=n>is_first_line</span> <span class=o>=</span> <span class=kc>True</span>
-                <span class=n>is_in_pre</span> <span class=o>=</span> <span class=kc>False</span>
-                <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>fp</span><span class=p>:</span>
-                    <span class=k>if</span> <span class=n>is_first_line</span><span class=p>:</span>
-                        <span class=n>is_first_line</span> <span class=o>=</span> <span class=kc>False</span>
-                        <span class=k>if</span> <span class=n>line</span> <span class=o>==</span> <span class=s1>&#39;---</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>:</span>
-                            <span class=k>continue</span>
-
-                    <span class=k>if</span> <span class=n>is_meta</span><span class=p>:</span>
-                        <span class=k>if</span> <span class=n>line</span> <span class=o>==</span> <span class=s1>&#39;---</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>:</span>
-                            <span class=n>is_meta</span> <span class=o>=</span> <span class=kc>False</span>
-                        <span class=k>else</span><span class=p>:</span>
-                            <span class=n>meta_yaml</span> <span class=o>+=</span> <span class=n>line</span>
-                    <span class=k>else</span><span class=p>:</span>
-                        <span class=k>if</span> <span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;.html$&#39;</span><span class=p>,</span> <span class=n>hexo_file</span><span class=p>):</span>
-                            <span class=k>if</span> <span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;^&lt;pre&#39;</span><span class=p>,</span> <span class=n>line</span><span class=p>):</span>
-                                <span class=n>is_in_pre</span> <span class=o>=</span> <span class=kc>True</span>
-
-                            <span class=k>if</span> <span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;^&lt;/pre&#39;</span><span class=p>,</span> <span class=n>line</span><span class=p>):</span>
-                                <span class=n>is_in_pre</span> <span class=o>=</span> <span class=kc>False</span>
-
-                            <span class=k>if</span> <span class=ow>not</span> <span class=n>is_in_pre</span> <span class=ow>and</span> <span class=ow>not</span> <span class=n>re</span><span class=o>.</span><span class=n>match</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;^$&#39;</span><span class=p>,</span> <span class=n>line</span><span class=p>)</span> <span class=ow>and</span> <span class=ow>not</span> <span class=n>re</span><span class=o>.</span><span class=n>search</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;&lt;br */&gt;$&#39;</span><span class=p>,</span> <span class=n>line</span><span class=p>):</span>
-                                <span class=n>body</span> <span class=o>+=</span> <span class=n>line</span><span class=p>[:</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>+</span> <span class=s2>&#34;&lt;br /&gt;</span><span class=se>\n</span><span class=s2>&#34;</span>
-                            <span class=k>else</span><span class=p>:</span>
-                                <span class=n>body</span> <span class=o>+=</span> <span class=n>line</span>
-                        <span class=k>else</span><span class=p>:</span>
-                            <span class=n>body</span> <span class=o>+=</span> <span class=n>line</span>
-                <span class=n>meta</span> <span class=o>=</span> <span class=n>yaml</span><span class=o>.</span><span class=n>load</span><span class=p>(</span><span class=n>meta_yaml</span><span class=p>)</span>
-
-                <span class=bp>self</span><span class=o>.</span><span class=n>logger</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=s2>&#34;Process </span><span class=si>{}</span><span class=s2> now, meta: </span><span class=si>{}</span><span class=s2>, body length: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>hexo_file</span><span class=p>,</span> <span class=n>meta</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>body</span><span class=p>)))</span>
-
-                <span class=k>if</span> <span class=s1>&#39;date&#39;</span> <span class=ow>in</span> <span class=n>meta</span><span class=p>:</span>
-                    <span class=n>no_tz_date</span> <span class=o>=</span> <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;date&#39;</span><span class=p>]</span>
-                    <span class=k>try</span><span class=p>:</span>
-                        <span class=k>if</span> <span class=nb>type</span><span class=p>(</span><span class=n>no_tz_date</span><span class=p>)</span> <span class=o>==</span> <span class=nb>str</span><span class=p>:</span>
-                            <span class=n>no_tz_date</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>datetime</span><span class=o>.</span><span class=n>strptime</span><span class=p>(</span><span class=n>no_tz_date</span><span class=p>,</span> <span class=s1>&#39;%Y-%m-</span><span class=si>%d</span><span class=s1> %H:%M&#39;</span><span class=p>)</span>
-
-                    <span class=k>except</span><span class=p>:</span>
-                        <span class=k>if</span> <span class=nb>type</span><span class=p>(</span><span class=n>no_tz_date</span><span class=p>)</span> <span class=o>==</span> <span class=nb>str</span><span class=p>:</span>
-                            <span class=n>no_tz_date</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>datetime</span><span class=o>.</span><span class=n>strptime</span><span class=p>(</span><span class=n>no_tz_date</span><span class=p>,</span> <span class=s1>&#39;%Y-%m-</span><span class=si>%d</span><span class=s1> %H:%M:%S&#39;</span><span class=p>)</span>
-
-
-                    <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;date&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>no_tz_date</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=n>tzinfo</span><span class=o>=</span><span class=n>datetime</span><span class=o>.</span><span class=n>timezone</span><span class=p>(</span><span class=n>default_timezome_offset</span><span class=p>))</span><span class=o>.</span><span class=n>isoformat</span><span class=p>(</span><span class=s1>&#39;T&#39;</span><span class=p>)</span>
-                <span class=k>else</span><span class=p>:</span>
-                    <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;date&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>date_from_filename</span>
-
-                <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;description&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
-                <span class=k>if</span> <span class=s1>&#39;permalink&#39;</span> <span class=ow>in</span> <span class=n>meta</span><span class=p>:</span>
-                    <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;slug&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;permalink&#39;</span><span class=p>]</span>
-                    <span class=k>del</span> <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;permalink&#39;</span><span class=p>]</span>
-
-                <span class=k>if</span> <span class=s1>&#39;layout&#39;</span> <span class=ow>in</span> <span class=n>meta</span><span class=p>:</span>
-                    <span class=k>del</span> <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;layout&#39;</span><span class=p>]</span>
-
-                <span class=k>if</span> <span class=s1>&#39;tags&#39;</span> <span class=ow>in</span> <span class=n>meta</span> <span class=ow>and</span> <span class=nb>type</span><span class=p>(</span><span class=n>meta</span><span class=p>[</span><span class=s1>&#39;tags&#39;</span><span class=p>])</span> <span class=o>==</span> <span class=nb>str</span><span class=p>:</span>
-                    <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;tags&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;tags&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;,&#39;</span><span class=p>)</span>
-
-                <span class=k>if</span> <span class=s1>&#39;categories&#39;</span> <span class=ow>in</span> <span class=n>meta</span> <span class=ow>and</span> <span class=nb>type</span><span class=p>(</span><span class=n>meta</span><span class=p>[</span><span class=s1>&#39;categories&#39;</span><span class=p>])</span> <span class=o>==</span> <span class=nb>str</span><span class=p>:</span>
-                    <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;categories&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>meta</span><span class=p>[</span><span class=s1>&#39;categories&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;,&#39;</span><span class=p>)</span>
-
-                <span class=k>if</span> <span class=n>body</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=s2>&#34;&lt;!--more--&gt;&#34;</span><span class=p>)</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span><span class=p>:</span>
-                    <span class=n>body</span> <span class=o>=</span> <span class=n>body</span> <span class=o>+</span> <span class=s2>&#34;&lt;!--more--&gt;&#34;</span>
-
-
-                <span class=n>meta_toml</span> <span class=o>=</span> <span class=n>toml</span><span class=o>.</span><span class=n>dumps</span><span class=p>(</span><span class=n>meta</span><span class=p>)</span>
-                <span class=k>yield</span><span class=p>({</span><span class=s1>&#39;name&#39;</span><span class=p>:</span> <span class=n>hexo_file</span><span class=p>,</span> <span class=s1>&#39;meta&#39;</span><span class=p>:</span> <span class=n>meta_toml</span><span class=p>,</span> <span class=s1>&#39;body&#39;</span><span class=p>:</span> <span class=n>body</span><span class=p>})</span>
-
-
-<span class=k>def</span> <span class=nf>main</span><span class=p>(</span><span class=n>args</span><span class=p>):</span>
-    <span class=n>hexo</span> <span class=o>=</span> <span class=n>Hexo2Hugo</span><span class=p>(</span><span class=n>args</span><span class=o>.</span><span class=n>src</span><span class=p>,</span> <span class=n>args</span><span class=o>.</span><span class=n>dest</span><span class=p>,</span> <span class=n>args</span><span class=o>.</span><span class=n>remove_date_from_name</span><span class=p>)</span>
-    <span class=n>hexo</span><span class=o>.</span><span class=n>go</span><span class=p>()</span>
-
-
-<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
-    <span class=n>parser</span> <span class=o>=</span> <span class=n>argparse</span><span class=o>.</span><span class=n>ArgumentParser</span><span class=p>()</span>
-    <span class=n>parser</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--src&#39;</span><span class=p>,</span> <span class=n>help</span><span class=o>=</span><span class=s1>&#39;Hexo posts directory&#39;</span><span class=p>)</span>
-    <span class=n>parser</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--dest&#39;</span><span class=p>,</span> <span class=n>help</span><span class=o>=</span><span class=s1>&#39;Destination directory&#39;</span><span class=p>)</span>
-    <span class=n>parser</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--remove-date-from-name&#39;</span><span class=p>,</span> <span class=n>help</span><span class=o>=</span><span class=s1>&#39;Remove date from file name&#39;</span><span class=p>,</span> <span class=n>action</span><span class=o>=</span><span class=s1>&#39;store_true&#39;</span><span class=p>)</span>
-    <span class=n>parser</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--verbose&#39;</span><span class=p>,</span> <span class=n>help</span><span class=o>=</span><span class=s1>&#39;Output level&#39;</span><span class=p>,</span> <span class=n>action</span><span class=o>=</span><span class=s1>&#39;store_true&#39;</span><span class=p>)</span>
-
-    <span class=n>args</span> <span class=o>=</span> <span class=n>parser</span><span class=o>.</span><span class=n>parse_args</span><span class=p>()</span>
-
-    <span class=k>if</span> <span class=n>args</span><span class=o>.</span><span class=n>verbose</span><span class=p>:</span>
-        <span class=n>default_logging_level</span> <span class=o>=</span> <span class=n>logging</span><span class=o>.</span><span class=n>DEBUG</span>
-
-    <span class=n>main</span><span class=p>(</span><span class=n>args</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span></code></pre></td><td class=lntd>e></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
 <span class=item-content>Chen, Zai-Chun</span></p><p class=copyright-item><span class=item-title>上次更新</span>
 <span class=item-content>2017-11-26</span></p><p class=copyright-item><span class=item-title>许可协议</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/hugo/>hugo</a>
