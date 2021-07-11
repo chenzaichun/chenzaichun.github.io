@@ -1,0 +1,136 @@
+#+OPTIONS: ^:nil _:nil f:nil toc:t
+#+AUTHOR: Chen, Zai-Chun 
+#+EMAIL: <chenzaichun@gmail.com>
+#+TITLE: Galera MySQL
+
+#+DATE: 2017-07-11T16:29:26+08:00
+
+#+HUGO_BASE_DIR: ~/src/blog/chenzaichun
+#+HUGO_SECTION: ./post/
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_TAGS: hugo org emacs mysql galera
+#+HUGO_CATEGORIES: emacs linux org
+#+options: author:nil
+
+
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../styles/css/readtheorg.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../styles/css/htmlize.css"/>
+
+#+HTML_HEAD: <script src="../styles/js/bootstrap.min.js"></script>
+#+HTML_HEAD: <script src="../styles/js/readtheorg.js"></script>
+#+TOC: tables
+
+全centos7环境
+
+| 10.69.0.10 | cmp-vi650rc4 |
+| 10.69.0.11 | cmp-d8uc6edi |
+|  10.69.0.5 | cmp-g7msocxo |
+
+添加host到 =/etc/hosts=
+
+创建 =/etc/yum.repos.d/galera.repo=
+#+BEGIN_SRC sh
+  cat > /etc/yum.repos.d/galera.repo <<EOF
+  [galera]
+  name = Galera
+  baseurl = http://releases.galeracluster.com/galera-3/centos/7/$basearch/
+  gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com
+  gpgcheck = 1
+
+  [mysql-wsrep]
+  name = MySQL-wsrep
+  baseurl =  http://releases.galeracluster.com/mysql-wsrep-5.7/centos/7/$basearch/
+  gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com
+  gpgcheck = 1
+  EOF
+#+END_SRC
+
+安装 =galera= 和 =mysql-wsrep=
+#+BEGIN_SRC sh
+  yum update -y && yum install -y galera-3 mysql-wsrep-server-5.7 rsync
+#+END_SRC
+
+selinux 开启mysql的其他端口
+
+#+BEGIN_SRC sh
+  semanage permissive -a mysqld_t
+#+END_SRC
+
+如果semanage找不到，请安装
+
+#+BEGIN_SRC sh
+  yum install policycoreutils-python
+#+END_SRC
+
+启动mysql
+
+#+BEGIN_SRC sh
+  systemctl start mysqld
+#+END_SRC
+
+修改mysql root 密码:
+
+#+BEGIN_SRC sh
+  password_match=`awk '/A temporary password is generated for/ {a=$0} END{ print a }' /var/log/mysqld.log | awk '{print $(NF)}'`
+  echo "$password_match"
+  mysql  -uroot -p$password_match --connect-expired-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY  'Root-mysql-pw@2017'; FLUSH PRIVILEGES; "
+#+END_SRC
+
+#+BEGIN_SRC sql
+  grant all privileges on *.* to sst@'%' identified by '123456';
+  flush privileges;
+#+END_SRC
+
+#+BEGIN_SRC sql
+  GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' identified by 'Root-mysql-pw@2017';
+  flush privileges;
+#+END_SRC
+
+修改 =/etc/my.cnf=
+
+#+BEGIN_SRC conf
+  [mysqld]
+  datadir=/var/lib/mysql
+  socket=/var/lib/mysql/mysql.sock
+  user=mysql
+  binlog_format=ROW
+  bind-address=0.0.0.0
+  default_storage_engine=innodb
+  innodb_autoinc_lock_mode=2
+  innodb_flush_log_at_trx_commit=0
+  innodb_buffer_pool_size=122M
+  wsrep_provider=/usr/lib64/galera-3/libgalera_smm.so
+  wsrep_provider_options="gcache.size=300M; gcache.page_size=300M"
+  wsrep_sst_method=rsync
+  wsrep_cluster_address="gcomm://10.69.0.10,10.69.0.11"
+  wsrep_cluster_name="mysql_cluster"
+
+  wsrep_node_address='10.69.0.10'
+  wsrep_node_name='node1'
+
+  !includedir /etc/my.cnf.d/
+
+  [mysql_safe]
+  log-error=/var/log/mysqld.log
+  pid-file=/var/run/mysqld/mysqld.pid
+#+END_SRC
+
+在其他node上修改
+
+#+BEGIN_SRC conf
+  wsrep_node_address='10.69.0.11'
+  wsrep_node_name='node2'
+#+END_SRC
+
+在第一台机器上执行:
+
+#+BEGIN_SRC sh
+  /usr/bin/mysqld_bootstrap
+#+END_SRC
+
+后面的机器普通启动就好了
+
+#+BEGIN_SRC sh
+  systemctl start mysqld
+#+END_SRC
