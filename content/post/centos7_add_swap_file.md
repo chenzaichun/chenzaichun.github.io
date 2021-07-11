@@ -5,10 +5,8 @@ lastmod = 2018-12-21T18:02:19+08:00
 tags = ["linux", "emacs", "org"]
 categories = ["linux"]
 draft = false
-weight = 2001
 +++
 
--   State "DONE"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-12-21 Fri 17:54]</span></span>
 
 ```sh
 dd if=/dev/zero of=/swapfile bs=1024 count=4096000
