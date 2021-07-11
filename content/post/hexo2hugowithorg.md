@@ -37,8 +37,9 @@ except:
 因为没有 `more` tag，在主页summary不好看，给加上
 
 ```python
-if body.find("<!--more-->") == -1:
-    body = body + "<!--more-->"
+more_tag="<!--more-->"
+if body.find(more_tag) == -1:
+    body = body + more_tag
 ```
 
 完整代码见这里
