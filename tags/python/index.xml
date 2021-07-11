@@ -1,0 +1,1796 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>python on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/python/</link><description>Recent content in python on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 07 Aug 2015 15:23:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>用 Python 解方程</title><link>https://chenzaichun.github.io/post/2015-08-07-python-solve-equation/</link><pubDate>Fri, 07 Aug 2015 15:23:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-07-python-solve-equation/</guid><description>&lt;p>今天无意中发现一张图片，&lt;/p>
+&lt;p>&lt;img src="https://chenzaichun.github.io/media/wifi_password.jpg" alt="WIFI密码">&lt;/p>
+&lt;p>当如可以通过数学计算网站计算得到结果&lt;a href="https://www.symbolab.com/solver/logarithmic-equation-calculator/log_%7B2%7D%5Cleft(x-1%5Cright)%2Blog_%7B2%7DX%3D1/?origin=enterkey">symbolab&lt;/a>&lt;/p>
+&lt;p>当时病犯了，不承认自己是学渣（貌似我也不是学霸），学过的数学也完全还给了老师，肿么办。只好用 Python 中的&lt;a href="http://www.sympy.org/en/index.html">SymPy&lt;/a>来计算一下了以下方程&lt;/p>
+&lt;p>{% math_block %}
+\log_2(x-1) + \log_2x = 1
+{% endmath_block %}&lt;/p>
+&lt;p>安装&lt;code>SymPy&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">pip install sympy
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>求解，直接上代码&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">sympy&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="n">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;x&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">solve&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>结果是2，可是貌似还有一个负数解呢( &lt;code>-1&lt;/code> 哪儿去了?)&lt;/p>
+&lt;!-- more -->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">sympy&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="n">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;x&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">solve&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Symbol&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;y&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">negative&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">solve&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>暂时只能通过这种方式求解了。&lt;/p></description></item><item><title>Mac OS X下安装gevent</title><link>https://chenzaichun.github.io/post/2013-06-23-install-gevent-on-mac-os-x/</link><pubDate>Sun, 23 Jun 2013 11:08:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2013-06-23-install-gevent-on-mac-os-x/</guid><description>&lt;p>(请确保xcode command line tools已经安装)&lt;/p>
+&lt;p>直接使用 =pip install= 会出现 =event.h= 找不到：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"> clang: warning: argument unused during compilation: &amp;#39;-mno-fused-madd&amp;#39;
+In file included from gevent/core.c:253:
+gevent/libevent.h:9:10: fatal error: &amp;#39;event.h&amp;#39; file not found
+#include &amp;#34;event.h&amp;#34;
+^
+1 error generated.
+error: command &amp;#39;clang&amp;#39; failed with exit status 1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这个时候需要安装 =libevent=:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">brew install libevent
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后安装 =gevent=&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">sudo pip install gevent
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装成功之后，测试一下发现会出错：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">&amp;gt;&amp;gt;&amp;gt; import gevent
+Traceback (most recent call last):
+File &amp;#34;&amp;lt;stdin&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt;
+File &amp;#34;/Library/Python/2.7/site-packages/gevent/__init__.py&amp;#34;, line 40, in &amp;lt;module&amp;gt;
+ImportError: cannot import name core
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>原来是因为没有安装 =cython=, 安装之&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">sudo pip install cython
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>并重新安装 =greenlet= 和 =gevent=&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">sudo pip uninstall gevent
+sudo pip uninstall greenlet
+sudo pip install greenlet
+sudo pip install gevent
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Python获取操作系统版本信息</title><link>https://chenzaichun.github.io/post/2012-06-01-python-get-os-information/</link><pubDate>Fri, 01 Jun 2012 09:28:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-06-01-python-get-os-information/</guid><description>&lt;p>直接上代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- coding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">platform&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">platfrom&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">version&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">platform&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">system&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>对于特定平台，还有相对应的函数，比如 =platform.win32_version()=, =platform.mac_version()=. 详情见 =dir(platform)=&lt;/p></description></item><item><title>python获取中文拼音首字母以进行检索</title><link>https://chenzaichun.github.io/post/2012-05-24-get-chinese-pinyin-python/</link><pubDate>Thu, 24 May 2012 14:11:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-05-24-get-chinese-pinyin-python/</guid><description>&lt;p>主要的原理是GBK汉字是按拼音顺序编码的。&lt;/p>
+&lt;p>源代码如下:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;span class="lnt">84
+&lt;/span>&lt;span class="lnt">85
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- encoding: utf-8 -*-&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">multi_get_letter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">str_input&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">isinstance&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">str_input&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">unicode&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">unicode_str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">str_input&lt;/span>
+&lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">unicode_str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">str_input&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">decode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;utf8&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">except&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">unicode_str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">str_input&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">decode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;gbk&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">except&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s1">&amp;#39;unknown coding&amp;#39;&lt;/span>
+&lt;span class="k">return&lt;/span>
+&lt;span class="n">return_list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">one_unicode&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">unicode_str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="c1">#print single_get_first(one_unicode)&lt;/span>
+&lt;span class="n">return_list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">single_get_first&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">one_unicode&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">return_list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">single_get_first&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">unicode1&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">str1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">unicode1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">encode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;gbk&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">ord&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">str1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">str1&lt;/span>
+&lt;span class="k">except&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">asc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">ord&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">str1&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">256&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nb">ord&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">str1&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">65536&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">20319&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">20284&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;a&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">20283&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">19776&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;b&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">19775&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">19219&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;c&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">19218&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">18711&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;d&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">18710&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">18527&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;e&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">18526&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">18240&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;f&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">18239&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">17923&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;g&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">17922&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">17418&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;h&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">17417&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">16475&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;j&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">16474&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">16213&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;k&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">16212&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">15641&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;l&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">15640&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">15166&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;m&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">15165&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14923&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;n&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14922&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14915&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;o&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14914&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14631&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;p&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14630&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14150&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;q&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14149&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14091&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;r&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">14090&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">13119&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;s&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">13118&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">12839&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;t&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">12838&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">12557&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;w&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">12556&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">11848&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;x&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">11847&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">11056&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;y&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">11055&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">asc&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">10247&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;z&amp;#39;&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">printresult&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;中文: &amp;#34;&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s1">&amp;#34; --&amp;gt; 首字母拼音: &amp;#34;&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s1">&amp;#34;&amp;#39;&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">multi_get_letter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;__main__&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">printresult&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;木哈哈&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">printresult&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;小李&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">printresult&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;大王&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">printresult&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;大d王m&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我的修改版本:&lt;/p></description></item><item><title>xiami自动签到</title><link>https://chenzaichun.github.io/post/2012-05-23-xiami-checkin/</link><pubDate>Wed, 23 May 2012 13:10:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-05-23-xiami-checkin/</guid><description>&lt;p>有的时候需要在虾米上面下点音乐，但是积分经常不够- -||。虾米提供了签到的方式来获取&lt;code>红包&lt;/code>&lt;/p>
+&lt;p>对于虾米自动签到，目前有两种方式：&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="http://checkin.isombyt.me/">虾米自动签到(喂食)系统&lt;/a>， 该网站建立在&lt;code>GAE&lt;/code>上，不用设置直接提交就可以帮你自动签到，但是每天只能满足1400个人（不知道现在有多少人使用该系统），对于该系统的介绍和限制，参见其&lt;a href="http://isombyt.me/2012/05/xiami-checkin/">blog&lt;/a>&lt;/li>
+&lt;li>另外一种是通过&lt;code>python&lt;/code>脚本加&lt;code>cron&lt;/code>的方式来达到，但是需要python的Linux/Unix服务器，参见&lt;a href="http://huxuan.org/projects/xiami_auto_checkin/">HuXuan&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;p>我将自动该自动签到脚本放到了dotcloud上面，以下是我的配置：&lt;/p>
+&lt;ol>
+&lt;li>ssh到dotcloud上：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">dotcloud ssh
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>SOAPpy Error</title><link>https://chenzaichun.github.io/post/2012-04-10-soappy-error-xml-parsers-expat-expaterror/</link><pubDate>Tue, 10 Apr 2012 20:13:24 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-04-10-soappy-error-xml-parsers-expat-expaterror/</guid><description>&lt;p>今天准备用SOAPpy来写一个最简单的soap client，代码如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- encoding: utf-8 -*-&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">SOAPpy&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">WSDL&lt;/span>
+&lt;span class="n">WSDLfile&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;/path/to/webservice&amp;#34;&lt;/span>
+&lt;span class="n">wsdlObject&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">WSDL&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Proxy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">WSDLfile&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s1">&amp;#39;Available methods:&amp;#39;&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">method&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">wsdlObject&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">methods&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">keys&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">method&lt;/span>
+&lt;span class="n">ci&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wsdlObject&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">methods&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">method&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="c1"># you can also use ci.inparams&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">param&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">ci&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">outparams&lt;/span> &lt;span class="p">:&lt;/span>
+&lt;span class="c1"># list of the function and type &lt;/span>
+&lt;span class="c1"># depending of the wsdl...&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">param&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ljust&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">,&lt;/span> &lt;span class="n">param&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">type&lt;/span>
+&lt;span class="nb">print&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>运行的时候出现了这个问题：&lt;/p></description></item><item><title>Pymacs</title><link>https://chenzaichun.github.io/post/2011-11-13-pymacs/</link><pubDate>Sun, 13 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-13-pymacs/</guid><description>&lt;p>一直以来配置emacs都是从网上抄的，想写一些东西来配置一下emacs使之更加的方便，但是elisp的括号让人望而生畏。所以还是用python来扩展吧。幸好有&lt;a href="http://pymacs.progiciels-bpi.ca/index.html">pymacs&lt;/a>这个强大的东东。&lt;/p>
+&lt;p>官方对其的介绍：&lt;/p>
+&lt;blockquote>
+&lt;p>Pymacs is a powerful tool which, once started from Emacs, allows both-way communication between Emacs Lisp and Python. Pymacs aims Python as an extension language for Emacs rather than the other way around, and this asymmetry is reflected in some design choices. Within Emacs Lisp code, one may load and use Python modules. Python functions may themselves use Emacs services, and handle Emacs Lisp objects kept in Emacs Lisp space.&lt;/p>
+&lt;/blockquote>
+&lt;p>archlinux下安装pymacs：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">sudo pacman -S pymacs
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>配置pymacs, 在.emacs中添加：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-apply&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-call&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-eval&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-exec&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-load&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">eval-after-load&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span>
+&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">add-to-list&lt;/span> &lt;span class="ss">&amp;#39;pymacs-load-path&lt;/span> &lt;span class="s">&amp;#34;~/.emacs.d/my-lisp&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>现在我要将elisp的函数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">proxyfunc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">server&lt;/span> &lt;span class="nv">port&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;http_proxy&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">concat&lt;/span> &lt;span class="s">&amp;#34;http://&amp;#34;&lt;/span>&lt;span class="nv">server&lt;/span>&lt;span class="s">&amp;#34;:&amp;#34;&lt;/span>&lt;span class="nv">port&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;https_proxy&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">concat&lt;/span> &lt;span class="s">&amp;#34;https://&amp;#34;&lt;/span>&lt;span class="nv">server&lt;/span>&lt;span class="s">&amp;#34;:&amp;#34;&lt;/span>&lt;span class="nv">port&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;ftp_proxy&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">concat&lt;/span> &lt;span class="s">&amp;#34;http://&amp;#34;&lt;/span>&lt;span class="nv">server&lt;/span>&lt;span class="s">&amp;#34;:&amp;#34;&lt;/span>&lt;span class="nv">port&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">proxyoff&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">interactive&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;http_proxy&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;https_proxy&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;ftp_proxy&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">proxyjpn&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">interactive&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">proxyfunc&lt;/span> &lt;span class="s">&amp;#34;16.146.32.100&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;8080&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="nv">转换为Python,&lt;/span> &lt;span class="nv">如setproxy.py&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">将文件放到PYTHONPATH中&lt;/span>&lt;span class="err">）&lt;/span>
+&lt;span class="o">```&lt;/span>&lt;span class="nv">python&lt;/span>
+&lt;span class="err">#&lt;/span>&lt;span class="nv">!/usr/bin/env&lt;/span> &lt;span class="nv">python&lt;/span>
+&lt;span class="err">#&lt;/span> &lt;span class="nv">-*-&lt;/span> &lt;span class="nv">coding:&lt;/span> &lt;span class="nv">utf-8&lt;/span> &lt;span class="nv">-*-&lt;/span>
+&lt;span class="nf">import&lt;/span> &lt;span class="nv">os&lt;/span>
+&lt;span class="nv">def&lt;/span> &lt;span class="nv">setproxy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">server,&lt;/span> &lt;span class="nv">port&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;http_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="ss">&amp;#39;http://&amp;#39;+server+&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="ss">&amp;#39;+port&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;https_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="ss">&amp;#39;https://&amp;#39;+server+&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="ss">&amp;#39;+port&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;ftp_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="ss">&amp;#39;http://&amp;#39;+server+&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="ss">&amp;#39;+port&lt;/span>
+&lt;span class="nv">def&lt;/span> &lt;span class="nv">setproxyoff&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;http_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;https_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;ftp_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">def&lt;/span> &lt;span class="nv">proxyjpn&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;span class="nv">setproxy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">&amp;#39;16.146.32.100&amp;#39;,&lt;/span> &lt;span class="ss">&amp;#39;8080&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nv">def&lt;/span> &lt;span class="nv">proxysgn&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;span class="nv">setproxy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">&amp;#39;16.158.235.10&amp;#39;,&lt;/span> &lt;span class="ss">&amp;#39;8080&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="err">#&lt;/span> &lt;span class="nv">need&lt;/span> &lt;span class="nv">to&lt;/span> &lt;span class="nf">set&lt;/span> &lt;span class="k">the&lt;/span> &lt;span class="nv">property&lt;/span> &lt;span class="nv">interaction&lt;/span>
+&lt;span class="nv">proxyjpn.interaction&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">setproxyoff.interaction&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">proxysgn.interaction&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>通过pymacs-load加载python模块&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">M-x pymacs-load RET MODULE RET PREFIX RET
+# e.g. M-x pymacs-load setproxy RET setproxy- RET
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>调用python函数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">M-x setproxy-proxyjpn
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>对于pymacs的详细教程，中文版可以参考&lt;a href="http://www.cnblogs.com/rockcode/archive/2011/08/20/2147404.html">这里&lt;/a>&lt;/p></description></item><item><title>Python ftplib</title><link>https://chenzaichun.github.io/post/2011-11-05-python_ftplib/</link><pubDate>Sat, 05 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-05-python_ftplib/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">ftplib&lt;/span>
+&lt;span class="n">session&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ftplib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">FTP&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;server&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;usr&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;pwd&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">myfile&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;test.txt&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;rb&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">session&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">storbinary&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;STOR test.txt&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">myfile&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">myfile&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">session&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">quit&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Python获取当前用户名</title><link>https://chenzaichun.github.io/post/2011-10-29-get_user_name_by_python/</link><pubDate>Sat, 29 Oct 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-29-get_user_name_by_python/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="err">!&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">usr&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nb">bin&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">env&lt;/span> &lt;span class="n">python&lt;/span>
+&lt;span class="o">-*-&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">utf&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">8&lt;/span> &lt;span class="o">-*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">getpass&lt;/span>
+&lt;span class="n">getpass&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getuser&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>python获取本机公网IP</title><link>https://chenzaichun.github.io/post/2011-10-28-python_get_public_ip/</link><pubDate>Fri, 28 Oct 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-28-python_get_public_ip/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1">#-*- encoding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">re&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">urllib2&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;public IP address is: &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">re&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">search&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;d+.d+.d+.d+&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">urllib2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">urlopen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;http://www.whereismyip.com&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read&lt;/span>&lt;span class="p">())&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">group&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Python二维条形码生成</title><link>https://chenzaichun.github.io/post/2011-10-26-python_barcode_generate/</link><pubDate>Wed, 26 Oct 2011 09:10:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-26-python_barcode_generate/</guid><description>&lt;p>Python下可以用&lt;a href="http://code.google.com/p/elaphe/">Elaphe&lt;/a>来生成二维条形码，如果不想安装软件的话，可以试试下面的脚本：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">re&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nn">Image&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nn">ImageDraw&lt;/span>
+&lt;span class="n">code_img_data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;11011001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001101100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001100110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10010011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10010001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10011001000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011000100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11001001000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001000100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10110011100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011011100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011001110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10111001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011101100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011100110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11001110010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001011100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001001110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11011100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001110100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11101101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100101100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100100110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100110100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100110010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11011011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11011000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10100011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10110001000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11010001000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10110111000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10110001110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10111011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10111000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11010001110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11011101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11011100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11011101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11101000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100010110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11101100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100011010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101111010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001000010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110001010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10100110000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10100001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10010110000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10010000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10000101100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10000100110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10110010000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10110000100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011010000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10011000010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10000110100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10000110010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11000010010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001010000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110111010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11000010100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001111010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10100111100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10010111100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10010011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10111100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10011110100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011110010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11110010100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110010010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11011011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11011110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10101111000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10100011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10111101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10111100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10111011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10111101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11101011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11110101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11010000100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11010010000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11010011100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;1100011101011&amp;#39;&lt;/span>
+&lt;span class="p">]&lt;/span>
+&lt;span class="n">code_b_data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;!&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#34;&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;#&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;$&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;%&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;amp;&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;: 7, &amp;#39;(&amp;#39;: 8, &amp;#39;)&amp;#39;: 9,
+&lt;/span>&lt;span class="s1"> &amp;#39;*&amp;#39;: 10, &amp;#39;+&amp;#39;: 11, &amp;#39;,&amp;#39;: 12, &amp;#39;-&amp;#39;: 13, &amp;#39;.&amp;#39;: 14,
+&lt;/span>&lt;span class="s1"> &amp;#39;/&amp;#39;: 15, &amp;#39;0&amp;#39;: 16, &amp;#39;1&amp;#39;: 17, &amp;#39;2&amp;#39;: 18, &amp;#39;3&amp;#39;: 19,
+&lt;/span>&lt;span class="s1"> &amp;#39;4&amp;#39;: 20, &amp;#39;5&amp;#39;: 21, &amp;#39;6&amp;#39;: 22, &amp;#39;7&amp;#39;: 23, &amp;#39;8&amp;#39;: 24,
+&lt;/span>&lt;span class="s1"> &amp;#39;9&amp;#39;: 25, &amp;#39;:&amp;#39;: 26, &amp;#39;;&amp;#39;: 27, &amp;#39;&amp;lt;&amp;#39;: 28, &amp;#39;=&amp;#39;: 29,
+&lt;/span>&lt;span class="s1"> &amp;#39;&amp;gt;&amp;#39;: 30, &amp;#39;?&amp;#39;: 31, &amp;#39;@&amp;#39;: 32, &amp;#39;A&amp;#39;: 33, &amp;#39;B&amp;#39;: 34,
+&lt;/span>&lt;span class="s1"> &amp;#39;C&amp;#39;: 35, &amp;#39;D&amp;#39;: 36, &amp;#39;E&amp;#39;: 37, &amp;#39;F&amp;#39;: 38, &amp;#39;G&amp;#39;: 39,
+&lt;/span>&lt;span class="s1"> &amp;#39;H&amp;#39;: 40, &amp;#39;I&amp;#39;: 41, &amp;#39;J&amp;#39;: 42, &amp;#39;K&amp;#39;: 43, &amp;#39;L&amp;#39;: 44,
+&lt;/span>&lt;span class="s1"> &amp;#39;M&amp;#39;: 45, &amp;#39;N&amp;#39;: 46, &amp;#39;O&amp;#39;: 47, &amp;#39;P&amp;#39;: 48, &amp;#39;Q&amp;#39;: 49,
+&lt;/span>&lt;span class="s1"> &amp;#39;R&amp;#39;: 50, &amp;#39;S&amp;#39;: 51, &amp;#39;T&amp;#39;: 52, &amp;#39;U&amp;#39;: 53, &amp;#39;V&amp;#39;: 54,
+&lt;/span>&lt;span class="s1"> &amp;#39;W&amp;#39;: 55, &amp;#39;X&amp;#39;: 56, &amp;#39;Y&amp;#39;: 57, &amp;#39;Z&amp;#39;: 58, &amp;#39;[&amp;#39;: 59,
+&lt;/span>&lt;span class="s1"> &amp;#39;&lt;/span>&lt;span class="se">\&amp;#39;&lt;/span>&lt;span class="s1">: 60, &amp;#39;]&amp;#39;: 61, &amp;#39;^&amp;#39;: 62, &amp;#39;_&amp;#39;: 63, &amp;#39;`&amp;#39;: 64,
+&lt;/span>&lt;span class="s1"> &amp;#39;a&amp;#39;: 65, &amp;#39;b&amp;#39;: 66, &amp;#39;c&amp;#39;: 67, &amp;#39;d&amp;#39;: 68, &amp;#39;e&amp;#39;: 69,
+&lt;/span>&lt;span class="s1"> &amp;#39;f&amp;#39;: 70, &amp;#39;g&amp;#39;: 71, &amp;#39;h&amp;#39;: 72, &amp;#39;I&amp;#39;: 73, &amp;#39;j&amp;#39;: 74,
+&lt;/span>&lt;span class="s1"> &amp;#39;k&amp;#39;: 75, &amp;#39;l&amp;#39;: 76, &amp;#39;m&amp;#39;: 77, &amp;#39;n&amp;#39;: 78, &amp;#39;o&amp;#39;: 79,
+&lt;/span>&lt;span class="s1"> &amp;#39;p&amp;#39;: 80, &amp;#39;q&amp;#39;: 81, &amp;#39;r&amp;#39;: 82, &amp;#39;s&amp;#39;: 83, &amp;#39;t&amp;#39;: 84,
+&lt;/span>&lt;span class="s1"> &amp;#39;u&amp;#39;: 85, &amp;#39;v&amp;#39;: 86, &amp;#39;w&amp;#39;: 87, &amp;#39;x&amp;#39;: 88, &amp;#39;y&amp;#39;: 89,
+&lt;/span>&lt;span class="s1"> &amp;#39;z&amp;#39;: 90, &amp;#39;{&amp;#39;: 91, &amp;#39;|&amp;#39;: 92, &amp;#39;}&amp;#39;: 93, &amp;#39;~&amp;#39;: 94,
+&lt;/span>&lt;span class="s1"> &amp;#39;DEL&amp;#39;: 95, &amp;#39;FNC3&amp;#39;: 96, &amp;#39;FNC2&amp;#39;: 97, &amp;#39;SHIFT&amp;#39;: 98,
+&lt;/span>&lt;span class="s1"> &amp;#39;Code C&amp;#39;: 99, &amp;#39;FNC4&amp;#39;: 100, &amp;#39;Code A&amp;#39;: 101,
+&lt;/span>&lt;span class="s1"> &amp;#39;FNC1&amp;#39;: 102, &amp;#39;START A&amp;#39;: 103, &amp;#39;START B&amp;#39;: 104,
+&lt;/span>&lt;span class="s1"> &amp;#39;START C&amp;#39;: 105, &amp;#39;STOP&amp;#39;: 106
+&lt;/span>&lt;span class="s1"> }
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1">def codeBFromString (string):
+&lt;/span>&lt;span class="s1"> code=code_img_data[code_b_data[&amp;#39;START B&amp;#39;]]
+&lt;/span>&lt;span class="s1"> count=1
+&lt;/span>&lt;span class="s1"> checksum=code_b_data[&amp;#39;START B&amp;#39;]
+&lt;/span>&lt;span class="s1"> for letter in string:
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[letter]]
+&lt;/span>&lt;span class="s1"> checksum += count*code_b_data[letter]
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> code += code_img_data[checksum%103]
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[&amp;#39;STOP&amp;#39;]]
+&lt;/span>&lt;span class="s1"> return (code)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1">def codeBCFromString (string):
+&lt;/span>&lt;span class="s1"> # Look for even numbered groups of digits (at least 4) to use code c
+&lt;/span>&lt;span class="s1"> frags = re.split(&amp;#39;(dd(?:dd)+)&amp;#39;, string)
+&lt;/span>&lt;span class="s1"> if frags[0]:
+&lt;/span>&lt;span class="s1"> # the string starts with regular code b data
+&lt;/span>&lt;span class="s1"> code = code_img_data[code_b_data[&amp;#39;START B&amp;#39;]]
+&lt;/span>&lt;span class="s1"> checksum = code_b_data[&amp;#39;START B&amp;#39;]
+&lt;/span>&lt;span class="s1"> codeb = True
+&lt;/span>&lt;span class="s1"> else:
+&lt;/span>&lt;span class="s1"> # the string starts with a matching set of numbers - code c
+&lt;/span>&lt;span class="s1"> code = code_img_data[code_b_data[&amp;#39;START C&amp;#39;]]
+&lt;/span>&lt;span class="s1"> checksum = code_b_data[&amp;#39;START C&amp;#39;]
+&lt;/span>&lt;span class="s1"> codeb = False
+&lt;/span>&lt;span class="s1"> frags.pop(0)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> # remove the last frag if it&amp;#39;s blank
+&lt;/span>&lt;span class="s1"> # i.e. if the string ends with a matching numeric sequence
+&lt;/span>&lt;span class="s1"> if not(frags[-1]):
+&lt;/span>&lt;span class="s1"> frags.pop(-1)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> count = 1
+&lt;/span>&lt;span class="s1"> for frag in frags:
+&lt;/span>&lt;span class="s1"> if codeb:
+&lt;/span>&lt;span class="s1"> if count &amp;gt; 1: #switch to code b
+&lt;/span>&lt;span class="s1"> code += code_img_data[100]
+&lt;/span>&lt;span class="s1"> checksum += count*100
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> for letter in frag:
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[letter]]
+&lt;/span>&lt;span class="s1"> checksum += count*code_b_data[letter]
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> else:
+&lt;/span>&lt;span class="s1"> if count &amp;gt; 1: #switch to code c
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[&amp;#39;Code C&amp;#39;]]
+&lt;/span>&lt;span class="s1"> checksum += count*code_b_data[&amp;#39;Code C&amp;#39;]
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> for pair in re.findall(&amp;#39;..&amp;#39;, frag):
+&lt;/span>&lt;span class="s1"> code += code_img_data[int(pair)]
+&lt;/span>&lt;span class="s1"> checksum += count*int(pair)
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> codeb = not(codeb)
+&lt;/span>&lt;span class="s1"> code += code_img_data[checksum%103]
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[&amp;#39;STOP&amp;#39;]]
+&lt;/span>&lt;span class="s1"> return (code)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1">def barcodeImg (string, label=&amp;#39;&amp;#39;):
+&lt;/span>&lt;span class="s1"> width = len(string) + 20
+&lt;/span>&lt;span class="s1"> im = Image.new(&amp;#39;1&amp;#39;, (width,70), 1)
+&lt;/span>&lt;span class="s1"> draw = ImageDraw.Draw(im)
+&lt;/span>&lt;span class="s1"> x = 10
+&lt;/span>&lt;span class="s1"> for char in string:
+&lt;/span>&lt;span class="s1"> draw.rectangle(((x, 10),(x, 50)), fill=not(int(char)))
+&lt;/span>&lt;span class="s1"> x += 1
+&lt;/span>&lt;span class="s1"> if label:
+&lt;/span>&lt;span class="s1"> labelsize = draw.textsize(label)
+&lt;/span>&lt;span class="s1"> draw.text((int((width-labelsize[0])/2.0), 55), label, fill=0)
+&lt;/span>&lt;span class="s1"> return im
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1">bc_img = barcodeImg(codeBCFromString(&amp;#39;496340&amp;#39;), &amp;#39;496340&amp;#39;)
+&lt;/span>&lt;span class="s1">#bc_img.show()
+&lt;/span>&lt;span class="s1">bc_img.save(&amp;#34;dsafdsa.png&amp;#34;)
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>在Windows下用Python查看进程信息</title><link>https://chenzaichun.github.io/post/2011-01-26-view_process_with_python_and_pywin32/</link><pubDate>Wed, 26 Jan 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-26-view_process_with_python_and_pywin32/</guid><description>&lt;p>得益于PyWin32的强大，在Windows下可以通过Python调用Performon COM接口来查看进程的信息。下面的代码就是查看svhost进程的相关信息的示例代码，如果需要其他信息，请自行添加counter&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="c1">#/!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- coding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">win32api&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nn">win32pdh&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nn">win32pdhutil&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">ShowAllProcesses&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="n">procs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="nb">object&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdhutil&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_pdh_counter_localized_name&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Process&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">items&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">instances&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">EnumObjectItems&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nb">object&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">PERF_DETAIL_WIZARD&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">instance_dict&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{}&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">instance&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">instances&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">instance&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;svchost&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">instance_dict&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">instance_dict&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">except&lt;/span> &lt;span class="ne">KeyError&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">instance_dict&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="n">items&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">win32pdhutil&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_pdh_counter_localized_name&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;ID Process&amp;#34;&lt;/span>&lt;span class="p">)]&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">items&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">:]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">instance&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">max_instances&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">instance_dict&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">items&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">inum&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">xrange&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">max_instances&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">hq&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">OpenQuery&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">hcs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">item&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">items&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">MakeCounterPath&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nb">object&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">instance&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">inum&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="n">hcs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">AddCounter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hq&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">path&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CollectQueryData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hq&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">0.01&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CollectQueryData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hq&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">proc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">instance&lt;/span>&lt;span class="p">[:&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">hc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">hcs&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">vals&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hcs&lt;/span>&lt;span class="p">)):&lt;/span>
+&lt;span class="n">hc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">hcs&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="nb">type&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">val&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">GetFormattedCounterValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">PDH_FMT_LONG&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">vals&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">val&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">RemoveCounter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hc&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">procs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="n">proc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">vals&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="p">])&lt;/span>
+&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CloseQuery&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hq&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">procs&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">procs&lt;/span>
+&lt;span class="n">ShowAllProcesses&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>hg certificate warnings</title><link>https://chenzaichun.github.io/post/2011-01-16-hg_cert_warning/</link><pubDate>Sun, 16 Jan 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-16-hg_cert_warning/</guid><description>&lt;p>升级到mercurial 1.7.3之后，频繁会遇到像这样的错误：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">warning: bitbucket.org certificate not verified (check web.cacerts config setting)
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法，参考链接：&lt;a href="http://mercurial.selenic.com/wiki/CACertificates">&lt;a href="http://mercurial.selenic.com/wiki/CACertificates">http://mercurial.selenic.com/wiki/CACertificates&lt;/a>&lt;/a>&lt;/p>
+&lt;p>下载&lt;a href="http://curl.haxx.se/ca/cacert.pem" target="_blank">&lt;a href="http://curl.haxx.se/ca/cacert.pem">http://curl.haxx.se/ca/cacert.pem&lt;/a>&lt;/a>到本地，然后在～/.hgrc里面添加这样一句：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[web]
+cacerts=/path/to/cacert.pem
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或者直接禁用：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[web]
+cacerts =
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>hg-git--hg下直接操作git</title><link>https://chenzaichun.github.io/post/2011-01-16-hg-git/</link><pubDate>Sun, 16 Jan 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-16-hg-git/</guid><description>&lt;p>hg和git各有各的优势，git一直以来对windows的支持都不太好（尤其是有中文文件名的情况下），所以我一直都用hg。但是很多时候需要clone git的代码仓库，这个时候就安装一个msys-git吧（这个家伙的块头也不小，带了一个基本上完整的MinGW）。&lt;/p>
+&lt;p>今天无意中发了&lt;a href="http://hg-git.github.com/" target="_blank">hg-git&lt;/a>，可以直接使用hg的命令操作git仓库，而且不需要安装git。最简单的安装方法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">easy_install hg-git
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后修改 =～/.hgrc=&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[extensions]
+hgext.bookmarks =
+hggit =
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接下里就是repo操作了：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">hg clone git://github.com/schacon/munger.git
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接着这里看起来是不是很爽：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ &lt;span class="nb">cd&lt;/span> hg-git &lt;span class="c1"># (a Mercurial repository)&lt;/span>
+$ hg bookmark -r default master &lt;span class="c1"># make a bookmark of master for default, so a ref gets created&lt;/span>
+$ hg push git+ssh://git@github.com/schacon/hg-git.git
+$ hg push
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>大功告成&lt;/p></description></item><item><title>windows下编译subversion的Python绑定（附下载）</title><link>https://chenzaichun.github.io/post/2011-01-16-compile_subversion_python2-7_binding_on_windows/</link><pubDate>Sun, 16 Jan 2011 19:14:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-16-compile_subversion_python2-7_binding_on_windows/</guid><description>&lt;p>由于svn的python绑定一直没有推出python2.7的版本，所以只好自己编译了。参考链接：&lt;a href="http://www.lejordet.com/2009/03/compiling-subversion-python-bindings-on-windows/">&lt;a href="http://www.lejordet.com/2009/03/compiling-subversion-python-bindings-on-windows/">http://www.lejordet.com/2009/03/compiling-subversion-python-bindings-on-windows/&lt;/a>&lt;/a>&lt;/p>
+&lt;ol>
+&lt;li>首先下载swig的windows bin，下载地址：&lt;a href="http://www.swig.org/download.html">&lt;a href="http://www.swig.org/download.html">http://www.swig.org/download.html&lt;/a>&lt;/a>，并解压到目录A&lt;/li>
+&lt;li>下载subversion源代码：&lt;a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=10339&amp;expandFolder=10339&amp;folderID=260">&lt;a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=10339&amp;amp;expandFolder=10339&amp;amp;folderID=260">http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=10339&amp;amp;expandFolder=10339&amp;amp;folderID=260&lt;/a>&lt;/a>，并解压到目录A&lt;/li>
+&lt;li>在下面的链接中下载对应版本的deps&lt;span style="color: #ff0000;">（windows下要下载zip格式的文件，不然vc的dsp文件会用错误的line ending而无法打开）&lt;/span>，并解压到目录A&lt;/li>
+&lt;li>cd到目录A，执行命令生成vc的solution文件&lt;span style="color: #ff0000;">（注意自己对应相应的目录，并使用绝对路径）&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gen-make.py -t vcproj --vsnet-version&lt;span class="o">=&lt;/span>&lt;span class="m">2008&lt;/span> --with-swig&lt;span class="o">=&lt;/span>c:homesrcsubversionswig --with-zlib&lt;span class="o">=&lt;/span>c:homesrcsubversionsubversionzlib --with-apr&lt;span class="o">=&lt;/span>c:homesrcsubversionsubversionapr --with-apr-util&lt;span class="o">=&lt;/span>c:homesrcsubversionsubversionapr-util --with-apr-iconv&lt;span class="o">=&lt;/span>c:homesrcsubversionsubversionapr-iconv
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="5">
+&lt;li>cd到apr目录，用vc打开apr.dsw，并编译工程&lt;/li>
+&lt;li>cd到apr-util目录，编译apr-util.dsw，当询问xxx project已经存在，是否加载的时候，选择yes。有些工程可能编译不过，不用管它&lt;/li>
+&lt;li>编译根目录下subversion_vcnet.sln，有些工程编译不过，不用管它&lt;/li>
+&lt;li>创建一个目录B，拷贝subversionbindingsswigpython下svn目录到B&lt;/li>
+&lt;li>在B目录下创建一个目录libsvn，拷贝bindingsswigpython下的*.py到libsvn&lt;/li>
+&lt;li>在根目录下搜索*.dll，并拷贝到libsvn目录下&lt;/li>
+&lt;li>重命名所有已_开头的dll为pyd。&lt;/li>
+&lt;li>拷贝B目录下的svn和libsvn目录到&lt;PYTHON>Libsite-packages目录下&lt;/li>
+&lt;li>测试是否正常工作：在python的cmd下输入&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">svn&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">core&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="14">
+&lt;li>如果有错误发生，一般是缺少dll的问题，再次确认所有dll都拷贝到libsvn目录下。
+这里附上我的编译结果（解压到&lt;Python>Libsite-packages目录下即可使用）：
+&lt;a href="http://commondatastorage.googleapis.com/czc_public/appspotmedia/svn-python-1.6.13.win32-py2.7.7z" target="_blank">svn-python-1.6.13.win32-py2.7.7z&lt;/a> 
+&lt;a href="http://commondatastorage.googleapis.com/czc_public/appspotmedia/svn-python-1.6.13.win32-py2.7.zip" target="_blank">svn-python-1.6.13.win32-py2.7.zip&lt;/a> &lt;/li>
+&lt;/ol></description></item><item><title>easy_install升级</title><link>https://chenzaichun.github.io/post/2011-01-10-easy_install_upgrade/</link><pubDate>Mon, 10 Jan 2011 19:14:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-10-easy_install_upgrade/</guid><description>&lt;p>如何让easy_install安装的文件升级呢？&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">easy_install --upgrade xxxxx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如何卸载已经安装的包呢？&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">easy_install -m xxxxxx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Python操作Windows Service</title><link>https://chenzaichun.github.io/post/2010-12-13-python_manipulate_windows_service/</link><pubDate>Mon, 13 Dec 2010 19:54:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-13-python_manipulate_windows_service/</guid><description>&lt;p>python中可以通过pywin32操作Windows Service：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">win32service&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">PrintServiceStatus&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">status&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">svcType&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">svcState&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">svcControls&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">err&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">svcErr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">svcCP&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">svcWH&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">status&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">svcType&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_WIN32_OWN_PROCESS&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;The service runs in its own process&amp;#34;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">svcType&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_WIN32_SHARE_PROCESS&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;The service shares a process with other services&amp;#34;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">svcType&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_INTERACTIVE_PROCESS&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;The service can interact with the desktop&amp;#34;&lt;/span>
+&lt;span class="c1"># Other svcType flags not shown.&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">svcState&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_STOPPED&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;The service is stopped&amp;#34;&lt;/span>
+&lt;span class="k">elif&lt;/span> &lt;span class="n">svcState&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_START_PENDING&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;The service is starting&amp;#34;&lt;/span>
+&lt;span class="k">elif&lt;/span> &lt;span class="n">svcState&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_STOP_PENDING&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;The service is stopping&amp;#34;&lt;/span>
+&lt;span class="k">elif&lt;/span> &lt;span class="n">svcState&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_RUNNING&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;The service is running&amp;#34;&lt;/span>
+&lt;span class="c1"># Other svcState flags not shown.&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">svcControls&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_ACCEPT_STOP&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;The service can be stopped&amp;#34;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">svcControls&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_ACCEPT_PAUSE_CONTINUE&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;The service can be paused&amp;#34;&lt;/span>
+&lt;span class="c1"># Other svcControls flags not shown&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;__main__&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">scm&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">OpenSCManager&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SC_MANAGER_ALL_ACCESS&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">allservice&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">EnumServicesStatus&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">scm&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_WIN32&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_STATE_ALL&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">svc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">OpenService&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">scm&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Cash Download&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SC_MANAGER_ALL_ACCESS&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ChangeServiceConfig&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">svc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_NO_CHANGE&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_AUTO_START&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_NO_CHANGE&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">StartService&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">svc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ControlService&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">svc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_CONTROL_STOP&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ControlService&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">svc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SERVICE_CONTROL_START&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">PrintServiceStatus&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">win32service&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">QueryServiceStatus&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">svc&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>pywin32访问word文件</title><link>https://chenzaichun.github.io/post/2010-12-12-pywin32_word/</link><pubDate>Sun, 12 Dec 2010 19:54:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-12-pywin32_word/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">win32com.client&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">win32&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">time&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">sleep&lt;/span>
+&lt;span class="n">RANGE&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">word&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="n">word&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gencache&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">EnsureDispatch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Word.Application&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">doc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">word&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Documents&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Add&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">word&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Visible&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">True&lt;/span>
+&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">rng&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">rng&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">InsertAfter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Hacking Word with Pythonrnrn&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">RANGE&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">rng&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">InsertAfter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Line &lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s1">rn&amp;#39;&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">rng&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">InsertAfter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;rnPython rules!rn&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">doc&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Close&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">word&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Application&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Quit&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;__main__&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">word&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>pywin32访问excel</title><link>https://chenzaichun.github.io/post/2010-12-12-pywin32_excel/</link><pubDate>Sun, 12 Dec 2010 19:44:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-12-pywin32_excel/</guid><description>&lt;p>&lt;a href="http://www.blog.pythonlibrary.org/2010/07/16/python-and-microsoft-office-using-pywin32/" target="_blank">参考链接&lt;/a>&lt;/p>
+&lt;p>直接用上面的代码吧&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">win32com.client&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">win32&lt;/span>
+&lt;span class="c1">#----------------------------------------------------------------------&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">excel&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="n">xl&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gencache&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">EnsureDispatch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Excel.Application&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">ss&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">xl&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Workbooks&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Add&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">sh&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ss&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ActiveSheet&lt;/span>
+&lt;span class="n">xl&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Visible&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">True&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">sh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Cells&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Value&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Hacking Excel with Python Demo&amp;#39;&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">sh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Cells&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Value&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Line &lt;/span>&lt;span class="si">%i&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">i&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">ss&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Close&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">xl&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Application&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Quit&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;__main__&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">excel&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>pywin32访问access数据</title><link>https://chenzaichun.github.io/post/2010-12-12-pywin32_access/</link><pubDate>Sun, 12 Dec 2010 19:42:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-12-pywin32_access/</guid><description>&lt;p>pywin32真强大，可以通过com接口做你想做的事。比如操作excel, access等等。下面是访问access数据库的例子：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">win32com.client&lt;/span>
+&lt;span class="n">conn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32com&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">client&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Dispatch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;ADODB.Connection&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># Either way works: one is the Jet OLEDB driver, the other is the&lt;/span>
+&lt;span class="c1"># Access ODBC driver. OLEDB is probably better.&lt;/span>
+&lt;span class="n">db&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">r&lt;/span>&lt;span class="s2">&amp;#34;c:test.mdb&amp;#34;&lt;/span>
+&lt;span class="n">DSN&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;Provider=Microsoft.Jet.OLEDB.4.0;Data Source=&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">db&lt;/span>
+&lt;span class="c1">#DSN=&amp;#34;Driver={Microsoft Access Driver (*.mdb)};DBQ=&amp;#34; + db&lt;/span>
+&lt;span class="n">conn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">DSN&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">rs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32com&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">client&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Dispatch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;ADODB.Recordset&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">rs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Open&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="s2">&amp;#34;[test]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">conn&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">rs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Fields&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Count&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34; fields found:&amp;#34;&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">rs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Fields&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Count&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">rs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Fields&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Item&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Name&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">rs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Fields&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Item&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Type&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">rs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Fields&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Item&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">DefinedSize&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">rs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Fields&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Item&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Value&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>在windows下通过pythoncom获取快捷方式所指定的路径</title><link>https://chenzaichun.github.io/post/2010-12-12-pythoncom_lnk_file_path/</link><pubDate>Sun, 12 Dec 2010 19:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-12-pythoncom_lnk_file_path/</guid><description>&lt;p>直接代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">pythoncom&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">GetURLFromShortcut&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">shortcut&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">pythoncom&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CoCreateInstance&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="n">shell&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLSID_ShellLink&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">pythoncom&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLSCTX_INPROC_SERVER&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">shell&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">IID_IShellLink&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">shortcut&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">QueryInterface&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="n">pythoncom&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">IID_IPersistFile&lt;/span> &lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Load&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">shortcut&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">GetPath&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">shell&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SLGP_SHORTPATH&lt;/span>&lt;span class="p">)[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">url&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>python获取PE文件版本信息</title><link>https://chenzaichun.github.io/post/2010-12-12-python_get_pe_version_info/</link><pubDate>Sun, 12 Dec 2010 19:22:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-12-python_get_pe_version_info/</guid><description>&lt;p>通过pywin32中的win32api.GetFileVersionInfo来获取&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- coding: utf-8 -*-&lt;/span>
+&lt;span class="c1"># Get the version information from Windows PE&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">win32api&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">GetFileVersionInfo&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">LOWORD&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">HIWORD&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">get_version_number&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">info&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetFileVersionInfo&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">)&lt;/span>
+&lt;span class="n">ms&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">info&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;FileVersionMS&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">ls&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">info&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;FileVersionLS&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">HIWORD&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">ms&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">LOWORD&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">ms&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">HIWORD&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">ls&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">LOWORD&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">ls&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">except&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">0&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">printOtherInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">info&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetFileVersionInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\&amp;#34;&lt;/span>&lt;span class="s2">)&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># In order to get the company information, we need to get the lang &lt;/span>
+&lt;span class="c1"># and code page first, then get the related strings&lt;/span>
+&lt;span class="n">trans&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetFileVersionInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;\VarFileInfo\Translation&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">trans&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># Common string lists:&lt;/span>
+&lt;span class="c1"># &amp;#34;CompanyName&amp;#34;,&amp;#34;FileDescription&amp;#34;, &amp;#34;FileVersion&amp;#34;, &amp;#34;InternalName&amp;#34;,&lt;/span>
+&lt;span class="c1"># &amp;#34;LegalCopyright&amp;#34;, &amp;#34;OriginalFilename&amp;#34;, &amp;#34;ProductName&amp;#34;, &amp;#34;ProductVersion&amp;#34;&lt;/span>
+&lt;span class="c1"># You can use this way to get custom defined strings.&lt;/span>
+&lt;span class="n">info&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetFileVersionInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;\StringFileInfo\&lt;/span>&lt;span class="si">%04x%04x&lt;/span>&lt;span class="s2">\&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">trans&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">trans&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="s2">&amp;#34;CompanyName&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">info&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetFileVersionInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;\StringFileInfo\&lt;/span>&lt;span class="si">%04x%04x&lt;/span>&lt;span class="s2">\&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">trans&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">trans&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="s2">&amp;#34;FileVersion&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">except&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">pass&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;__main__&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;span class="n">filename&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">environ&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;COMSPEC&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;.&amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span> &lt;span class="p">([&lt;/span>&lt;span class="nb">str&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">get_version_number&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="p">)])&lt;/span>
+&lt;span class="n">printOtherInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">filename&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>pefile</title><link>https://chenzaichun.github.io/post/2010-12-12-pefile/</link><pubDate>Sun, 12 Dec 2010 19:12:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-12-pefile/</guid><description>&lt;p>马克一下：&lt;a href="http://code.google.com/p/pefile/">&lt;a href="http://code.google.com/p/pefile/">http://code.google.com/p/pefile/&lt;/a>&lt;/a>&lt;/p>
+&lt;p>&lt;em>pefile&lt;/em> is a multi-platform &lt;a style="color: #0000cc;" rel="nofollow" href="http://python.org/">Python&lt;/a> module to read and work with &lt;a style="color: #0000cc;" rel="nofollow" href="http://en.wikipedia.org/wiki/Portable_Executable">Portable Executable (aka PE) files&lt;/a>. Most of the information in the PE Header is accessible, as well as all the sections, section&amp;rsquo;s information and data.
+pefile requires some basic understanding of the layout of a PE file. Armed with it it&amp;rsquo;s possible to explore nearly every single feature of the file.
+Some of the tasks that &lt;em>pefile&lt;/em> makes possible are:&lt;/p>
+&lt;ul style="max-width: 65em; padding-left: 40px; font-family: arial, sans-serif; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-spacing: 2px; line-height: normal;">
+&lt;li>Modifying and writing back to the PE image&lt;/li>
+&lt;li>Header Inspection&lt;/li>
+&lt;li>Sections analysis&lt;/li>
+&lt;li>Retrieving data&lt;/li>
+&lt;li>Warnings for suspicious and malformed values&lt;/li>
+&lt;li>Packer detection with PEiD’s signatures&lt;/li>
+&lt;li>PEiD signature generation&lt;/li>
+&lt;/ul>Please, refer to &lt;a style="color: #0000cc;" href="http://code.google.com/p/pefile/wiki/UsageExamples">UsageExamples&lt;/a> for starting points on how to use &lt;em>pefile&lt;/em></description></item><item><title>windows下通过python获取用户桌面路径</title><link>https://chenzaichun.github.io/post/2010-12-12-get_user_desktop_path_from_python/</link><pubDate>Sun, 12 Dec 2010 18:19:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-12-get_user_desktop_path_from_python/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">win32com.shell&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">shell&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">GetDesktoppath&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="n">ilist&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">shell&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SHGetSpecialFolderLocation&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">shellcon&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CSIDL_DESKTOP&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">dtpath&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">shell&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SHGetPathFromIDList&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ilist&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">dtpath&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>python修改windows环境变量</title><link>https://chenzaichun.github.io/post/2010-12-12-modify_windows_environment_variables_from_python/</link><pubDate>Sun, 12 Dec 2010 18:18:29 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-12-modify_windows_environment_variables_from_python/</guid><description>&lt;p>总结一下有2种方法：&lt;/p>
+&lt;ol>
+&lt;li>通过注册表操作HKLMSYSTEMCurrentControlSetControlSession ManagerEnvironment以达到目的，参考&lt;a href="https://chenzaichun.github.io/python_access_windows_registry.html" target="_blank">_winreg修改注册表&lt;/a>，如果要通知其他程序环境变量已改变，则可以使用pywin32中的win32gui模块来实现：&lt;/li>
+&lt;/ol></description></item><item><title>pywin32访问excel</title><link>https://chenzaichun.github.io/post/2010-12-12-pywin32-excel/</link><pubDate>Sun, 12 Dec 2010 14:13:08 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-12-pywin32-excel/</guid><description>&lt;p>&lt;a href="http://www.blog.pythonlibrary.org/2010/07/16/python-and-microsoft-office-using-pywin32/">参考链接&lt;/a>&lt;/p>
+&lt;p>直接用上面的代码吧&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">win32com.client&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">win32&lt;/span>
+&lt;span class="c1">#----------------------------------------------------------------------&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">excel&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;这只是测试&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="n">xl&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gencache&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">EnsureDispatch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Excel.Application&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">ss&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">xl&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Workbooks&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Add&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">sh&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ss&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ActiveSheet&lt;/span>
+&lt;span class="n">xl&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Visible&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">True&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">sh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Cells&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Value&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Hacking Excel with Python Demo&amp;#39;&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">sh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Cells&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Value&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Line &lt;/span>&lt;span class="si">%i&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">i&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">ss&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Close&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">xl&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Application&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Quit&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;__main__&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">excel&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>安装fuse-python出现错误</title><link>https://chenzaichun.github.io/post/2010-08-08-fuse-python/</link><pubDate>Sun, 08 Aug 2010 17:37:32 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-08-fuse-python/</guid><description>&lt;p>错误为:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">NameError: name &amp;#39;cflags&amp;#39; is not defined
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install libfuse-dev libfuse2 fuse-utils python-dev
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>srt2lrc python版本</title><link>https://chenzaichun.github.io/post/2010-07-14-srt2lrc_py/</link><pubDate>Wed, 14 Jul 2010 17:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-14-srt2lrc_py/</guid><description>&lt;p>今天想把经典的电影拿来当听力训练，可惜找了很久都没有找到直接下载方式，没有办法，只好下载电影然后提取音频并配上字幕。网上找了一个perl版的srt2lrc.pl，因为完全不懂perl，该脚本无法运行，所以只好自己想办法。没有仔细研究过srt与lrc格式，只是找了两个文件来看，勉强知道是怎么回事，用python写了一个转化的脚本（ps. python不熟，代码很难看，只是勉强实现了功能）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- coding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">sys&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">re&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Usage srt2lrc.py file&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">f&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;span class="n">lines&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">readlines&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="k">while&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">line&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">line&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;--&amp;gt;&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">continue&lt;/span>
+&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">line&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;--&amp;gt;&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">time&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;:&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">ms&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;00&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">hour&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">minute&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">seconds&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;,&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">second&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">seconds&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">ms&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">seconds&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">hour&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="n">minute&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">seconds&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;,&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">second&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">seconds&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">ms&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">seconds&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hour&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">minute&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">second&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ms&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">continue&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">while&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">re&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sub&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;&amp;lt;.*&amp;gt;&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">s&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;[&lt;/span>&lt;span class="si">%.2d&lt;/span>&lt;span class="s2">:&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s2">.&lt;/span>&lt;span class="si">%.2s&lt;/span>&lt;span class="s2">]&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hour&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">60&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">minute&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()),&lt;/span> &lt;span class="n">second&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">ms&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>pyexpect</title><link>https://chenzaichun.github.io/post/2010-06-24-pyexpect/</link><pubDate>Thu, 24 Jun 2010 23:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-24-pyexpect/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="c1"># This connects to the openbsd ftp site and&lt;/span>
+&lt;span class="c1"># downloads the recursive directory listing.&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">pexpect&lt;/span>
+&lt;span class="n">child&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">pexpect&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">spawn&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;ftp ftp.openbsd.org&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">expect&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Name .*: &amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sendline&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;anonymous&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">expect&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Password:&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sendline&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;noah@example.com&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">expect&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;ftp&amp;gt; &amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sendline&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;cd pub&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">expect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;ftp&amp;gt; &amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sendline&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;get ls-lR.gz&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">expect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;ftp&amp;gt; &amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">child&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sendline&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;bye&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>emacs下配置python开发环境</title><link>https://chenzaichun.github.io/post/2010-06-22-emacs_python_ide/</link><pubDate>Tue, 22 Jun 2010 21:12:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-22-emacs_python_ide/</guid><description>&lt;ol>
+&lt;li>安装Pymacs， &lt;a href="http://pymacs.progiciels-bpi.ca/pymacs.html" target="_blank">&lt;a href="http://pymacs.progiciels-bpi.ca/pymacs.html">http://pymacs.progiciels-bpi.ca/pymacs.html&lt;/a>&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo python setup.py install
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>安装ropemode，&lt;a href="http://pypi.python.org/pypi/ropemode" target="_blank"> &lt;a href="http://pypi.python.org/pypi/ropemode">http://pypi.python.org/pypi/ropemode&lt;/a>&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo python setup.py install
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>安装ropemacs，&lt;a href="http://rope.sourceforge.net/ropemacs.html" target="_blank">&lt;a href="http://rope.sourceforge.net/ropemacs.html">http://rope.sourceforge.net/ropemacs.html&lt;/a>&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo python setup.py install
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>在.emacs中加入&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-apply&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-call&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-eval&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-exec&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-load&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">pymacs-load&lt;/span> &lt;span class="s">&amp;#34;ropemacs&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;rope-&amp;#34;&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">ropemacs-enable-autoimport&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>python telnetlib第一例</title><link>https://chenzaichun.github.io/post/2010-06-21-python_telnetlib_sample/</link><pubDate>Mon, 21 Jun 2010 11:23:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-21-python_telnetlib_sample/</guid><description>&lt;p>参考limodou&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1">#-*- coding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">telnetlib&lt;/span>
+&lt;span class="n">host&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{}&lt;/span>
+&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;ip&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;127.0.0.1&amp;#39;&lt;/span>
+&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span>
+&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;password&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;password***&amp;#39;&lt;/span>
+&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;commands&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;cd /home/xxxxx&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;ls -l --color=no&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">do&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">tn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">telnetlib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Telnet&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;ip&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;span class="c1"># tn.set_debuglevel(2) &lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read_until&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;login: &amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;n&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read_until&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Password: &amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;password&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;n&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># tn.read_all() &lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">command&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;commands&amp;#39;&lt;/span>&lt;span class="p">]:&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">command&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="s1">&amp;#39;n&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;exit&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read_all&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s1">&amp;#39;Finish!&amp;#39;&lt;/span>
+&lt;span class="n">do&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

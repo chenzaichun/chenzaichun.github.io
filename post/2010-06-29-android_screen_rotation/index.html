@@ -1,0 +1,246 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>android屏幕旋转问题 - 木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="转自：http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx
+要让程序界面保持一个方向，不随手机方向转动而变化的处理办法：
+在AndroidManifest.xml里面配置一下就可以了。加入这一行android:screenOrientation=&amp;ldquo;landscape&amp;rdquo;。
+例如（landscape是横向，portrait是纵向）：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; &amp;lt;manifest xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34; package=&amp;#34;com.ray.linkit&amp;#34; android:versionCode=&amp;#34;1&amp;#34; android:versionName=&amp;#34;1.0&amp;#34;&amp;gt; &amp;lt;application android:icon=&amp;#34;@drawable/icon&amp;#34; android:label=&amp;#34;@string/app_name&amp;#34;&amp;gt; &amp;lt;activity android:name=&amp;#34;.Main&amp;#34; android:label=&amp;#34;@string/app_name&amp;#34; android:screenOrientation=&amp;#34;portrait&amp;#34;&amp;gt; &amp;lt;intent-filter&amp;gt; &amp;lt;action android:name=&amp;#34;android.intent.action.MAIN&amp;#34; /&amp;gt; &amp;lt;category android:name=&amp;#34;android.intent.category.LAUNCHER&amp;#34; /&amp;gt; &amp;lt;/intent-filter&amp;gt; &amp;lt;/activity&amp;gt; &amp;lt;activity android:name=&amp;#34;.GamePlay&amp;#34; android:screenOrientation=&amp;#34;portrait&amp;#34;&amp;gt;&amp;lt;/activity&amp;gt; &amp;lt;activity android:name=&amp;#34;.OptionView&amp;#34; android:screenOrientation=&amp;#34;portrait&amp;#34;&amp;gt;&amp;lt;/activity&amp;gt; &amp;lt;/application&amp;gt; &amp;lt;uses-sdk android:minSdkVersion=&amp;#34;3&amp;#34; /&amp;gt; &amp;lt;/manifest&amp;gt;   另外，android中每次屏幕的切换都会重启Activity，所以应该在Activity销毁前保存当前活动的状态，在Activity再次 Create的时候载入配置，那样，进行中的游戏就不会自动重启了！也可以给每个activity加上 android:configChanges=&amp;ldquo;keyboardHidden|orientation&amp;quot;属性，就不会重启activity，而是去调用 onConfigurationChanged(Configuration newConfig)。这样就可以在这个方法里调整显示方式：
+1  if(newConfig.orientation==Configuration.   "><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/post/2010-06-29-android_screen_rotation/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="android屏幕旋转问题"><meta property="og:description" content="转自：http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx
+要让程序界面保持一个方向，不随手机方向转动而变化的处理办法：在AndroidManifest.xml里面配置一下就可以了。加入这一行android:screenOrientation=&ldquo;landscape&rdquo;。
+例如（landscape是横向，portrait是纵向）：
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+
+
+<?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?> 
+<manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; 
+      package=&#34;com.ray.linkit&#34; 
+      android:versionCode=&#34;1&#34; 
+      android:versionName=&#34;1.0&#34;> 
+    <application android:icon=&#34;@drawable/icon&#34; android:label=&#34;@string/app_name&#34;> 
+        <activity android:name=&#34;.Main&#34; 
+                  android:label=&#34;@string/app_name&#34; 
+                  android:screenOrientation=&#34;portrait&#34;> 
+            <intent-filter> 
+                <action android:name=&#34;android.intent.action.MAIN&#34; /> 
+                <category android:name=&#34;android.intent.category.LAUNCHER&#34; /> 
+            </intent-filter> 
+        </activity> 
+                <activity android:name=&#34;.GamePlay&#34; 
+                android:screenOrientation=&#34;portrait&#34;></activity> 
+                <activity android:name=&#34;.OptionView&#34; 
+                android:screenOrientation=&#34;portrait&#34;></activity> 
+    </application> 
+    <uses-sdk android:minSdkVersion=&#34;3&#34; /> 
+</manifest>
+
+
+另外，android中每次屏幕的切换都会重启Activity，所以应该在Activity销毁前保存当前活动的状态，在Activity再次 Create的时候载入配置，那样，进行中的游戏就不会自动重启了！也可以给每个activity加上 android:configChanges=&ldquo;keyboardHidden|orientation&#34;属性，就不会重启activity，而是去调用 onConfigurationChanged(Configuration newConfig)。这样就可以在这个方法里调整显示方式：
+
+
+1
+
+
+if(newConfig.orientation==Configuration.  
+
+
+"><meta property="og:type" content="article"><meta property="og:url" content="https://chenzaichun.github.io/post/2010-06-29-android_screen_rotation/"><meta property="article:section" content="post"><meta property="article:published_time" content="2010-06-29T12:21:11+08:00"><meta property="article:modified_time" content="2010-06-29T12:21:11+08:00"><meta itemprop=name content="android屏幕旋转问题"><meta itemprop=description content="转自：http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx
+要让程序界面保持一个方向，不随手机方向转动而变化的处理办法：在AndroidManifest.xml里面配置一下就可以了。加入这一行android:screenOrientation=&ldquo;landscape&rdquo;。
+例如（landscape是横向，portrait是纵向）：
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+
+
+<?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?> 
+<manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; 
+      package=&#34;com.ray.linkit&#34; 
+      android:versionCode=&#34;1&#34; 
+      android:versionName=&#34;1.0&#34;> 
+    <application android:icon=&#34;@drawable/icon&#34; android:label=&#34;@string/app_name&#34;> 
+        <activity android:name=&#34;.Main&#34; 
+                  android:label=&#34;@string/app_name&#34; 
+                  android:screenOrientation=&#34;portrait&#34;> 
+            <intent-filter> 
+                <action android:name=&#34;android.intent.action.MAIN&#34; /> 
+                <category android:name=&#34;android.intent.category.LAUNCHER&#34; /> 
+            </intent-filter> 
+        </activity> 
+                <activity android:name=&#34;.GamePlay&#34; 
+                android:screenOrientation=&#34;portrait&#34;></activity> 
+                <activity android:name=&#34;.OptionView&#34; 
+                android:screenOrientation=&#34;portrait&#34;></activity> 
+    </application> 
+    <uses-sdk android:minSdkVersion=&#34;3&#34; /> 
+</manifest>
+
+
+另外，android中每次屏幕的切换都会重启Activity，所以应该在Activity销毁前保存当前活动的状态，在Activity再次 Create的时候载入配置，那样，进行中的游戏就不会自动重启了！也可以给每个activity加上 android:configChanges=&ldquo;keyboardHidden|orientation&#34;属性，就不会重启activity，而是去调用 onConfigurationChanged(Configuration newConfig)。这样就可以在这个方法里调整显示方式：
+
+
+1
+
+
+if(newConfig.orientation==Configuration.  
+
+
+"><meta itemprop=datePublished content="2010-06-29T12:21:11+08:00"><meta itemprop=dateModified content="2010-06-29T12:21:11+08:00"><meta itemprop=wordCount content="497"><meta itemprop=keywords content="android,"><meta name=twitter:card content="summary"><meta name=twitter:title content="android屏幕旋转问题"><meta name=twitter:description content="转自：http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx
+要让程序界面保持一个方向，不随手机方向转动而变化的处理办法：在AndroidManifest.xml里面配置一下就可以了。加入这一行android:screenOrientation=&ldquo;landscape&rdquo;。
+例如（landscape是横向，portrait是纵向）：
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+
+
+<?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?> 
+<manifest xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; 
+      package=&#34;com.ray.linkit&#34; 
+      android:versionCode=&#34;1&#34; 
+      android:versionName=&#34;1.0&#34;> 
+    <application android:icon=&#34;@drawable/icon&#34; android:label=&#34;@string/app_name&#34;> 
+        <activity android:name=&#34;.Main&#34; 
+                  android:label=&#34;@string/app_name&#34; 
+                  android:screenOrientation=&#34;portrait&#34;> 
+            <intent-filter> 
+                <action android:name=&#34;android.intent.action.MAIN&#34; /> 
+                <category android:name=&#34;android.intent.category.LAUNCHER&#34; /> 
+            </intent-filter> 
+        </activity> 
+                <activity android:name=&#34;.GamePlay&#34; 
+                android:screenOrientation=&#34;portrait&#34;></activity> 
+                <activity android:name=&#34;.OptionView&#34; 
+                android:screenOrientation=&#34;portrait&#34;></activity> 
+    </application> 
+    <uses-sdk android:minSdkVersion=&#34;3&#34; /> 
+</manifest>
+
+
+另外，android中每次屏幕的切换都会重启Activity，所以应该在Activity销毁前保存当前活动的状态，在Activity再次 Create的时候载入配置，那样，进行中的游戏就不会自动重启了！也可以给每个activity加上 android:configChanges=&ldquo;keyboardHidden|orientation&#34;属性，就不会重启activity，而是去调用 onConfigurationChanged(Configuration newConfig)。这样就可以在这个方法里调整显示方式：
+
+
+1
+
+
+if(newConfig.orientation==Configuration.  
+
+
+"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Even</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Even</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>android屏幕旋转问题</h1><div class=post-meta><span class=post-time>2010-06-29</span><div class=post-category><a href=/categories/gamedev/>gamedev</a>
+<a href=/categories/programming/>programming</a></div><span class=more-meta>约 497 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-outdated><div class=warn><p>【注意】最后更新于 <span class=timeago datetime=2010-06-29T12:21:11 title="June 29, 2010">June 29, 2010</span>，文中内容可能已过时，请谨慎使用。</p></div></div><div class=post-content><p>转自：<a href=http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx target=_blank><a href=http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx>http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx</a></a></p><p>要让程序界面保持一个方向，不随手机方向转动而变化的处理办法：<br>在AndroidManifest.xml里面配置一下就可以了。加入这一行android:screenOrientation=&ldquo;landscape&rdquo;。</p><p>例如（landscape是横向，portrait是纵向）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span> 
+<span class=nt>&lt;manifest</span> <span class=na>xmlns:android=</span><span class=s>&#34;http://schemas.android.com/apk/res/android&#34;</span> 
+      <span class=na>package=</span><span class=s>&#34;com.ray.linkit&#34;</span> 
+      <span class=na>android:versionCode=</span><span class=s>&#34;1&#34;</span> 
+      <span class=na>android:versionName=</span><span class=s>&#34;1.0&#34;</span><span class=nt>&gt;</span> 
+    <span class=nt>&lt;application</span> <span class=na>android:icon=</span><span class=s>&#34;@drawable/icon&#34;</span> <span class=na>android:label=</span><span class=s>&#34;@string/app_name&#34;</span><span class=nt>&gt;</span> 
+        <span class=nt>&lt;activity</span> <span class=na>android:name=</span><span class=s>&#34;.Main&#34;</span> 
+                  <span class=na>android:label=</span><span class=s>&#34;@string/app_name&#34;</span> 
+                  <span class=na>android:screenOrientation=</span><span class=s>&#34;portrait&#34;</span><span class=nt>&gt;</span> 
+            <span class=nt>&lt;intent-filter&gt;</span> 
+                <span class=nt>&lt;action</span> <span class=na>android:name=</span><span class=s>&#34;android.intent.action.MAIN&#34;</span> <span class=nt>/&gt;</span> 
+                <span class=nt>&lt;category</span> <span class=na>android:name=</span><span class=s>&#34;android.intent.category.LAUNCHER&#34;</span> <span class=nt>/&gt;</span> 
+            <span class=nt>&lt;/intent-filter&gt;</span> 
+        <span class=nt>&lt;/activity&gt;</span> 
+                <span class=nt>&lt;activity</span> <span class=na>android:name=</span><span class=s>&#34;.GamePlay&#34;</span> 
+                <span class=na>android:screenOrientation=</span><span class=s>&#34;portrait&#34;</span><span class=nt>&gt;&lt;/activity&gt;</span> 
+                <span class=nt>&lt;activity</span> <span class=na>android:name=</span><span class=s>&#34;.OptionView&#34;</span> 
+                <span class=na>android:screenOrientation=</span><span class=s>&#34;portrait&#34;</span><span class=nt>&gt;&lt;/activity&gt;</span> 
+    <span class=nt>&lt;/application&gt;</span> 
+    <span class=nt>&lt;uses-sdk</span> <span class=na>android:minSdkVersion=</span><span class=s>&#34;3&#34;</span> <span class=nt>/&gt;</span> 
+<span class=nt>&lt;/manifest&gt;</span>
+</code></pre></td></tr></table></div></div><p>另外，android中每次屏幕的切换都会重启Activity，所以应该在Activity销毁前保存当前活动的状态，在Activity再次 Create的时候载入配置，那样，进行中的游戏就不会自动重启了！也可以给每个activity加上 android:configChanges=&ldquo;keyboardHidden|orientation"属性，就不会重启activity，而是去调用 onConfigurationChanged(Configuration newConfig)。这样就可以在这个方法里调整显示方式：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=k>if</span><span class=o>(</span><span class=n>newConfig</span><span class=o>.</span><span class=na>orientation</span><span class=o>==</span><span class=n>Configuration</span><span class=o>.</span>  
+</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>Chen, Zai-Chun</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2010-06-29</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/android/>android</a></div><nav class=post-nav><a class=prev href=/post/2010-07-05-eclipse_crash/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">eclipse老是自动退出</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/2010-06-28-android_emulator_appstore/><span class="next-text nav-default">android模拟器中使用应用商店(appstore)</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=chenzaichun/chenzaichun-utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2009 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chen, Zai-Chun</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin=anonymous></script><script>var languageCode="en".replace(/-/g,'_').replace(/_(.*)/,function(b,a){return b.replace(a,a.toUpperCase())});timeago().render(document.querySelectorAll('.timeago'),languageCode),timeago.cancel()</script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js integrity=sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css integrity=sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF crossorigin=anonymous><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>

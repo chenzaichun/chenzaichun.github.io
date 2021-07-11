@@ -1,0 +1,2253 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/categories/linux/</link><description>Recent content in Linux on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 21 Dec 2018 17:54:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>oracle install mkswap</title><link>https://chenzaichun.github.io/post/centos7_add_swap_file/</link><pubDate>Fri, 21 Dec 2018 17:54:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/centos7_add_swap_file/</guid><description>&lt;ul>
+&lt;li>State &amp;ldquo;DONE&amp;rdquo; from &amp;ldquo;TODO&amp;rdquo; &lt;span class="timestamp-wrapper">&lt;span class="timestamp">[2018-12-21 Fri 17:54]&lt;/span>&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">dd &lt;span class="k">if&lt;/span>&lt;span class="o">=&lt;/span>/dev/zero &lt;span class="nv">of&lt;/span>&lt;span class="o">=&lt;/span>/swapfile &lt;span class="nv">bs&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">1024&lt;/span> &lt;span class="nv">count&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">4096000&lt;/span>
+chmod &lt;span class="m">600&lt;/span> /swapfile
+mkswap /swapfile
+swapon /swapfile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>cobbler 安装</title><link>https://chenzaichun.github.io/post/cobbler/</link><pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate><guid>https://chenzaichun.github.io/post/cobbler/</guid><description>&lt;h2 id="环境情况">环境情况&lt;/h2>
+&lt;p>用于PXE推送测试的相关环境信息如下：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Cobbler Server&lt;/td>
+&lt;td>Centos7&lt;/td>
+&lt;td>172.16.3.30&lt;/td>
+&lt;td>root/Pioneertest@2016&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Cobbler Server网络可以访问测试用物理服务器IPMI及PXE网卡。物理服务器默认连接一根网线用于PXE推送用途。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>物理设备名称&lt;/th>
+&lt;th>IPMI带外管理地址&lt;/th>
+&lt;th>带外管理用户名&lt;/th>
+&lt;th>带外管理密码&lt;/th>
+&lt;th>PXE网卡&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>华为2288v3-1&lt;/td>
+&lt;td>172.16.2.20&lt;/td>
+&lt;td>root&lt;/td>
+&lt;td>Huawei12#$&lt;/td>
+&lt;td>默认从pxe boot&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>华为2288v3-2&lt;/td>
+&lt;td>172.16.2.21&lt;/td>
+&lt;td>root&lt;/td>
+&lt;td>Huawei12#$&lt;/td>
+&lt;td>默认从pxe boot&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>可以用的dhcp网段为172.16.3.200-172.16.3.230&lt;/p></description></item><item><title>gcc mudflap用来检测内存越界的问题</title><link>https://chenzaichun.github.io/post/2012-01-05-gcc-mudflap/</link><pubDate>Thu, 05 Jan 2012 16:12:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-05-gcc-mudflap/</guid><description>&lt;p>&lt;a href="http://blog.yufeng.info/archives/698">参考链接&lt;/a>&lt;/p>
+&lt;p>可是我使用这个方法编译运行程序出现了这个问题:&lt;/p>
+&lt;blockquote>
+&lt;p>mf: erroneous reentrancy detected in `__mf_check'
+Aborted&lt;/p>
+&lt;/blockquote>
+&lt;p>网上找了很久，未果。还是用&lt;code>valgrind&lt;/code>吧。&lt;/p></description></item><item><title>archlinux functions脚本错误</title><link>https://chenzaichun.github.io/post/2011-12-15-archlinux-etc-rc-d-functions-error/</link><pubDate>Thu, 15 Dec 2011 10:23:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-15-archlinux-etc-rc-d-functions-error/</guid><description>&lt;p>今天升级了archlinux，启动过程中出现了错误：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">/etc/rc.d/functions: line 497: syntax error near unexpected token `&amp;lt;&amp;#39;
+/etc/rc.d/functions: line 497: ` done &amp;lt; &amp;lt;(findmnt -runRo TARGET,FSTYPE,OPTIONS / | tac)&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>archlinux.org上给出了一个&lt;a href="https://bugs.archlinux.org/task/27098">patch&lt;/a>&lt;/p>
+&lt;p>patch的内容如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="gd">--- functions_old 2011-11-19 13:05:47.921522255 +0400
+&lt;/span>&lt;span class="gd">&lt;/span>&lt;span class="gi">+++ functions 2011-11-19 12:55:17.411565127 +0400
+&lt;/span>&lt;span class="gi">&lt;/span>&lt;span class="gu">@@ -494,7 +494,7 @@
+&lt;/span>&lt;span class="gu">&lt;/span> fi
+mounts+=(&amp;#34;$target&amp;#34;)
+&lt;span class="gd">- done &amp;lt; &amp;lt;(findmnt -runRo TARGET,FSTYPE,OPTIONS / | tac)
+&lt;/span>&lt;span class="gd">&lt;/span>&lt;span class="gi">+ done &amp;lt; $(findmnt -runRo TARGET,FSTYPE,OPTIONS / | tac)
+&lt;/span>&lt;span class="gi">&lt;/span>
+umount -r &amp;#34;${mounts[@]}&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>下载&lt;a href="https://chenzaichun.github.io/media/wpid-rc-functions-typo.patch_.zip">patch&lt;/a>&lt;/p></description></item><item><title>archlinux下配置GNUStep环境</title><link>https://chenzaichun.github.io/post/2011-12-12-gnustep-env-on-archlinux/</link><pubDate>Mon, 12 Dec 2011 11:11:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-12-gnustep-env-on-archlinux/</guid><description>&lt;p>GNUStep 主要有一下四部分组成，对应着在 Archlinux 系统下面我们也需要安装四个软件包。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>GNUstep Make: 提供类似 Makefile 的功能, 称为 GNUmakefile, 较 Makefile 好用许多。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>GNUstep Base: 提供 OpenStep 的 Foundation 程式库, 处理非图形介面的功能。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>GNUstep GUI: 提供 OpenStep 的 AppKit 程式库, 处理图形介面的功能。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>GNUstep Back: 提供与作业系统相关的后端处理, 提供 GNUstep GUI 有关绘图及字型的功能。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>安装GNUStep：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S gnustep-base gnustep-make gnustep-gui gnustep-back
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>当然也需要安装gcc objc支持:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S gcc-objc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编译obj-c所需命令:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gcc &lt;span class="sb">`&lt;/span>gnustep-config --objc-flags&lt;span class="sb">`&lt;/span> -lgnustep-base -lobjc xxx.m -o xxx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Hello World测试:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-objc" data-lang="objc">&lt;span class="c1">//helloworld.m
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="cp">#import &amp;#34;Foundation/Foundation.h&amp;#34;
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[])&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">NSAutoreleasePool&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pool&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="n">NSAutoreleasePool&lt;/span> &lt;span class="n">alloc&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">init&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="n">NSLog&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">@&amp;#34;Hello World&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">[&lt;/span>&lt;span class="n">pool&lt;/span> &lt;span class="n">drain&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编译运行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gcc &lt;span class="sb">`&lt;/span>gnustep-config --objc-flags&lt;span class="sb">`&lt;/span> -lgnustep-base -lobjc helloworld.m -o helloworld
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果没有添加-lobjc的话，新版的gcc编辑器会出现链接错误：&lt;/p>
+&lt;blockquote>
+&lt;p>/usr/bin/ld: /usr/lib/gcc/i686-pc-linux-gnu/4.6.2/../../../libgnustep-base.so: undefined reference to symbol &amp;lsquo;objc_get_class&amp;rsquo;
+/usr/bin/ld: note: &amp;lsquo;objc_get_class&amp;rsquo; is defined in DSO /usr/lib/libobjc.so.3 so try adding it to the linker command line
+/usr/lib/libobjc.so.3: could not read symbols: Invalid operation
+collect2: ld returned 1 exit status&lt;/p>
+&lt;/blockquote>
+&lt;p>运行结果：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">$ ./helloworld
+2011-12-12 03:27:14.391 helloworld[6928] No local time zone specified.
+2011-12-12 03:27:14.392 helloworld[6928] Using time zone with absolute offset 0.
+2011-12-12 03:27:14.338 helloworld[6928] Hello World
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里有2个warning, 设置一下:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">defaults write NSGlobalDomain &lt;span class="s2">&amp;#34;Local Time Zone&amp;#34;&lt;/span> &lt;span class="s1">&amp;#39;Asia/Chongqing&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>第一个GNUstep窗口程序</title><link>https://chenzaichun.github.io/post/2011-12-12-first-gnustep-gui/</link><pubDate>Mon, 12 Dec 2011 09:11:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-12-first-gnustep-gui/</guid><description>&lt;p>&lt;a href="http://gnustep.made-it.com/GSPT/xml/Tutorial_en.html#AEN365">参考链接&lt;/a>&lt;/p>
+&lt;p>main.m&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-objc" data-lang="objc">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;#34;AppController.h&amp;#34;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;AppKit/AppKit.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[])&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">NSAutoreleasePool&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pool&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">AppController&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">delegate&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">pool&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="n">NSAutoreleasePool&lt;/span> &lt;span class="n">alloc&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">init&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="n">delegate&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="n">AppController&lt;/span> &lt;span class="n">alloc&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">init&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="p">[&lt;/span>&lt;span class="n">NSApplication&lt;/span> &lt;span class="n">sharedApplication&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="p">[&lt;/span>&lt;span class="n">NSApp&lt;/span> &lt;span class="nl">setDelegate&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">delegate&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="n">RELEASE&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pool&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">NSApplicationMain&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>AppController.h&lt;/p></description></item><item><title>linux下开启coredump</title><link>https://chenzaichun.github.io/post/2011-12-01-turn-on-coredump-on-linux/</link><pubDate>Thu, 01 Dec 2011 22:01:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-01-turn-on-coredump-on-linux/</guid><description>&lt;p>当linux下的程序运行异常时，会在运行程序的目录下生成core dump文件。通过&lt;code>ulimit -c&lt;/code>查看，结果为0则为关闭（默认值）.&lt;/p>
+&lt;p>临时开启只要在shell中执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">ulimit&lt;/span> -c unlimited
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>也可以在&lt;code>~/.profile&lt;/code>文件中添加来默认开启core dump。&lt;/p></description></item><item><title>mount –bind</title><link>https://chenzaichun.github.io/post/2011-11-18-mount-bind/</link><pubDate>Fri, 18 Nov 2011 21:10:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-18-mount-bind/</guid><description>&lt;p>我想应该大家都会用版本管理来处理配置文件吧。本人一般用git来管理自己的配置（emacs, vim, ssh, zshrc, svn, git, hg…），我将这写配置文件放到了一个git repo中。但是很多时候需要对这些文件进行修改，我想大家也不会把文件在repo中修改好之后然后手动copy到相应的目录中。这里一般有两种方法来避免手动拷贝，一种是通过Makefile的方式，另外一种就是建立文件的软链接。我原来一直采用的是后者，因为我不想没一次修改都make一下。对于建立软链接的方式，一般的软件都能很好的处理。 我的git repo放在windows分区（这样windows和linux都能使用），用virtualbox安装了archlinux，通过mount vboxsf的方式mount windows分区到linux下。这里mount vboxsf的时候需要注意权限问题，然后像.ssh/config文件会出现访问权限问题。我的 =/etc/fstab= 文件如下:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"># /etc/fstab
+sharename mountpoint vboxsf \
+rw,fmode=0644,dmode=0755,uid=1000,gid=1000,exec 0 0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>对于symlink模式，绝大部分软件都能满足了，但是这里有个意外, &lt;code>Oracle&lt;/code>的&lt;code>gethostbyname&lt;/code>对于&lt;code>/etc/hosts&lt;/code> symlinks是不认的，比如我创建一个软链接到&lt;code>/etc/hosts&lt;/code>，启动oracle会出现&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">ORA-00600 arguments: [keltnfy-ldmInit], [46], [1]
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>既然软链接不行，这个时候就需要&lt;code>mount –bind&lt;/code>的帮助了。 &lt;code>mount –bind&lt;/code>是将一个目录中的内容挂载到另一个目录上，用法是:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">mount --bind olddir newdir
+mount --bind olddir/file newdir/file
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果想将&lt;code>mount –bind&lt;/code>写入&lt;code>/etc/fstab&lt;/code>，则用法是：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">olddir newdir none &lt;span class="nb">bind&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里又有一个问题了，我如果想把/etc/fstab也放到git repo中进行管理怎么办呢？由于不可能为/etc/fstab创建symlink，也不能为其使用mount –bind的方式到/etc/fstab。那就只能在git repo中想办法了。可是git是不会follow symlink的，如果我将/etc/fstab软链接到git repo中，git并不会将该文件加入到repo，加入的只是一个symlink而已。 解决办法就是反过来bind, 将/etc/fstab bind到git repo中的目录:)&lt;/p></description></item><item><title>常用软件的代理设置</title><link>https://chenzaichun.github.io/post/2011-11-17-common-proxy-settings/</link><pubDate>Thu, 17 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-17-common-proxy-settings/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># http_proxy&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>host:port
+&lt;span class="c1"># https_proxy&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">https_proxy&lt;/span>&lt;span class="o">=&lt;/span>host:port
+&lt;span class="c1"># ftp_proxy&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">ftp_proxy&lt;/span>&lt;span class="o">=&lt;/span>host:port
+&lt;span class="c1"># rsync proxy&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">RSYNC_PROXY&lt;/span>&lt;span class="o">=&lt;/span>host:port
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"># ssh over http_proxy depends on your tools used.
+# Modify .ssh/config file for host configuration:
+# Following are connect.c and corkscrew example.
+# For connect.c, -h option means use http_proxy
+# environment.
+Host *
+ProxyCommand corkscrew http-proxy.example.com 8080 %h %p
+ProxyCommand connect -h %h %p
+ProxyCommand connect -H proxy-host:proxy-port %h %p
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"># git over http_proxy
+export GIT_PROXY_COMMAND=&amp;#34;connect -h $@&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Linux默认Erase Key(Backspace Key)</title><link>https://chenzaichun.github.io/post/2011-11-12-stty_erase_key/</link><pubDate>Sat, 12 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-12-stty_erase_key/</guid><description>&lt;p>由于经常登陆solaris和hp-ux，所以将默认的backspace key设置成了^H（Terminal中设置），可是当使用在本地使用sqlplus的时候，会出现backspace无法使用的情况（Linux默认stty erase可以为^?），解决办法：&lt;/p>
+&lt;p>在&lt;code>~/.profile&lt;/code>文件中加入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">stty erase ^H
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>rpm常用命令</title><link>https://chenzaichun.github.io/post/2011-11-07-rpm_command/</link><pubDate>Mon, 07 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-07-rpm_command/</guid><description>&lt;ol>
+&lt;li>安装rpm文件&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">rpm -ivh *.rpm
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>查找已经安装的包&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">rpm -ivh *.rpm
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>删除已经安装的包&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">rpm -ivh *.rpm
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>将google chrome设置为emacs默认浏览器</title><link>https://chenzaichun.github.io/post/2011-11-04-use_google_chrome_as_emacs_default_browser/</link><pubDate>Fri, 04 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-04-use_google_chrome_as_emacs_default_browser/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">browse-url-generic-program&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">executable-find&lt;/span> &lt;span class="s">&amp;#34;google-chrome&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nv">browse-url-browser-function&lt;/span> &lt;span class="ss">&amp;#39;browse-url-generic&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>禁用zsh中的git prompt</title><link>https://chenzaichun.github.io/post/2011-11-02-disable_zsh_git_prompt/</link><pubDate>Wed, 02 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-02-disable_zsh_git_prompt/</guid><description>&lt;p>git prompt很多时候其实挺方面的，但是的我cd到一个nfs目录的时候，会出现卡很久的情况。果断disable掉。&lt;/p>
+&lt;p>首先根据你的theme找到$PROMPT&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">echo&lt;/span> &lt;span class="nv">$PROMPT&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>比如我的是:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">%{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>去掉&lt;code>git_prompt_info&lt;/code>即可:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PROMPT&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;%{&lt;/span>&lt;span class="nv">$fg_bold&lt;/span>&lt;span class="s2">[red]%}➜ %{&lt;/span>&lt;span class="nv">$fg_bold&lt;/span>&lt;span class="s2">[green]%}%p %{&lt;/span>&lt;span class="nv">$fg&lt;/span>&lt;span class="s2">[cyan]%}%c %{&lt;/span>&lt;span class="nv">$fg_bold&lt;/span>&lt;span class="s2">[blue]%}%{&lt;/span>&lt;span class="nv">$fg_bold&lt;/span>&lt;span class="s2">[blue]%} % %{&lt;/span>&lt;span class="nv">$reset_color&lt;/span>&lt;span class="s2">%}&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Python获取当前用户名</title><link>https://chenzaichun.github.io/post/2011-10-29-get_user_name_by_python/</link><pubDate>Sat, 29 Oct 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-29-get_user_name_by_python/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="err">!&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">usr&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nb">bin&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">env&lt;/span> &lt;span class="n">python&lt;/span>
+&lt;span class="o">-*-&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">utf&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">8&lt;/span> &lt;span class="o">-*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">getpass&lt;/span>
+&lt;span class="n">getpass&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getuser&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>colored man page output</title><link>https://chenzaichun.github.io/post/2011-10-28-colored_man_page_output/</link><pubDate>Fri, 28 Oct 2011 10:11:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-28-colored_man_page_output/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># colorful man page&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">PAGER&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;`which less` -s&amp;#34;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">BROWSER&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$PAGER&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_mb&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;34m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_md&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;34m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_me&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[0m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_se&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[0m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_so&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;44;33m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_ue&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[0m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_us&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;33m&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ArchLinux下配置ssh/http代理</title><link>https://chenzaichun.github.io/post/2011-10-24-archlinux_ssh_http_privoxy/</link><pubDate>Mon, 24 Oct 2011 06:10:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-24-archlinux_ssh_http_privoxy/</guid><description>&lt;p>被墙煎的滋味确实很难受，ssh转发大家的方法还是比较方便的。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">ssh -C -f -N -g -D port user@Server
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但是很多的软件并不一定支持sock5代理，这个时候就需要将sock5代理转化为http代理。ArchLinux下的配置安装方法为：&lt;/p>
+&lt;ol>
+&lt;li>安装Privoxy&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S privoxy
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>修改&lt;code>/etc/privoxy/config&lt;/code> , 添加以下语句&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">forward-socks5 / 127.0.0.1:sock_port .
+listen-address 0.0.0.0:http_port
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>重新启动privoxy&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo /etc/rc.d/privoxy restart
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Bingo! Enjoy it:)&lt;/p></description></item><item><title>Spark在Linux下的乱码解决</title><link>https://chenzaichun.github.io/post/2011-10-21-spark_display_chinese_on_linux/</link><pubDate>Fri, 21 Oct 2011 21:56:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-21-spark_display_chinese_on_linux/</guid><description>&lt;p>@ &lt;a href="http://www.cnblogs.com/highriver/archive/2010/06/24/1764520.html">&lt;a href="http://www.cnblogs.com/highriver/archive/2010/06/24/1764520.html">http://www.cnblogs.com/highriver/archive/2010/06/24/1764520.html&lt;/a>&lt;/a>&lt;/p>
+&lt;p>解决Spark乱码：&lt;/p>
+&lt;p>Linux下Java图形界面中文显示乱码问题往往是所合适的jre/fonts里面没有合适的字体。&lt;/p>
+&lt;p>比如spark会往~/.install4j里面写入最后一行，说明spark使用的jre是其自带的jre.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">JRE_VERSION /home/gaoyibo/work/jdk1.6.0_05 1 6 0 05
+JRE_VERSION /usr 1 6 0 0
+JRE_VERSION /home/gaoyibo/comodo/openfire/Spark/jre 1 6 0 02
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>所以遇到乱码问题解决：&lt;/p>
+&lt;p>1，找到jre路径，创建fallback文件夹&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> &amp;lt;path_to_spark&amp;gt;/Spark/jre/lib/fonts
+sudo mkdir fallback
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>进入fallback文件夹，链接中文字体（我选的是文泉驿正黑）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> fallback
+sudo ln -s /usr/share/fonts/truetype/wqy/wqy-zenhei.ttc
+sudo mkfontdir
+sudo mkfontscale
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>X Server连接到hp-ux字体问题解决办法</title><link>https://chenzaichun.github.io/post/2011-07-17-hp_ux_font_error_fix/</link><pubDate>Sun, 17 Jul 2011 20:56:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-07-17-hp_ux_font_error_fix/</guid><description>&lt;p>在用x server连接到hp-ux的时候，open view启动失败：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Warning: Missing charsets in String to FontSet conversion
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontSet
+Warning: Missing charsets in String to FontSet conversion
+Warning: Unable to load any usable fontset
+Warning:
+Name: FONTLIST_DEFAULT_TAG_STRING
+Class: XmRendition
+Conversion failed. Cannot load font.
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontList
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*:&amp;#34; to type FontList
+Warning:
+Name: FONTLIST_DEFAULT_TAG_STRING
+Class: XmRendition
+Conversion failed. Cannot load font.
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontList
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*:&amp;#34; to type FontList
+Warning: Missing charsets in String to FontSet conversion
+Warning: Cannot convert string &amp;#34;-dt-interface user-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontSet
+Warning: Missing charsets in String to FontSet conversion
+Warning: Unable to load any usable fontset
+Warning:
+Name: FONTLIST_DEFAULT_TAG_STRING
+Class: XmRendition
+Conversion failed. Cannot load font.
+Warning: Cannot convert string &amp;#34;-dt-interface user-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontList
+Warning: Cannot convert string &amp;#34;-dt-interface user-medium-r-normal-s*-*-*-*-*-*-*-*-*:&amp;#34; to type FontList
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Cannot convert string &amp;#34;-*-helvetica-medium-r-*-140-*&amp;#34; to type FontSet
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Unable to load any usable fontset
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Cannot convert string &amp;#34;-*-helvetica-medium-r-*-120-*&amp;#34; to type FontSet
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Unable to load any usable fontset
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Cannot convert string &amp;#34;-*-helvetica-medium-r-*-100-*&amp;#34; to type FontSet
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Unable to load any usable fontset
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Cannot convert string &amp;#34;-*-helvetica-medium-r-*-80-*&amp;#34; to type FontSet
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Unable to load any usable fontset
+/opt/OV/bin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法：&lt;/p></description></item><item><title>linux下生成core dump文件</title><link>https://chenzaichun.github.io/post/2011-06-29-linux_core_dump/</link><pubDate>Wed, 29 Jun 2011 19:44:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-06-29-linux_core_dump/</guid><description>&lt;p>linux下让crash的程序在程序可执行文件目录自动生成core文件：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">ulimit&lt;/span> -c unlimited
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>GDB远程调试</title><link>https://chenzaichun.github.io/post/2011-04-24-gdb_remote_debuging/</link><pubDate>Sun, 24 Apr 2011 19:44:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-gdb_remote_debuging/</guid><description>&lt;p>参考链接：&lt;a href="http://blog.csdn.net/fertiland/archive/2008/01/01/2007533.aspx">&lt;a href="http://blog.csdn.net/fertiland/archive/2008/01/01/2007533.aspx">http://blog.csdn.net/fertiland/archive/2008/01/01/2007533.aspx&lt;/a>&lt;/a>&lt;/p>
+&lt;p>前面已经做好跨平台的交叉编译的工作，如果需要调试怎么办呢？这个时候就可以GDB的远程调试来实现。&lt;/p>
+&lt;p>P.S. 如果没有windows的GDB，可以去&lt;a href="http://www.gnu.org/software/gdb/" target="_blank">下载&lt;/a>或者自行编译。
+在windows端执行 &lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gdbserver localhost:2345 photorec.exe
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在archlinux下执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 这里我用的virtualbox，所以ip为10.0.2.2，请自行替换成windows的ip&lt;/span>
+&lt;span class="nv">$gdb&lt;/span> photorec.exe
+gdb&amp;gt; target remote 10.0.2.2:2345
+gdb &amp;gt; ....
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux下使用MinGW交叉编译testdisk</title><link>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_testdisk/</link><pubDate>Sun, 24 Apr 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_testdisk/</guid><description>&lt;p>前面已经配置好了MinGW的交叉编译环境，现在就可以在archlinux下编译testdisk了。由于testdisk需要curses的支持，可以使用PDcureses。&lt;/p>
+&lt;p>安装PDCurses&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">yaourt -S mingw32-pdcurses
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编译testdisk&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">./configure --host&lt;span class="o">=&lt;/span>i486-mingw32 --disable-missing-uuid-ok &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样就编译好了。在windows下运行发现没有问题。:) （终于可以不用忍受windows下mingw的蜗牛速度了）&lt;/p></description></item><item><title>archlinux搭建MinGW跨平台编译环境</title><link>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_environment/</link><pubDate>Sun, 24 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_environment/</guid><description>&lt;p>由于MinGW在Windows上的速度实在不敢恭维，所以决定在archlinux下搭建MinGW的跨平台编译环境。方法有两种。&lt;/p>
+&lt;ol>
+&lt;li>通过安装community中的mingw32-gcc实现&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 安装mingw32-gcc就行，其他的如mingw32-base, mingw32-runtime...等会作为依赖安装&lt;/span>
+sudo pacman -S mingw32-gcc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这种方法安装了最基本的编译环境，如果需要其他的库，则需要自行编译或者通过aur安装。&lt;/p>
+&lt;ol start="2">
+&lt;li>通过MinGW cross compiling environment来实现。&lt;a href="http://mingw-cross-env.nongnu.org/">&lt;a href="http://mingw-cross-env.nongnu.org">http://mingw-cross-env.nongnu.org&lt;/a>&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1">#1. 下载&lt;/span>
+wget https://bitbucket.org/vog/mingw-cross-env/downloads/mingw-cross-env-2.20.tar.gz
+&lt;span class="c1">#2. 解压&lt;/span>
+tar -xzvf mingw-cross-env-2.20.tar.gz
+&lt;span class="c1">#3. 移动到/opt目录（可选）&lt;/span>
+mv mingw-cross-env-2.20 /opt/mingw
+&lt;span class="c1">#4. 安装&lt;/span>
+su -
+&lt;span class="nb">cd&lt;/span> /opt/mingw
+make
+&lt;span class="c1">#5. 其他的包可以参见mingw-cross-env的文档&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>gdb保存和加载断点等信息</title><link>https://chenzaichun.github.io/post/2011-04-19-gdb_save_breakpoints/</link><pubDate>Tue, 19 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-19-gdb_save_breakpoints/</guid><description>&lt;p>刚开始使用gdb，在重启gdb的时候断点、环境变量等信息都必须重新设置，感觉很不方便。不过gdb提供了.gdbinit，可以方便的在启动的时候对gdb进行设置。比如下面用于保存和加载breakpoints&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">define bsave
+shell rm -f brestore.txt
+set logging file brestore.txt
+set logging on
+info break
+set logging off
+# reformat on-the-fly to a valid gdb command file
+shell perl -n -e &amp;#39;print &amp;#34;break $1n&amp;#34; if /^d+.+?(S+)$/g&amp;#39; brestore.txt &amp;gt; brestore.gdb
+end
+document bsave
+store actual breakpoints
+end
+define brestore
+source brestore.gdb
+end
+document brestore
+restore breakpoints saved by bsave
+end
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>调用bsave保存breakpoints，调用bresotre加载breakpoints。
+再如对于调试ncurses的设置：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">define settty
+tty /dev/pts/$arg0
+end
+define setterminfo
+set env TERM=xterm
+set env COLUMNS=144
+set env LINES=29
+end
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux下安装oracle 10g enterprise</title><link>https://chenzaichun.github.io/post/2011-04-08-install_oracle_10g_enterprise_on_archlinux/</link><pubDate>Fri, 08 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-08-install_oracle_10g_enterprise_on_archlinux/</guid><description>&lt;p>按照arch wiki做就可以了。参考链接&lt;a href="https://wiki.archlinux.org/index.php/Oracle">&lt;a href="https://wiki.archlinux.org/index.php/Oracle">https://wiki.archlinux.org/index.php/Oracle&lt;/a>&lt;/a>&lt;/p>
+&lt;p>这里，安装ksh的步骤可以跳过，直接安装pdksh&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S pdksh
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装过程中可能在62%左右提示一个错误，点continue不影响使用。&lt;/p>
+&lt;p>默认安装完成之后，重新启动archlinux之后，oracle是不会启动的。手动启动的方法：&lt;/p>
+&lt;ol>
+&lt;li>su - oracle # 这里得以oracle启动&lt;/li>
+&lt;li>sqlplus /nologo&lt;/li>
+&lt;li>sql> conn / as sysdba&lt;/li>
+&lt;li>sql> startup&lt;/li>
+&lt;li>sql> exit&lt;/li>
+&lt;li>lsnrctl start&lt;/li>
+&lt;/ol></description></item><item><title>sudo环境变量</title><link>https://chenzaichun.github.io/post/2011-03-01-sudo_keep_env/</link><pubDate>Tue, 01 Mar 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-03-01-sudo_keep_env/</guid><description>&lt;p>由于很多时候访问网络需要通过代理，虽然export了http_proxy, https_proxy等等，但是sudo下这些环境变量是不会被保持的。&lt;/p>
+&lt;p>解决办法：修改/etc/sudoers文件（visudo），添加你想保留的环境变量&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Defaults env_keep += &amp;#34;http_proxy https_proxy ftp_proxy&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样sudo就可以保留变量了&lt;/p></description></item><item><title>yaourt代理设置</title><link>https://chenzaichun.github.io/post/2011-03-01-yaourt_proxy/</link><pubDate>Tue, 01 Mar 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-03-01-yaourt_proxy/</guid><description>&lt;p>一直以来不知道原来yaourt是调用makepkg来实现下载、编译、安装的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">cat /etc/makepkg.conf
+DLAGENTS=(&amp;#39;ftp::/usr/bin/wget -c --passive-ftp -t 3 --waitretry=3 -O %o %u&amp;#39;
+&amp;#39;http::/usr/bin/wget -c -t 3 --waitretry=3 -O %o %u&amp;#39;
+&amp;#39;https::/usr/bin/wget -c -t 3 --waitretry=3 --no-check-certificate -O %o %u&amp;#39;
+&amp;#39;rsync::/usr/bin/rsync -z %u %o&amp;#39;
+&amp;#39;scp::/usr/bin/scp -C %u %o&amp;#39;)
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>很多时候可能用到了rsync的协议，所以添加一个RSYNC_PROX的环境变量比较保险。&lt;/p></description></item><item><title>Resize a Portable Ubuntu Image</title><link>https://chenzaichun.github.io/post/2010-11-30-resize_portable_ubuntu_image/</link><pubDate>Tue, 30 Nov 2010 17:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-30-resize_portable_ubuntu_image/</guid><description>&lt;p>&lt;a href="http://blog.ruski.co.za/page/Resize-a-Portable-Ubuntu-Image.aspx">&lt;a href="http://blog.ruski.co.za/page/Resize-a-Portable-Ubuntu-Image.aspx">http://blog.ruski.co.za/page/Resize-a-Portable-Ubuntu-Image.aspx&lt;/a>&lt;/a>
+ When you first download and install &lt;a style="text-decoration: none; color: #336699; border: 0px initial initial;" href="http://portableubuntu.sourceforge.net/" target="_blank">Portable Ubuntu&lt;/a>, you&amp;rsquo;re going to be left with only about 500 MB of space on your Linux file system. This isn&amp;rsquo;t enough to do much of anything with, so the first order of business is going to be increasing the size of the image.
+There are instructions for doing so at the &lt;a style="text-decoration: none; color: #336699; border: 0px initial initial;" href="http://portableubuntu.sourceforge.net/index.php?section=documentation" target="_blank">Portable Ubuntu website&lt;/a>, but for convenience sake I am repeating them here.
+The process is fairly straight forward and basically consists of creating a new larger image file and then copying the existing image over to it. Once that is done we make the new image our primary partition.
+To start, make sure that you&amp;rsquo;re not currently running Portable Ubuntu. Exit it if you are.
+Open a Windows Command Prompt window by clicking Start -&amp;gt; Run and entering &amp;ldquo;cmd&amp;rdquo;.
+Change to the directory in which you&amp;rsquo;ve installed Portable Ubuntu. For the purposes of this article we&amp;rsquo;ll assume that is C&lt;strong>:Portable_Ubuntu&lt;/strong>.
+Change to the images folder:&lt;/p>
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">C:Portable_Ubuntu&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> cd images&lt;/div>
+Then we create a new image using the &lt;strong>fsutil&lt;/strong> utility. The number at the end is the size of the new image you want to create in bytes. I've opted to create a 4 GB image in the example below.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">C:Portable_Ubuntuimages&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> fsutil file createnew rootfs_.img 4294967296&lt;/div>
+Next we must mount the new image in our Ubuntu instance. Edit the &lt;strong>portable_ubuntu.conf&lt;/strong>file in the C&lt;strong>:Portable_Ubuntuconfig&lt;/strong> directory using Notepad. You can use explorer for this or the commands below.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">C:Portable_Ubuntuimages&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> cd .. C:Portable_Ubuntu&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> cd config C:Portable_Ubuntuconfig&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> notepad portable_ubuntu.conf&lt;/div>
+Replace the line in the config file that starts with "&lt;strong>cobd3=&lt;/strong>" with the following in notepad:&lt;strong>cobd3=imagesrootfs_.img&lt;/strong>
+Save the file and close Notepad.
+Now we need to run Portable Ubuntu again so that we can copy the contents of the original image over to the new image.
+Run Portable Ubuntu and open a Terminal window when it is ready.
+Type the following to make sure you have root access:
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">$ sudo su&lt;/div>
+You will be asked for a password. The default password for Portable Ubuntu is &lt;strong>123456&lt;/strong>
+Next we'll run the Data Definition (&lt;strong>dd&lt;/strong>) tool on linux to create a raw copy of the original image. Don't screw this up as the dd tool has earned the nickname "Data Destroyer" for a good reason.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">$ dd if=/dev/cobd0 of=/dev/cobd3&lt;/div>
+Once that is completed we'll have an exact copy of our data from the original image to the new larger image.
+Next we'll do a file system check on the new image to make sure it's good.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">fsck.ext3 -f /dev/cobd3&lt;/div>
+Then we resize the partition on the new image to take up all the space.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">resize2fs -f /dev/cobd3&lt;/div>
+Now that that is done, we can make the new image our main image. To do this, exit the running Portable Ubuntu image.
+Go back to the images folder and rename &lt;strong>rootfs.img&lt;/strong> to &lt;strong>rootfs.img.old&lt;/strong> and &lt;strong>rootfs_img&lt;/strong> to&lt;strong>rootfs.img&lt;/strong>.
+Remove the line that you had modified in the &lt;strong>portable_ubuntu.conf&lt;/strong> file (&lt;strong>cobd3=imagesrootfs_.img&lt;/strong>) using Notepad.
+Now you can run Portable Ubuntu again and you'll have a useful amount of free space left. You can delete the &lt;strong>rootfs.img.old&lt;/strong> file if everything is working properly.</description></item><item><title>archlinux x86_64安装google-talkplugin</title><link>https://chenzaichun.github.io/post/2010-09-21-archlinux_google_talkplugin_x86_64/</link><pubDate>Tue, 21 Sep 2010 18:17:15 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-21-archlinux_google_talkplugin_x86_64/</guid><description>&lt;p>要想在gmail里面使用视频，音频或者打电话，需要安装google-talkplugin，官方网站提供了deb和rpm包，archlinux下安装可以通过aur安装&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">yaourt -S google-talkplugin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这个时候直接不能安装，因为安装过程会提示lib32-openssl-compatible找不到，修改PKGBUILD，改为lib32-openssl
+然后安装之后，会发现启动不了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[226:202] Waiting for GoogleTalkPlugin to start...
+[227:297] Warning(clientchannel.cc:583): Unreadable or no port file. Could not initiate GoogleTalkPlugin connection
+[227:298] Warning(clientchannel.cc:439): Could not initiate GoogleTalkPlugin connection
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>执行/opt/google/talkplugin/GoogleTalkPlugin会提示找不到libssl.so.0.9.8&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">./GoogleTalkPlugin: error while loading shared libraries: libssl.so.0.9.8: cannot open shared object file: No such file or directory
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>创建一个软链接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo ln -s /usr/lib32/libssl.so.1.0.0 /usr/lib32/libssl.so.0.9.8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>还缺少一个东东&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">./GoogleTalkPlugin: error while loading shared libraries: libcrypto.so.0.9.8: cannot open shared object file: No such file or directory
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>再创建一个软链接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo ln -s /usr/lib32/libcrypto.so.1.0.0 /usr/lib32/libcrypto.so.0.9.8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>（注意，file GoogleTalkPlugin竟然是一个32位的elf）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="o">[&lt;/span>chenzaichun@czc-laptop talkplugin&lt;span class="o">]&lt;/span>$ file GoogleTalkPlugin
+GoogleTalkPlugin: ELF 32-bit LSB executable, Intel 80386, version &lt;span class="m">1&lt;/span> &lt;span class="o">(&lt;/span>SYSV&lt;span class="o">)&lt;/span>, dynamically linked &lt;span class="o">(&lt;/span>uses shared libs&lt;span class="o">)&lt;/span>, stripped
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>所以链接目录应该在/usr/lib32，而不是/usr/lib&lt;/p>
+&lt;p>完毕，可以正常使用了。&lt;/p></description></item><item><title>GTK+按钮</title><link>https://chenzaichun.github.io/post/2010-09-17-gtk_button/</link><pubDate>Fri, 17 Sep 2010 17:37:21 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-17-gtk_button/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="cm">/* compile command:
+&lt;/span>&lt;span class="cm"> gcc -o button button.c `pkg-config --libs --cflags gtk+-2.0`
+&lt;/span>&lt;span class="cm">*/&lt;/span>
+&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;gtk/gtk.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="k">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">destroy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GtkWidget&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">gpointer&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[])&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">GtkWidget&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">button&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">gtk_init&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">window&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">gtk_window_new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_WINDOW_TOPLEVEL&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_window_set_title&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_WINDOW&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;Buttons&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_container_set_border_width&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_CONTAINER&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_widget_set_size_request&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">g_signal_connect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">G_OBJECT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;destroy&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">G_CALLBACK&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">destroy&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="cm">/* Create a new button that has a mnemonic key of Alt+c. */&lt;/span>
+&lt;span class="n">button&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">gtk_button_new_with_mnemonic&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;_Close&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_button_set_relief&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_BUTTON&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">button&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">GTK_RELIEF_NONE&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="cm">/* Connect the button to the clicked signal. The callback function
+&lt;/span>&lt;span class="cm"> * recieves the window followed by the button because the arguments
+&lt;/span>&lt;span class="cm"> * are swapped
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">g_signal_connect_swapped&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">G_OBJECT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">button&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;clicked&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">G_CALLBACK&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">gtk_widget_destroy&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="n">gpointer&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_container_add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_CONTAINER&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">button&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_widget_show_all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_main&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="cm">/* Stop the GTK+ main loop function */&lt;/span>
+&lt;span class="k">static&lt;/span> &lt;span class="kt">void&lt;/span>
+&lt;span class="nf">destroy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GtkWidget&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">gpointer&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">gtk_main_quit&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>第一个GTK+程序</title><link>https://chenzaichun.github.io/post/2010-09-15-first_gtk_program/</link><pubDate>Wed, 15 Sep 2010 17:37:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-15-first_gtk_program/</guid><description>&lt;p>直接显示一个空白窗口，代码hello.c如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="cm">/* compile command:
+&lt;/span>&lt;span class="cm"> gcc -o simple simple.c `pkg-config --libs --cflags gtk+-2.0`
+&lt;/span>&lt;span class="cm">*/&lt;/span>
+&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;gtk/gtk.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[])&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">GtkWidget&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">window&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">GtkWidget&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">frame&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">GtkWidget&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">label&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">gtk_init&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">window&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">gtk_window_new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_WINDOW_TOPLEVEL&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_window_set_title&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_WINDOW&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;Hello World&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_window_set_position&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_WINDOW&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">GTK_WIN_POS_CENTER&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">frame&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">gtk_fixed_new&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="n">gtk_container_add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_CONTAINER&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">frame&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">label&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">gtk_label_new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Hello World&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_fixed_put&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GTK_FIXED&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">frame&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">label&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">g_signal_connect_swapped&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">G_OBJECT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;destroy&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">G_CALLBACK&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">gtk_main_quit&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_widget_show_all&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">window&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">gtk_main&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;img src="http://commondatastorage.googleapis.com/czc_public/appspotimages/2010-09-15-231732_208x108_scrot.png" alt="" width="208" height="108"></description></item><item><title>xelatex</title><link>https://chenzaichun.github.io/post/2010-08-29-archlinux_xelatex/</link><pubDate>Sun, 29 Aug 2010 23:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-29-archlinux_xelatex/</guid><description>&lt;p>今天准备用latex改一下简历，但是原来坚哥配置的texlive已经无法使用（因为squashfs升级，不支持旧版的格式），想了一下，还是装个新版的texlive吧！archlinux下安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S texlive-core textlive-langcjk texlive-latexextra
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>新版的xelatex对中文支持比较好了，所以直接修改原来用moderncv写的简历，然后xelatex xxx.tex生成pdf，相当的简单！&lt;/p></description></item><item><title>emacs23不能切换输入法的问题</title><link>https://chenzaichun.github.io/post/2010-08-25-emacs23_xim/</link><pubDate>Wed, 25 Aug 2010 23:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-25-emacs23_xim/</guid><description>&lt;p>emacs23安装后不能切换输入法（在archlinux，ubuntu上测试过，无论什么输入法ibus，scim，fcitx等等），但是其他的程序是没有任何问题的。解决办法，将&lt;code>export LC_CTYPE=zh_CN.UTF-8&lt;/code>加入你的profile（.bashrc, environment等都可以）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">LC_CTYPE&lt;/span>&lt;span class="o">=&lt;/span>zh_CN.UTF-8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux console分辨率</title><link>https://chenzaichun.github.io/post/2010-08-24-grub_framebuffer/</link><pubDate>Tue, 24 Aug 2010 23:23:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-24-grub_framebuffer/</guid><description>&lt;p>archlinux在启动的时候grub使用的是800x600，修改为1280x800时没有这个选项，google得知加上启动vga参数865就可以了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">vga=865
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux自动升级aur</title><link>https://chenzaichun.github.io/post/2010-08-25-archlinux_aur_update/</link><pubDate>Tue, 24 Aug 2010 17:37:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-25-archlinux_aur_update/</guid><description>&lt;p>在用aur安装完软件之后，默认使用pacman -Syu或者yaourt -Syu是不会更新aur安装的软件的，但是yaourt有个&amp;ndash;aur参数可以升级aur，所以可以用下面的方法升级aur&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 从AUR升级本地软件数据库并安装更新&lt;/span>
+yaourt -Syu --aur
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>lxde音量调节</title><link>https://chenzaichun.github.io/post/2010-08-24-archlinux_sound_alsamixer/</link><pubDate>Tue, 24 Aug 2010 17:17:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-24-archlinux_sound_alsamixer/</guid><description>&lt;p>lxde是没有音量调节的，如果需要调整，只能在term中使用aslamixer进行调节，这样很不方便，幸好可以绑定快捷键，修改~/.config/openbox/lxde-rc.xml，添加&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="c">&amp;lt;!-- volume --&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;keybind&lt;/span> &lt;span class="na">key=&lt;/span>&lt;span class="s">&amp;#34;W-Right&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;action&lt;/span> &lt;span class="na">name=&lt;/span>&lt;span class="s">&amp;#34;Execute&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;command&amp;gt;&lt;/span>amixer -q set Master 3%-&lt;span class="nt">&amp;lt;/command&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/action&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/keybind&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;keybind&lt;/span> &lt;span class="na">key=&lt;/span>&lt;span class="s">&amp;#34;W-Left&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;action&lt;/span> &lt;span class="na">name=&lt;/span>&lt;span class="s">&amp;#34;Execute&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;command&amp;gt;&lt;/span>amixer -q set Master unmute 3%+&lt;span class="nt">&amp;lt;/command&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/action&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/keybind&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我绑定的是window＋left，right，其他按键类似&lt;/p></description></item><item><title>安装yaourt遇到failed retrieving yaourt</title><link>https://chenzaichun.github.io/post/2010-08-23-yaourt_install/</link><pubDate>Mon, 23 Aug 2010 23:17:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-23-yaourt_install/</guid><description>&lt;p>添加源：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[archlinuxfr]
+Server = http://repo.archlinux.fr/x86_64
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装x86_64版本的yaourt的时候，出现failed retrieving yaourt，解决办法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">pacman -Syy yaourt
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux+LXDE蓝牙传输文件</title><link>https://chenzaichun.github.io/post/2010-08-23-archlinux_lxde_bluetooth/</link><pubDate>Mon, 23 Aug 2010 12:32:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-23-archlinux_lxde_bluetooth/</guid><description>&lt;p>首先安装bluez, obexfs&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S bluez obexfs
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>启动bluetooth（也可以加入/etc/rc.conf的daemon中）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">/etc/rc.d/bluetooth start
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>获取蓝牙的mac地址&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">hcitool scan
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>启动另外一个term，然后进行连接，如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">bluez-simple-agent hci0 00:26:37:45:29:8F
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在其他term中可以进行文件传输了：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">obexftp -b 00:26:37:45:29:8F -p xxx.txt
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux声卡配置</title><link>https://chenzaichun.github.io/post/2010-08-23-archlinux_sound/</link><pubDate>Mon, 23 Aug 2010 12:32:27 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-23-archlinux_sound/</guid><description>&lt;ol>
+&lt;li>安装alsa-lib alsa-utils alsa-oss&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S alsa-lib alsa-utils alsa-oss
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>
+&lt;p>执行alsaconf，选择自己的声卡&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>使用alsamixer调整音量&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>安装fuse-python出现错误</title><link>https://chenzaichun.github.io/post/2010-08-08-fuse-python/</link><pubDate>Sun, 08 Aug 2010 17:37:32 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-08-fuse-python/</guid><description>&lt;p>错误为:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">NameError: name &amp;#39;cflags&amp;#39; is not defined
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install libfuse-dev libfuse2 fuse-utils python-dev
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux中自动挂载windows分区</title><link>https://chenzaichun.github.io/post/2010-08-23-archlinux_auto_mount_windows/</link><pubDate>Tue, 03 Aug 2010 18:32:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-23-archlinux_auto_mount_windows/</guid><description>&lt;p>首先安装ntfs-3g&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S ntfs-3g
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后修改/etc/fstab，比如我的修改为&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">/dev/sda1 /media/c vfat user,defaults,codepage=936,iocharset=utf8,umask=000 0 0
+/dev/sda5 /media/d ntfs user,defaults,codepage=936,iocharset=utf8,umask=000 0 0
+/dev/sda6 /media/e ntfs user,defaults,codepage=936,iocharset=utf8,umask=000 0 0
+/dev/sda7 /media/f ntfs user,defaults,codepage=936,iocharset=utf8,umask=000 0 0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ubuntu下使用flashget</title><link>https://chenzaichun.github.io/post/2010-08-02-ubuntu_linux_flashget/</link><pubDate>Mon, 02 Aug 2010 17:32:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-02-ubuntu_linux_flashget/</guid><description>&lt;p>按照官方说明安装:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Ubunt 10.04下面无法启动,提示找不到libexpat.so.0
+error while loading shared libraries: libexpat.so.0: cannot open shared object file: No such file or directory
+原因,编译flashget使用的是libexpat.so.0版本,系统默认为libexpat.so.1.5.2,做软连接即可.
+$cd /usr/lib
+$sudo ln -s libexpat.so.1.5.2 libexpat.so.0
+$sudo ldconfig
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但是会出现:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">flashget: error while loading shared libraries: libexpat.so.0: wrong ELF class: ELFCLASS64
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>原因是因为我使用的64为系统,而flashget是用32位程序.怎么办呢?因为装有lib32,所以可以直接创建lib32中libexpat.so的软链接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">sudo ln -s /lib32/libexpat.so.1.5.2 /usr/lib/libexpat.so.0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android-x86关机</title><link>https://chenzaichun.github.io/post/2010-07-29-android-x86_halt/</link><pubDate>Thu, 29 Jul 2010 18:23:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-29-android-x86_halt/</guid><description>&lt;p>android-x86里面busybox没有关机命令,所以要想关机,切换到命令行模式(alt+f1),&lt;/p>
+&lt;p>关机命令:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">reboot -p
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重启命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">reboot
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ubuntu下adb驱动问题</title><link>https://chenzaichun.github.io/post/2010-07-27-ubuntu_adb_driver/</link><pubDate>Tue, 27 Jul 2010 11:23:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-27-ubuntu_adb_driver/</guid><description>&lt;p>ubuntu下adb默认无法识别,得到error: insufficient permissions for device,使用adb devices得到no permissions.解决办法有两种:&lt;/p>
+&lt;ol>
+&lt;li>使用root账户(su到root账户)&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">su
+&lt;span class="nb">cd&lt;/span> android-tools-dir
+./adb kill-server
+./adb start-server
+./adb devices
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>修改udev的权限,&lt;a href="http://bradchow.wordpress.com/2009/02/16/adb-on-windows-and-ubuntu-linux/" target="_blank">猛击这里&lt;/a>,添加/etc/udev/rules.d/50-android.rules&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">SUBSYSTEM==&amp;#34;usb&amp;#34;, SYSFS(idVendor)==&amp;#34;18d1&amp;#34;, MODE=&amp;#34;0666&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后修改执行权限&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">chmod a+rx /etc/udev/rules.d/50-android.rules
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重启udev&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo restart udev
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">su
+&lt;span class="nb">cd&lt;/span> android-tools-dir
+./adb kill-server
+./adb start-server
+./adb devices
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>解决Error executing aapt. Please check aapt is present at %错误</title><link>https://chenzaichun.github.io/post/2010-07-21-android_aapt_error/</link><pubDate>Wed, 21 Jul 2010 17:23:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-21-android_aapt_error/</guid><description>&lt;p>原文：&lt;a href="http://blog.csdn.net/ovsynnia/archive/2007/12/06/1920365.aspx" target="_blank">猛击这里&lt;/a>&lt;/p>
+&lt;p>根据指南先配置好JDK，和设置path，并且更新sdk要重新更改path，按照指南来还出现问题！&lt;/p>
+&lt;p>Error executing aapt. Please check aapt is present at %&lt;/p>
+&lt;p>解决方案：在eclipse–&amp;gt;window–&amp;gt;属性–&amp;gt;android–&amp;gt;设置sdk的路径为解压缩的&lt;code>android_sdk_&amp;lt;platform&amp;gt;_&amp;lt;release&amp;gt;_&amp;lt;build&amp;gt;&lt;/code>.确定ＯＫ　小红叉没有了&lt;/p>
+&lt;p>但是在linux下还是出现了这个问题（因为更新了sdk），后来发现是因为platform/android-1.x/tools/下的工具没有执行权限&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">chmod +x *
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>hg ssh 访问</title><link>https://chenzaichun.github.io/post/2010-07-20-hg_ssh_access/</link><pubDate>Tue, 20 Jul 2010 17:23:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-20-hg_ssh_access/</guid><description>&lt;p>hg通过ssh访问时，地址的格式是ssh://user:pwd@host//path,注意这里的两个/，如果只是使用一个，则找不到repo，这个与scp等的方式不一样（scp的格式是：scp user:pwd@host:/path）详情见&lt;code>hg help urls&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">hg &lt;span class="nb">help&lt;/span> urls
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>srt2lrc python版本</title><link>https://chenzaichun.github.io/post/2010-07-14-srt2lrc_py/</link><pubDate>Wed, 14 Jul 2010 17:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-14-srt2lrc_py/</guid><description>&lt;p>今天想把经典的电影拿来当听力训练，可惜找了很久都没有找到直接下载方式，没有办法，只好下载电影然后提取音频并配上字幕。网上找了一个perl版的srt2lrc.pl，因为完全不懂perl，该脚本无法运行，所以只好自己想办法。没有仔细研究过srt与lrc格式，只是找了两个文件来看，勉强知道是怎么回事，用python写了一个转化的脚本（ps. python不熟，代码很难看，只是勉强实现了功能）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- coding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">sys&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">re&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Usage srt2lrc.py file&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">f&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;span class="n">lines&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">readlines&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="k">while&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">line&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">line&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;--&amp;gt;&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">continue&lt;/span>
+&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">line&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;--&amp;gt;&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">time&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;:&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">ms&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;00&amp;#39;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">hour&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">minute&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">seconds&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;,&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">second&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">seconds&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">ms&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">seconds&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">hour&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="n">minute&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">seconds&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;,&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">second&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">seconds&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">ms&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">seconds&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hour&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">minute&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">second&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ms&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">continue&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">while&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">re&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sub&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;&amp;lt;.*&amp;gt;&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">s&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;[&lt;/span>&lt;span class="si">%.2d&lt;/span>&lt;span class="s2">:&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s2">.&lt;/span>&lt;span class="si">%.2s&lt;/span>&lt;span class="s2">]&lt;/span>&lt;span class="si">%s&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hour&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">60&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">minute&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()),&lt;/span> &lt;span class="n">second&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">ms&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>mencoder提取音频</title><link>https://chenzaichun.github.io/post/2010-07-14-mencoder_extract_audio/</link><pubDate>Wed, 14 Jul 2010 11:36:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-14-mencoder_extract_audio/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># $1 -- input file&lt;/span>
+&lt;span class="c1"># $2 -- output file&lt;/span>
+mencoder -oac mp3lame -ovc copy -of rawaudio &lt;span class="nv">$1&lt;/span> -o &lt;span class="nv">$2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>eclipse老是自动退出</title><link>https://chenzaichun.github.io/post/2010-07-05-eclipse_crash/</link><pubDate>Mon, 05 Jul 2010 12:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-05-eclipse_crash/</guid><description>&lt;p>今天在使用eclipse的时候，一会儿就自动退出，重试很多次无果！前两天都还是好好的，怎么会这样呢？后来一想，昨天升级ubuntu的时候升级了openjdk，难道是这个原因？删除openjdk，然后安装sun-java6-jdk。ubuntu下在/etc/apt/sources.list添加：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">deb http://archive.canonical.com/ lucid partner
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>测试之后，搞定！如果遇到同样问题，多半是jdk的问题。&lt;/p></description></item><item><title>ubuntu下安装telnet服务器</title><link>https://chenzaichun.github.io/post/2010-06-21-ubuntu_telnet_server/</link><pubDate>Mon, 21 Jun 2010 23:11:34 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-21-ubuntu_telnet_server/</guid><description>&lt;ol>
+&lt;li>安装xinetd和telnetd&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install xinetd telnetd
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>/etc/inetd.conf在安装过程中已经配置好，修改/etc/xinetd.conf&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">defaults{
+# Please note that you need a log_type line to be able to use log_on_success
+# and log_on_failure. The default is the following :
+# log_type = SYSLOG daemon info
+## Please note that you need a log_type line to be able to use log_on_success
+## and log_on_failure. The default is the following :## log_type = SYSLOG daemon info
+#
+## start the insert content
+#
+# if I have time, I will add some comments about this part.
+# instances =60#log_type = SYSLOG authpriv
+# log_on_success = HOST PID
+# log_on_failure = HOST
+# tcps = 25 30
+## end the insert content
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>添加/etc/xinet.d/telnet&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">#service telnet
+#{
+#disable = no
+#flags = REUSE
+#socket_type = stream
+#wait = no
+#user = root
+#server = /usr/sbin/in.telnetd
+#log_on_failure += USERID
+#}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>重启xinetd服务&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo /etc/init.d/xinetd restart
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="5">
+&lt;li>测试一下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">telnet 127.0.0.1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>chrome dev channel的更新源</title><link>https://chenzaichun.github.io/post/2010-06-20-chrome_dev_channel_source/</link><pubDate>Sun, 20 Jun 2010 22:11:25 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-20-chrome_dev_channel_source/</guid><description>&lt;p>原来chrome dev channel的更新源在&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">deb http://dl.google.com/linux/deb/ stable main #Google
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>原来一直以为在unstable 目录下，一直不能更新，木哈哈！&lt;/p></description></item><item><title>ubuntu下配置emacs android开发环境</title><link>https://chenzaichun.github.io/post/2010-06-18-ubuntu_emacs_android/</link><pubDate>Fri, 18 Jun 2010 12:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-18-ubuntu_emacs_android/</guid><description>&lt;ol>
+&lt;li>首先安装jdk&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install openjdk-6-jdk
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>
+&lt;p>下载并解压android sdk&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>将adnroid sdk目录下的tools添加到PATH&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>安装android-mode&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git clone git://github.com/remvee/android-mode.git
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>5. 创建一个android虚拟设备如test1，在.emacs中配置android-mode&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="c1">;; android-mode&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">add-to-list&lt;/span> &lt;span class="ss">&amp;#39;load-path&lt;/span> &lt;span class="s">&amp;#34;~/android/android-mode&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nf">require&lt;/span> &lt;span class="ss">&amp;#39;android-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">custom-set-variables&lt;/span>
+&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">android-mode-avd&lt;/span> &lt;span class="s">&amp;#34;test1&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">android-mode-sdk-dir&lt;/span> &lt;span class="s">&amp;#34;~/android/&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="6">
+&lt;li>测试模拟器是否正常&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">android-start-emulator
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="7">
+&lt;li>安装ant&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get instal ant
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="8">
+&lt;li>中创建一个android工程使用命令android create project&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">android create project -n helloworld -t &lt;span class="m">12&lt;/span> -p ./ -k org.example.helloworld -a helloworld
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="9">
+&lt;li>在emacs安装工程&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">M-x android-ant-install
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="10">
+&lt;li>重新安装工程使用&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">M-x android-ant-reinstall
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>使用诺顿dns服务器</title><link>https://chenzaichun.github.io/post/2010-06-06-norton_google_dns/</link><pubDate>Sun, 06 Jun 2010 21:19:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-06-norton_google_dns/</guid><description>&lt;p>今天将dns服务器换为诺顿的和google的了，诺顿默认情况下给出了一些危险网站的建议，加上google chrome的危险建议，所以相对来说上网就比较安全，我的dns服务器配置 cat /etc/resolve.conf&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">nameserver 198.153.192.1
+nameserver 8.8.8.8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>第一个Qt程序</title><link>https://chenzaichun.github.io/post/2010-06-06-first_qt/</link><pubDate>Sun, 06 Jun 2010 18:18:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-06-first_qt/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="c1">// 来自C++ GUI Programming with Qt 4
+&lt;/span>&lt;span class="c1">// 编译：
+&lt;/span>&lt;span class="c1">// qmake -project
+&lt;/span>&lt;span class="c1">// qmake
+&lt;/span>&lt;span class="c1">// make
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;QApplication&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;QLabel&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">**&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">QApplication&lt;/span> &lt;span class="n">app&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">QLabel&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">label&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">QLabel&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Hello qt!&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">label&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">show&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">exec&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>命令行下查看deb包的依赖</title><link>https://chenzaichun.github.io/post/2010-06-06-debian_depends/</link><pubDate>Sun, 06 Jun 2010 12:37:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-06-debian_depends/</guid><description>&lt;p>命令行下察看deb包的依赖(如察看google chrome的依赖）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">dpkg --info google-chrome-unstable_current_amd64.deb &lt;span class="p">|&lt;/span> grep Depends
+Pre-Depends: dpkg &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.14.0&lt;span class="o">)&lt;/span>
+Depends: ca-certificates, libasound2, libatk1.0-0 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.13.2&lt;span class="o">)&lt;/span>, libbz2-1.0, libc6 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.6-1&lt;span class="o">)&lt;/span>, libcairo2 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.4.0&lt;span class="o">)&lt;/span>, libfontconfig1 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.4.0&lt;span class="o">)&lt;/span>, libfreetype6 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.3.5&lt;span class="o">)&lt;/span>, libgcc1 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1:4.2.1&lt;span class="o">)&lt;/span>, libgconf2-4, libglib2.0-0 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.14.0&lt;span class="o">)&lt;/span>, libgtk2.0-0 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.12.0&lt;span class="o">)&lt;/span>, libjpeg62, libnspr4-0d &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 4.7.1&lt;span class="o">)&lt;/span>, libnss3-1d &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 3.12.3&lt;span class="o">)&lt;/span>, libpango1.0-0 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.18.3&lt;span class="o">)&lt;/span>, libpng12-0, libstdc++6 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 4.2.1&lt;span class="o">)&lt;/span>, libxslt1.1, libxss1, lsb-base &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 3.2&lt;span class="o">)&lt;/span>, wget, xdg-utils &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.0.1&lt;span class="o">)&lt;/span>, zlib1g &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1:1.2.3.3.dfsg-1&lt;span class="o">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p> &lt;/p></description></item><item><title>sudo环境变量</title><link>https://chenzaichun.github.io/post/2010-06-01-sudo_environment/</link><pubDate>Tue, 01 Jun 2010 11:43:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-01-sudo_environment/</guid><description>&lt;p>由于sudo运行程序不继承当前用户的环境变量，所以不能使用export var=value； sudo command的方式执行。解决办法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo &lt;span class="nv">var&lt;/span>&lt;span class="o">=&lt;/span>value &lt;span class="nb">command&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>修改Grub2,XP默认首启动</title><link>https://chenzaichun.github.io/post/2010-05-18-grub2_boot_default/</link><pubDate>Tue, 18 May 2010 12:12:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-18-grub2_boot_default/</guid><description>&lt;p>参考： &lt;a href="http://swsw4321.blog.163.com/blog/static/3245245201003121842841/">&lt;a href="http://swsw4321.blog.163.com/blog/static/3245245201003121842841/">http://swsw4321.blog.163.com/blog/static/3245245201003121842841/&lt;/a>&lt;/a>
+修改启动项, 终端输入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> /etc/grub.d &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ls
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>显示的文件是这样的：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">00_header 05_debian_theme 10_linux 20_memtest86+ 30_os-prober 40_custom README
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中：10_linux就是当前所使用的操作系统，30_os-prober的作用是自动查找计算机的其他系统，比如是windows xp，要XP默认首启动只要执行命令：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo mv 20_os-prober 06_os-prober，把20_os-prober 改成06_os-prober
+sudo mv 30_os-prober 06_os-prober
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样，以后grub再次更新时，XP就默认在linux前启动了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo update-grub
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>看看效果吧，这样以后每次更新grub,都是默认XP启动。&lt;/p></description></item><item><title>mercurial hg代理设置</title><link>https://chenzaichun.github.io/post/2010-05-16-mercurial_hg_proxy/</link><pubDate>Sun, 16 May 2010 17:11:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-16-mercurial_hg_proxy/</guid><description>&lt;p>由于在教育网中,sf上面的代码访问很慢,考虑为mercurial hg增加代理访问. 修改~/.hgrc, 增加&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[http_proxy]
+host=127.0.0.1:8580
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>详细的hgrc配置见官方文档: &lt;a href="http://www.selenic.com/mercurial/hgrc.5.html" target="_blank">&lt;a href="http://www.selenic.com/mercurial/hgrc.5.html">http://www.selenic.com/mercurial/hgrc.5.html&lt;/a>&lt;/a>&lt;/p></description></item><item><title>archlinux x11 forwarding</title><link>https://chenzaichun.github.io/post/2010-05-11-archlinux_x11_forwarding/</link><pubDate>Tue, 11 May 2010 13:11:32 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-11-archlinux_x11_forwarding/</guid><description>&lt;p>默认情况下archlinu是不允许x11 forwarding的,修改/etc/ssh/sshd_config&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">AllowTcpForwarding yes
+X11Forwarding yes
+X11DisplayOffset 10
+X11UseLocalhost yes
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux安装yaourt</title><link>https://chenzaichun.github.io/post/2010-05-10-archlinux_install_yaourt/</link><pubDate>Mon, 10 May 2010 23:11:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-10-archlinux_install_yaourt/</guid><description>&lt;p>参照arch wiki：&lt;a href="http://wiki.archlinux.org/index.php/Yaourt_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">&lt;a href="http://wiki.archlinux.org/index.php/Yaourt_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">http://wiki.archlinux.org/index.php/Yaourt_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&lt;/a>&lt;/a>&lt;/p>
+&lt;p>最简单安装Yaourt的方式是添加Yaourt源至您的 /etc/pacman.conf:&lt;/p>
+&lt;p>i686架构：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[archlinuxfr]
+Server = http://repo.archlinux.fr/i686
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>x86-64架构：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[archlinuxfr]
+Server = http://repo.archlinux.fr/x86_64
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>同步并安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">pacman -Syu
+pacman -S yaourt
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux全局代理</title><link>https://chenzaichun.github.io/post/2010-05-10-archlinux_global_proxy/</link><pubDate>Mon, 10 May 2010 13:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-10-archlinux_global_proxy/</guid><description>&lt;p>参考: &lt;a href="http://wiki.archlinux.org/index.php/Proxy_settings">&lt;a href="http://wiki.archlinux.org/index.php/Proxy_settings">http://wiki.archlinux.org/index.php/Proxy_settings&lt;/a>&lt;/a>&lt;/p>
+&lt;p>在教育网中使用aur或者abs,网速非常的慢,同时很多东西都不能正常的下载下来,如何给下载添加代理呢? 像wget等程序使用&amp;quot;protocal_proxy&amp;quot;环境变量,所以可以通过设置环境变量的方式来使用代理:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>http://10.203.0.1:5187/
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">ftp_proxy&lt;/span>&lt;span class="o">=&lt;/span>http://10.203.0.1:5187/
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我们可以增加两个函数用来打开关闭代理,在.bashrc里面添加:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="k">function&lt;/span> proxy&lt;span class="o">(){&lt;/span>
+&lt;span class="nb">echo&lt;/span> -n “username:”
+&lt;span class="nb">read&lt;/span> -e username
+&lt;span class="nb">echo&lt;/span> -n “password:”
+&lt;span class="nb">read&lt;/span> -es password
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>”http://&lt;span class="nv">$username&lt;/span>:&lt;span class="nv">$password&lt;/span>@proxyserver:8080/”
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">ftp_proxy&lt;/span>&lt;span class="o">=&lt;/span>”http://&lt;span class="nv">$username&lt;/span>:&lt;span class="nv">$password&lt;/span>@proxyserver:8080/”
+&lt;span class="nb">echo&lt;/span> -e “nProxy environment variable set.”
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">function&lt;/span> proxyoff&lt;span class="o">(){&lt;/span>
+&lt;span class="nb">unset&lt;/span> HTTP_PROXY
+&lt;span class="nb">unset&lt;/span> http_proxy
+&lt;span class="nb">unset&lt;/span> FTP_PROXY
+&lt;span class="nb">unset&lt;/span> ftp_proxy
+&lt;span class="nb">echo&lt;/span> -e “nProxy environment variable removed.”
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>将archlinux安装到u盘</title><link>https://chenzaichun.github.io/post/2010-05-09-archlinux_usb_pen/</link><pubDate>Sun, 09 May 2010 21:13:43 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-09-archlinux_usb_pen/</guid><description>&lt;p>将archlinux安装到优盘上！试了很多方法，在虚拟机上将优盘设置成硬盘安装和在虚拟机上设置usb设备安装，启动时都会出现找不到硬盘的情况。（使用虚拟机启动没有问题）解决办法（&lt;a href="http://blog.sina.com.cn/s/blog_59cf67260100cwqr.html">参考地址&lt;/a>）：&lt;/p>
+&lt;p>设置系统的参数的时候，修改/etc/mkinitcpio.conf ，在HOOKS中加入usb选项，这似乎是让linux内核认usb。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">HOOKS=&amp;#34;base udev autodetect pata scsi sata usb filesystems&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样就可以正常启动了！如果出现&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">The superblock could not be read or does not describe a correct ext2 filesystem. If the device is valid and it really contains an ext2 filesystem (and not swap or ufs or something else), then the superblock is corrupt, and you might try running e2fsck with an alternate superblock:
+e2fsck -b 8193
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>请修改fstab，使用uuid的方式，见&lt;a href="http://wiki.archlinux.org/index.php/Fstab">&lt;a href="http://wiki.archlinux.org/index.php/Fstab">http://wiki.archlinux.org/index.php/Fstab&lt;/a>&lt;/a>&lt;/p></description></item><item><title>git svn clone 特定版本</title><link>https://chenzaichun.github.io/post/2010-05-08-git_svn_clone_revision/</link><pubDate>Sat, 08 May 2010 23:11:38 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-git_svn_clone_revision/</guid><description>&lt;p>使用git从svn中clone特定版本：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git svn clone --prefix&lt;span class="o">=&lt;/span>svn/ -s -r&lt;span class="nv">$revision&lt;/span>:HEAD http://some/svn/repo
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux 下chrome autoproxy</title><link>https://chenzaichun.github.io/post/2010-05-08-archlinux_chrome_autoproxy/</link><pubDate>Sat, 08 May 2010 22:11:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-archlinux_chrome_autoproxy/</guid><description>&lt;p>在chrome下使用switchy自动代理需要依赖gnome和kde,所以在没有安装这两个套件的情况下,可以直接添加这两个命令行参数即可&lt;code>--proxy-auto-detect&lt;/code> &lt;code>--proxy-pac-url=pac&lt;/code>文件路径(本地,在线都可)以达到自动使用代理的功能&lt;/p></description></item><item><title>ubuntu删除无用旧内核</title><link>https://chenzaichun.github.io/post/2010-05-08-ubuntu_kernel_clean/</link><pubDate>Sat, 08 May 2010 19:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ubuntu_kernel_clean/</guid><description>&lt;p>用这个可以删除旧内核&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo aptitude purge ~ilinux-image-.*&lt;span class="o">(&lt;/span>!&lt;span class="sb">`&lt;/span>uname -r&lt;span class="sb">`&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;a class="postlink" href="http://forum.ubuntu.org.cn/viewtopic.php?t=129876">&lt;a href="http://forum.ubuntu.org.cn/viewtopic.php?t=129876">http://forum.ubuntu.org.cn/viewtopic.php?t=129876&lt;/a>&lt;/a>&lt;/p></description></item><item><title>Mount.cifs 中设置文件权限</title><link>https://chenzaichun.github.io/post/2010-05-08-mount_cifs_umask/</link><pubDate>Sat, 08 May 2010 18:23:34 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-mount_cifs_umask/</guid><description>&lt;p>在以往常用的Mount命令里，使用&lt;code>umask=xxxx&lt;/code>设置挂载目录文件的权限，然后在使用Smbfs的Mount工具时，便不是使用umask了，而是用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">-o file_mode=0666 dir_mode=0755
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这个问题纠结了我半天，终于在Google上找到答案&lt;/p></description></item><item><title>ssh sock 5代理</title><link>https://chenzaichun.github.io/post/2010-05-08-ssh_sock_5/</link><pubDate>Sat, 08 May 2010 13:11:32 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ssh_sock_5/</guid><description>&lt;p>由于学校使用drcom，在Windows下任何代理都无解。在linux下可以通过iptable forward实现，在Windows下使用andlinux的时候如何挂代理呢，通过plink开sock5代理的方法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">plink -C -D myip:port -N -pw pasword username@127.0.0.1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>则外面就能使用sock5代理上 网了（使用sockscap尤其方便）。&lt;/p></description></item><item><title>Linux下修改 emacs默认背景颜色</title><link>https://chenzaichun.github.io/post/2010-05-07-linux_emacs_color/</link><pubDate>Fri, 07 May 2010 18:19:20 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-linux_emacs_color/</guid><description>&lt;p>创建&lt;code>~/.Xresources&lt;/code>，添加：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Xft.antialias: 1
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Emacs.FontBackend: xft
+Emacs.Font: WenQuanYi Zen Hei Mono-16
+Emacs.Geometry: 80x25
+Emacs*Foreground: white
+Emacs*Background: black
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>执行:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">xdb ~/.Xresources
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重启emacs。下次启动背景色自动就改变了！;-)&lt;/p></description></item><item><title>ubuntu 10.04 unable to load the kernel module 'nvidia.ko'</title><link>https://chenzaichun.github.io/post/2010-05-07-ubuntu_nvidia_ko/</link><pubDate>Fri, 07 May 2010 16:14:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ubuntu_nvidia_ko/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">ERROR: Unable to load the kernel module &amp;#39;nvidia.ko&amp;#39;. This happens most frequently when this kernel module was built against the wrong or improperly configured kernel sources, with a version of gcc that differs from the one used to build the target kernel, or if a driver such as rivafb/nvidiafb is present and prevents the NVIDIA kernel module from obtaining ownership of the NVIDIA graphics device(s), or NVIDIA GPU installed in this system is not supported by this NVIDIA Linux graphics driver release.
+Please see the log entries &amp;#39;Kernel module load error&amp;#39; and &amp;#39;Kernel messages&amp;#39; at the end of the file &amp;#39;/var/log/nvidia-installer.log&amp;#39; for more information.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo sh NVIDA-Linux-x86_64-190.53-pkg.run -k &lt;span class="k">$(&lt;/span>uname -r&lt;span class="k">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ubuntu 10.04 lucid安装distcc</title><link>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_distcc/</link><pubDate>Fri, 07 May 2010 12:11:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_distcc/</guid><description>&lt;p>在ubuntu下安装distcc（后面两个可选）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install distcc distccmon-gnome distcc-pump
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>设置环境变量:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/usr/lib/distcc:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打开&lt;code>/etc/default/distcc&lt;/code>进行以下修改&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">STARTDISTCC=&amp;#34;true&amp;#34; # auto start
+ALLOWEDNETS=&amp;#34;192.168.39.0/24&amp;#34; # ip range allowed
+LISTENER=&amp;#34;&amp;#34; # if use on intranet, must be empty, otherwise distcc: connection refused
+ZEROCONF=&amp;#34;true&amp;#34; # auto lookup distcc server
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后重启distcc服务&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo /etc/init.d/distcc restart
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>搞定！:-)&lt;/p></description></item><item><title>git windows</title><link>https://chenzaichun.github.io/post/2010-05-07-git_windows/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-git_windows/</guid><description>&lt;p>在测试过很多中dvcs之后，最后决定用git。git在linux表现是非常完美的，不管是中文文件名，还是log，同时git svn clone也相当的完美。但是在windows下，乱码问题一直得不到解决。万般无赖之下只有抛弃以前的历史，直接svn co下来之后，生成一个新的git repo。&lt;/p>
+&lt;p>要想中文显示正常，在msysgit的安装目录下的/etc/git-completion.bash中增加一行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">alias ls=&amp;#39;ls --show-control-chars --color=auto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改&lt;code>/etc/inputrc&lt;/code>中对应的行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">alias ls=&amp;#39;ls --show-control-chars --color=auto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在&lt;code>/etc/profile&lt;/code>中增加一行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">alias ls=&amp;#39;ls --show-control-chars --color=auto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>windows下完美解决问题。可惜windows下的repo在linux下是不能够正常使用的！等待解决git官方utf-8支持吧&lt;/p></description></item><item><title>ubuntu 10.04 beta Fail to query the GLX server vendor</title><link>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_failed_query_glx_vendor/</link><pubDate>Fri, 07 May 2010 09:11:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_failed_query_glx_vendor/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">unlink /usr/lib/libGL.so
+unlink /usr/lib/libGL.so.1
+unlink
+/usr/lib64/libGL.so
+unlink /usr/lib64/libGL.so.1
+ln -s /usr/lib/nvidia-current/libGL.so /usr/lib/libGL.so.1
+ln -s /usr/lib64/nvidia-current/libGL.so /usr/lib64/libGL.so.1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

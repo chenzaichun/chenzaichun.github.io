@@ -1,0 +1,304 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Floating point exception on SUSE - 木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="今天想将redhat上面的程序放到suse 10上面运行，结果遇到了这个错误：
+ Floating point exception
+ ldd的显示结果：
+1 2 3 4 5 6 7 8 9 10  # on suse ldd /usr/bin/pkginfo linux-vdso.so.1 =&amp;gt; (0x00007fff1c7fe000) libc.so.6 =&amp;gt; /lib64/libc.so.6 (0x00002afe8e51c000) /lib64/ld-linux-x86-64.so.2 (0x00002afe8e400000) # on redhat ldd /usr/bin/pkginfo libc.so.6 =&amp;gt; /lib64/libc.so.6 (0x0000003dd0800000) /lib64/ld-linux-x86-64.so.2 (0x0000003dd0400000)   系统版本:
+1 2 3 4 5 6 7  # on suse uname -a Linux vmsuse 2.6.16.60-0.54.5-default #1 Fri Sep 4 01:28:03 UTC 2009 x86_64 x86_64 x86_64 GNU/Linux # on redhat uname -a Linux temipll1 2.6.18-92.el5 #1 SMP Tue Apr 29 13:16:15 EDT 2008 x86_64 x86_64 x86_64 GNU/Linux   gcc版本：
+"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/post/2012-10-26-floating-point-exception-on-suse/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Floating point exception on SUSE"><meta property="og:description" content="今天想将redhat上面的程序放到suse 10上面运行，结果遇到了这个错误：
+
+Floating point exception
+
+ldd的显示结果：
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+
+
+# on suse
+ldd /usr/bin/pkginfo
+	linux-vdso.so.1 =>  (0x00007fff1c7fe000)
+	libc.so.6 => /lib64/libc.so.6 (0x00002afe8e51c000)
+	/lib64/ld-linux-x86-64.so.2 (0x00002afe8e400000)
+
+# on redhat
+ldd /usr/bin/pkginfo
+	libc.so.6 => /lib64/libc.so.6 (0x0000003dd0800000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000003dd0400000)
+
+
+系统版本:
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+# on suse
+uname -a
+Linux vmsuse 2.6.16.60-0.54.5-default #1 Fri Sep 4 01:28:03 UTC 2009 x86_64 x86_64 x86_64 GNU/Linux
+
+# on redhat
+uname -a
+Linux temipll1 2.6.18-92.el5 #1 SMP Tue Apr 29 13:16:15 EDT 2008 x86_64 x86_64 x86_64 GNU/Linux
+
+
+gcc版本："><meta property="og:type" content="article"><meta property="og:url" content="https://chenzaichun.github.io/post/2012-10-26-floating-point-exception-on-suse/"><meta property="article:section" content="post"><meta property="article:published_time" content="2012-10-26T16:40:00+08:00"><meta property="article:modified_time" content="2012-10-26T16:40:00+08:00"><meta itemprop=name content="Floating point exception on SUSE"><meta itemprop=description content="今天想将redhat上面的程序放到suse 10上面运行，结果遇到了这个错误：
+
+Floating point exception
+
+ldd的显示结果：
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+
+
+# on suse
+ldd /usr/bin/pkginfo
+	linux-vdso.so.1 =>  (0x00007fff1c7fe000)
+	libc.so.6 => /lib64/libc.so.6 (0x00002afe8e51c000)
+	/lib64/ld-linux-x86-64.so.2 (0x00002afe8e400000)
+
+# on redhat
+ldd /usr/bin/pkginfo
+	libc.so.6 => /lib64/libc.so.6 (0x0000003dd0800000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000003dd0400000)
+
+
+系统版本:
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+# on suse
+uname -a
+Linux vmsuse 2.6.16.60-0.54.5-default #1 Fri Sep 4 01:28:03 UTC 2009 x86_64 x86_64 x86_64 GNU/Linux
+
+# on redhat
+uname -a
+Linux temipll1 2.6.18-92.el5 #1 SMP Tue Apr 29 13:16:15 EDT 2008 x86_64 x86_64 x86_64 GNU/Linux
+
+
+gcc版本："><meta itemprop=datePublished content="2012-10-26T16:40:00+08:00"><meta itemprop=dateModified content="2012-10-26T16:40:00+08:00"><meta itemprop=wordCount content="523"><meta itemprop=keywords content="suse,redhat,linux,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Floating point exception on SUSE"><meta name=twitter:description content="今天想将redhat上面的程序放到suse 10上面运行，结果遇到了这个错误：
+
+Floating point exception
+
+ldd的显示结果：
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+
+
+# on suse
+ldd /usr/bin/pkginfo
+	linux-vdso.so.1 =>  (0x00007fff1c7fe000)
+	libc.so.6 => /lib64/libc.so.6 (0x00002afe8e51c000)
+	/lib64/ld-linux-x86-64.so.2 (0x00002afe8e400000)
+
+# on redhat
+ldd /usr/bin/pkginfo
+	libc.so.6 => /lib64/libc.so.6 (0x0000003dd0800000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000003dd0400000)
+
+
+系统版本:
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+# on suse
+uname -a
+Linux vmsuse 2.6.16.60-0.54.5-default #1 Fri Sep 4 01:28:03 UTC 2009 x86_64 x86_64 x86_64 GNU/Linux
+
+# on redhat
+uname -a
+Linux temipll1 2.6.18-92.el5 #1 SMP Tue Apr 29 13:16:15 EDT 2008 x86_64 x86_64 x86_64 GNU/Linux
+
+
+gcc版本："><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Even</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Even</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Floating point exception on SUSE</h1><div class=post-meta><span class=post-time>2012-10-26</span><div class=post-category><a href=/categories/programming/>programming</a>
+<a href=/categories/tools/>tools</a></div><span class=more-meta>约 523 字</span>
+<span class=more-meta>预计阅读 2 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-outdated><div class=warn><p>【注意】最后更新于 <span class=timeago datetime=2012-10-26T16:40:00 title="October 26, 2012">October 26, 2012</span>，文中内容可能已过时，请谨慎使用。</p></div></div><div class=post-content><p>今天想将redhat上面的程序放到suse 10上面运行，结果遇到了这个错误：</p><blockquote><p>Floating point exception</p></blockquote><p>ldd的显示结果：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=c1># on suse</span>
+ldd /usr/bin/pkginfo
+	linux-vdso.so.1 <span class=o>=</span>&gt;  <span class=o>(</span>0x00007fff1c7fe000<span class=o>)</span>
+	libc.so.6 <span class=o>=</span>&gt; /lib64/libc.so.6 <span class=o>(</span>0x00002afe8e51c000<span class=o>)</span>
+	/lib64/ld-linux-x86-64.so.2 <span class=o>(</span>0x00002afe8e400000<span class=o>)</span>
+
+<span class=c1># on redhat</span>
+ldd /usr/bin/pkginfo
+	libc.so.6 <span class=o>=</span>&gt; /lib64/libc.so.6 <span class=o>(</span>0x0000003dd0800000<span class=o>)</span>
+	/lib64/ld-linux-x86-64.so.2 <span class=o>(</span>0x0000003dd0400000<span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>系统版本:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=c1># on suse</span>
+uname -a
+Linux vmsuse 2.6.16.60-0.54.5-default <span class=c1>#1 Fri Sep 4 01:28:03 UTC 2009 x86_64 x86_64 x86_64 GNU/Linux</span>
+
+<span class=c1># on redhat</span>
+uname -a
+Linux temipll1 2.6.18-92.el5 <span class=c1>#1 SMP Tue Apr 29 13:16:15 EDT 2008 x86_64 x86_64 x86_64 GNU/Linux</span>
+</code></pre></td></tr></table></div></div><p>gcc版本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=c1># on suse </span>
+gcc -v
+Using built-in specs.
+Target: x86_64-suse-linux
+Configured with: ../configure --enable-threads<span class=o>=</span>posix --prefix<span class=o>=</span>/usr --with-local-prefix<span class=o>=</span>/usr/local --infodir<span class=o>=</span>/usr/share/info --mandir<span class=o>=</span>/usr/share/man --libdir<span class=o>=</span>/usr/lib64 --libexecdir<span class=o>=</span>/usr/lib64 --enable-languages<span class=o>=</span>c,c++,objc,fortran,obj-c++,java,ada --enable-checking<span class=o>=</span>release --with-gxx-include-dir<span class=o>=</span>/usr/include/c++/4.1.2 --enable-ssp --disable-libssp --disable-libgcj --with-slibdir<span class=o>=</span>/lib64 --with-system-zlib --enable-shared --enable-__cxa_atexit --enable-libstdcxx-allocator<span class=o>=</span>new --program-suffix<span class=o>=</span> --enable-version-specific-runtime-libs --without-system-libunwind --with-cpu<span class=o>=</span>generic --host<span class=o>=</span>x86_64-suse-linux
+Thread model: posix
+gcc version 4.1.2 <span class=m>20070115</span> <span class=o>(</span>SUSE Linux<span class=o>)</span>
+
+<span class=c1># on redhat </span>
+gcc -v
+Using built-in specs.
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix<span class=o>=</span>/usr --mandir<span class=o>=</span>/usr/share/man --infodir<span class=o>=</span>/usr/share/info --enable-shared --enable-threads<span class=o>=</span>posix --enable-checking<span class=o>=</span>release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-libgcj-multifile --enable-languages<span class=o>=</span>c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt<span class=o>=</span>gtk --disable-dssi --enable-plugin --with-java-home<span class=o>=</span>/usr/lib/jvm/java-1.4.2-gcj-1.4.2.0/jre --with-cpu<span class=o>=</span>generic --host<span class=o>=</span>x86_64-redhat-linux
+Thread model: posix
+gcc version 4.1.2 <span class=m>20080704</span> <span class=o>(</span>Red Hat 4.1.2-48<span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>glibc 版本:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=c1># on suse</span>
+rpm -qa<span class=p>|</span>grep glibc
+glibc-i18ndata-2.4-31.74.1
+glibc-32bit-2.4-31.74.1
+glibc-2.4-31.74.1
+glibc-locale-32bit-2.4-31.74.1
+glibc-locale-2.4-31.74.1
+glibc-devel-32bit-2.4-31.74.1
+glibc-devel-2.4-31.74.1
+
+<span class=c1># on redhat</span>
+rpm -qa<span class=p>|</span>grep glibc
+glibc-2.5-49
+glibc-devel-2.5-49
+glibc-headers-2.5-49
+glibc-common-2.5-49
+glibc-2.5-49
+glibc-devel-2.5-49
+</code></pre></td></tr></table></div></div><p>貌似suse和redhat的binay是不兼容的呢 - -||</p><p>用hello world程序测试一下:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=cp>#include</span> <span class=cpf>&lt;stdio.h&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;stdlib.h&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+<span class=p>{</span>
+	<span class=n>printf</span><span class=p>(</span><span class=s>&#34;Hello World</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>在redhat上面编译</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>gcc helloworld.c -o helloworld
+</code></pre></td></tr></table></div></div><p>拷贝到suse上面运行，结果还是出现<code>Floating point exception</code></p><p>Google了一下，发现可以在编译的时候加入<code>-Wl,--hash-style=sysv</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>gcc helloworld.c -Wl,--hash-style<span class=o>=</span>sysv -o helloworld
+</code></pre></td></tr></table></div></div><p>拷贝到suse上面运行竟然正常了。</p><p>Google发现了这样一段话</p><blockquote><p>Fedora (RedHat?) seems to have a different default dynamic linker hash style,
+I think basically it is:
+ld &ndash;hash-style=gnu ..</p></blockquote><blockquote><p>So without using one of:
+&ndash;hash-style=both or &ndash;hash-style=sysv</p></blockquote><blockquote><p>The bits created won&rsquo;t run on systems that don&rsquo;t support this new hash
+style, like SuSE 10.</p></blockquote><p>OMG</p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>Chen, Zai-Chun</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2012-10-26</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/suse/>suse</a>
+<a href=/tags/redhat/>redhat</a>
+<a href=/tags/linux/>linux</a></div><nav class=post-nav><a class=prev href=/post/2012-11-23-change-ibus-googlepinyin-default-candidates-number/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">修改ibus-googlepinyin候选词的个数</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/2012-10-25-install-jdk-slash-jre-on-suse-10-dot-x/><span class="next-text nav-default">SUSE Enterprise Linux 10.x下安装JDK/JRE</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=chenzaichun/chenzaichun-utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2009 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chen, Zai-Chun</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin=anonymous></script><script>var languageCode="en".replace(/-/g,'_').replace(/_(.*)/,function(b,a){return b.replace(a,a.toUpperCase())});timeago().render(document.querySelectorAll('.timeago'),languageCode),timeago.cancel()</script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js integrity=sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css integrity=sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF crossorigin=anonymous><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>

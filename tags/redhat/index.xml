@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>redhat on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/redhat/</link><description>Recent content in redhat on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 26 Oct 2012 16:40:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/redhat/index.xml" rel="self" type="application/rss+xml"/><item><title>Floating point exception on SUSE</title><link>https://chenzaichun.github.io/post/2012-10-26-floating-point-exception-on-suse/</link><pubDate>Fri, 26 Oct 2012 16:40:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-10-26-floating-point-exception-on-suse/</guid><description>&lt;p>今天想将redhat上面的程序放到suse 10上面运行，结果遇到了这个错误：&lt;/p>
+&lt;blockquote>
+&lt;p>Floating point exception&lt;/p>
+&lt;/blockquote>
+&lt;p>ldd的显示结果：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># on suse&lt;/span>
+ldd /usr/bin/pkginfo
+linux-vdso.so.1 &lt;span class="o">=&lt;/span>&amp;gt; &lt;span class="o">(&lt;/span>0x00007fff1c7fe000&lt;span class="o">)&lt;/span>
+libc.so.6 &lt;span class="o">=&lt;/span>&amp;gt; /lib64/libc.so.6 &lt;span class="o">(&lt;/span>0x00002afe8e51c000&lt;span class="o">)&lt;/span>
+/lib64/ld-linux-x86-64.so.2 &lt;span class="o">(&lt;/span>0x00002afe8e400000&lt;span class="o">)&lt;/span>
+&lt;span class="c1"># on redhat&lt;/span>
+ldd /usr/bin/pkginfo
+libc.so.6 &lt;span class="o">=&lt;/span>&amp;gt; /lib64/libc.so.6 &lt;span class="o">(&lt;/span>0x0000003dd0800000&lt;span class="o">)&lt;/span>
+/lib64/ld-linux-x86-64.so.2 &lt;span class="o">(&lt;/span>0x0000003dd0400000&lt;span class="o">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>系统版本:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># on suse&lt;/span>
+uname -a
+Linux vmsuse 2.6.16.60-0.54.5-default &lt;span class="c1">#1 Fri Sep 4 01:28:03 UTC 2009 x86_64 x86_64 x86_64 GNU/Linux&lt;/span>
+&lt;span class="c1"># on redhat&lt;/span>
+uname -a
+Linux temipll1 2.6.18-92.el5 &lt;span class="c1">#1 SMP Tue Apr 29 13:16:15 EDT 2008 x86_64 x86_64 x86_64 GNU/Linux&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>gcc版本：&lt;/p></description></item></channel></rss>

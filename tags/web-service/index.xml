@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>web service on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/web-service/</link><description>Recent content in web service on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 10 Apr 2012 20:13:24 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/web-service/index.xml" rel="self" type="application/rss+xml"/><item><title>SOAPpy Error</title><link>https://chenzaichun.github.io/post/2012-04-10-soappy-error-xml-parsers-expat-expaterror/</link><pubDate>Tue, 10 Apr 2012 20:13:24 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-04-10-soappy-error-xml-parsers-expat-expaterror/</guid><description>&lt;p>今天准备用SOAPpy来写一个最简单的soap client，代码如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- encoding: utf-8 -*-&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">SOAPpy&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">WSDL&lt;/span>
+&lt;span class="n">WSDLfile&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;/path/to/webservice&amp;#34;&lt;/span>
+&lt;span class="n">wsdlObject&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">WSDL&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Proxy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">WSDLfile&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s1">&amp;#39;Available methods:&amp;#39;&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">method&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">wsdlObject&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">methods&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">keys&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">method&lt;/span>
+&lt;span class="n">ci&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wsdlObject&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">methods&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">method&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="c1"># you can also use ci.inparams&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">param&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">ci&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">outparams&lt;/span> &lt;span class="p">:&lt;/span>
+&lt;span class="c1"># list of the function and type &lt;/span>
+&lt;span class="c1"># depending of the wsdl...&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">param&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ljust&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">,&lt;/span> &lt;span class="n">param&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">type&lt;/span>
+&lt;span class="nb">print&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>运行的时候出现了这个问题：&lt;/p></description></item><item><title>gsoap Error 500</title><link>https://chenzaichun.github.io/post/2012-02-28-gsoap-error-500/</link><pubDate>Tue, 28 Feb 2012 22:31:48 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-28-gsoap-error-500/</guid><description>&lt;p>解决了Error 200之后又遇到了Error 500：&lt;/p>
+&lt;blockquote>
+&lt;p>Error 500 fault: SOAP-ENV:Server[no subcode]&lt;/p>
+&lt;/blockquote>
+&lt;p>通过tcpdump分析得到，gsoap强制加入了一个SOAP-ENV:mustUnderstand=&amp;ldquo;1&amp;quot;属性，而web service方不能解析该属性。&lt;/p>
+&lt;p>解决办法,&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="c1">// set mustUnderstand to 0
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">mustUnderstand&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改soapC.cpp, 注释掉&lt;code>soap-&amp;gt;mustUnderstand=1&lt;/code>这一行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">SOAP_FMAC3&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">SOAP_FMAC4&lt;/span> &lt;span class="nf">soap_out_SOAP_ENV__Header&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">struct&lt;/span> &lt;span class="n">soap&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">tag&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="k">struct&lt;/span> &lt;span class="n">SOAP_ENV__Header&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">type&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">tag&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">type&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">soap_element_begin_out&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">tag&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">soap_embedded_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">SOAP_TYPE_SOAP_ENV__Header&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">type&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">soap&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">//soap-&amp;gt;mustUnderstand = 1;
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">soap_out_PointerTons1__AuthenticationInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;ns1:AuthenticationInfo&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">ns1__AuthenticationInfo_&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">soap&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">soap_element_end_out&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">tag&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>gsoap Error 200</title><link>https://chenzaichun.github.io/post/2012-02-28-gsoap-error-200/</link><pubDate>Tue, 28 Feb 2012 13:22:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-28-gsoap-error-200/</guid><description>&lt;p>在使用gsoap调用其他web service的时候遇到一下问题：&lt;/p>
+&lt;blockquote>
+&lt;p>Error 200 fault: SOAP-ENV:Client[no subcode]&lt;/p>
+&lt;/blockquote>
+&lt;p>解决办法：&lt;/p>
+&lt;p>修改gsoap init的endpoint为全路径解决问题。&lt;/p></description></item><item><title>MacOS X上编译gSOAP</title><link>https://chenzaichun.github.io/post/2012-02-03-compile-gsoap-on-mac-os-x/</link><pubDate>Fri, 03 Feb 2012 23:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-03-compile-gsoap-on-mac-os-x/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">automake --ignore-deps &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./configure &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果要编译universal版本，则使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">automake --ignore-deps &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./configure &lt;span class="nv">CFLAGS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-arch ppc -arch i386&amp;#34;&lt;/span> &lt;span class="nv">LDFLAGS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-arch ppc -arch i386&amp;#34;&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

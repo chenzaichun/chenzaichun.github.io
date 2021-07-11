@@ -1,0 +1,100 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Even</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Even</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-07-google_code_hg_password_save/>google code hg 保存密码</a></h1><div class=post-meta><span class=post-time>2010-05-07</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 75 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>hg不能像svn那样保存密码，每次都要输入密码不太方便，可以通过</p><p>编辑工程目录下<code>.hg/hgrc</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>[paths]
+default = https://projectname.googlecode.com/hg
+</code></pre></td></tr></table></div></div><p>把密码和用户名填到<code>URL</code>里就行啦</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>[paths]
+default = https://user:pwd@projectname.googlecode.com/hg
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-05-07-google_code_hg_password_save/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-07-ms_vc_stderr_file/>ms vc下stderr到文件</a></h1><div class=post-meta><span class=post-time>2010-05-07</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 105 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>msvc下使用<code>fprintf(stderr, ...)</code>的时候，如果系统不是<code>/subsystem:console</code>的话，我们将看不到信息。如果程序要将消息重定位到文件的话，可以使用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=n>program</span> <span class=nl>begein</span> <span class=p>:</span> <span class=n>FILE</span><span class=o>*</span> <span class=n>newstderr</span> <span class=o>=</span> <span class=n>freopen</span><span class=p>(</span><span class=s>&#34;xxx.log&#34;</span><span class=p>,</span> <span class=s>&#34;w&#34;</span><span class=p>,</span> <span class=n>stderr</span><span class=p>);</span>
+<span class=n>program</span> <span class=nl>end</span><span class=p>:</span> <span class=n>fclose</span><span class=p>(</span><span class=n>newstderr</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>就可以了</p></div><div class=read-more><a href=/post/2010-05-07-ms_vc_stderr_file/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-07-google_voice_orkut_active/>使用 google voice激活orkut</a></h1><div class=post-meta><span class=post-time>2010-05-07</span><div class=post-category><a href=/categories/%E6%97%A0%E6%89%80%E4%BA%8B%E4%BA%8B/>无所事事</a></div><span class=more-meta>约 98 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>由于orkut需要激活，但是激活的手机中不能选择中国，所以一直无法使用。今天无意中想到了Google voice至申请以来还没有用过，能否通过Google voice来激活orkut呢？</p><p>答案是Yes。</p></div><div class=read-more><a href=/post/2010-05-07-google_voice_orkut_active/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-07-get_glsl_version/>获取glsl version</a></h1><div class=post-meta><span class=post-time>2010-05-07</span><div class=post-category><a href=/categories/gamedev/>gamedev</a>
+<a href=/categories/opengl/>opengl</a></div><span class=more-meta>约 136 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>直接上代码:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=kt>void</span> <span class=nf>getGlslVersion</span><span class=p>(</span><span class=kt>int</span><span class=o>*</span> <span class=n>major</span><span class=p>,</span> <span class=kt>int</span><span class=o>*</span> <span class=n>minor</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=kt>int</span> <span class=n>gl_major</span><span class=p>,</span> <span class=n>gl_minor</span><span class=p>;</span>
+    <span class=n>getGlVersion</span><span class=p>(</span><span class=o>&amp;</span><span class=n>gl_major</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>gl_minor</span><span class=p>);</span>
+
+    <span class=o>*</span><span class=n>major</span> <span class=o>=</span> <span class=o>*</span><span class=n>minor</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=n>gl_major</span> <span class=o>==</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+        <span class=c1>// GL v1.x can only provide GLSL v1.00 as an extension
+</span><span class=c1></span>        <span class=k>const</span> <span class=kt>char</span><span class=o>*</span> <span class=n>extstr</span> <span class=o>=</span> <span class=p>(</span><span class=k>const</span> <span class=kt>char</span><span class=o>*</span><span class=p>)</span><span class=n>glGetString</span><span class=p>(</span><span class=n>GL_EXTENSIONS</span><span class=p>);</span>
+        <span class=k>if</span> <span class=p>((</span><span class=n>extstr</span> <span class=o>!=</span> <span class=nb>NULL</span><span class=p>)</span> <span class=o>&amp;&amp;</span>
+            <span class=p>(</span><span class=n>strstr</span><span class=p>(</span><span class=n>extstr</span><span class=p>,</span> <span class=s>&#34;GL_ARB_shading_lanuage_100&#34;</span><span class=p>)</span> <span class=o>!=</span> <span class=nb>NULL</span><span class=p>))</span> <span class=p>{</span>
+            <span class=o>*</span><span class=n>major</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+            <span class=o>*</span><span class=n>minor</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>gl_major</span> <span class=o>&gt;=</span> <span class=mi>2</span><span class=p>)</span> <span class=p>{</span>
+        <span class=c1>// GL v2.0 and greater must parse the version string
+</span><span class=c1></span>        <span class=k>const</span> <span class=kt>char</span><span class=o>*</span> <span class=n>verstr</span> <span class=o>=</span>
+            <span class=p>(</span><span class=k>const</span> <span class=kt>char</span><span class=o>*</span><span class=p>)</span><span class=n>glGetString</span><span class=p>(</span><span class=n>GL_SHADING_LANGUAGE_VERSION</span><span class=p>);</span>
+
+        <span class=k>if</span> <span class=p>((</span><span class=n>verstr</span> <span class=o>!=</span> <span class=nb>NULL</span><span class=p>)</span> <span class=o>||</span>
+            <span class=p>(</span><span class=n>sscanf</span><span class=p>(</span><span class=n>verstr</span><span class=p>,</span> <span class=s>&#34;%d.%d&#34;</span><span class=p>,</span> <span class=n>major</span><span class=p>,</span> <span class=n>minor</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>2</span><span class=p>))</span> <span class=p>{</span>
+            <span class=o>*</span><span class=n>major</span> <span class=o>=</span> <span class=o>*</span><span class=n>minor</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+            <span class=n>fprintf</span><span class=p>(</span><span class=n>stderr</span><span class=p>,</span>
+                    <span class=s>&#34;Invalid GL_SHADING_LANGUAGE_VERSION format!!!n&#34;</span><span class=p>);</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-05-07-get_glsl_version/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-07-ubuntu_lucid_failed_query_glx_vendor/>ubuntu 10.04 beta Fail to query the GLX server vendor</a></h1><div class=post-meta><span class=post-time>2010-05-07</span><div class=post-category><a href=/categories/linux/>Linux</a></div><span class=more-meta>约 24 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>unlink /usr/lib/libGL.so
+unlink /usr/lib/libGL.so.1
+unlink
+/usr/lib64/libGL.so
+unlink /usr/lib64/libGL.so.1
+
+ln -s /usr/lib/nvidia-current/libGL.so /usr/lib/libGL.so.1
+ln -s /usr/lib64/nvidia-current/libGL.so /usr/lib64/libGL.so.1
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-05-07-ubuntu_lucid_failed_query_glx_vendor/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/50/><i class="iconfont icon-left"></i>
+<span class=prev-text>上一页</span></a>
+<a class=next href=/page/52/><span class=next-text>下一页</span>
+<i class="iconfont icon-right"></i></a></nav></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2009 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chen, Zai-Chun</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin=anonymous></script><script>var languageCode="en".replace(/-/g,'_').replace(/_(.*)/,function(b,a){return b.replace(a,a.toUpperCase())});timeago().render(document.querySelectorAll('.timeago'),languageCode),timeago.cancel()</script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js integrity=sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css integrity=sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF crossorigin=anonymous><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>

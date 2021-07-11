@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>extensions on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/extensions/</link><description>Recent content in extensions on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 07 May 2010 22:22:22 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/extensions/index.xml" rel="self" type="application/rss+xml"/><item><title>Google chrome与firefox</title><link>https://chenzaichun.github.io/post/2010-05-07-googlechrome_firefox_feeling/</link><pubDate>Fri, 07 May 2010 22:22:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-googlechrome_firefox_feeling/</guid><description>&lt;p>Google chrome与firefox的感受：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>chrome速度比较快，但是内存消耗来看，在开n个页面（n &amp;gt; 3)的时候，chrome消耗的内存比较大。如果页面一直在加载（但是此时已经断开了连接&amp;ndash;超时，chrome一直在等待）这个时候chrome的 cpu消耗是相当大的；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>chrome的插件系统还不够强大。比如现在chrome上面没有autoproxy这个用来翻墙的工具，虽然 有proxy switchy，但是从易用性方面来说没有autoproxy强大。adblock的功能还太弱，scribefire目前还没有上传图片的功能；（这三 个功能是我的基本要求）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>chrome的安装默认在系统盘（windows下），虽然方便了用户，但是我不喜欢；&lt;/p>
+&lt;/li>
+&lt;/ol></description></item></channel></rss>

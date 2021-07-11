@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Qt on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/qt/</link><description>Recent content in Qt on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 28 Jan 2011 19:34:31 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/qt/index.xml" rel="self" type="application/rss+xml"/><item><title>QT中文乱码问题</title><link>https://chenzaichun.github.io/post/2011-01-28-qt_text_codec/</link><pubDate>Fri, 28 Jan 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-28-qt_text_codec/</guid><description>&lt;p>参考链接：&lt;a href="http://hi.baidu.com/ilinux/blog/item/3603b801e8ce5907738da581.html">&lt;a href="http://hi.baidu.com/ilinux/blog/item/3603b801e8ce5907738da581.html">http://hi.baidu.com/ilinux/blog/item/3603b801e8ce5907738da581.html&lt;/a>&lt;/a>&lt;/p>
+&lt;p>因为我emacs的默认编码设置的是utf-8，所以这种方法是最方便的。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;QTextCodec&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[])&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">QTextCodec&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">setCodecForTr&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">QTextCodec&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">codecForName&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;UTF8&amp;#34;&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="n">QTextCodec&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">setCodecForLocale&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">QTextCodec&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">codecForName&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;UTF8&amp;#34;&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="n">QTextCodec&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">setCodecForCStrings&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">QTextCodec&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">codecForName&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;UTF8&amp;#34;&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="p">...&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>windows下使用incredibuild编译Qt</title><link>https://chenzaichun.github.io/post/2010-06-07-qt_incredibuild_compile/</link><pubDate>Mon, 07 Jun 2010 23:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-07-qt_incredibuild_compile/</guid><description>&lt;p>默认configure的时候qt的编译程序会检测incredibuild的xge支持，所以如果安装了incredibuild的话，会检测到xge选项，而configure的时候得到using incredibuildxge &amp;ndash;yes&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">configure -no-qt3support -no-webkit -release -opensource -platform win32-msvc2008
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>完成configure之后，会在根目录生成一个projects.sln，这个时候就可以使用incredibuild编译了。&lt;/p></description></item><item><title>第一个Qt程序</title><link>https://chenzaichun.github.io/post/2010-06-06-first_qt/</link><pubDate>Sun, 06 Jun 2010 18:18:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-06-first_qt/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="c1">// 来自C++ GUI Programming with Qt 4
+&lt;/span>&lt;span class="c1">// 编译：
+&lt;/span>&lt;span class="c1">// qmake -project
+&lt;/span>&lt;span class="c1">// qmake
+&lt;/span>&lt;span class="c1">// make
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;QApplication&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;QLabel&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">**&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">QApplication&lt;/span> &lt;span class="n">app&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">QLabel&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">label&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">QLabel&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Hello qt!&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">label&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">show&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">exec&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>go on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/go/</link><description>Recent content in go on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 22 Oct 2012 14:12:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>虾米自动签到go语言版本</title><link>https://chenzaichun.github.io/post/2012-10-22-xiami-auto-checkin-with-golang/</link><pubDate>Mon, 22 Oct 2012 14:12:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-10-22-xiami-auto-checkin-with-golang/</guid><description>&lt;p>原来在网上找了一份python版实现, 见&lt;a href="http://yesokay.herokuapp.com/xiami-checkin.html">这里&lt;/a> ，仿照着这个用go语言实现了一编。&lt;/p>
+&lt;p>只是在实现的过程中，go的http cookie比较麻烦，也是从网上找了一段&lt;code>InMemoryCookieJar&lt;/code>&lt;/p>
+&lt;p>总的来说go语言还是挺方便的。&lt;/p>
+&lt;p>直接贴代码吧：&lt;/p></description></item><item><title>emacs下golang的配置</title><link>https://chenzaichun.github.io/post/2012-09-26-golang-emacs-setting/</link><pubDate>Wed, 26 Sep 2012 14:12:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-09-26-golang-emacs-setting/</guid><description>&lt;p>&lt;a href="https://github.com/astaxie/build-web-application-with-golang/blob/master/1.4.md#emacs">参考链接&lt;/a>&lt;/p>
+&lt;ol>
+&lt;li>语法高亮&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">cp &lt;span class="nv">$GOROOT&lt;/span>/misc/emacs/* ~/.emacs.d/
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>安装&lt;code>gocode&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">go get -u github.com/nsf/gocode
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>配置&lt;code>gocode&lt;/code>&lt;/li>
+&lt;/ol></description></item></channel></rss>

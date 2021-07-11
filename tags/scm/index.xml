@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>scm on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/scm/</link><description>Recent content in scm on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 08 May 2010 23:11:38 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/scm/index.xml" rel="self" type="application/rss+xml"/><item><title>git svn clone 特定版本</title><link>https://chenzaichun.github.io/post/2010-05-08-git_svn_clone_revision/</link><pubDate>Sat, 08 May 2010 23:11:38 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-git_svn_clone_revision/</guid><description>&lt;p>使用git从svn中clone特定版本：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git svn clone --prefix&lt;span class="o">=&lt;/span>svn/ -s -r&lt;span class="nv">$revision&lt;/span>:HEAD http://some/svn/repo
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

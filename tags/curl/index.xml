@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>curl on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/curl/</link><description>Recent content in curl on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 07 May 2010 08:21:23 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/curl/index.xml" rel="self" type="application/rss+xml"/><item><title>libcurl http下载时文件不存在的问题</title><link>https://chenzaichun.github.io/post/2010-05-07-libcurl_http_download_error/</link><pubDate>Fri, 07 May 2010 08:21:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-libcurl_http_download_error/</guid><description>&lt;p>当用&lt;code>libcurl&lt;/code>下载http文件不存在的时候，如果使用&lt;code>curl_easy_perform&lt;/code>得到的结果也是&lt;code>CURLE_OK&lt;/code> ，此时不能通过直接通过返回值来判断结果。&lt;/p>
+&lt;p>可以使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="kt">int&lt;/span> &lt;span class="n">code&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">curl_easy_getinfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">curl&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">CURLINFO_RESPONSE_CODE&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">code&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">code&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// download error
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

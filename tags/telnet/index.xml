@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>telnet on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/telnet/</link><description>Recent content in telnet on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 21 Jun 2010 23:11:34 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/telnet/index.xml" rel="self" type="application/rss+xml"/><item><title>ubuntu下安装telnet服务器</title><link>https://chenzaichun.github.io/post/2010-06-21-ubuntu_telnet_server/</link><pubDate>Mon, 21 Jun 2010 23:11:34 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-21-ubuntu_telnet_server/</guid><description>&lt;ol>
+&lt;li>安装xinetd和telnetd&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install xinetd telnetd
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>/etc/inetd.conf在安装过程中已经配置好，修改/etc/xinetd.conf&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">defaults{
+# Please note that you need a log_type line to be able to use log_on_success
+# and log_on_failure. The default is the following :
+# log_type = SYSLOG daemon info
+## Please note that you need a log_type line to be able to use log_on_success
+## and log_on_failure. The default is the following :## log_type = SYSLOG daemon info
+#
+## start the insert content
+#
+# if I have time, I will add some comments about this part.
+# instances =60#log_type = SYSLOG authpriv
+# log_on_success = HOST PID
+# log_on_failure = HOST
+# tcps = 25 30
+## end the insert content
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>添加/etc/xinet.d/telnet&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">#service telnet
+#{
+#disable = no
+#flags = REUSE
+#socket_type = stream
+#wait = no
+#user = root
+#server = /usr/sbin/in.telnetd
+#log_on_failure += USERID
+#}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>重启xinetd服务&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo /etc/init.d/xinetd restart
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="5">
+&lt;li>测试一下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">telnet 127.0.0.1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>python telnetlib第一例</title><link>https://chenzaichun.github.io/post/2010-06-21-python_telnetlib_sample/</link><pubDate>Mon, 21 Jun 2010 11:23:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-21-python_telnetlib_sample/</guid><description>&lt;p>参考limodou&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1">#-*- coding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">telnetlib&lt;/span>
+&lt;span class="n">host&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{}&lt;/span>
+&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;ip&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;127.0.0.1&amp;#39;&lt;/span>
+&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span>
+&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;password&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;password***&amp;#39;&lt;/span>
+&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;commands&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;cd /home/xxxxx&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;ls -l --color=no&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">do&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">tn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">telnetlib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Telnet&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;ip&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;span class="c1"># tn.set_debuglevel(2) &lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read_until&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;login: &amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;n&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read_until&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Password: &amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;password&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;n&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># tn.read_all() &lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">command&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">host&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;commands&amp;#39;&lt;/span>&lt;span class="p">]:&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">command&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="s1">&amp;#39;n&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;exit&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">tn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read_all&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s1">&amp;#39;Finish!&amp;#39;&lt;/span>
+&lt;span class="n">do&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>macos on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/macos/</link><description>Recent content in macos on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 21 Sep 2012 10:22:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/macos/index.xml" rel="self" type="application/rss+xml"/><item><title>MacOS X下查看可执行程序依赖</title><link>https://chenzaichun.github.io/post/2012-09-21-show-depends-on-mac-os-x/</link><pubDate>Fri, 21 Sep 2012 10:22:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-09-21-show-depends-on-mac-os-x/</guid><description>&lt;p>&lt;code>Windows&lt;/code>下查看依赖有&lt;code>depends&lt;/code>, &lt;code>Unix/Linux&lt;/code>下可以用&lt;code>ldd&lt;/code>. &lt;code>MacOSX&lt;/code>下则可以用&lt;code>otool&lt;/code>. :)&lt;/p></description></item><item><title>MacOS X emacs拖拽打开文件</title><link>https://chenzaichun.github.io/post/2012-02-06-emacs-open-files-by-dragging-and-dropping-on-mac-os-x-7/</link><pubDate>Mon, 06 Feb 2012 18:32:34 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-06-emacs-open-files-by-dragging-and-dropping-on-mac-os-x-7/</guid><description>&lt;p>emacs在mac os x中拖拽文件到buffer会在buffer中嵌入显示拖拽文件的内容，解决办法：&lt;/p>
+&lt;p>在&lt;code>.emacs&lt;/code>中加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nv">define-key&lt;/span> &lt;span class="nv">global-map&lt;/span> &lt;span class="nv">[ns-drag-file]&lt;/span> &lt;span class="ss">&amp;#39;my-ns-open-files&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">my-ns-open-files&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;span class="s">&amp;#34;Open files in the list `ns-input-file&amp;#39;.&amp;#34;&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">interactive&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nf">mapc&lt;/span> &lt;span class="ss">&amp;#39;find-file&lt;/span> &lt;span class="nv">ns-input-file&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">ns-input-file&lt;/span> &lt;span class="no">nil&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>MacOS X上编译gSOAP</title><link>https://chenzaichun.github.io/post/2012-02-03-compile-gsoap-on-mac-os-x/</link><pubDate>Fri, 03 Feb 2012 23:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-03-compile-gsoap-on-mac-os-x/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">automake --ignore-deps &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./configure &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果要编译universal版本，则使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">automake --ignore-deps &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./configure &lt;span class="nv">CFLAGS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-arch ppc -arch i386&amp;#34;&lt;/span> &lt;span class="nv">LDFLAGS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-arch ppc -arch i386&amp;#34;&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>直接用模拟器运行ios app</title><link>https://chenzaichun.github.io/post/2012-01-19-run-app-directly-on-ios-simulator/</link><pubDate>Thu, 19 Jan 2012 18:13:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-19-run-app-directly-on-ios-simulator/</guid><description>&lt;p>有的时候我们想把编译好的ios发给别人测试，但是又没有真机，同时也不想提供源代码，这个时候就需要直接用ios simulator运行app：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone&lt;span class="se">\ &lt;/span>Simulator.app/Contents/MacOS/iPhone&lt;span class="se">\ &lt;/span>Simulator -SimulateApplication path_to_your_app/YourFavouriteApp.app/YourFavouriteApp
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>让Finder显示所有文件</title><link>https://chenzaichun.github.io/post/2011-12-31-show-all-files-in-finder-on-mac/</link><pubDate>Sat, 31 Dec 2011 17:31:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-31-show-all-files-in-finder-on-mac/</guid><description>&lt;p>Finder默认情况是不显示隐藏文件和.开头的文件和目录的，由于很多类unix/Linux的软件的配置文件（目录）是.开头的，有的时候我们想在Finder中使用怎么办呢？&lt;/p>
+&lt;p>开启所有文件的显示：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">defaults write com.apple.finder AppleShowAllFiles -bool &lt;span class="nb">true&lt;/span>
+killall Finder
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重新开启Finder就能看到所有文件了。&lt;/p>
+&lt;p>关闭显示隐藏文件：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">defaults write com.apple.finder AppleShowAllFiles -bool &lt;span class="nb">false&lt;/span>
+killall Finder
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>终于搞定Mac OS X上emacs中文的显示</title><link>https://chenzaichun.github.io/post/2011-12-30-mac-os-x-emacs-chinese-font-setting/</link><pubDate>Fri, 30 Dec 2011 23:11:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-30-mac-os-x-emacs-chinese-font-setting/</guid><description>&lt;p>原来一直没有找到怎么设置，昨天从一个日本网站上抄了一段，貌似工作比较良好：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">eq&lt;/span> &lt;span class="nv">window-system&lt;/span> &lt;span class="ss">&amp;#39;ns&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">my-font-height&lt;/span> &lt;span class="mi">140&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">my-font&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">cond&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="no">t&lt;/span> &lt;span class="s">&amp;#34;Monaco&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">;; XCode 3.1 &lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="no">nil&lt;/span> &lt;span class="s">&amp;#34;Menlo&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">;; XCode 3.2&lt;/span>
+&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">my-font-ja&lt;/span> &lt;span class="s">&amp;#34;STHeiti&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">mac-allow-anti-aliasing&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">face-font-rescale-alist&lt;/span>
+&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="s">&amp;#34;^-apple-hiragino.*&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*osaka-bold.*&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*osaka-medium.*&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*courier-bold-.*-mac-roman&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*monaco cy-bold-.*-mac-cyrillic&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">0.9&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*monaco-bold-.*-mac-roman&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">0.9&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;-cdac$&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.3&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="nv">my-font&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">set-face-attribute&lt;/span> &lt;span class="ss">&amp;#39;default&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="ss">:family&lt;/span> &lt;span class="nv">my-font&lt;/span> &lt;span class="ss">:height&lt;/span> &lt;span class="nv">my-font-height&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1">;;(set-frame-font (format &amp;#34;%s-%d&amp;#34; my-font (/ my-font-height 10)))&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="nv">my-font-ja&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">fn&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">frame-parameter&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="ss">&amp;#39;font&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">rg&lt;/span> &lt;span class="s">&amp;#34;iso10646-1&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">set-fontset-font&lt;/span> &lt;span class="nv">fn&lt;/span> &lt;span class="ss">&amp;#39;chinese-gb2312&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="nv">my-font-ja&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="o">,&lt;/span>&lt;span class="nv">rg&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">set-fontset-font&lt;/span> &lt;span class="nv">fn&lt;/span> &lt;span class="ss">&amp;#39;chinese-gbk&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="nv">my-font-ja&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="o">,&lt;/span>&lt;span class="nv">rg&lt;/span>&lt;span class="p">))))))&lt;/span>
+&lt;span class="c1">;; (set-fontset-font fn &amp;#39;unicode `(,my-font-ja . ,rg))))))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>MacOS X Swap单独分区</title><link>https://chenzaichun.github.io/post/2011-12-30-macos-x-swap-dan-du-fen-qu/</link><pubDate>Fri, 30 Dec 2011 12:23:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-30-macos-x-swap-dan-du-fen-qu/</guid><description>&lt;p>&lt;a href="http://superuser.com/questions/28414/moving-the-swapfiles-to-a-dedicated-partition-in-snow-leopard">参考链接&lt;/a>&lt;/p>
+&lt;ol>
+&lt;li>备份dynamic_pager.plist&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> /System/Library/LaunchDaemons
+sudo cp com.apple.dynamic_pager.plist&lt;span class="o">{&lt;/span>,_bak&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>将plist转换为xml格式&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo plutil -convert xml1 com.apple.dynamic_pager.plist
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Build Emacs on Mac OS X</title><link>https://chenzaichun.github.io/post/2011-07-03-build_emacs_on_mac_osx/</link><pubDate>Sun, 03 Jul 2011 19:56:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-07-03-build_emacs_on_mac_osx/</guid><description>&lt;p>emacs.app设置中文字体失败的原因已经找到，默认emacs编译的选项为&amp;ndash;cocoa，这里cocoa的字体引擎可能有问题。如果以x的方式自己手动编译emacs (&amp;ndash;with-x)的时候，字体的渲染和设置都很正常。（如果大家想尝试x的emacs，可以通过以下方式进行安装)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">brew install emacs --with-x
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这种方式默认emacs被安装在/usr/local/Cellar/emacs/23.3/目录下。但是以x的方式编译出来的emacs，在mac下不是一般的丑- -！！&lt;/p>
+&lt;p>在Mac OS X下可以通过auto tools编译emacs。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">brew install emacs --with-x
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">./configure -with-jpeg&lt;span class="o">=&lt;/span>no --with-png&lt;span class="o">=&lt;/span>no --with-gif&lt;span class="o">=&lt;/span>no --with-tiff&lt;span class="o">=&lt;/span>no --with-ns --with-x&lt;span class="o">=&lt;/span>no
+make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Mac OS X Snow Leopard下移动swap到另外的分区</title><link>https://chenzaichun.github.io/post/2011-06-29-mac_os_x_snow_leopard_swap_paritition_driver/</link><pubDate>Wed, 29 Jun 2011 19:54:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-06-29-mac_os_x_snow_leopard_swap_paritition_driver/</guid><description>&lt;p>参考链接：&lt;a href="http://superuser.com/questions/28414/moving-the-swapfiles-to-a-dedicated-partition-in-snow-leopard">&lt;a href="http://superuser.com/questions/28414/moving-the-swapfiles-to-a-dedicated-partition-in-snow-leopard">http://superuser.com/questions/28414/moving-the-swapfiles-to-a-dedicated-partition-in-snow-leopard&lt;/a>&lt;/a>&lt;/p>
+&lt;p>这里注意的是，新的swap文件的路径必须存在。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># backup the file&lt;/span>
+$ &lt;span class="nb">cd&lt;/span> /System/Library/LaunchDaemons
+$ sudo cp com.apple.dynamic_pager.plist&lt;span class="o">{&lt;/span>,_bak&lt;span class="o">}&lt;/span>
+&lt;span class="c1"># convert the file to xml&lt;/span>
+$ sudo plutil -convert xml1 com.apple.dynamic_pager.plist
+&lt;span class="c1"># modify the file&lt;/span>
+$ sudo vim com.apple.dynamic_pager.plist
+&amp;lt;key&amp;gt;ProgramArguments&amp;lt;/key&amp;gt;
+&amp;lt;array&amp;gt;
+&amp;lt;string&amp;gt;/bin/bash&amp;lt;/string&amp;gt;
+&amp;lt;string&amp;gt;-c&amp;lt;/string&amp;gt;
+&amp;lt;string&amp;gt;/bin/wait4path /Volumes/Swap/ &lt;span class="p">&amp;amp;&lt;/span>amp&lt;span class="p">;&amp;amp;&lt;/span>amp&lt;span class="p">;&lt;/span>
+/sbin/dynamic_pager -F /Volumes/Swap/.vm/swapfile&amp;lt;/string&amp;gt;
+&amp;lt;/array&amp;gt; &lt;span class="c1"># replace /Volumes/Swap/.vm/swapfile as your path&lt;/span>
+&lt;span class="c1"># convert the file to binary&lt;/span>
+$ sudo plutil -convert binary1 com.apple.dynamic_pager.plist
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重启就可以了。&lt;/p></description></item></channel></rss>

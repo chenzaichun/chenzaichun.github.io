@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ogre on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/ogre/</link><description>Recent content in Ogre on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 08 May 2010 16:11:38 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/ogre/index.xml" rel="self" type="application/rss+xml"/><item><title>ogre中文路径和文件名</title><link>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</link><pubDate>Sat, 08 May 2010 16:11:38 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</guid><description>&lt;p>VS2005之后版本的std::fstream对中文路径处理不正确的原因，所以加载中文路径或文件名不成功，解决办法：&lt;/p>
+&lt;p>在主函数开始加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">setlocale&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">LC_ALL&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s">&amp;#34;Chinese-simplified&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ogre资源整理</title><link>https://chenzaichun.github.io/post/2010-05-07-ogre_resources/</link><pubDate>Fri, 07 May 2010 17:23:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ogre_resources/</guid><description>&lt;p>&lt;a href="www.ogre3d.org">官方网站&lt;/a>&lt;/p>
+&lt;p>&lt;a href="http://www.ogre3d.org/developers/addons">addons&lt;/a>&lt;/p>
+&lt;p>场景编辑器(Scene Editor)&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="http://www.ogre3d.org/wiki/index.php/Ogitor">ogitor&lt;/a> 直接编辑场景，目前还不支持PLSM2&lt;/li>
+&lt;li>&lt;a href="http://www.ofusiontechnologies.com/">ofusion&lt;/a> 在3dsmax中编辑场景，然后导出，提供加载器&lt;/li>
+&lt;/ol>
+&lt;p>还有一些插件：&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="www.ogre3d.org/wiki/index.php/Hydrax">水面 hydrax&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.ogre3d.org/wiki/index.php/Caelum">天空 Caelum&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.ogre3d.org/wiki/index.php/PagedGeometry_Engine">PagedGeometry&lt;/a> PagedGeometry是OGRE引擎的一个插件，它对（无穷）大区域的海量网格的渲 染提供优化策略。它非常适合于稠密的森林和室外场景，那里有海量的树，草，岩石，灌木丛等场景对象。 官方目前在弄PagedTerrain，对于大地图相信就有很好的解决方案了（配合pagedgeometry）&lt;/li>
+&lt;/ol></description></item></channel></rss>

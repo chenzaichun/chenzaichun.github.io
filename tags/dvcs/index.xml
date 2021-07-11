@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DVCS on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/dvcs/</link><description>Recent content in DVCS on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 26 Dec 2012 14:02:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/dvcs/index.xml" rel="self" type="application/rss+xml"/><item><title>删除git submodule</title><link>https://chenzaichun.github.io/post/2012-12-26-git-submodule-remove/</link><pubDate>Wed, 26 Dec 2012 14:02:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-12-26-git-submodule-remove/</guid><description>&lt;p>git并没有提供删除submodule的方法，只有手动删除。&lt;/p>
+&lt;ol>
+&lt;li>删除&lt;code>.gitmodules&lt;/code>下submodule的信息&lt;/li>
+&lt;li>删除&lt;code>.git/config&lt;/code>下submodule的信息&lt;/li>
+&lt;li>git rm &amp;ndash;cache &amp;lt;submodule/path&amp;gt;&lt;/li>
+&lt;/ol></description></item><item><title>通过git将bitbucket当做无限容量的dropbox</title><link>https://chenzaichun.github.io/post/2012-09-26-use-bitbucket-as-dropbox-by-git/</link><pubDate>Wed, 26 Sep 2012 15:47:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-09-26-use-bitbucket-as-dropbox-by-git/</guid><description>&lt;p>网上找一个网盘很麻烦，一般都有容量限制，要不就是有诸多限制。有没有geek一点的方法，使用git和bitbucket来作为网盘呢？&lt;/p>
+&lt;p>google了一下找到了&lt;a href="http://bioinfoblog.it/2011/10/bitbucket-sparkleshare-home-made-limitless-dropbox/">这个&lt;/a>&lt;/p>
+&lt;p>&lt;code>git&lt;/code> &amp;ndash;&amp;gt; 版本管理&lt;/p>
+&lt;p>&lt;code>bitbucket&lt;/code> &amp;ndash;&amp;gt; 无限容量的仓库&lt;/p>
+&lt;ol>
+&lt;li>安装&lt;a href="http://sparkleshare.org/">Sparkshare&lt;/a>&lt;/li>
+&lt;li>创建一个private的repo&lt;/li>
+&lt;li>设置ssh key&lt;/li>
+&lt;li>sync&lt;/li>
+&lt;/ol></description></item><item><title>Git svn – Can’t locate Term/ReadKey.pm in @INC</title><link>https://chenzaichun.github.io/post/2012-02-02-git-svn-cant-locate-termreadkey-pm-in-inc/</link><pubDate>Thu, 02 Feb 2012 22:31:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-02-git-svn-cant-locate-termreadkey-pm-in-inc/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">perl -MCPAN -e shell
+&lt;span class="c1"># install Term::ReadKey&lt;/span>
+&lt;span class="c1"># exit&lt;/span>
+perl -MCPAN -e shellinstall Term::ReadKeyexit
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>archlinux上可以安装&lt;code>extra/perl-term-readkey&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S perl-term-readkey
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git svn代理设置</title><link>https://chenzaichun.github.io/post/2012-01-30-git-svn-proxy-setting/</link><pubDate>Mon, 30 Jan 2012 11:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-30-git-svn-proxy-setting/</guid><description>&lt;p>git svn的代理设置需要通过修改&lt;code>~/.subversion/servers&lt;/code>文件来实现：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[groups]
+assembla = *.assembla.com
+# group1 = *.collab.net
+# othergroup = repository.blarggitywhoomph.com
+# thirdgroup = *.example.com
+[assembla]
+http-proxy-host = proxy-server
+http-proxy-port = 8080
+http-compression = yes
+username = yesokay
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git换行符问题</title><link>https://chenzaichun.github.io/post/2012-01-18-git-line-ending/</link><pubDate>Wed, 18 Jan 2012 22:12:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-18-git-line-ending/</guid><description>&lt;p>Linux或Mac系统使用LF作为行结束符，因此你不想Git在签出文件时进行自动的转换；当一个以CRLF为行结束符的文件不小心被引入时你肯定想进行修正，把core.autocrlf设置成input来告诉 Git 在提交时把CRLF转换成LF，签出时不转换：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git config --global core.autocrlf input
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样会在Windows系统上的签出文件中保留CRLF，会在Mac和Linux系统上，包括仓库中保留LF。&lt;/p></description></item><item><title>git rpc error 56</title><link>https://chenzaichun.github.io/post/2011-12-31-git-rpc-error-56/</link><pubDate>Sat, 31 Dec 2011 19:23:56 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-31-git-rpc-error-56/</guid><description>&lt;p>今天使用git push origin master的时候出现了这个问题：&lt;/p>
+&lt;blockquote>
+&lt;p>Counting objects: 592, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (584/584), done.
+error: RPC failed; result=56, HTTP code = 0
+fatal: The remote end hung up unexpectedly
+Writing objects: 100% (592/592), 12.77 MiB | 10.10 MiB/s, done.
+Total 592 (delta 159), reused 0 (delta 0)
+fatal: The remote end hung up unexpectedly
+fatal: expected ok/error, helper said &amp;lsquo;4004?Va???6?)&amp;amp;?&amp;rsquo;?~$latex ?pt?-i?BS??Κ?hSK}??lmZri?=kf?v??????AqG?&lt;em>??&lt;/em>|q??k?+$?\0Q?&lt;/p>
+&lt;/blockquote>
+&lt;p>解决办法参考&lt;a href="http://codaset.com/codaset/codaset/tickets/723">这里&lt;/a>&lt;/p>
+&lt;p>失败的原因就是git &lt;code>HTTP buffer&lt;/code>太小，设置大一点就没有问题，比如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git config http.postBuffer &lt;span class="m">524288000&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git remove untracked files and directories</title><link>https://chenzaichun.github.io/post/2011-12-31-git-remove-untracked-files-and-directories/</link><pubDate>Sat, 31 Dec 2011 17:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-31-git-remove-untracked-files-and-directories/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git clean -f &lt;span class="c1"># remove untracked files&lt;/span>
+git clean -f -d &lt;span class="c1"># remove untracked directories&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>为Mercurial（hg）添加进度条</title><link>https://chenzaichun.github.io/post/2011-11-30-mercurial-hg-add-progress/</link><pubDate>Wed, 30 Nov 2011 10:20:30 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-30-mercurial-hg-add-progress/</guid><description>&lt;p>hg1.5之后内置了progress扩展，可以直接启用：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[extensions]
+progress =
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>mount –bind</title><link>https://chenzaichun.github.io/post/2011-11-18-mount-bind/</link><pubDate>Fri, 18 Nov 2011 21:10:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-18-mount-bind/</guid><description>&lt;p>我想应该大家都会用版本管理来处理配置文件吧。本人一般用git来管理自己的配置（emacs, vim, ssh, zshrc, svn, git, hg…），我将这写配置文件放到了一个git repo中。但是很多时候需要对这些文件进行修改，我想大家也不会把文件在repo中修改好之后然后手动copy到相应的目录中。这里一般有两种方法来避免手动拷贝，一种是通过Makefile的方式，另外一种就是建立文件的软链接。我原来一直采用的是后者，因为我不想没一次修改都make一下。对于建立软链接的方式，一般的软件都能很好的处理。 我的git repo放在windows分区（这样windows和linux都能使用），用virtualbox安装了archlinux，通过mount vboxsf的方式mount windows分区到linux下。这里mount vboxsf的时候需要注意权限问题，然后像.ssh/config文件会出现访问权限问题。我的 =/etc/fstab= 文件如下:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"># /etc/fstab
+sharename mountpoint vboxsf \
+rw,fmode=0644,dmode=0755,uid=1000,gid=1000,exec 0 0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>对于symlink模式，绝大部分软件都能满足了，但是这里有个意外, &lt;code>Oracle&lt;/code>的&lt;code>gethostbyname&lt;/code>对于&lt;code>/etc/hosts&lt;/code> symlinks是不认的，比如我创建一个软链接到&lt;code>/etc/hosts&lt;/code>，启动oracle会出现&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">ORA-00600 arguments: [keltnfy-ldmInit], [46], [1]
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>既然软链接不行，这个时候就需要&lt;code>mount –bind&lt;/code>的帮助了。 &lt;code>mount –bind&lt;/code>是将一个目录中的内容挂载到另一个目录上，用法是:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">mount --bind olddir newdir
+mount --bind olddir/file newdir/file
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果想将&lt;code>mount –bind&lt;/code>写入&lt;code>/etc/fstab&lt;/code>，则用法是：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">olddir newdir none &lt;span class="nb">bind&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里又有一个问题了，我如果想把/etc/fstab也放到git repo中进行管理怎么办呢？由于不可能为/etc/fstab创建symlink，也不能为其使用mount –bind的方式到/etc/fstab。那就只能在git repo中想办法了。可是git是不会follow symlink的，如果我将/etc/fstab软链接到git repo中，git并不会将该文件加入到repo，加入的只是一个symlink而已。 解决办法就是反过来bind, 将/etc/fstab bind到git repo中的目录:)&lt;/p></description></item><item><title>git合并多个repositories到子目录</title><link>https://chenzaichun.github.io/post/2011-11-16-merge-git-repositories-to-subdirectory/</link><pubDate>Wed, 16 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-16-merge-git-repositories-to-subdirectory/</guid><description>&lt;p>在每个repo都很小的情况下，维护多个repo是很麻烦的事情。如何在保留原来版本信息的情况下将repo合并到另外一个repo的子目录下呢？有很多的方法，比如在不删除原来的repo，使用submodule。或者使用subtree的方式。但是我不想用submodule保留原来的repo，而且感觉subtree也是一个比较麻烦的东东。这里要介绍git的read-tree（可以参考&lt;a href="http://blog.ossxp.com/2010/10/2041/">这里&lt;/a>)。 网上讲了很多，我总结一下并写了一个脚本repomerge.sh。先把脚本贴出来&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="cp">#!/bin/sh
+&lt;/span>&lt;span class="cp">&lt;/span>
+git remote add -f &lt;span class="nv">$1&lt;/span> &lt;span class="nv">$2&lt;/span>
+git merge -s ours --no-commit &lt;span class="nv">$1&lt;/span>/master
+git read-tree --prefix&lt;span class="o">=&lt;/span>&lt;span class="nv">$1&lt;/span>/ -u &lt;span class="nv">$1&lt;/span>/master
+git commit -m &lt;span class="s2">&amp;#34;merging &lt;/span>&lt;span class="nv">$1&lt;/span>&lt;span class="s2"> into subdirectory&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用的方法是$1为子目录名字，$2为repo的路径。&lt;/p>
+&lt;p>这里有一个问题需要注意，合并到的repo（即目标repo）不能为空（至少要有一个commit)。&lt;/p>
+&lt;p>比如要合并一个repo A 到A目录，repo B到B目录&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> dest-repo-dir
+git init .
+&lt;span class="c1"># add one file and commit&lt;/span>
+touch just-test-file
+git add just-test-file
+git commit -am &lt;span class="s2">&amp;#34;init&amp;#34;&lt;/span>
+/path/to/repomerge.sh A /path/to/repo/A
+/path/to/repomerge.sh B /path/to/repo/B
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样repo A和repo B就分别被合并到了A、B目录了。&lt;/p></description></item><item><title>将hg转换为git</title><link>https://chenzaichun.github.io/post/2011-11-15-convert-hg-to-git/</link><pubDate>Tue, 15 Nov 2011 10:10:10 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-15-convert-hg-to-git/</guid><description>&lt;p>首先安装&lt;a href="http://repo.or.cz/w/fast-export.git">fast-export&lt;/a>&lt;/p>
+&lt;p>基本命令:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> somedir
+git init .
+/path/to/fast-export -r /path/to/hg/repo
+git reset HEAD
+git checkout .
+git remote add origin user@server/repo.git
+git push origin master
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>That&amp;rsquo;s all!&lt;/p></description></item><item><title>hg合并多个repository</title><link>https://chenzaichun.github.io/post/2011-06-25-hg_merge_repositories/</link><pubDate>Sat, 25 Jun 2011 19:44:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-06-25-hg_merge_repositories/</guid><description>&lt;p>假如我已经有了一个repo A，并且其中有了一些change set。现在有另外一个repo B，同时里面也有一些change set。现在我想把B移到A中的一个目录，并且保留所有的change set。在mercurial中应该怎么办呢？&lt;/p>
+&lt;ol>
+&lt;li>通过pull -f的方式&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">hg clone A Adir
+&lt;span class="nb">cd&lt;/span> Adir
+hg pull -f B
+hg merge
+hg commit
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>通过subrepo的方式，传送门&lt;a href="http://mercurial.selenic.com/wiki/Subrepository">&lt;a href="http://mercurial.selenic.com/wiki/Subrepository">http://mercurial.selenic.com/wiki/Subrepository&lt;/a>&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;p>这里第一种方法适用，第二种方法适用与子项目或者库的情况.&lt;/p></description></item><item><title>hg certificate warnings</title><link>https://chenzaichun.github.io/post/2011-01-16-hg_cert_warning/</link><pubDate>Sun, 16 Jan 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-16-hg_cert_warning/</guid><description>&lt;p>升级到mercurial 1.7.3之后，频繁会遇到像这样的错误：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">warning: bitbucket.org certificate not verified (check web.cacerts config setting)
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法，参考链接：&lt;a href="http://mercurial.selenic.com/wiki/CACertificates">&lt;a href="http://mercurial.selenic.com/wiki/CACertificates">http://mercurial.selenic.com/wiki/CACertificates&lt;/a>&lt;/a>&lt;/p>
+&lt;p>下载&lt;a href="http://curl.haxx.se/ca/cacert.pem" target="_blank">&lt;a href="http://curl.haxx.se/ca/cacert.pem">http://curl.haxx.se/ca/cacert.pem&lt;/a>&lt;/a>到本地，然后在～/.hgrc里面添加这样一句：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[web]
+cacerts=/path/to/cacert.pem
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或者直接禁用：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[web]
+cacerts =
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>hg-git--hg下直接操作git</title><link>https://chenzaichun.github.io/post/2011-01-16-hg-git/</link><pubDate>Sun, 16 Jan 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-16-hg-git/</guid><description>&lt;p>hg和git各有各的优势，git一直以来对windows的支持都不太好（尤其是有中文文件名的情况下），所以我一直都用hg。但是很多时候需要clone git的代码仓库，这个时候就安装一个msys-git吧（这个家伙的块头也不小，带了一个基本上完整的MinGW）。&lt;/p>
+&lt;p>今天无意中发了&lt;a href="http://hg-git.github.com/" target="_blank">hg-git&lt;/a>，可以直接使用hg的命令操作git仓库，而且不需要安装git。最简单的安装方法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">easy_install hg-git
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后修改 =～/.hgrc=&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[extensions]
+hgext.bookmarks =
+hggit =
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接下里就是repo操作了：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">hg clone git://github.com/schacon/munger.git
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接着这里看起来是不是很爽：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ &lt;span class="nb">cd&lt;/span> hg-git &lt;span class="c1"># (a Mercurial repository)&lt;/span>
+$ hg bookmark -r default master &lt;span class="c1"># make a bookmark of master for default, so a ref gets created&lt;/span>
+$ hg push git+ssh://git@github.com/schacon/hg-git.git
+$ hg push
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>大功告成&lt;/p></description></item><item><title>免费private git服务</title><link>https://chenzaichun.github.io/post/2010-11-29-free_private_git_service/</link><pubDate>Mon, 29 Nov 2010 18:37:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-29-free_private_git_service/</guid><description>&lt;p>找到一个比较好的免费的private git服务：&lt;a href="http://codaset.com" target="_blank">codaset&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>hosts free, private and semi-private Git based projects, and provides each of your projects with web based Git source control, issue/ticket management, a wiki, blog, and an advanced permissions system, amongst others.&lt;/p>
+&lt;/blockquote>
+&lt;p>最多支持5人团队共享一个repo，推荐使用。&lt;/p></description></item><item><title>免费private mercurial服务</title><link>https://chenzaichun.github.io/post/2010-11-29-free_private_mercurial_service/</link><pubDate>Fri, 19 Nov 2010 23:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-29-free_private_mercurial_service/</guid><description>&lt;p>上面提到了git，这里考虑一下hg吧，推荐的是&lt;a href="http://bitbucket.org" target="_blank">bitbucket.org&lt;/a>，同样5用户，没有磁盘空间限制，适合使用mercurial的小团队使用。&lt;/p></description></item><item><title>hg ssh 访问</title><link>https://chenzaichun.github.io/post/2010-07-20-hg_ssh_access/</link><pubDate>Tue, 20 Jul 2010 17:23:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-20-hg_ssh_access/</guid><description>&lt;p>hg通过ssh访问时，地址的格式是ssh://user:pwd@host//path,注意这里的两个/，如果只是使用一个，则找不到repo，这个与scp等的方式不一样（scp的格式是：scp user:pwd@host:/path）详情见&lt;code>hg help urls&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">hg &lt;span class="nb">help&lt;/span> urls
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>mercurial hg代理设置</title><link>https://chenzaichun.github.io/post/2010-05-16-mercurial_hg_proxy/</link><pubDate>Sun, 16 May 2010 17:11:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-16-mercurial_hg_proxy/</guid><description>&lt;p>由于在教育网中,sf上面的代码访问很慢,考虑为mercurial hg增加代理访问. 修改~/.hgrc, 增加&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[http_proxy]
+host=127.0.0.1:8580
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>详细的hgrc配置见官方文档: &lt;a href="http://www.selenic.com/mercurial/hgrc.5.html" target="_blank">&lt;a href="http://www.selenic.com/mercurial/hgrc.5.html">http://www.selenic.com/mercurial/hgrc.5.html&lt;/a>&lt;/a>&lt;/p></description></item><item><title>git svn clone 特定版本</title><link>https://chenzaichun.github.io/post/2010-05-08-git_svn_clone_revision/</link><pubDate>Sat, 08 May 2010 23:11:38 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-git_svn_clone_revision/</guid><description>&lt;p>使用git从svn中clone特定版本：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git svn clone --prefix&lt;span class="o">=&lt;/span>svn/ -s -r&lt;span class="nv">$revision&lt;/span>:HEAD http://some/svn/repo
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git windows</title><link>https://chenzaichun.github.io/post/2010-05-07-git_windows/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-git_windows/</guid><description>&lt;p>在测试过很多中dvcs之后，最后决定用git。git在linux表现是非常完美的，不管是中文文件名，还是log，同时git svn clone也相当的完美。但是在windows下，乱码问题一直得不到解决。万般无赖之下只有抛弃以前的历史，直接svn co下来之后，生成一个新的git repo。&lt;/p>
+&lt;p>要想中文显示正常，在msysgit的安装目录下的/etc/git-completion.bash中增加一行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">alias ls=&amp;#39;ls --show-control-chars --color=auto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改&lt;code>/etc/inputrc&lt;/code>中对应的行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">alias ls=&amp;#39;ls --show-control-chars --color=auto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在&lt;code>/etc/profile&lt;/code>中增加一行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">alias ls=&amp;#39;ls --show-control-chars --color=auto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>windows下完美解决问题。可惜windows下的repo在linux下是不能够正常使用的！等待解决git官方utf-8支持吧&lt;/p></description></item><item><title>google code hg 保存密码</title><link>https://chenzaichun.github.io/post/2010-05-07-google_code_hg_password_save/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-google_code_hg_password_save/</guid><description>&lt;p>hg不能像svn那样保存密码，每次都要输入密码不太方便，可以通过&lt;/p>
+&lt;p>编辑工程目录下&lt;code>.hg/hgrc&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[paths]
+default = https://projectname.googlecode.com/hg
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>把密码和用户名填到&lt;code>URL&lt;/code>里就行啦&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[paths]
+default = https://user:pwd@projectname.googlecode.com/hg
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

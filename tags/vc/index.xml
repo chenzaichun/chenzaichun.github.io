@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VC on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/vc/</link><description>Recent content in VC on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 22 Jul 2010 23:11:37 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/vc/index.xml" rel="self" type="application/rss+xml"/><item><title>在任务栏中隐藏windows程序</title><link>https://chenzaichun.github.io/post/2010-07-22-windows_hide_taskbar/</link><pubDate>Thu, 22 Jul 2010 23:11:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-windows_hide_taskbar/</guid><description>&lt;p>直接代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">ModifyStyleEx&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">WS_EX_APPWINDOW&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">WS_EX_TOOLWINDOW&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">SWP_DRAWFRAME&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>CDHtmlDialog启用滚动条</title><link>https://chenzaichun.github.io/post/2010-07-22-cdhtmldialog_scrollbar/</link><pubDate>Thu, 22 Jul 2010 19:23:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-cdhtmldialog_scrollbar/</guid><description>&lt;p>在CDHtmlDialog中启用滚动条：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">SetHostFlags&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">DOCHOSTUIFLAG_NO3DBORDER&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>windows下获取屏幕分辨率</title><link>https://chenzaichun.github.io/post/2010-07-22-windows_get_resolution/</link><pubDate>Thu, 22 Jul 2010 18:33:16 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-windows_get_resolution/</guid><description>&lt;p>windows下获取屏幕分辨率:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="kt">int&lt;/span> &lt;span class="n">nWidth&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetSystemMetrics&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">SM_CXSCREEN&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">//屏幕宽度
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">nHeight&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetSystemMetrics&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">SM_CYSCREEN&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">//屏幕高度
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>CDHtmlDialog中禁用右键菜单和F5刷新</title><link>https://chenzaichun.github.io/post/2010-07-22-cdhtmldialog_disable_context_menu_and_f5/</link><pubDate>Thu, 22 Jul 2010 17:26:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-cdhtmldialog_disable_context_menu_and_f5/</guid><description>&lt;p>参考：&lt;a href="http://www.codeproject.com/KB/MFC/dhtmldialog.aspx?msg=2016381#xx2016381xx" target="_blank">猛击这里&lt;/a>
+在头文件中加入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">STDMETHOD&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ShowContextMenu&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">DWORD&lt;/span> &lt;span class="n">dwID&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">POINT&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">ppt&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IUnknown&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pcmdtReserved&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IDispatch&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pdispReserved&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">STDMETHOD&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">TranslateAccelerator&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">LPMSG&lt;/span> &lt;span class="n">lpMsg&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="n">GUID&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">pguidCmdGroup&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">DWORD&lt;/span> &lt;span class="n">nCmdID&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在cpp中加入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">STDMETHODIMP&lt;/span> &lt;span class="n">ChtmldialogDlg&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ShowContextMenu&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">DWORD&lt;/span> &lt;span class="n">dwID&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">POINT&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">ppt&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IUnknown&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pcmdtReserved&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IDispatch&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pdispReserved&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="c1">//return CDHtmlDialog::ShowContextMenu(dwID, ppt, pcmdtReserved, pdispReserved);
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">return&lt;/span> &lt;span class="n">S_OK&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="n">STDMETHODIMP&lt;/span> &lt;span class="n">ChtmldialogDlg&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">TranslateAccelerator&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">LPMSG&lt;/span> &lt;span class="n">lpMsg&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="n">GUID&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">pguidCmdGroup&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">DWORD&lt;/span> &lt;span class="n">nCmdID&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">lpMsg&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">lpMsg&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">message&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">WM_KEYDOWN&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">lpMsg&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">wParam&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">VK_F5&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">S_OK&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">CDHtmlDialog&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">TranslateAccelerator&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lpMsg&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">pguidCmdGroup&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">nCmdID&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>windows获取任务栏高度</title><link>https://chenzaichun.github.io/post/2010-07-22-windows_task_bar_height/</link><pubDate>Thu, 22 Jul 2010 16:23:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-windows_task_bar_height/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">RECT&lt;/span> &lt;span class="n">Rect&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">HWND&lt;/span> &lt;span class="n">hWnd&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FindWindow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Shell_TrayWnd&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">GetWindowRect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hWnd&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">Rect&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">//Rect.bottom-Rect.top 就是任务栏的高度
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>vs2005下编译boost</title><link>https://chenzaichun.github.io/post/2010-06-02-vs2005_boost/</link><pubDate>Wed, 02 Jun 2010 11:33:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-02-vs2005_boost/</guid><description>&lt;p>vs2005下编译boost速度比较慢，由于默认使用的是bjam，不能通过incredibuild直接联编，所以只能通过incredibuild的xge接口来编译。我的编译过程:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>首先编译bjam，cd到tools/jam/src目录,执行build.bat vc8,拷贝bin.ntx86下bjam.exe到boost根目录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>新建一个boostib.xml文件，内容如下&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34; standalone=&amp;#34;no&amp;#34; ?&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Profile&lt;/span> &lt;span class="na">FormatVersion=&lt;/span>&lt;span class="s">&amp;#34;1&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tools&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;python&amp;#34;&lt;/span> &lt;span class="na">AllowIntercept=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;bjam&amp;#34;&lt;/span> &lt;span class="na">AllowIntercept=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;cl&amp;#34;&lt;/span> &lt;span class="na">AllowRemote=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span> &lt;span class="na">VCCompiler=&lt;/span>&lt;span class="s">&amp;#34;True&amp;#34;&lt;/span>&lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;link&amp;#34;&lt;/span> &lt;span class="na">AllowRemote=&lt;/span>&lt;span class="s">&amp;#34;false&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/Tools&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/Profile&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>新建一个boostib.bat文件，内容如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">XGConsole /command&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;bjam -j16 --toolset=msvc-8.0 --build-type=complete stage&amp;#34;&lt;/span> /openmonitor /profile&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;boostib.xml&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>执行boostlib.bat,库文件就在stage/lib目录下。至此完成编译！可是一看stage目录，这个硬盘占用也忒大了吧（2.58G）!!!&lt;/li>
+&lt;/ol></description></item><item><title>ogre中文路径和文件名</title><link>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</link><pubDate>Sat, 08 May 2010 16:11:38 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</guid><description>&lt;p>VS2005之后版本的std::fstream对中文路径处理不正确的原因，所以加载中文路径或文件名不成功，解决办法：&lt;/p>
+&lt;p>在主函数开始加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">setlocale&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">LC_ALL&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s">&amp;#34;Chinese-simplified&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ms vc下stderr到文件</title><link>https://chenzaichun.github.io/post/2010-05-07-ms_vc_stderr_file/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ms_vc_stderr_file/</guid><description>&lt;p>msvc下使用&lt;code>fprintf(stderr, ...)&lt;/code>的时候，如果系统不是&lt;code>/subsystem:console&lt;/code>的话，我们将看不到信息。如果程序要将消息重定位到文件的话，可以使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">program&lt;/span> &lt;span class="nl">begein&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="n">FILE&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">newstderr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">freopen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;xxx.log&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">stderr&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">program&lt;/span> &lt;span class="nl">end&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">fclose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">newstderr&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>就可以了&lt;/p></description></item></channel></rss>

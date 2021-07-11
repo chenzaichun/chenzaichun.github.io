@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>转载 on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/%E8%BD%AC%E8%BD%BD/</link><description>Recent content in 转载 on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 13 Jun 2013 15:22:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/%E8%BD%AC%E8%BD%BD/index.xml" rel="self" type="application/rss+xml"/><item><title>这是开挂了吧</title><link>https://chenzaichun.github.io/post/2013-06-03-cheat/</link><pubDate>Thu, 13 Jun 2013 15:22:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2013-06-03-cheat/</guid><description>&lt;p>这肯定是开挂了, ;-)&lt;/p>
+&lt;p>&lt;img src="https://chenzaichun.github.io/media/cheat.jpg" alt="不可思议">&lt;/p></description></item><item><title>塑料瓶底数字的意思</title><link>https://chenzaichun.github.io/post/2012-06-27-pet/</link><pubDate>Wed, 27 Jun 2012 11:21:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-06-27-pet/</guid><description>&lt;p>喝飲料前別忘了注意瓶下的數字喔, 特別是要回收再利用, 一定要多注意喔&lt;/p>
+&lt;p>&lt;a href="https://chenzaichun.github.io/media/pet.jpg">PET&lt;/a>&lt;/p></description></item><item><title>新闻晚知道</title><link>https://chenzaichun.github.io/post/2012-05-31-xin-wen-wan-zhi-dao/</link><pubDate>Thu, 31 May 2012 15:28:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-05-31-xin-wen-wan-zhi-dao/</guid><description>&lt;p>&lt;embed src="http://player.youku.com/player.php/sid/XNDA0NzgzOTg4/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" allowFullscreen="true" type="application/x-shockwave-flash">&lt;/embed>&lt;/p></description></item><item><title>Unlock the McAfee VirusScan Enterprise 8.5i User Interface</title><link>https://chenzaichun.github.io/post/2011-12-09-unlock-mcafee-user-interface/</link><pubDate>Fri, 09 Dec 2011 22:30:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-09-unlock-mcafee-user-interface/</guid><description>&lt;p>&lt;a href="http://it.megocollector.com/?p=1094">传送门&lt;/a>&lt;/p>
+&lt;p>经检验，只要设置以下注册表就行了:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[HKEY_LOCAL_MACHINE\SOFTWARE\McAfee\DesktopProtection]
+&amp;#34;UIPMode&amp;#34;=dword:00000000
+&amp;#34;UIP&amp;#34;=&amp;#34;&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git代理设置</title><link>https://chenzaichun.github.io/post/2011-10-21-usegitbehindproxy/</link><pubDate>Fri, 21 Oct 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-21-usegitbehindproxy/</guid><description>&lt;p>Since someone is asking me to provide an English version about git proxy configuration in my former blog. Here it is. 1). Basically, I know two ways to use git behind a proxy.&lt;/p>
+&lt;ol>
+&lt;li>Set the http_proxy environment if git repository supports http connections.&lt;/li>
+&lt;/ol>
+&lt;p>find a proxy command to bypass the connection: &lt;a href="https://bitbucket.org/chenzaichun/org2blog/src/e82a0244f078/media/connect.c">connect.c&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gcc -o connect connect.c
+mv connect ~/bin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>Set up a wrapper&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;/home/gigi/bin/connect -H proxy.bupt.edu.cn:8080 &lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/bin/proxy
+chmod +x ~/bin/proxy
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Here I&amp;rsquo;m using a http proxy offered by my school, which uses port 8080 The connect command also support socket proxy. Use -S host:port to indicate that.&lt;/p>
+&lt;ol start="3">
+&lt;li>Update bashrc&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export CONNECT_USER=bergwolf&amp;#34;&lt;/span> &amp;gt;&amp;gt; .bashrc
+&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export GIT_PROXY_COMMAND=proxexport GIT_PROXY_COMMAND=proxy&amp;#34;&lt;/span> &amp;gt;&amp;gt; .bashrc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>The connect command reads proxy username and password from &lt;code>CONNECT_USER&lt;/code> and &lt;code>CONNECT_PASSWORD&lt;/code> evironment. The default username is current login user if no CONNECT_USER is set. Password will be requested interactively if CONNECT_PASSWORD is empty. GIT_PROXY_COMMAND indicates that git should use the command &amp;ldquo;proxy&amp;rdquo;(the wrapper we setup at step 2) as its proxy_command. This can also be set in .git/config.&lt;/p>
+&lt;/blockquote>
+&lt;p>Now, everything we need is done. Have a try:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[gigi-Ubuntu:bin]$git clone git://git.kernel.org/pub/scm/fs/ext2/e2fsprogs.git
+Initialized empty Git repository in /home/gigi/bin/e2fsprogs/.git/
+Enter proxy authentication password for bergwolf@proxy.bupt.edu.cn:
+remote: Counting objects: 24006, done.
+remote: Compressing objects: 100% (4701/4701), done.
+ceiving objects: 1% (241/24006), 43.99 KiB | 56 KiB/s
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>值得推荐的国外名牌大学网络课程视频下载</title><link>https://chenzaichun.github.io/post/2010-12-16-course_of_foreign_university/</link><pubDate>Thu, 16 Dec 2010 19:54:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-16-course_of_foreign_university/</guid><description>&lt;p>@&lt;a href="http://www.apple4.cn/2010/12/recommended-course-of-foreign-brand-name-university-network-to-download-videos/">&lt;a href="http://www.apple4.cn/2010/12/recommended-course-of-foreign-brand-name-university-network-to-download-videos/">http://www.apple4.cn/2010/12/recommended-course-of-foreign-brand-name-university-network-to-download-videos/&lt;/a>&lt;/a>&lt;/p></description></item><item><title>我最崇拜的人姓刘总结贴</title><link>https://chenzaichun.github.io/post/2010-12-14-mr_liu/</link><pubDate>Tue, 14 Dec 2010 19:54:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-14-mr_liu/</guid><description>&lt;p>@&lt;a href="http://hxyl.net/2010/12/12/xin-liu/" target="_blank">河蟹娱乐&lt;/a>&lt;/p>
+&lt;p>我最崇拜的人姓刘，他获得过国际大奖，他的所作所为激发了国人的斗志，虽然有一段时间他从我们眼前消失了，但是我相信他的精神永存。他的名字叫刘翔。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他对这个国家以及生活在这片土地上的人满怀悲悯；他想做一番轰轰烈烈的大事业；要拯救万民于水火；他有一帮志同道合并同样令人敬仰的朋友与伙伴；他的人格魅力使很多人都愿意追随着他，为理想而奋斗。他名备字玄德，人称皇叔。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他领导过学生闹学运，出过书，得过外国的奖，后来被冤枉做了很多年牢。但我相信，这些都是历史给他的考验，因为他说过，好在历史是人民写的。他的名字是刘少奇。&lt;/p>
+&lt;p>我最崇拜的人姓刘。他是个博士，他出过书、当过被告。得过西方很多国家的大奖，以及香港台湾等境外组织颁发的奖。他是很多中国人的偶像，他是中国人的自豪和骄傲。他叫刘德华！&lt;/p>
+&lt;p>我最崇拜的人姓刘，ta面对暴力无所畏惧，坚定信仰自己的理念。尽管ta早早地被强权迫害，但ta的名字直到今天仍在流传。ta是刘胡兰。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他是一个和文艺有过不解之缘的名人，他发表的文字曾经引起过轩然大波，他在国内一度名声狼狈，在国外却得到很多同情和帮助。他曾因违反中国法律而入狱，并因此失去自由。他，噢错了是她，她的名字叫刘晓庆。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他获得了世界性的奖项，因为他的推手技惊全球以至于不得不说：我没有敌人。有时候面对记者会结结巴巴，他一度消失在人们的视野。整个世界都经常默念他的名字：国家的未来栋梁！他的名字叫刘国梁。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他十几年如一日，忍辱负重，勤奋耕耘，从一个东北土鳖成长为亿万人瞩目的理性楷模。他致力于一个理想化的行动，让自己备受磨难，但人们心里为他树起了一座丰碑，他的名字叫刘老根儿。&lt;/p>
+&lt;p>我最崇拜的人他姓刘，他一生传奇，80年代就名扬国际，热衷挑战强拳，获得过无数国际大奖。他的一生没有敌人。他就是拳王刘易斯。&lt;/p>
+&lt;p>我崇拜的人姓刘，从80年代开始就写出了一系列传世佳作，在一代又一代爱好自由的人手中传颂。尽管关于他的作品有一些争议，但好无偏见的说他的文字影响和改变了很多推友。他就是刘欣慈。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他获得过很多境外组织的奖杯，他的作品流行海内外，他忠厚的面貌总是让人感到亲切，他也很关心缅甸昂山阿姨的情况，他的名字叫刘青云。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他以人性化的实践，经历和见证了封建小农经济下个人良心的最大发挥。他清白而廉洁，但却历经诬陷，一个好人被钉在耻辱里，体现了专制政权的强横与无耻。然而，他被人传颂为良知的化身和尊严的维护者。他的名字叫刘文彩。&lt;/p>
+&lt;p>我不崇拜的人姓刘，他某年因为因为被央视现场报道使用幕后黑手欺骗全国人民而一举闻名。他荣获过那个领域的国际大奖，他的成就可以说在中国没有敌人。网上关于他的争议一直很多，不过丝毫不影响他的影响力。他就魔术师刘谦。&lt;/p>
+&lt;p>我最崇拜的人姓刘，ta是一个东北人，ta于1989年春夏之交正式登上历史舞台，ta在世界上拥有极高的声望，ta就是我国著名游泳运动员刘子歌。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他为了反抗强权暴政忍辱负重，尽管他有很多先天缺陷，但是仍然不能阻止他成为时代的领袖，他的名字刘邦。&lt;/p>
+&lt;p>我最崇拜的人姓刘，虽然我没有见过他，但他一直为大家的幸福生活在默默的努力。现在越来越多的人知道他喜欢他的作品，甚至还有人盗版他的东西冒充来卖，这是一件好事，他叫刘一手。&lt;/p>
+&lt;p>我最崇拜的人姓刘，Ta和Ta的同志们为了自由和人权与专制进行了不懈的斗争，Ta用自身惨痛的牺牲证明了专制的残暴，人们铭记着Ta的事迹，专制却从学校课本里把Ta的名字拿走，Ta的名字叫刘和珍。&lt;/p>
+&lt;p>我最崇拜的人姓刘，每当我觉得社会太黑暗、生活得太辛苦要放弃时，脑海中出现ta的身影又让我重燃斗志。ta是刘亦菲。&lt;/p>
+&lt;p>我最崇拜的人姓刘。念过大学，刚正不阿，曾被当权者剥夺工作，中年后又被关入监狱。每个中国人都应该记住他的名字。他叫刘墉！&lt;/p></description></item></channel></rss>

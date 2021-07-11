@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>grub2 on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/grub2/</link><description>Recent content in grub2 on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 18 May 2010 12:12:23 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/grub2/index.xml" rel="self" type="application/rss+xml"/><item><title>修改Grub2,XP默认首启动</title><link>https://chenzaichun.github.io/post/2010-05-18-grub2_boot_default/</link><pubDate>Tue, 18 May 2010 12:12:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-18-grub2_boot_default/</guid><description>&lt;p>参考： &lt;a href="http://swsw4321.blog.163.com/blog/static/3245245201003121842841/">&lt;a href="http://swsw4321.blog.163.com/blog/static/3245245201003121842841/">http://swsw4321.blog.163.com/blog/static/3245245201003121842841/&lt;/a>&lt;/a>
+修改启动项, 终端输入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> /etc/grub.d &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ls
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>显示的文件是这样的：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">00_header 05_debian_theme 10_linux 20_memtest86+ 30_os-prober 40_custom README
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中：10_linux就是当前所使用的操作系统，30_os-prober的作用是自动查找计算机的其他系统，比如是windows xp，要XP默认首启动只要执行命令：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo mv 20_os-prober 06_os-prober，把20_os-prober 改成06_os-prober
+sudo mv 30_os-prober 06_os-prober
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样，以后grub再次更新时，XP就默认在linux前启动了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo update-grub
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>看看效果吧，这样以后每次更新grub,都是默认XP启动。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>org on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/org/</link><description>Recent content in org on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 11 Jul 2021 16:29:26 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/org/index.xml" rel="self" type="application/rss+xml"/><item><title>oracle install mkswap</title><link>https://chenzaichun.github.io/post/centos7_add_swap_file/</link><pubDate>Fri, 21 Dec 2018 17:54:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/centos7_add_swap_file/</guid><description>&lt;ul>
+&lt;li>State &amp;ldquo;DONE&amp;rdquo; from &amp;ldquo;TODO&amp;rdquo; &lt;span class="timestamp-wrapper">&lt;span class="timestamp">[2018-12-21 Fri 17:54]&lt;/span>&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">dd &lt;span class="k">if&lt;/span>&lt;span class="o">=&lt;/span>/dev/zero &lt;span class="nv">of&lt;/span>&lt;span class="o">=&lt;/span>/swapfile &lt;span class="nv">bs&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">1024&lt;/span> &lt;span class="nv">count&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">4096000&lt;/span>
+chmod &lt;span class="m">600&lt;/span> /swapfile
+mkswap /swapfile
+swapon /swapfile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>将博客从heroku迁移到github</title><link>https://chenzaichun.github.io/post/2021-07-11-transfer-to-hugo-on-github/</link><pubDate>Sun, 11 Jul 2021 16:29:26 +0800</pubDate><guid>https://chenzaichun.github.io/post/2021-07-11-transfer-to-hugo-on-github/</guid><description>前言 虽然我的博客很久都没有更新过了，以前写博客的过程是相当艰辛，历经了很多次迁移。最近在思考一个问题，为什么我现在连博客也不写了？ 趁这个周末</description></item><item><title>yum/deb repository cache</title><link>https://chenzaichun.github.io/post/yumrepocache/</link><pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate><guid>https://chenzaichun.github.io/post/yumrepocache/</guid><description>&lt;p>怎么做cache，参考了以下方式：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://serverascode.com/2014/03/29/squid-cache-yum.html">squid&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://tdt.rocks/repo_cache_ft_nginx.html">nginx&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.packtpub.com/books/content/create-local-ubuntu-repository-using-apt-mirror-and-apt-cacher">apt-mirror&lt;/a> Apt-Cacher&lt;/li>
+&lt;li>&lt;a href="https://packaging.python.org/guides/index-mirrors-and-caches/">python pip cache&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.dctrwatson.com/2013/06/simple-pypi-caching-proxy/">python cache&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://sudhaker.com/60/caching-yum-proxy">nginx like squid&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/mrmoje/repo_cache_plays_ft_nginx">ansible with vagrant&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>cobbler 安装</title><link>https://chenzaichun.github.io/post/cobbler/</link><pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate><guid>https://chenzaichun.github.io/post/cobbler/</guid><description>&lt;h2 id="环境情况">环境情况&lt;/h2>
+&lt;p>用于PXE推送测试的相关环境信息如下：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Cobbler Server&lt;/td>
+&lt;td>Centos7&lt;/td>
+&lt;td>172.16.3.30&lt;/td>
+&lt;td>root/Pioneertest@2016&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Cobbler Server网络可以访问测试用物理服务器IPMI及PXE网卡。物理服务器默认连接一根网线用于PXE推送用途。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>物理设备名称&lt;/th>
+&lt;th>IPMI带外管理地址&lt;/th>
+&lt;th>带外管理用户名&lt;/th>
+&lt;th>带外管理密码&lt;/th>
+&lt;th>PXE网卡&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>华为2288v3-1&lt;/td>
+&lt;td>172.16.2.20&lt;/td>
+&lt;td>root&lt;/td>
+&lt;td>Huawei12#$&lt;/td>
+&lt;td>默认从pxe boot&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>华为2288v3-2&lt;/td>
+&lt;td>172.16.2.21&lt;/td>
+&lt;td>root&lt;/td>
+&lt;td>Huawei12#$&lt;/td>
+&lt;td>默认从pxe boot&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>可以用的dhcp网段为172.16.3.200-172.16.3.230&lt;/p></description></item><item><title>Hugo Local Search</title><link>https://chenzaichun.github.io/post/hugolocalsearch/</link><pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate><guid>https://chenzaichun.github.io/post/hugolocalsearch/</guid><description>&lt;h2 id="hugo本地搜索">Hugo本地搜索&lt;/h2>
+&lt;ul>
+&lt;li>官方的search选项见这里: &lt;a href="https://gohugo.io/tools/search/">https://gohugo.io/tools/search/&lt;/a>&lt;/li>
+&lt;li>其他选项: &lt;a href="https://blog.jimmycai.com/p/hugo-local-search/">https://blog.jimmycai.com/p/hugo-local-search/&lt;/a>&lt;/li>
+&lt;li>还有这篇日文: &lt;a href="http://rs.luminousspice.com/hugo-site-search/">http://rs.luminousspice.com/hugo-site-search/&lt;/a>&lt;/li>
+&lt;li>比较靠谱的这里: &lt;a href="https://keyin.me/post/hugo-guidance/">https://keyin.me/post/hugo-guidance/&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>从hexo迁移到hugo</title><link>https://chenzaichun.github.io/post/hexo2hugowithorg/</link><pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate><guid>https://chenzaichun.github.io/post/hexo2hugowithorg/</guid><description>&lt;h2 id="从hexo迁移到hugo">从hexo迁移到hugo&lt;/h2>
+&lt;h3 id="hexo2hugo-dot-py">hexo2hugo.py&lt;/h3>
+&lt;p>这里有个脚本：&lt;a href="https://github.com/wd/hexo2hugo">https://github.com/wd/hexo2hugo&lt;/a> ，但是有些问题，使用的是 &lt;code>python3&lt;/code> ，一定要注意。 &lt;code>categories&lt;/code> 如果是列表会出错, 添加转换&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="k">if&lt;/span> &lt;span class="s1">&amp;#39;tags&amp;#39;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">meta&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;tags&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;tags&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;tags&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;,&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="s1">&amp;#39;categories&amp;#39;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">meta&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;categories&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;categories&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;categories&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;,&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>时间不对的时候要出错:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">no_tz_date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;date&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">no_tz_date&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">no_tz_date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strptime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">no_tz_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s1"> %H:%M&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">except&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">no_tz_date&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">no_tz_date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strptime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">no_tz_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s1"> %H:%M:%S&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>因为没有 &lt;code>more&lt;/code> tag，在主页summary不好看，给加上&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd"></description></item><item><title>Writing Hugo blog in Org (File Export)</title><link>https://chenzaichun.github.io/post/test-easy-hugo/</link><pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate><guid>https://chenzaichun.github.io/post/test-easy-hugo/</guid><description>&lt;hr>
+&lt;h2 id="test-hugo-with-ox-hugo">test hugo with ox-hugo&lt;/h2>
+&lt;p>感觉有些东西不太对呢 &lt;em>不对&lt;/em>.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;hello hugo with org-mode&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

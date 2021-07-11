@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>transition on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/transition/</link><description>Recent content in transition on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 21 Aug 2015 13:16:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/transition/index.xml" rel="self" type="application/rss+xml"/><item><title>iOS中Tranisition常用库</title><link>https://chenzaichun.github.io/post/2015-08-21-ios-transition-libs/</link><pubDate>Fri, 21 Aug 2015 13:16:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-21-ios-transition-libs/</guid><description>&lt;p>最近尝试在程序使用&lt;code>Transition&lt;/code>, 搜索了一下github，发现以下库很不错，记录一下&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/ColinEberhardt/VCTransitionsLibrary">&lt;code>VCTransitionsLibrary&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/shu223/AnimatedTransitionGallery">&lt;code>AnimatedTransitionGallery&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/demonnico/PinterestSwift">&lt;code>PinterestSwift&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/xhzengAIB/PinterestAnimator">&lt;code>PinterestAnimator&lt;/code>&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

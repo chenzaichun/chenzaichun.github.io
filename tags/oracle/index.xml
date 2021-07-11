@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>oracle on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/oracle/</link><description>Recent content in oracle on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 25 Oct 2012 10:09:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/oracle/index.xml" rel="self" type="application/rss+xml"/><item><title>SUSE Enterprise Linux 10下安装Oracle 11gr2</title><link>https://chenzaichun.github.io/post/2012-10-25-install-oracle-11gr2-on-suse-enterprise-linux/</link><pubDate>Thu, 25 Oct 2012 10:09:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-10-25-install-oracle-11gr2-on-suse-enterprise-linux/</guid><description>&lt;ol>
+&lt;li>首先准备好oracle的安装文件，11gr2默认有两个zip包：&lt;code>linux.x64_11gR2_database_1of2.zip&lt;/code>和&lt;code>linux.x64_11gR2_database_2of2.zip&lt;/code>, 将这两个包解压&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">unzip linux.x64_11gR2_database_1of2.zip
+unzip linux.x64_11gR2_database_2of2.zip
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>
+&lt;p>系统硬件需求这里忽略，详情查看oracle的文档&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>所依赖的软件包&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>Archlinux下安装oracle 10gr2 Enterprise</title><link>https://chenzaichun.github.io/post/2011-11-15-install-oracle-10gr2-on-archlinux/</link><pubDate>Tue, 15 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-15-install-oracle-10gr2-on-archlinux/</guid><description>&lt;p>由于Oracle XE精简了很多，跟教科书上很多不一样，所以还是装一个企业版吧。&lt;/p>
+&lt;p>&lt;a href="http://meansonw-work.blogspot.com/2008/10/archlinux-oracle-10g.html">参考链接&lt;/a>&lt;/p>
+&lt;p>安装跟archlinux的wiki上差不多，注意两个链接必须创建：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo ln -s /usr/lib/libgcc_s.so.1 /lib/libgcc_s.so.1
+sudo ln -s /bin/tr /usr/bin/tr
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux下安装oracle 10g enterprise</title><link>https://chenzaichun.github.io/post/2011-04-08-install_oracle_10g_enterprise_on_archlinux/</link><pubDate>Fri, 08 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-08-install_oracle_10g_enterprise_on_archlinux/</guid><description>&lt;p>按照arch wiki做就可以了。参考链接&lt;a href="https://wiki.archlinux.org/index.php/Oracle">&lt;a href="https://wiki.archlinux.org/index.php/Oracle">https://wiki.archlinux.org/index.php/Oracle&lt;/a>&lt;/a>&lt;/p>
+&lt;p>这里，安装ksh的步骤可以跳过，直接安装pdksh&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S pdksh
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装过程中可能在62%左右提示一个错误，点continue不影响使用。&lt;/p>
+&lt;p>默认安装完成之后，重新启动archlinux之后，oracle是不会启动的。手动启动的方法：&lt;/p>
+&lt;ol>
+&lt;li>su - oracle # 这里得以oracle启动&lt;/li>
+&lt;li>sqlplus /nologo&lt;/li>
+&lt;li>sql> conn / as sysdba&lt;/li>
+&lt;li>sql> startup&lt;/li>
+&lt;li>sql> exit&lt;/li>
+&lt;li>lsnrctl start&lt;/li>
+&lt;/ol></description></item><item><title>修改oracle的默认界面语言为英文</title><link>https://chenzaichun.github.io/post/2011-03-30-change_oracle_ui_to_english/</link><pubDate>Wed, 30 Mar 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-03-30-change_oracle_ui_to_english/</guid><description>&lt;p>在注册表中查找&lt;code>HKEY_LOCAL_MACHINE\SOFTWARE\Oracle&amp;lt;Your Oracle Home&amp;gt;&lt;/code>&lt;/p>
+&lt;p>设置&lt;code>NLS_LANG&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">NLS_LANG = AMERICAN_AMERICA.WE8ISO8859P1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

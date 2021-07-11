@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>programming on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/programming/</link><description>Recent content in programming on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 25 Aug 2015 10:06:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>编译iOS版本WebRTC</title><link>https://chenzaichun.github.io/post/2015-08-25-ios-webrtc/</link><pubDate>Tue, 25 Aug 2015 10:06:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-25-ios-webrtc/</guid><description>&lt;p>&lt;a href="https://zh.wikipedia.org/wiki/WebRTC">&lt;code>WebRTC&lt;/code>&lt;/a>，名称源自网页实时通信（英语：Web Real-Time Communication）的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的API。它于2011年6月1日开源并在Google、Mozilla、Opera支持下被纳入万维网联盟的W3C推荐标准&lt;/p>
+&lt;h1 id="ios中webrtc参考资料">iOS中WebRTC参考资料&lt;/h1>
+&lt;ul>
+&lt;li>&lt;a href="http://www.webrtc.org/">webrtc官网&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/gandg/webrtc-ios">webrtc-ios&lt;/a> 不过很近没更新了&lt;/li>
+&lt;li>&lt;a href="http://quickblox.com/">quickblox&lt;/a> 集成方案，商用价格还是可以&lt;/li>
+&lt;li>&lt;a href="http://ninjanetic.com/how-to-get-started-with-webrtc-and-ios-without-wasting-10-hours-of-your-life/">How to get started with WebRTC and iOS without wasting 10 hours of your life&lt;/a> 这篇博客借鉴意义特别大&lt;/li>
+&lt;li>&lt;a href="https://github.com/pristineio/webrtc-build-scripts">android ios webrtc编译脚本&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h1 id="mac下编译webrtc">Mac下编译WebRTC&lt;/h1>
+&lt;p>准备好梯子, 按照官方教程编译, 参考&lt;a href="http://www.webrtc.org/native-code/ios">这里&lt;/a>&lt;/p>
+&lt;!-- more -->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">mkdir webrtc_ios &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nb">cd&lt;/span> webrtc_ios
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">GYP_DEFINES&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;OS=ios&amp;#34;&lt;/span>
+fetch webrtc_ios
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>慢着，这里的fetch命令貌似没有啊，原来是没有安装&lt;a href="http://dev.chromium.org/developers/how-tos/install-depot-tools">&lt;code>depot_tools&lt;/code>&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> &amp;lt;some_where_for_depot_tools&amp;gt;
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="nb">pwd&lt;/span>&lt;span class="sb">`&lt;/span>/depot_tools:&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重新做第一步fetch,&lt;/p>
+&lt;p>下载了竟6G的东东竟然失败了：&lt;/p>
+&lt;blockquote>
+&lt;p>Error: Command &amp;lsquo;/usr/bin/python -u src/sync_chromium.py &amp;ndash;target-revision f8d6ba9efdddfb3aa0dfc01cd579f500a2de0b8d&amp;rsquo; returned non-zero exit status 2 in /Users/chenza/src/webrtc_ios
+Traceback (most recent call last):
+File &amp;ldquo;/Users/chenza/src/depot_tools/fetch.py&amp;rdquo;, line 342, in &lt;module>
+sys.exit(main())
+File &amp;ldquo;/Users/chenza/src/depot_tools/fetch.py&amp;rdquo;, line 337, in main
+return run(options, spec, root)
+File &amp;ldquo;/Users/chenza/src/depot_tools/fetch.py&amp;rdquo;, line 331, in run
+return checkout.init()
+File &amp;ldquo;/Users/chenza/src/depot_tools/fetch.py&amp;rdquo;, line 142, in init
+self.run_gclient(*sync_cmd)
+File &amp;ldquo;/Users/chenza/src/depot_tools/fetch.py&amp;rdquo;, line 76, in run_gclient
+return self.run(cmd_prefix + cmd, **kwargs)
+File &amp;ldquo;/Users/chenza/src/depot_tools/fetch.py&amp;rdquo;, line 66, in run
+return subprocess.check_output(cmd, **kwargs)
+File &amp;ldquo;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/subprocess.py&amp;rdquo;, line 573, in check_output
+raise CalledProcessError(retcode, cmd, output=output)
+subprocess.CalledProcessError: Command &amp;lsquo;(&amp;lsquo;gclient&amp;rsquo;, &amp;lsquo;sync&amp;rsquo;, &amp;lsquo;&amp;ndash;with_branch_heads&amp;rsquo;)&amp;rsquo; returned non-zero exit status 2&lt;/p>
+&lt;/blockquote>
+&lt;p>重试几次无果，&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gclient sync
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>会失败，原因是访问google storage失败。&lt;/p>
+&lt;p>{% ruby 该死|天朝 %}的网络呀。&lt;/p>
+&lt;p>挂梯子，全程翻，还是失败。只好使用人家已经编译好的版本。见&lt;a href="https://github.com/ISBX/apprtc-ios">&lt;code>apprt-ios&lt;/code>&lt;/a>, apprt-ios提供了pod，可以直接使用。&lt;/p></description></item><item><title>iOS中Tranisition常用库</title><link>https://chenzaichun.github.io/post/2015-08-21-ios-transition-libs/</link><pubDate>Fri, 21 Aug 2015 13:16:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-21-ios-transition-libs/</guid><description>&lt;p>最近尝试在程序使用&lt;code>Transition&lt;/code>, 搜索了一下github，发现以下库很不错，记录一下&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/ColinEberhardt/VCTransitionsLibrary">&lt;code>VCTransitionsLibrary&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/shu223/AnimatedTransitionGallery">&lt;code>AnimatedTransitionGallery&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/demonnico/PinterestSwift">&lt;code>PinterestSwift&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/xhzengAIB/PinterestAnimator">&lt;code>PinterestAnimator&lt;/code>&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>VKVideoPlayer爬坑记</title><link>https://chenzaichun.github.io/post/2015-08-18-vkvideoplayer-customization/</link><pubDate>Tue, 18 Aug 2015 14:33:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-18-vkvideoplayer-customization/</guid><description>&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>在 iOS 开发过程中，视频播放相对来说还是比较简单，可以是用&lt;code>MPMoviePlayerController&lt;/code>，&lt;code>MPMoviePlayerViewController&lt;/code>, 或者 iOS8中引入的&lt;code>AVPlayerViewController&lt;/code>，如果要更底层一点，也可以使用&lt;code>AVKit&lt;/code>来做, 更极端的方式就是使用 &lt;code>WebView&lt;/code> 来加载视频。&lt;/p>
+&lt;p>这里简单说明一下他们的区别:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>MPMoviePlayerController&lt;/code>和&lt;code>MPMoviePlayerViewController&lt;/code>使用起来类似，不足之处就是不能自定义控件，在使用&lt;code>HDMI&lt;/code>来投影屏幕的时候会出现很多莫名其妙的问题，同时在 iOS9中将被标记为&lt;code>deprecated&lt;/code>并不再维护&lt;/li>
+&lt;li>&lt;code>AVPlayerViewController&lt;/code>使用起来也很方便，但是在 iOS8中同样有 HDMI 投影问题&lt;/li>
+&lt;li>&lt;code>AVKit&lt;/code> &lt;code>AVPlayer&lt;/code>自己实现，比较麻烦&lt;/li>
+&lt;li>&lt;code>WebView&lt;/code>加载使用起来也很方便，HDMI投影也有问题&lt;/li>
+&lt;/ul>
+&lt;p>最近想写一个简单的 Demo，需要播放视频，同时需要自定义播放控件，上面的都不满足条件，网上很多人说&lt;code>VKVideoPlayer&lt;/code>很不错，查看了一下&lt;a href="https://github.com/viki-org/VKVideoPlayer">VKVideoPlayer&lt;/a>, 貌似 feature 特别多：&lt;/p>
+&lt;!-- more -->
+&lt;h1 id="vkvideoplayer">VKVideoPlayer&lt;/h1>
+&lt;h2 id="vkvideoplayer的feature">VKVideoPlayer的Feature&lt;/h2>
+&lt;p>Some of the advance features are:&lt;/p>
+&lt;ul>
+&lt;li>Fully customizable UI&lt;/li>
+&lt;li>No full screen restrictions (have it any size and position you would like!)&lt;/li>
+&lt;li>Display subtitles (SRT supported out of the box)&lt;/li>
+&lt;li>Customize subtitles (use CSS for styling courtesy of DTCoreText)&lt;/li>
+&lt;li>Supports HTTP Live streaming&lt;/li>
+&lt;li>Orientation change support (even when orientation lock is enabled)&lt;/li>
+&lt;li>Bulletproof event machine to easily integrate features like video ads&lt;/li>
+&lt;li>Lots of delegate callbacks for your own logging requirements&lt;/li>
+&lt;/ul>
+&lt;p>看上了这一点&lt;code>Fully customizable UI&lt;/code>, 这就是我想要的, {% ruby 哈哈|矫情 %}&lt;/p>
+&lt;h2 id="测试vkvideoplayer-demo">测试VKVideoPlayer Demo&lt;/h2>
+&lt;p>直接 clone 代码来试试看：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git clone git@github.com:viki-org/VKVideoPlayer.git
+pod install
+open VKVideoPlayer.xcworkspace
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编译Demo, 因为使用xcode 7 beta的缘故，iOS9默认是禁用 http 访问的（貌似这样比较{% ruby 操蛋|安全 %}），运行的时候会报错。&lt;/p>
+&lt;blockquote>
+&lt;p>2015-08-18 14:58:22.059 VKVideoPlayer[2845:41325] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&amp;rsquo;s Info.plist file.&lt;/p>
+&lt;/blockquote>
+&lt;p>解决办法, 修改&lt;code>Supporting Files&lt;/code>下&lt;code>VKVideoPlayer-Info.plist&lt;/code>, 加入&lt;code>NSAppTransportSecurity&lt;/code> dictionary，添加一个 bool 类型的 key &lt;code>NSAllowsArbitraryLoads&lt;/code>, 设置为&lt;code>YES&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://chenzaichun.github.io/media/ios9-http-load.png" alt="iOS 9 HTTP Load">&lt;/p>
+&lt;p>{% alert success %}所有使用iOS9编译的工程，默认都要这样添加才能使用http。{% endalert %}&lt;/p>
+&lt;p>重新编译运行，默认界面有黑边，而且竟然在横屏和竖屏切换情况下layout有问题，&lt;/p>
+&lt;p>&lt;img src="https://chenzaichun.github.io/media/vkvideoplayer-layout-issue-ios9.png" alt="VKVideoPlayer Layout Issue on iOS 9">&lt;/p>
+&lt;p>原因在于&lt;code>VKVideoPlayer&lt;/code>是为 iOS5设计的，并没有使用&lt;code>Size Classes&lt;/code>和&lt;code>Auto Layout&lt;/code>。{% ruby 不用管|没办法 %}&lt;/p>
+&lt;h2 id="使用vkvideoplayer">使用VKVideoPlayer&lt;/h2>
+&lt;p>创建一个工程&lt;code>vkplayertest&lt;/code>, 创建&lt;code>Podfile&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">inhibit_all_warnings!
+workspace &amp;#39;vkplayertest&amp;#39;
+pod &amp;#34;VKVideoPlayer&amp;#34;, &amp;#34;~&amp;gt; 0.1.1&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装依赖&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">pod install
+open vkplayertest.xcworkspace
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在View中添加一个按钮并绑定Action来播放视频：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-objc" data-lang="objc">&lt;span class="cp">#import &amp;#34;VKVideoPlayerViewController.h&amp;#34;
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="p">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">IBAction&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nf">playVideo:&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">id&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="nv">sender&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">VKVideoPlayerViewController&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">viewController&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="n">VKVideoPlayerViewController&lt;/span> &lt;span class="n">alloc&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">init&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="p">[&lt;/span>&lt;span class="nb">self&lt;/span> &lt;span class="nl">presentModalViewController&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">viewController&lt;/span> &lt;span class="nl">animated&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nb">YES&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="p">[&lt;/span>&lt;span class="n">viewController&lt;/span> &lt;span class="nl">playVideoWithStreamURL&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="n">NSURL&lt;/span> &lt;span class="nl">URLWithString&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s">@&amp;#34;http://baobab.cdn.wandoujia.com/14394406774325.mp4&amp;#34;&lt;/span>&lt;span class="p">]];&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>layout问题在多次切换屏幕方向再一次出现：&lt;/p>
+&lt;p>&lt;img src="https://chenzaichun.github.io/media/vkvideoplayer-layout-issue-2.png" alt="VKVideoPlayer Layout Issue">&lt;/p>
+&lt;p>{% textcolor danger %}难道是我打开方式不对？{% endtextcolor %}&lt;/p>
+&lt;h2 id="xcode-6测试">xcode 6测试&lt;/h2>
+&lt;p>用&lt;code>xcode 6&lt;/code>来测试一下试试看。结果是一样的，将模拟器换成iPhone4S，结果还是一样。&lt;/p>
+&lt;p>不折腾，果断放弃之。有空自己用&lt;code>AVPlayer&lt;/code>实现一下。&lt;/p></description></item><item><title>升级到 Hexo 3后发现 robots.txt失效</title><link>https://chenzaichun.github.io/post/2015-08-18-hexo-3-robots-txt-error/</link><pubDate>Tue, 18 Aug 2015 13:30:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-18-hexo-3-robots-txt-error/</guid><description>&lt;p>升级到 hexo3之后一直没注意，今天查看&lt;code>Google WebMaster Tools&lt;/code>发现竟然没抓去多少，查看原来的&lt;code>robots.txt&lt;/code>, 是这样的:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">---
+layout: nil
+---
+User-agent: *
+Disallow:
+Sitemap: {{ site.url }}/sitemap.xml
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打开生成的&lt;a href="https://chenzaichun.github.io/robots.txt">robots.txt&lt;/a>查看，竟然没有解析, 竟然是这样的&lt;/p>
+&lt;!-- more -->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">---
+layout: nil
+---
+User-agent: *
+Disallow:
+Sitemap: {{ site.url }}/sitemap.xml
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>完全没有处理这个文件, 安装&lt;code>hexo-generator-robotstxt&lt;/code>, 由于官方的版本只有一个 sitemap，如果要添加 baidusitemap 的话，可以使用我的 fork &lt;a href="https://github.com/chenzaichun/hexo-generator-robotstxt">hexo-generator-robotstxt&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">npm install chenzaichun/hexo-generator-robotstxt --save
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改&lt;code>_config.yml&lt;/code>文件，加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">plugins:
+- hexo-generator-robotstxt
+robotstxt:
+useragent: &amp;#34;*&amp;#34;
+sitemap:
+- /sitemap.xml
+- /baidusitemap.xml
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>{%ruby 搞定|无聊 %}&lt;/p></description></item><item><title>用 Python 解方程</title><link>https://chenzaichun.github.io/post/2015-08-07-python-solve-equation/</link><pubDate>Fri, 07 Aug 2015 15:23:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-07-python-solve-equation/</guid><description>&lt;p>今天无意中发现一张图片，&lt;/p>
+&lt;p>&lt;img src="https://chenzaichun.github.io/media/wifi_password.jpg" alt="WIFI密码">&lt;/p>
+&lt;p>当如可以通过数学计算网站计算得到结果&lt;a href="https://www.symbolab.com/solver/logarithmic-equation-calculator/log_%7B2%7D%5Cleft(x-1%5Cright)%2Blog_%7B2%7DX%3D1/?origin=enterkey">symbolab&lt;/a>&lt;/p>
+&lt;p>当时病犯了，不承认自己是学渣（貌似我也不是学霸），学过的数学也完全还给了老师，肿么办。只好用 Python 中的&lt;a href="http://www.sympy.org/en/index.html">SymPy&lt;/a>来计算一下了以下方程&lt;/p>
+&lt;p>{% math_block %}
+\log_2(x-1) + \log_2x = 1
+{% endmath_block %}&lt;/p>
+&lt;p>安装&lt;code>SymPy&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">pip install sympy
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>求解，直接上代码&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">sympy&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="n">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;x&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">solve&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>结果是2，可是貌似还有一个负数解呢( &lt;code>-1&lt;/code> 哪儿去了?)&lt;/p>
+&lt;!-- more -->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">sympy&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;span class="n">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;x&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">solve&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Symbol&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;y&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">negative&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">solve&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>暂时只能通过这种方式求解了。&lt;/p></description></item><item><title>将 hexo 从2.8.3升级到了3.1.1</title><link>https://chenzaichun.github.io/post/2015-08-07-update-hexo-to-version3/</link><pubDate>Fri, 07 Aug 2015 14:23:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-07-update-hexo-to-version3/</guid><description>&lt;p>今天发现 blog 的 travis 编译貌似出问题了，很多东西都编译失败，所以尝试将 hexo 从2.8.3升级到了3.1.1，过程很顺利，通过官方文档就可以办到。&lt;/p>
+&lt;p>完成之后加入了&lt;a href="https://github.com/JamesPan/hexo-ruby-character">hexo-ruby-character&lt;/a>这个东东，安装&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">npm install hexo-ruby-character --save
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>测试一下:&lt;/p>
+&lt;blockquote>
+&lt;p>{% ruby Base|top %}
+{% ruby 佐天泪子|掀裙狂魔 %}
+{% ruby 超電磁砲|レールガン %}&lt;/p>
+&lt;/blockquote>
+&lt;p>是不是很酷:)&lt;/p>
+&lt;p>添加一下数学公式的支持吧，安装&lt;a href="https://github.com/akfish/hexo-math">hexo-math&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">npm install hexo-math --save
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>测试一下&lt;/p>
+&lt;blockquote>
+&lt;p>$$\frac{\partial u}{\partial t}
+= h^2 \left( \frac{\partial^2 u}{\partial x^2} +
+\frac{\partial^2 u}{\partial y^2} +
+\frac{\partial^2 u}{\partial z^2}\right)$$&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>{% math_block %} \begin{aligned} \dot{x} &amp;amp; = \sigma(y-x) \ \dot{y} &amp;amp; = \rho x - y - xz \ \dot{z} &amp;amp; = -\beta z + xy \end{aligned} {% endmath_block %}&lt;/p>
+&lt;/blockquote>
+&lt;p>最后来个牛逼的吧，薛定谔方程，大学物理考试貌似还复习过这个公式，虽然现在已经记不清是什么意思来着了：&lt;/p>
+&lt;p>$$ i\hbar\frac{\partial \psi}{\partial t} = \frac{-\hbar^2}{2m} \left( \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2} \right) \psi + V \psi.$$&lt;/p></description></item><item><title>bat 中启动进程并隐藏窗口</title><link>https://chenzaichun.github.io/post/2015-08-06-hide-console-window-from-batch-process-starting/</link><pubDate>Thu, 06 Aug 2015 13:08:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-06-hide-console-window-from-batch-process-starting/</guid><description>&lt;p>这几天在将产品移植到 Windows 过程中需要需要启动很多服务进程, 但是需要这么多 console 窗口很难看，所以需要在启动的过程中隐藏 console 窗口，后来在 stackoverflow 上找到了&lt;a href="http://www.commandline.co.uk/cmdow/">cmdow&lt;/a> 这个东东（关键协议还是 MIT），可以通过一下方式启动进程并隐藏窗口。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">cmdow /run /hid &amp;lt;process_to_start&amp;gt;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>remove android lock-screen pin with sqlite3</title><link>https://chenzaichun.github.io/post/2012-07-27-remove-android-lock-screen-pin-with-sqlite3/</link><pubDate>Fri, 27 Jul 2012 16:16:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-07-27-remove-android-lock-screen-pin-with-sqlite3/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">adb shell
+# sqlite3 /data/data/com.android.providers.settings/databases/settings.db
+sqlite&amp;gt; update secure set value=65536 where name=&amp;#39;lockscreen.password_type&amp;#39;;
+sqlite&amp;gt; .exit
+# exit
+adb reboot
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Debian Linux下安装pptp vpn服务器</title><link>https://chenzaichun.github.io/post/2012-07-03-install-pptp-vnp-server-on-debian-linux/</link><pubDate>Tue, 03 Jul 2012 10:03:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-07-03-install-pptp-vnp-server-on-debian-linux/</guid><description>&lt;p>首先更新:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">apt-get update
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接着我们就安装pptp服务器:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">apt-get install pptpd
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编辑&lt;code>/etc/pptpd.conf&lt;/code>, 反注释掉以下内容：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">localip 192.168.0.1
+remoteip 192.168.0.234-238,192.168.0.245
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git svn代理设置</title><link>https://chenzaichun.github.io/post/2012-01-30-git-svn-proxy-setting/</link><pubDate>Mon, 30 Jan 2012 11:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-30-git-svn-proxy-setting/</guid><description>&lt;p>git svn的代理设置需要通过修改&lt;code>~/.subversion/servers&lt;/code>文件来实现：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[groups]
+assembla = *.assembla.com
+# group1 = *.collab.net
+# othergroup = repository.blarggitywhoomph.com
+# thirdgroup = *.example.com
+[assembla]
+http-proxy-host = proxy-server
+http-proxy-port = 8080
+http-compression = yes
+username = yesokay
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

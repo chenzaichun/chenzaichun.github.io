@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Google on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/google/</link><description>Recent content in Google on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 04 Nov 2011 11:11:11 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/google/index.xml" rel="self" type="application/rss+xml"/><item><title>将google chrome设置为emacs默认浏览器</title><link>https://chenzaichun.github.io/post/2011-11-04-use_google_chrome_as_emacs_default_browser/</link><pubDate>Fri, 04 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-04-use_google_chrome_as_emacs_default_browser/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">browse-url-generic-program&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">executable-find&lt;/span> &lt;span class="s">&amp;#34;google-chrome&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nv">browse-url-browser-function&lt;/span> &lt;span class="ss">&amp;#39;browse-url-generic&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>chrome for cause作弊码</title><link>https://chenzaichun.github.io/post/2010-12-19-chrome_for_cause_cheating_code/</link><pubDate>Sun, 19 Dec 2010 19:14:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-19-chrome_for_cause_cheating_code/</guid><description>&lt;p>没有想到的是竟然真的有人去弄了个作弊码。由于对js不熟，不知道到底有没有什么副作用。木哈哈&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="nx">javascript&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="kd">var&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nx">loop&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nx">setInterval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span>&lt;span class="p">(){&lt;/span>&lt;span class="kd">var&lt;/span> &lt;span class="nx">newwin&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;http://www.google.com&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="nx">setTimeout&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span>&lt;span class="p">(){&lt;/span>&lt;span class="nx">newwin&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">close&lt;/span>&lt;span class="p">();},&lt;/span>&lt;span class="mi">500&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mi">250&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nx">clearInterval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">loop&lt;/span>&lt;span class="p">);},&lt;/span>&lt;span class="mi">500&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="k">void&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>chrome dev无法升级</title><link>https://chenzaichun.github.io/post/2010-12-18-chrome_dev_update_error/</link><pubDate>Sat, 18 Dec 2010 19:54:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-18-chrome_dev_update_error/</guid><description>&lt;p>这两天chrome dev无法升级，貌似dev版都已经升级到10.0.xxxx了，可是我还是9.0。杯具呀！错误代码：Update Server not available (error:7)&lt;/p>
+&lt;p>解决办法：&lt;a href="http://www.google.com/chrome/eula.html?extra=devchannel">Click&lt;/a>重新安装就可以了。&lt;/p></description></item><item><title>安装Chrome行善事</title><link>https://chenzaichun.github.io/post/2010-12-18-chrome_for_a_cause/</link><pubDate>Sat, 18 Dec 2010 19:14:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-18-chrome_for_a_cause/</guid><description>&lt;p>@&lt;a href="http://goo.gl/OUMAy" target="_blank">cnbeta&lt;/a>&lt;/p>
+&lt;p>安装Chrome插件，行善事。公益活动推广。&lt;br style="padding: 0px; margin: 0px;">活动日期：12月15日-19日&lt;br style="padding: 0px; margin: 0px;">给谷歌Chrome浏览器装个插件，然后从15-19日，你每打开一个新标签页，谷歌就会捐赠书籍，清水，树木，疫苗等给慈善机构。&lt;/p>
+&lt;p>&lt;strong>活动网址：&lt;/strong>&lt;a style="color: #003366; text-decoration: none; padding: 0px; margin: 0px;" href="http://www.google.com/chrome/intl/zh/p/cause/" target="_blank">&lt;a href="http://www.google.com/chrome/intl/zh/p/cause/">http://www.google.com/chrome/intl/zh/p/cause/&lt;/a>&lt;/a>&lt;/p>
+&lt;p>P.S. 貌似有点晚了，不过还有最后两天，大家可以试试看。&lt;/p></description></item><item><title>android模拟器使用代理</title><link>https://chenzaichun.github.io/post/2010-12-01-android_emulator_proxy/</link><pubDate>Wed, 01 Dec 2010 17:32:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-01-android_emulator_proxy/</guid><description>&lt;p>网上找了很多，最后总结一下最简单的方法:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">emulator -avd devicename -http-proxy &lt;span class="s2">&amp;#34;http://proxyname:port&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android调用Google Maps导航</title><link>https://chenzaichun.github.io/post/2010-11-30-android_invoke_maps_to_direction/</link><pubDate>Tue, 30 Nov 2010 17:27:32 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-30-android_invoke_maps_to_direction/</guid><description>&lt;p>直接代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">String&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">format&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;http://maps.google.com/maps?f=d&amp;amp;saddr=jiangbei,chongqing&amp;amp;daddr=shapingba,chongqing&amp;amp;hl=en&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Uri&lt;/span> &lt;span class="n">uri&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Uri&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">parse&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">s&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Intent&lt;/span> &lt;span class="n">intent&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Intent&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Intent&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ACTION_VIEW&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">uri&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">startActivity&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">intent&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android下程序直接调用Google自己的地图程序</title><link>https://chenzaichun.github.io/post/2010-11-30-android_call_google_maps_apk/</link><pubDate>Tue, 30 Nov 2010 12:37:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-30-android_call_google_maps_apk/</guid><description>&lt;p>直接贴代码吧&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">Intent&lt;/span> &lt;span class="n">intent&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Intent&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Intent&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ACTION_MAIN&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">ComponentName&lt;/span> &lt;span class="n">com&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ComponentName&lt;/span>&lt;span class="o">(&lt;/span>
+&lt;span class="s">&amp;#34;com.google.android.apps.maps&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="c1">//要打开的程序的包名
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="s">&amp;#34;com.google.android.maps.MapsActivity&amp;#34;&lt;/span> &lt;span class="c1">//程序中入口MainActivity，在Mainifent.xml查看
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="o">);&lt;/span>
+&lt;span class="n">intent&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setComponent&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">com&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">startActivity&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">intent&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Android Intent的几种用法全面总结</title><link>https://chenzaichun.github.io/post/2010-11-30-android_intent_usage/</link><pubDate>Tue, 30 Nov 2010 12:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-30-android_intent_usage/</guid><description>&lt;p>@&lt;a href="http://hi.baidu.com/devil%B6%C0%B0%AE/blog/item/5f5caf5e3ce43f48faf2c004.html" target="_blank">Devil独爱的空间 &lt;/a>&lt;/p>
+&lt;p>&lt;span class="t_tag" style="line-height: normal;">Intent&lt;/span>应该算是Android中特有的东西。你可以在Intent中指定&lt;span class="t_tag" style="line-height: normal;">程序&lt;/span>要执行的动作（比如：view,edit,dial），以及程序执行到该动作时所需要的&lt;span class="t_tag" style="line-height: normal;">资料&lt;/span>。都指定好后，只要调用startActivity()，Android&lt;span class="t_tag" style="line-height: normal;">系统&lt;/span>会自动寻找最符合你指定要求的&lt;span class="t_tag" style="line-height: normal;">应用&lt;/span>程序，并执行该程序。&lt;br style="line-height: normal;">&lt;br style="line-height: normal;">下面列出几种Intent的用法&lt;br style="line-height: normal;">显示网页:&lt;/p>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("http://www.google.com");&lt;/li>
+&lt;li style="line-height: normal;">Intent it   = new Intent(Intent.ACTION_VIEW,uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+显示地图:
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("geo:38.899533,-77.036476");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.Action_VIEW,uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+路径规划:
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("http://maps.google.com/maps?f=d&amp;saddr=startLat%20startLng&amp;daddr=endLat%20endLng&amp;hl=en");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_VIEW,URI);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+拨打电话:&lt;br style="line-height: normal;">调用拨号程序
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("tel:xxxxxx");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_DIAL, uri);  &lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("tel.xxxxxx");&lt;/li>
+&lt;li style="line-height: normal;">Intent it =new Intent(Intent.ACTION_CALL,uri);&lt;/li>
+&lt;li style="line-height: normal;">要使用这个必须在配置&lt;span class="t_tag" style="line-height: normal;">文件&lt;/span>中加入&lt;uses-permission id="&lt;span class="t_tag" style="line-height: normal;">android&lt;/span>.permission.CALL_PHONE" />&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+发送SMS/MMS&lt;br style="line-height: normal;">调用发送&lt;span class="t_tag" style="line-height: normal;">短信&lt;/span>的程序
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_VIEW);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra("sms_body", "The SMS text");&lt;/li>
+&lt;li style="line-height: normal;">it.setType("vnd.android-dir/mms-sms");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+发送短信
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("smsto:0800000123");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SENDTO, uri);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra("sms_body", "The SMS text");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+发送彩信
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("content://media/external/images/media/23");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SEND);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra("sms_body", "some text");&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_STREAM, uri);&lt;/li>
+&lt;li style="line-height: normal;">it.setType("image/png");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+发送Email
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("mailto:xxx@abc.com");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SENDTO, uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SEND);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_EMAIL, "me@abc.com");&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_TEXT, "The email body text");&lt;/li>
+&lt;li style="line-height: normal;">it.setType("text/plain");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(Intent.createChooser(it, "Choose Email Client"));  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Intent it=new Intent(Intent.ACTION_SEND);    &lt;/li>
+&lt;li style="line-height: normal;">String[] tos={"me@abc.com"};    &lt;/li>
+&lt;li style="line-height: normal;">String[] ccs={"you@abc.com"};    &lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_EMAIL, tos);    &lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_CC, ccs);    &lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_TEXT, "The email body text");    &lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_SUBJECT, "The email subject text");    &lt;/li>
+&lt;li style="line-height: normal;">it.setType("message/rfc822");    &lt;/li>
+&lt;li style="line-height: normal;">startActivity(Intent.createChooser(it, "Choose Email Client"));&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+添加附件
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SEND);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_SUBJECT, "The email subject text");&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_STREAM, "file:///sdcard/mysong.mp3");&lt;/li>
+&lt;li style="line-height: normal;">sendIntent.setType("audio/mp3");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(Intent.createChooser(it, "Choose Email Client"));&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;span class="t_tag" style="line-height: normal;">播放&lt;/span>多媒体
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">  &lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_VIEW);&lt;/li>
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("file:///sdcard/song.mp3");&lt;/li>
+&lt;li style="line-height: normal;">it.setDataAndType(uri, "audio/mp3");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.withAppendedPath(MediaStore.Audio.Media.INTERNAL_CONTENT_URI, "1");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_VIEW, uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+Uninstall 程序
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.fromParts("package", strPackageName, null);&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_DELETE, uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div></description></item><item><title>MapView中画图</title><link>https://chenzaichun.github.io/post/2010-10-10-mapview_overlay/</link><pubDate>Sun, 10 Oct 2010 23:16:17 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-10-10-mapview_overlay/</guid><description>&lt;p>通过Overlay的方式画图，不废话了，直接代码吧。需要完整代码的这里下载：&lt;a href="http://commondatastorage.googleapis.com/czc_public/code/android/maptest2.tar.gz" target="_blank">猛击这里&lt;/a>&lt;/p>
+&lt;p>参考链接： &lt;a href="http://westyi.blogbus.com/logs/69324000.html">&lt;a href="http://westyi.blogbus.com/logs/69324000.html">http://westyi.blogbus.com/logs/69324000.html&lt;/a>&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.appspot.zaichunchen&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">android.graphics.Bitmap&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">android.graphics.Canvas&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">android.graphics.Point&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.google.android.maps.GeoPoint&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.google.android.maps.MapView&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.google.android.maps.Overlay&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.google.android.maps.Projection&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * Map Overlay
+&lt;/span>&lt;span class="cm"> *
+&lt;/span>&lt;span class="cm"> * @author ChenZaichun
+&lt;/span>&lt;span class="cm"> *
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Marker&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Overlay&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">GeoPoint&lt;/span> &lt;span class="n">point&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">bmp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">Point&lt;/span> &lt;span class="n">deviation&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> *
+&lt;/span>&lt;span class="cm"> * @param point
+&lt;/span>&lt;span class="cm"> * GeoPoint of icon
+&lt;/span>&lt;span class="cm"> * @param bmp
+&lt;/span>&lt;span class="cm"> * Icon Bitmap
+&lt;/span>&lt;span class="cm"> * @param deviation
+&lt;/span>&lt;span class="cm"> * icon offset, use window coordinates (left --&amp;gt; right, up --&amp;gt; down)
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="nf">Marker&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">GeoPoint&lt;/span> &lt;span class="n">point&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">bmp&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Point&lt;/span> &lt;span class="n">deviation&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">point&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">point&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">bmp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">bmp&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">deviation&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">deviation&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * Draw the icon
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="nd">@Override&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">draw&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Canvas&lt;/span> &lt;span class="n">canvas&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">MapView&lt;/span> &lt;span class="n">mapView&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kt">boolean&lt;/span> &lt;span class="n">shadow&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(!&lt;/span>&lt;span class="n">shadow&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>&lt;span class="c1">// not the shadow layer
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Projection&lt;/span> &lt;span class="n">projection&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">mapView&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProjection&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">point&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="kc">null&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">bmp&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Point&lt;/span> &lt;span class="n">pos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">projection&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">toPixels&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">point&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//add offset
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">canvas&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">drawBitmap&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">bmp&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">pos&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">deviation&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">x&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">pos&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">y&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">deviation&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">y&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用的方法：&lt;/p></description></item><item><title>Android地图MapView</title><link>https://chenzaichun.github.io/post/2010-10-10-android_google_map_view/</link><pubDate>Sun, 10 Oct 2010 17:17:17 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-10-10-android_google_map_view/</guid><description>&lt;p>今天想在android使用Google地图，查了一下，难点就是要自己去申请一个api key，不然是不能够正确获取地图服务的。方法如下：&lt;/p>
+&lt;ol>
+&lt;li>查看debug key的md5 finger，如果在windows下，自己去“打开Eclipse&amp;mdash;&amp;gt;Windows&amp;mdash;&amp;gt;Preferences&amp;mdash;&amp;gt;Android&amp;mdash;&amp;gt;Build，查看默认的debug keystore位置”&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">keytool -list -alias androiddebugkey -keystore ~/.android/debug.keystore&lt;span class="s2">&amp;#34; -storepass android -keypass android
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>得到&lt;/p></description></item><item><title>archlinux x86_64安装google-talkplugin</title><link>https://chenzaichun.github.io/post/2010-09-21-archlinux_google_talkplugin_x86_64/</link><pubDate>Tue, 21 Sep 2010 18:17:15 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-21-archlinux_google_talkplugin_x86_64/</guid><description>&lt;p>要想在gmail里面使用视频，音频或者打电话，需要安装google-talkplugin，官方网站提供了deb和rpm包，archlinux下安装可以通过aur安装&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">yaourt -S google-talkplugin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这个时候直接不能安装，因为安装过程会提示lib32-openssl-compatible找不到，修改PKGBUILD，改为lib32-openssl
+然后安装之后，会发现启动不了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[226:202] Waiting for GoogleTalkPlugin to start...
+[227:297] Warning(clientchannel.cc:583): Unreadable or no port file. Could not initiate GoogleTalkPlugin connection
+[227:298] Warning(clientchannel.cc:439): Could not initiate GoogleTalkPlugin connection
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>执行/opt/google/talkplugin/GoogleTalkPlugin会提示找不到libssl.so.0.9.8&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">./GoogleTalkPlugin: error while loading shared libraries: libssl.so.0.9.8: cannot open shared object file: No such file or directory
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>创建一个软链接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo ln -s /usr/lib32/libssl.so.1.0.0 /usr/lib32/libssl.so.0.9.8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>还缺少一个东东&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">./GoogleTalkPlugin: error while loading shared libraries: libcrypto.so.0.9.8: cannot open shared object file: No such file or directory
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>再创建一个软链接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo ln -s /usr/lib32/libcrypto.so.1.0.0 /usr/lib32/libcrypto.so.0.9.8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>（注意，file GoogleTalkPlugin竟然是一个32位的elf）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="o">[&lt;/span>chenzaichun@czc-laptop talkplugin&lt;span class="o">]&lt;/span>$ file GoogleTalkPlugin
+GoogleTalkPlugin: ELF 32-bit LSB executable, Intel 80386, version &lt;span class="m">1&lt;/span> &lt;span class="o">(&lt;/span>SYSV&lt;span class="o">)&lt;/span>, dynamically linked &lt;span class="o">(&lt;/span>uses shared libs&lt;span class="o">)&lt;/span>, stripped
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>所以链接目录应该在/usr/lib32，而不是/usr/lib&lt;/p>
+&lt;p>完毕，可以正常使用了。&lt;/p></description></item><item><title>chrome代理相关命令行总结</title><link>https://chenzaichun.github.io/post/2010-09-16-chrome_proxy_.md_arg/</link><pubDate>Thu, 16 Sep 2010 17:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-16-chrome_proxy_.md_arg/</guid><description>&lt;p>chrome关于代理的命令行参数有：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">--proxy-auto-detect --proxy-pac-url=http://xxx.xxx.com // 使用自动在线pac代理
+--proxy-auto-detect --proxy-pac-url=file:///pac-file-path // 使用本地pac文件自动代理
+--proxy-server=127.0.0.1:8000 // 使用http代理
+--proxy-server=socks5://127.0.0.1:8000 // 使用socks5代理
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>原来chromium不支持youtube html5</title><link>https://chenzaichun.github.io/post/2010-09-05-chrome_html5/</link><pubDate>Sun, 05 Sep 2010 17:32:36 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-05-chrome_html5/</guid><description>&lt;p>今天用chromium打开youtube用html5播放，提示浏览器不支持，可是原来用chrome的时候是可以直接看的。google发现，chromium没有带解码，无奈之下只好重新安装chrome。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">yaourt -S google-chrome-dev
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>幸好aur中用chrome dev channel&lt;/p></description></item><item><title>使用诺顿dns服务器</title><link>https://chenzaichun.github.io/post/2010-06-06-norton_google_dns/</link><pubDate>Sun, 06 Jun 2010 21:19:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-06-norton_google_dns/</guid><description>&lt;p>今天将dns服务器换为诺顿的和google的了，诺顿默认情况下给出了一些危险网站的建议，加上google chrome的危险建议，所以相对来说上网就比较安全，我的dns服务器配置 cat /etc/resolve.conf&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">nameserver 198.153.192.1
+nameserver 8.8.8.8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

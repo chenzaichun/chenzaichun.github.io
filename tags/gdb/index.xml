@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gdb on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/gdb/</link><description>Recent content in gdb on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 24 Apr 2011 19:44:31 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/gdb/index.xml" rel="self" type="application/rss+xml"/><item><title>GDB远程调试</title><link>https://chenzaichun.github.io/post/2011-04-24-gdb_remote_debuging/</link><pubDate>Sun, 24 Apr 2011 19:44:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-gdb_remote_debuging/</guid><description>&lt;p>参考链接：&lt;a href="http://blog.csdn.net/fertiland/archive/2008/01/01/2007533.aspx">&lt;a href="http://blog.csdn.net/fertiland/archive/2008/01/01/2007533.aspx">http://blog.csdn.net/fertiland/archive/2008/01/01/2007533.aspx&lt;/a>&lt;/a>&lt;/p>
+&lt;p>前面已经做好跨平台的交叉编译的工作，如果需要调试怎么办呢？这个时候就可以GDB的远程调试来实现。&lt;/p>
+&lt;p>P.S. 如果没有windows的GDB，可以去&lt;a href="http://www.gnu.org/software/gdb/" target="_blank">下载&lt;/a>或者自行编译。
+在windows端执行 &lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gdbserver localhost:2345 photorec.exe
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在archlinux下执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 这里我用的virtualbox，所以ip为10.0.2.2，请自行替换成windows的ip&lt;/span>
+&lt;span class="nv">$gdb&lt;/span> photorec.exe
+gdb&amp;gt; target remote 10.0.2.2:2345
+gdb &amp;gt; ....
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>gdb保存和加载断点等信息</title><link>https://chenzaichun.github.io/post/2011-04-19-gdb_save_breakpoints/</link><pubDate>Tue, 19 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-19-gdb_save_breakpoints/</guid><description>&lt;p>刚开始使用gdb，在重启gdb的时候断点、环境变量等信息都必须重新设置，感觉很不方便。不过gdb提供了.gdbinit，可以方便的在启动的时候对gdb进行设置。比如下面用于保存和加载breakpoints&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">define bsave
+shell rm -f brestore.txt
+set logging file brestore.txt
+set logging on
+info break
+set logging off
+# reformat on-the-fly to a valid gdb command file
+shell perl -n -e &amp;#39;print &amp;#34;break $1n&amp;#34; if /^d+.+?(S+)$/g&amp;#39; brestore.txt &amp;gt; brestore.gdb
+end
+document bsave
+store actual breakpoints
+end
+define brestore
+source brestore.gdb
+end
+document brestore
+restore breakpoints saved by bsave
+end
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>调用bsave保存breakpoints，调用bresotre加载breakpoints。
+再如对于调试ncurses的设置：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">define settty
+tty /dev/pts/$arg0
+end
+define setterminfo
+set env TERM=xterm
+set env COLUMNS=144
+set env LINES=29
+end
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

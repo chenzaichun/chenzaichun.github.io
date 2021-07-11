@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>svn on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/svn/</link><description>Recent content in svn on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 07 Jun 2012 13:30:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/svn/index.xml" rel="self" type="application/rss+xml"/><item><title>修改SVN中已提交的日志</title><link>https://chenzaichun.github.io/post/2012-06-07-modify-svn-log/</link><pubDate>Thu, 07 Jun 2012 13:30:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-06-07-modify-svn-log/</guid><description>&lt;p>默认情况下，subversion server是不允许客户端修改提交后的任何东西的。如果想修改服务器端的配置，请移步&lt;a href="http://blog.csdn.net/karl_max/article/details/7035866">这里&lt;/a>&lt;/p>
+&lt;p>在服务器端已经配置好的情况下，可以使用以下命令来修改:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nv">$svn&lt;/span> propedit -r N --revprop svn:log URL
+&lt;span class="nv">$svn&lt;/span> propset -r N --revprop svn:log &lt;span class="s2">&amp;#34;new log message&amp;#34;&lt;/span> URL
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果想修改最后提交版本的log，可以使用:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ svn propedit -r &lt;span class="s1">&amp;#39;HEAD&amp;#39;&lt;/span> --revprop svn:log
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这时候svn会读取原来log并打开默认编辑器进行修改。&lt;/p></description></item><item><title>windows下编译subversion的Python绑定（附下载）</title><link>https://chenzaichun.github.io/post/2011-01-16-compile_subversion_python2-7_binding_on_windows/</link><pubDate>Sun, 16 Jan 2011 19:14:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-16-compile_subversion_python2-7_binding_on_windows/</guid><description>&lt;p>由于svn的python绑定一直没有推出python2.7的版本，所以只好自己编译了。参考链接：&lt;a href="http://www.lejordet.com/2009/03/compiling-subversion-python-bindings-on-windows/">&lt;a href="http://www.lejordet.com/2009/03/compiling-subversion-python-bindings-on-windows/">http://www.lejordet.com/2009/03/compiling-subversion-python-bindings-on-windows/&lt;/a>&lt;/a>&lt;/p>
+&lt;ol>
+&lt;li>首先下载swig的windows bin，下载地址：&lt;a href="http://www.swig.org/download.html">&lt;a href="http://www.swig.org/download.html">http://www.swig.org/download.html&lt;/a>&lt;/a>，并解压到目录A&lt;/li>
+&lt;li>下载subversion源代码：&lt;a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=10339&amp;expandFolder=10339&amp;folderID=260">&lt;a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=10339&amp;amp;expandFolder=10339&amp;amp;folderID=260">http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=10339&amp;amp;expandFolder=10339&amp;amp;folderID=260&lt;/a>&lt;/a>，并解压到目录A&lt;/li>
+&lt;li>在下面的链接中下载对应版本的deps&lt;span style="color: #ff0000;">（windows下要下载zip格式的文件，不然vc的dsp文件会用错误的line ending而无法打开）&lt;/span>，并解压到目录A&lt;/li>
+&lt;li>cd到目录A，执行命令生成vc的solution文件&lt;span style="color: #ff0000;">（注意自己对应相应的目录，并使用绝对路径）&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gen-make.py -t vcproj --vsnet-version&lt;span class="o">=&lt;/span>&lt;span class="m">2008&lt;/span> --with-swig&lt;span class="o">=&lt;/span>c:homesrcsubversionswig --with-zlib&lt;span class="o">=&lt;/span>c:homesrcsubversionsubversionzlib --with-apr&lt;span class="o">=&lt;/span>c:homesrcsubversionsubversionapr --with-apr-util&lt;span class="o">=&lt;/span>c:homesrcsubversionsubversionapr-util --with-apr-iconv&lt;span class="o">=&lt;/span>c:homesrcsubversionsubversionapr-iconv
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="5">
+&lt;li>cd到apr目录，用vc打开apr.dsw，并编译工程&lt;/li>
+&lt;li>cd到apr-util目录，编译apr-util.dsw，当询问xxx project已经存在，是否加载的时候，选择yes。有些工程可能编译不过，不用管它&lt;/li>
+&lt;li>编译根目录下subversion_vcnet.sln，有些工程编译不过，不用管它&lt;/li>
+&lt;li>创建一个目录B，拷贝subversionbindingsswigpython下svn目录到B&lt;/li>
+&lt;li>在B目录下创建一个目录libsvn，拷贝bindingsswigpython下的*.py到libsvn&lt;/li>
+&lt;li>在根目录下搜索*.dll，并拷贝到libsvn目录下&lt;/li>
+&lt;li>重命名所有已_开头的dll为pyd。&lt;/li>
+&lt;li>拷贝B目录下的svn和libsvn目录到&lt;PYTHON>Libsite-packages目录下&lt;/li>
+&lt;li>测试是否正常工作：在python的cmd下输入&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">svn&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">core&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="14">
+&lt;li>如果有错误发生，一般是缺少dll的问题，再次确认所有dll都拷贝到libsvn目录下。
+这里附上我的编译结果（解压到&lt;Python>Libsite-packages目录下即可使用）：
+&lt;a href="http://commondatastorage.googleapis.com/czc_public/appspotmedia/svn-python-1.6.13.win32-py2.7.7z" target="_blank">svn-python-1.6.13.win32-py2.7.7z&lt;/a> 
+&lt;a href="http://commondatastorage.googleapis.com/czc_public/appspotmedia/svn-python-1.6.13.win32-py2.7.zip" target="_blank">svn-python-1.6.13.win32-py2.7.zip&lt;/a> &lt;/li>
+&lt;/ol></description></item></channel></rss>

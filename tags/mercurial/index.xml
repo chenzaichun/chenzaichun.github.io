@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mercurial on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/mercurial/</link><description>Recent content in mercurial on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 30 Nov 2011 10:20:30 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/mercurial/index.xml" rel="self" type="application/rss+xml"/><item><title>为Mercurial（hg）添加进度条</title><link>https://chenzaichun.github.io/post/2011-11-30-mercurial-hg-add-progress/</link><pubDate>Wed, 30 Nov 2011 10:20:30 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-30-mercurial-hg-add-progress/</guid><description>&lt;p>hg1.5之后内置了progress扩展，可以直接启用：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[extensions]
+progress =
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>hg合并多个repository</title><link>https://chenzaichun.github.io/post/2011-06-25-hg_merge_repositories/</link><pubDate>Sat, 25 Jun 2011 19:44:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-06-25-hg_merge_repositories/</guid><description>&lt;p>假如我已经有了一个repo A，并且其中有了一些change set。现在有另外一个repo B，同时里面也有一些change set。现在我想把B移到A中的一个目录，并且保留所有的change set。在mercurial中应该怎么办呢？&lt;/p>
+&lt;ol>
+&lt;li>通过pull -f的方式&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">hg clone A Adir
+&lt;span class="nb">cd&lt;/span> Adir
+hg pull -f B
+hg merge
+hg commit
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>通过subrepo的方式，传送门&lt;a href="http://mercurial.selenic.com/wiki/Subrepository">&lt;a href="http://mercurial.selenic.com/wiki/Subrepository">http://mercurial.selenic.com/wiki/Subrepository&lt;/a>&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;p>这里第一种方法适用，第二种方法适用与子项目或者库的情况.&lt;/p></description></item><item><title>hg certificate warnings</title><link>https://chenzaichun.github.io/post/2011-01-16-hg_cert_warning/</link><pubDate>Sun, 16 Jan 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-16-hg_cert_warning/</guid><description>&lt;p>升级到mercurial 1.7.3之后，频繁会遇到像这样的错误：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">warning: bitbucket.org certificate not verified (check web.cacerts config setting)
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法，参考链接：&lt;a href="http://mercurial.selenic.com/wiki/CACertificates">&lt;a href="http://mercurial.selenic.com/wiki/CACertificates">http://mercurial.selenic.com/wiki/CACertificates&lt;/a>&lt;/a>&lt;/p>
+&lt;p>下载&lt;a href="http://curl.haxx.se/ca/cacert.pem" target="_blank">&lt;a href="http://curl.haxx.se/ca/cacert.pem">http://curl.haxx.se/ca/cacert.pem&lt;/a>&lt;/a>到本地，然后在～/.hgrc里面添加这样一句：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[web]
+cacerts=/path/to/cacert.pem
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或者直接禁用：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[web]
+cacerts =
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>hg-git--hg下直接操作git</title><link>https://chenzaichun.github.io/post/2011-01-16-hg-git/</link><pubDate>Sun, 16 Jan 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-16-hg-git/</guid><description>&lt;p>hg和git各有各的优势，git一直以来对windows的支持都不太好（尤其是有中文文件名的情况下），所以我一直都用hg。但是很多时候需要clone git的代码仓库，这个时候就安装一个msys-git吧（这个家伙的块头也不小，带了一个基本上完整的MinGW）。&lt;/p>
+&lt;p>今天无意中发了&lt;a href="http://hg-git.github.com/" target="_blank">hg-git&lt;/a>，可以直接使用hg的命令操作git仓库，而且不需要安装git。最简单的安装方法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">easy_install hg-git
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后修改 =～/.hgrc=&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[extensions]
+hgext.bookmarks =
+hggit =
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接下里就是repo操作了：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">hg clone git://github.com/schacon/munger.git
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接着这里看起来是不是很爽：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ &lt;span class="nb">cd&lt;/span> hg-git &lt;span class="c1"># (a Mercurial repository)&lt;/span>
+$ hg bookmark -r default master &lt;span class="c1"># make a bookmark of master for default, so a ref gets created&lt;/span>
+$ hg push git+ssh://git@github.com/schacon/hg-git.git
+$ hg push
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>大功告成&lt;/p></description></item><item><title>免费private mercurial服务</title><link>https://chenzaichun.github.io/post/2010-11-29-free_private_mercurial_service/</link><pubDate>Fri, 19 Nov 2010 23:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-29-free_private_mercurial_service/</guid><description>&lt;p>上面提到了git，这里考虑一下hg吧，推荐的是&lt;a href="http://bitbucket.org" target="_blank">bitbucket.org&lt;/a>，同样5用户，没有磁盘空间限制，适合使用mercurial的小团队使用。&lt;/p></description></item><item><title>mercurial hg代理设置</title><link>https://chenzaichun.github.io/post/2010-05-16-mercurial_hg_proxy/</link><pubDate>Sun, 16 May 2010 17:11:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-16-mercurial_hg_proxy/</guid><description>&lt;p>由于在教育网中,sf上面的代码访问很慢,考虑为mercurial hg增加代理访问. 修改~/.hgrc, 增加&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[http_proxy]
+host=127.0.0.1:8580
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>详细的hgrc配置见官方文档: &lt;a href="http://www.selenic.com/mercurial/hgrc.5.html" target="_blank">&lt;a href="http://www.selenic.com/mercurial/hgrc.5.html">http://www.selenic.com/mercurial/hgrc.5.html&lt;/a>&lt;/a>&lt;/p></description></item><item><title>google code hg 保存密码</title><link>https://chenzaichun.github.io/post/2010-05-07-google_code_hg_password_save/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-google_code_hg_password_save/</guid><description>&lt;p>hg不能像svn那样保存密码，每次都要输入密码不太方便，可以通过&lt;/p>
+&lt;p>编辑工程目录下&lt;code>.hg/hgrc&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[paths]
+default = https://projectname.googlecode.com/hg
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>把密码和用户名填到&lt;code>URL&lt;/code>里就行啦&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[paths]
+default = https://user:pwd@projectname.googlecode.com/hg
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

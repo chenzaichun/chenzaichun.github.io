@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>opengl on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/categories/opengl/</link><description>Recent content in opengl on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 07 May 2010 11:11:11 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/categories/opengl/index.xml" rel="self" type="application/rss+xml"/><item><title>获取glsl version</title><link>https://chenzaichun.github.io/post/2010-05-07-get_glsl_version/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-get_glsl_version/</guid><description>&lt;p>直接上代码:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="kt">void&lt;/span> &lt;span class="nf">getGlslVersion&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">major&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">minor&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">gl_major&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">gl_minor&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">getGlVersion&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">gl_major&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">gl_minor&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">*&lt;/span>&lt;span class="n">major&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">minor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">gl_major&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// GL v1.x can only provide GLSL v1.00 as an extension
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">extstr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">glGetString&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GL_EXTENSIONS&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">extstr&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="n">strstr&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">extstr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;GL_ARB_shading_lanuage_100&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="o">*&lt;/span>&lt;span class="n">major&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="o">*&lt;/span>&lt;span class="n">minor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">gl_major&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// GL v2.0 and greater must parse the version string
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">verstr&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">glGetString&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GL_SHADING_LANGUAGE_VERSION&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">verstr&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">||&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="n">sscanf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">verstr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;%d.%d&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">major&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">minor&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="o">*&lt;/span>&lt;span class="n">major&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">minor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">fprintf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">stderr&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s">&amp;#34;Invalid GL_SHADING_LANGUAGE_VERSION format!!!n&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

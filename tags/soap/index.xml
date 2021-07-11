@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>soap on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/soap/</link><description>Recent content in soap on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 03 Feb 2012 23:32:11 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/soap/index.xml" rel="self" type="application/rss+xml"/><item><title>MacOS X上编译gSOAP</title><link>https://chenzaichun.github.io/post/2012-02-03-compile-gsoap-on-mac-os-x/</link><pubDate>Fri, 03 Feb 2012 23:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-03-compile-gsoap-on-mac-os-x/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">automake --ignore-deps &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./configure &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果要编译universal版本，则使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">automake --ignore-deps &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./configure &lt;span class="nv">CFLAGS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-arch ppc -arch i386&amp;#34;&lt;/span> &lt;span class="nv">LDFLAGS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-arch ppc -arch i386&amp;#34;&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

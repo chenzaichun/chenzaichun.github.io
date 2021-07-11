@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>apache on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/apache/</link><description>Recent content in apache on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 08 May 2010 11:12:23 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/apache/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache 2 启动错误的解决</title><link>https://chenzaichun.github.io/post/2010-05-08-apache2_start_error/</link><pubDate>Sat, 08 May 2010 11:12:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-apache2_start_error/</guid><description>&lt;p>&lt;a href="http://www.ourcampus.cn/blog/?action=show&amp;amp;id=27">参考地址&lt;/a>&lt;/p>
+&lt;p>启动Apache服务，测试一下环境是否正确，在浏览器中输入 &lt;a href="http://127.0.0.1/">http://127.0.0.1&lt;/a> 或是 &lt;a href="http://localhost/">http://localhost&lt;/a> 均半天不出页面，查看Apache状态为启动，估计Apache有问题，于是转到Apache安装目录的logs目录下，发现果然有一个error.log, 打开看到里面的内容如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[Thu Nov 22 15:19:53 2007] [notice] Parent: Created child process 2816
+[Thu Nov 22 15:19:53 2007] [notice] Child 2816: Child process is running
+[Thu Nov 22 15:19:53 2007] [crit] (OS 10022)提供了一个无效的参数。Child 2816:
+setup_inherited_listeners(), WSASocket failed to open the inherited
+socket.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决方案如下：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>网上邻居-&amp;gt;本地连接-&amp;gt;属性-&amp;gt;Internet协议(TCP/IP)-&amp;gt;属性-&amp;gt;高级-&amp;gt;WINS标签 -&amp;gt;去掉启用LMhosts查询前的勾。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>网上邻居-&amp;gt;本地连接-&amp;gt;属性-&amp;gt;Internet协议 (TCP/IP)-&amp;gt;属性-&amp;gt;高级-&amp;gt;WINS标签-&amp;gt;NetBOIS设置-&amp;gt;禁用 TCP/IP 上的 NetBOIS。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>控制面版-&amp;gt;Windows防火墙-&amp;gt;高级标签-&amp;gt;本地连接设置-&amp;gt;服务标签-&amp;gt;勾 选安全Web服务器(HTTPS)。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>按照上面的步骤做完，问题解决。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>archlinux on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/archlinux/</link><description>Recent content in archlinux on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 03 Jan 2013 17:47:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/archlinux/index.xml" rel="self" type="application/rss+xml"/><item><title>archlinux下启用virtualbox service</title><link>https://chenzaichun.github.io/post/2013-01-13-archlinux-enable-vbox-service/</link><pubDate>Thu, 03 Jan 2013 17:47:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2013-01-13-archlinux-enable-vbox-service/</guid><description>&lt;p>安装好 &lt;code>virtualbox-guest-utils&lt;/code> 之后，没有并没有启用 &lt;code>vboxservice&lt;/code>, 这个时候如果windows休眠，则archlinux的时间将不会跟host同步，需要启动vboxservice才行。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">systemctl &lt;span class="nb">enable&lt;/span> vboxservice.service
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重启之后生效，当然也可以直接启动&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">systemctl start vboxservice.service
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>virtualbox也提供了参数来控制同步，详情见&lt;a href="http://www.virtualbox.org/manual/ch09.html#changetimesync">这里&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">VBoxManage guestproperty &lt;span class="nb">set&lt;/span> “the name of your guest VM” “/VirtualBox/GuestAdd/VBoxService/–timesync-set-threshold” &lt;span class="m">15000&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>删除git submodule</title><link>https://chenzaichun.github.io/post/2012-12-26-git-submodule-remove/</link><pubDate>Wed, 26 Dec 2012 14:02:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-12-26-git-submodule-remove/</guid><description>&lt;p>git并没有提供删除submodule的方法，只有手动删除。&lt;/p>
+&lt;ol>
+&lt;li>删除&lt;code>.gitmodules&lt;/code>下submodule的信息&lt;/li>
+&lt;li>删除&lt;code>.git/config&lt;/code>下submodule的信息&lt;/li>
+&lt;li>git rm &amp;ndash;cache &amp;lt;submodule/path&amp;gt;&lt;/li>
+&lt;/ol></description></item><item><title>archlinux下修改默认中文字体</title><link>https://chenzaichun.github.io/post/2012-12-26-archlinux-fontconfig-for-chinese/</link><pubDate>Wed, 26 Dec 2012 11:17:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-12-26-archlinux-fontconfig-for-chinese/</guid><description>&lt;p>archlinux中的字体看起来真的很搓，试过ubuntu patch过的版本，还是不尽如人意。后来发现了&lt;code>fontconfig-infinality&lt;/code>, 整个世界突然美好了。跟windows下的&lt;code>MacType&lt;/code>差不多。&lt;/p>
+&lt;p>当我将ibus换成fcitx之后，问题又出现了，3.6版本之后的fcitx竟然没有字体设置了，对于字体的控制必须使用fontconfig。这必须的修改默认的中文字体。&lt;/p></description></item><item><title>colored man page output</title><link>https://chenzaichun.github.io/post/2011-10-28-colored_man_page_output/</link><pubDate>Fri, 28 Oct 2011 10:11:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-28-colored_man_page_output/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># colorful man page&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">PAGER&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;`which less` -s&amp;#34;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">BROWSER&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$PAGER&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_mb&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;34m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_md&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;34m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_me&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[0m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_se&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[0m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_so&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;44;33m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_ue&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[0m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_us&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;33m&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>GDB远程调试</title><link>https://chenzaichun.github.io/post/2011-04-24-gdb_remote_debuging/</link><pubDate>Sun, 24 Apr 2011 19:44:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-gdb_remote_debuging/</guid><description>&lt;p>参考链接：&lt;a href="http://blog.csdn.net/fertiland/archive/2008/01/01/2007533.aspx">&lt;a href="http://blog.csdn.net/fertiland/archive/2008/01/01/2007533.aspx">http://blog.csdn.net/fertiland/archive/2008/01/01/2007533.aspx&lt;/a>&lt;/a>&lt;/p>
+&lt;p>前面已经做好跨平台的交叉编译的工作，如果需要调试怎么办呢？这个时候就可以GDB的远程调试来实现。&lt;/p>
+&lt;p>P.S. 如果没有windows的GDB，可以去&lt;a href="http://www.gnu.org/software/gdb/" target="_blank">下载&lt;/a>或者自行编译。
+在windows端执行 &lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gdbserver localhost:2345 photorec.exe
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在archlinux下执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 这里我用的virtualbox，所以ip为10.0.2.2，请自行替换成windows的ip&lt;/span>
+&lt;span class="nv">$gdb&lt;/span> photorec.exe
+gdb&amp;gt; target remote 10.0.2.2:2345
+gdb &amp;gt; ....
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux下使用MinGW交叉编译testdisk</title><link>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_testdisk/</link><pubDate>Sun, 24 Apr 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_testdisk/</guid><description>&lt;p>前面已经配置好了MinGW的交叉编译环境，现在就可以在archlinux下编译testdisk了。由于testdisk需要curses的支持，可以使用PDcureses。&lt;/p>
+&lt;p>安装PDCurses&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">yaourt -S mingw32-pdcurses
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编译testdisk&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">./configure --host&lt;span class="o">=&lt;/span>i486-mingw32 --disable-missing-uuid-ok &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样就编译好了。在windows下运行发现没有问题。:) （终于可以不用忍受windows下mingw的蜗牛速度了）&lt;/p></description></item><item><title>archlinux搭建MinGW跨平台编译环境</title><link>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_environment/</link><pubDate>Sun, 24 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_environment/</guid><description>&lt;p>由于MinGW在Windows上的速度实在不敢恭维，所以决定在archlinux下搭建MinGW的跨平台编译环境。方法有两种。&lt;/p>
+&lt;ol>
+&lt;li>通过安装community中的mingw32-gcc实现&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 安装mingw32-gcc就行，其他的如mingw32-base, mingw32-runtime...等会作为依赖安装&lt;/span>
+sudo pacman -S mingw32-gcc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这种方法安装了最基本的编译环境，如果需要其他的库，则需要自行编译或者通过aur安装。&lt;/p>
+&lt;ol start="2">
+&lt;li>通过MinGW cross compiling environment来实现。&lt;a href="http://mingw-cross-env.nongnu.org/">&lt;a href="http://mingw-cross-env.nongnu.org">http://mingw-cross-env.nongnu.org&lt;/a>&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1">#1. 下载&lt;/span>
+wget https://bitbucket.org/vog/mingw-cross-env/downloads/mingw-cross-env-2.20.tar.gz
+&lt;span class="c1">#2. 解压&lt;/span>
+tar -xzvf mingw-cross-env-2.20.tar.gz
+&lt;span class="c1">#3. 移动到/opt目录（可选）&lt;/span>
+mv mingw-cross-env-2.20 /opt/mingw
+&lt;span class="c1">#4. 安装&lt;/span>
+su -
+&lt;span class="nb">cd&lt;/span> /opt/mingw
+make
+&lt;span class="c1">#5. 其他的包可以参见mingw-cross-env的文档&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux下安装oracle 10g enterprise</title><link>https://chenzaichun.github.io/post/2011-04-08-install_oracle_10g_enterprise_on_archlinux/</link><pubDate>Fri, 08 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-08-install_oracle_10g_enterprise_on_archlinux/</guid><description>&lt;p>按照arch wiki做就可以了。参考链接&lt;a href="https://wiki.archlinux.org/index.php/Oracle">&lt;a href="https://wiki.archlinux.org/index.php/Oracle">https://wiki.archlinux.org/index.php/Oracle&lt;/a>&lt;/a>&lt;/p>
+&lt;p>这里，安装ksh的步骤可以跳过，直接安装pdksh&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S pdksh
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装过程中可能在62%左右提示一个错误，点continue不影响使用。&lt;/p>
+&lt;p>默认安装完成之后，重新启动archlinux之后，oracle是不会启动的。手动启动的方法：&lt;/p>
+&lt;ol>
+&lt;li>su - oracle # 这里得以oracle启动&lt;/li>
+&lt;li>sqlplus /nologo&lt;/li>
+&lt;li>sql> conn / as sysdba&lt;/li>
+&lt;li>sql> startup&lt;/li>
+&lt;li>sql> exit&lt;/li>
+&lt;li>lsnrctl start&lt;/li>
+&lt;/ol></description></item><item><title>yaourt代理设置</title><link>https://chenzaichun.github.io/post/2011-03-01-yaourt_proxy/</link><pubDate>Tue, 01 Mar 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-03-01-yaourt_proxy/</guid><description>&lt;p>一直以来不知道原来yaourt是调用makepkg来实现下载、编译、安装的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">cat /etc/makepkg.conf
+DLAGENTS=(&amp;#39;ftp::/usr/bin/wget -c --passive-ftp -t 3 --waitretry=3 -O %o %u&amp;#39;
+&amp;#39;http::/usr/bin/wget -c -t 3 --waitretry=3 -O %o %u&amp;#39;
+&amp;#39;https::/usr/bin/wget -c -t 3 --waitretry=3 --no-check-certificate -O %o %u&amp;#39;
+&amp;#39;rsync::/usr/bin/rsync -z %u %o&amp;#39;
+&amp;#39;scp::/usr/bin/scp -C %u %o&amp;#39;)
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>很多时候可能用到了rsync的协议，所以添加一个RSYNC_PROX的环境变量比较保险。&lt;/p></description></item><item><title>archlinux x86_64安装google-talkplugin</title><link>https://chenzaichun.github.io/post/2010-09-21-archlinux_google_talkplugin_x86_64/</link><pubDate>Tue, 21 Sep 2010 18:17:15 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-21-archlinux_google_talkplugin_x86_64/</guid><description>&lt;p>要想在gmail里面使用视频，音频或者打电话，需要安装google-talkplugin，官方网站提供了deb和rpm包，archlinux下安装可以通过aur安装&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">yaourt -S google-talkplugin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这个时候直接不能安装，因为安装过程会提示lib32-openssl-compatible找不到，修改PKGBUILD，改为lib32-openssl
+然后安装之后，会发现启动不了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[226:202] Waiting for GoogleTalkPlugin to start...
+[227:297] Warning(clientchannel.cc:583): Unreadable or no port file. Could not initiate GoogleTalkPlugin connection
+[227:298] Warning(clientchannel.cc:439): Could not initiate GoogleTalkPlugin connection
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>执行/opt/google/talkplugin/GoogleTalkPlugin会提示找不到libssl.so.0.9.8&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">./GoogleTalkPlugin: error while loading shared libraries: libssl.so.0.9.8: cannot open shared object file: No such file or directory
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>创建一个软链接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo ln -s /usr/lib32/libssl.so.1.0.0 /usr/lib32/libssl.so.0.9.8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>还缺少一个东东&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">./GoogleTalkPlugin: error while loading shared libraries: libcrypto.so.0.9.8: cannot open shared object file: No such file or directory
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>再创建一个软链接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo ln -s /usr/lib32/libcrypto.so.1.0.0 /usr/lib32/libcrypto.so.0.9.8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>（注意，file GoogleTalkPlugin竟然是一个32位的elf）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="o">[&lt;/span>chenzaichun@czc-laptop talkplugin&lt;span class="o">]&lt;/span>$ file GoogleTalkPlugin
+GoogleTalkPlugin: ELF 32-bit LSB executable, Intel 80386, version &lt;span class="m">1&lt;/span> &lt;span class="o">(&lt;/span>SYSV&lt;span class="o">)&lt;/span>, dynamically linked &lt;span class="o">(&lt;/span>uses shared libs&lt;span class="o">)&lt;/span>, stripped
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>所以链接目录应该在/usr/lib32，而不是/usr/lib&lt;/p>
+&lt;p>完毕，可以正常使用了。&lt;/p></description></item><item><title>xelatex</title><link>https://chenzaichun.github.io/post/2010-08-29-archlinux_xelatex/</link><pubDate>Sun, 29 Aug 2010 23:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-29-archlinux_xelatex/</guid><description>&lt;p>今天准备用latex改一下简历，但是原来坚哥配置的texlive已经无法使用（因为squashfs升级，不支持旧版的格式），想了一下，还是装个新版的texlive吧！archlinux下安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S texlive-core textlive-langcjk texlive-latexextra
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>新版的xelatex对中文支持比较好了，所以直接修改原来用moderncv写的简历，然后xelatex xxx.tex生成pdf，相当的简单！&lt;/p></description></item><item><title>emacs23不能切换输入法的问题</title><link>https://chenzaichun.github.io/post/2010-08-25-emacs23_xim/</link><pubDate>Wed, 25 Aug 2010 23:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-25-emacs23_xim/</guid><description>&lt;p>emacs23安装后不能切换输入法（在archlinux，ubuntu上测试过，无论什么输入法ibus，scim，fcitx等等），但是其他的程序是没有任何问题的。解决办法，将&lt;code>export LC_CTYPE=zh_CN.UTF-8&lt;/code>加入你的profile（.bashrc, environment等都可以）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">LC_CTYPE&lt;/span>&lt;span class="o">=&lt;/span>zh_CN.UTF-8
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux console分辨率</title><link>https://chenzaichun.github.io/post/2010-08-24-grub_framebuffer/</link><pubDate>Tue, 24 Aug 2010 23:23:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-24-grub_framebuffer/</guid><description>&lt;p>archlinux在启动的时候grub使用的是800x600，修改为1280x800时没有这个选项，google得知加上启动vga参数865就可以了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">vga=865
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux自动升级aur</title><link>https://chenzaichun.github.io/post/2010-08-25-archlinux_aur_update/</link><pubDate>Tue, 24 Aug 2010 17:37:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-25-archlinux_aur_update/</guid><description>&lt;p>在用aur安装完软件之后，默认使用pacman -Syu或者yaourt -Syu是不会更新aur安装的软件的，但是yaourt有个&amp;ndash;aur参数可以升级aur，所以可以用下面的方法升级aur&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 从AUR升级本地软件数据库并安装更新&lt;/span>
+yaourt -Syu --aur
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>lxde音量调节</title><link>https://chenzaichun.github.io/post/2010-08-24-archlinux_sound_alsamixer/</link><pubDate>Tue, 24 Aug 2010 17:17:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-24-archlinux_sound_alsamixer/</guid><description>&lt;p>lxde是没有音量调节的，如果需要调整，只能在term中使用aslamixer进行调节，这样很不方便，幸好可以绑定快捷键，修改~/.config/openbox/lxde-rc.xml，添加&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="c">&amp;lt;!-- volume --&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;keybind&lt;/span> &lt;span class="na">key=&lt;/span>&lt;span class="s">&amp;#34;W-Right&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;action&lt;/span> &lt;span class="na">name=&lt;/span>&lt;span class="s">&amp;#34;Execute&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;command&amp;gt;&lt;/span>amixer -q set Master 3%-&lt;span class="nt">&amp;lt;/command&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/action&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/keybind&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;keybind&lt;/span> &lt;span class="na">key=&lt;/span>&lt;span class="s">&amp;#34;W-Left&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;action&lt;/span> &lt;span class="na">name=&lt;/span>&lt;span class="s">&amp;#34;Execute&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;command&amp;gt;&lt;/span>amixer -q set Master unmute 3%+&lt;span class="nt">&amp;lt;/command&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/action&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/keybind&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我绑定的是window＋left，right，其他按键类似&lt;/p></description></item><item><title>安装yaourt遇到failed retrieving yaourt</title><link>https://chenzaichun.github.io/post/2010-08-23-yaourt_install/</link><pubDate>Mon, 23 Aug 2010 23:17:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-23-yaourt_install/</guid><description>&lt;p>添加源：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[archlinuxfr]
+Server = http://repo.archlinux.fr/x86_64
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装x86_64版本的yaourt的时候，出现failed retrieving yaourt，解决办法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">pacman -Syy yaourt
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux+LXDE蓝牙传输文件</title><link>https://chenzaichun.github.io/post/2010-08-23-archlinux_lxde_bluetooth/</link><pubDate>Mon, 23 Aug 2010 12:32:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-23-archlinux_lxde_bluetooth/</guid><description>&lt;p>首先安装bluez, obexfs&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S bluez obexfs
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>启动bluetooth（也可以加入/etc/rc.conf的daemon中）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">/etc/rc.d/bluetooth start
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>获取蓝牙的mac地址&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">hcitool scan
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>启动另外一个term，然后进行连接，如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">bluez-simple-agent hci0 00:26:37:45:29:8F
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在其他term中可以进行文件传输了：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">obexftp -b 00:26:37:45:29:8F -p xxx.txt
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux声卡配置</title><link>https://chenzaichun.github.io/post/2010-08-23-archlinux_sound/</link><pubDate>Mon, 23 Aug 2010 12:32:27 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-23-archlinux_sound/</guid><description>&lt;ol>
+&lt;li>安装alsa-lib alsa-utils alsa-oss&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S alsa-lib alsa-utils alsa-oss
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>
+&lt;p>执行alsaconf，选择自己的声卡&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>使用alsamixer调整音量&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>archlinux中自动挂载windows分区</title><link>https://chenzaichun.github.io/post/2010-08-23-archlinux_auto_mount_windows/</link><pubDate>Tue, 03 Aug 2010 18:32:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-23-archlinux_auto_mount_windows/</guid><description>&lt;p>首先安装ntfs-3g&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S ntfs-3g
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后修改/etc/fstab，比如我的修改为&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">/dev/sda1 /media/c vfat user,defaults,codepage=936,iocharset=utf8,umask=000 0 0
+/dev/sda5 /media/d ntfs user,defaults,codepage=936,iocharset=utf8,umask=000 0 0
+/dev/sda6 /media/e ntfs user,defaults,codepage=936,iocharset=utf8,umask=000 0 0
+/dev/sda7 /media/f ntfs user,defaults,codepage=936,iocharset=utf8,umask=000 0 0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux x11 forwarding</title><link>https://chenzaichun.github.io/post/2010-05-11-archlinux_x11_forwarding/</link><pubDate>Tue, 11 May 2010 13:11:32 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-11-archlinux_x11_forwarding/</guid><description>&lt;p>默认情况下archlinu是不允许x11 forwarding的,修改/etc/ssh/sshd_config&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">AllowTcpForwarding yes
+X11Forwarding yes
+X11DisplayOffset 10
+X11UseLocalhost yes
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux安装yaourt</title><link>https://chenzaichun.github.io/post/2010-05-10-archlinux_install_yaourt/</link><pubDate>Mon, 10 May 2010 23:11:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-10-archlinux_install_yaourt/</guid><description>&lt;p>参照arch wiki：&lt;a href="http://wiki.archlinux.org/index.php/Yaourt_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">&lt;a href="http://wiki.archlinux.org/index.php/Yaourt_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">http://wiki.archlinux.org/index.php/Yaourt_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&lt;/a>&lt;/a>&lt;/p>
+&lt;p>最简单安装Yaourt的方式是添加Yaourt源至您的 /etc/pacman.conf:&lt;/p>
+&lt;p>i686架构：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[archlinuxfr]
+Server = http://repo.archlinux.fr/i686
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>x86-64架构：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[archlinuxfr]
+Server = http://repo.archlinux.fr/x86_64
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>同步并安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">pacman -Syu
+pacman -S yaourt
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux全局代理</title><link>https://chenzaichun.github.io/post/2010-05-10-archlinux_global_proxy/</link><pubDate>Mon, 10 May 2010 13:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-10-archlinux_global_proxy/</guid><description>&lt;p>参考: &lt;a href="http://wiki.archlinux.org/index.php/Proxy_settings">&lt;a href="http://wiki.archlinux.org/index.php/Proxy_settings">http://wiki.archlinux.org/index.php/Proxy_settings&lt;/a>&lt;/a>&lt;/p>
+&lt;p>在教育网中使用aur或者abs,网速非常的慢,同时很多东西都不能正常的下载下来,如何给下载添加代理呢? 像wget等程序使用&amp;quot;protocal_proxy&amp;quot;环境变量,所以可以通过设置环境变量的方式来使用代理:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>http://10.203.0.1:5187/
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">ftp_proxy&lt;/span>&lt;span class="o">=&lt;/span>http://10.203.0.1:5187/
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我们可以增加两个函数用来打开关闭代理,在.bashrc里面添加:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="k">function&lt;/span> proxy&lt;span class="o">(){&lt;/span>
+&lt;span class="nb">echo&lt;/span> -n “username:”
+&lt;span class="nb">read&lt;/span> -e username
+&lt;span class="nb">echo&lt;/span> -n “password:”
+&lt;span class="nb">read&lt;/span> -es password
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>”http://&lt;span class="nv">$username&lt;/span>:&lt;span class="nv">$password&lt;/span>@proxyserver:8080/”
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">ftp_proxy&lt;/span>&lt;span class="o">=&lt;/span>”http://&lt;span class="nv">$username&lt;/span>:&lt;span class="nv">$password&lt;/span>@proxyserver:8080/”
+&lt;span class="nb">echo&lt;/span> -e “nProxy environment variable set.”
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">function&lt;/span> proxyoff&lt;span class="o">(){&lt;/span>
+&lt;span class="nb">unset&lt;/span> HTTP_PROXY
+&lt;span class="nb">unset&lt;/span> http_proxy
+&lt;span class="nb">unset&lt;/span> FTP_PROXY
+&lt;span class="nb">unset&lt;/span> ftp_proxy
+&lt;span class="nb">echo&lt;/span> -e “nProxy environment variable removed.”
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>将archlinux安装到u盘</title><link>https://chenzaichun.github.io/post/2010-05-09-archlinux_usb_pen/</link><pubDate>Sun, 09 May 2010 21:13:43 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-09-archlinux_usb_pen/</guid><description>&lt;p>将archlinux安装到优盘上！试了很多方法，在虚拟机上将优盘设置成硬盘安装和在虚拟机上设置usb设备安装，启动时都会出现找不到硬盘的情况。（使用虚拟机启动没有问题）解决办法（&lt;a href="http://blog.sina.com.cn/s/blog_59cf67260100cwqr.html">参考地址&lt;/a>）：&lt;/p>
+&lt;p>设置系统的参数的时候，修改/etc/mkinitcpio.conf ，在HOOKS中加入usb选项，这似乎是让linux内核认usb。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">HOOKS=&amp;#34;base udev autodetect pata scsi sata usb filesystems&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样就可以正常启动了！如果出现&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">The superblock could not be read or does not describe a correct ext2 filesystem. If the device is valid and it really contains an ext2 filesystem (and not swap or ufs or something else), then the superblock is corrupt, and you might try running e2fsck with an alternate superblock:
+e2fsck -b 8193
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>请修改fstab，使用uuid的方式，见&lt;a href="http://wiki.archlinux.org/index.php/Fstab">&lt;a href="http://wiki.archlinux.org/index.php/Fstab">http://wiki.archlinux.org/index.php/Fstab&lt;/a>&lt;/a>&lt;/p></description></item><item><title>archlinux 下chrome autoproxy</title><link>https://chenzaichun.github.io/post/2010-05-08-archlinux_chrome_autoproxy/</link><pubDate>Sat, 08 May 2010 22:11:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-archlinux_chrome_autoproxy/</guid><description>&lt;p>在chrome下使用switchy自动代理需要依赖gnome和kde,所以在没有安装这两个套件的情况下,可以直接添加这两个命令行参数即可&lt;code>--proxy-auto-detect&lt;/code> &lt;code>--proxy-pac-url=pac&lt;/code>文件路径(本地,在线都可)以达到自动使用代理的功能&lt;/p></description></item></channel></rss>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>distcc on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/distcc/</link><description>Recent content in distcc on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 07 May 2010 12:11:33 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/distcc/index.xml" rel="self" type="application/rss+xml"/><item><title>ubuntu 10.04 lucid安装distcc</title><link>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_distcc/</link><pubDate>Fri, 07 May 2010 12:11:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_distcc/</guid><description>&lt;p>在ubuntu下安装distcc（后面两个可选）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install distcc distccmon-gnome distcc-pump
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>设置环境变量:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/usr/lib/distcc:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打开&lt;code>/etc/default/distcc&lt;/code>进行以下修改&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">STARTDISTCC=&amp;#34;true&amp;#34; # auto start
+ALLOWEDNETS=&amp;#34;192.168.39.0/24&amp;#34; # ip range allowed
+LISTENER=&amp;#34;&amp;#34; # if use on intranet, must be empty, otherwise distcc: connection refused
+ZEROCONF=&amp;#34;true&amp;#34; # auto lookup distcc server
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后重启distcc服务&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo /etc/init.d/distcc restart
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>搞定！:-)&lt;/p></description></item></channel></rss>

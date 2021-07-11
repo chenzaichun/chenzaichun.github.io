@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>无所事事 on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/%E6%97%A0%E6%89%80%E4%BA%8B%E4%BA%8B/</link><description>Recent content in 无所事事 on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 23 Jun 2013 11:08:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/%E6%97%A0%E6%89%80%E4%BA%8B%E4%BA%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>用travis-ci自动生成hexo</title><link>https://chenzaichun.github.io/post/2015-02-03-test-auto-build/</link><pubDate>Sun, 23 Jun 2013 11:08:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-02-03-test-auto-build/</guid><description>&lt;p>测试一下&lt;/p>
+&lt;p>感谢&lt;code>jkeylu&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="c"># Deploy hexo site by travis-ci&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># https://github.com/jkeylu/deploy-hexo-site-by-travis-ci&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># LICENSE: MIT&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c">#&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># 1. Copy this file to the root of your repository, then rename it to &amp;#39;.travis.yml&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># 2. Replace &amp;#39;YOUR NAME&amp;#39; and &amp;#39;YOUR EMAIL&amp;#39; at line 29&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># 3. Add an Environment Variable &amp;#39;DEPLOY_REPO&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># 1. Generate github access token on https://github.com/settings/applications#personal-access-tokens&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># 2. Add an Environment Variable on https://travis-ci.org/{github username}/{repository name}/settings/env_vars&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># Variable Name: DEPLOY_REPO&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># Variable Value: https://{githb access token}@github.com/{github username}/{repository name}.git &lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># Example: DEPLOY_REPO=https://6b75cfe9836f56e6d21187622730889874476c23@github.com/jkeylu/test-hexo-on-travis-ci.git&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">language&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">node_js&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">node_js&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="m">0.1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">branches&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">only&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">master&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">before_install&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">npm install -g hexo&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">install&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">npm install&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># Notice: Replace &amp;#39;YOUR NAME&amp;#39; and &amp;#39;YOUR EMAIL&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">before_script&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">git config --global user.name &amp;#39;Chen, Zai-Chun&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">git config --global user.email &amp;#39;chenzaichun@gmail.com&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># - git clone git://github.com/heroicyang/hexo-theme-modernist.git themes/modernist&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">hexo generate&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">after_success&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">mkdir .deploy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">cd .deploy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">git clone --depth 1 --branch master --single-branch $DEPLOY_REPO . || (git init &amp;amp;&amp;amp; git remote add -t master origin $DEPLOY_REPO)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">rm -rf ./*&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">cp -r ../public/* .&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">git add -A .&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">git commit -m &amp;#39;Site updated&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">git branch -m master&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>- &lt;span class="l">git push -q -u origin master&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>是不是很简单&lt;/p></description></item><item><title>确实很久没有更新了</title><link>https://chenzaichun.github.io/post/2014-03-07-long-time-no-update/</link><pubDate>Sun, 23 Jun 2013 11:08:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2014-03-07-long-time-no-update/</guid><description>&lt;p>很久没更新了，尽量更新吧。不然都没有动力了。&lt;/p></description></item><item><title>这是开挂了吧</title><link>https://chenzaichun.github.io/post/2013-06-03-cheat/</link><pubDate>Thu, 13 Jun 2013 15:22:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2013-06-03-cheat/</guid><description>&lt;p>这肯定是开挂了, ;-)&lt;/p>
+&lt;p>&lt;img src="https://chenzaichun.github.io/media/cheat.jpg" alt="不可思议">&lt;/p></description></item><item><title>各种水果的正确吃法</title><link>https://chenzaichun.github.io/post/2012-09-21-the-right-way-of-eating-fruit/</link><pubDate>Fri, 21 Sep 2012 20:05:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-09-21-the-right-way-of-eating-fruit/</guid><description>&lt;p>&lt;img src="https://chenzaichun.github.io/media/the-right-way-of-eating-fruit.jpg" alt="各种水果的正常吃法">&lt;/p></description></item><item><title>鞍山书记</title><link>https://chenzaichun.github.io/post/2012-09-21-anshanshuji/</link><pubDate>Fri, 21 Sep 2012 12:46:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-09-21-anshanshuji/</guid><description>&lt;p>看那旧时光从你的面庞溜走，你老了，国家却因你变好了！&lt;/p>
+&lt;p>&lt;img src="https://chenzaichun.github.io/media/assj.jpg" alt="assj.jpg">&lt;/p></description></item><item><title>塑料瓶底数字的意思</title><link>https://chenzaichun.github.io/post/2012-06-27-pet/</link><pubDate>Wed, 27 Jun 2012 11:21:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-06-27-pet/</guid><description>&lt;p>喝飲料前別忘了注意瓶下的數字喔, 特別是要回收再利用, 一定要多注意喔&lt;/p>
+&lt;p>&lt;a href="https://chenzaichun.github.io/media/pet.jpg">PET&lt;/a>&lt;/p></description></item><item><title>新闻晚知道</title><link>https://chenzaichun.github.io/post/2012-05-31-xin-wen-wan-zhi-dao/</link><pubDate>Thu, 31 May 2012 15:28:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-05-31-xin-wen-wan-zhi-dao/</guid><description>&lt;p>&lt;embed src="http://player.youku.com/player.php/sid/XNDA0NzgzOTg4/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" allowFullscreen="true" type="application/x-shockwave-flash">&lt;/embed>&lt;/p></description></item><item><title>test blog with org-mode</title><link>https://chenzaichun.github.io/post/2012-05-31-test-blog-with-org-mode/</link><pubDate>Thu, 31 May 2012 13:33:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-05-31-test-blog-with-org-mode/</guid><description>&lt;p>Testing.&lt;/p>
+&lt;p>Test source code.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- encoding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">sys&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s1">&amp;#39;Hello World&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Test file(image)&lt;/p>
+&lt;p>&lt;img src="https://chenzaichun.github.io/media/chengxuyuan-rengou.jpg" alt="rengou">&lt;/p></description></item><item><title>Octopress添加robots.txt</title><link>https://chenzaichun.github.io/post/2012-05-12-add-robots-dot-txt-to-octopress/</link><pubDate>Sat, 12 May 2012 21:05:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-05-12-add-robots-dot-txt-to-octopress/</guid><description>&lt;p>添加&lt;code>source/robots.txt&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">---
+layout: nil
+---
+User-agent: *
+Disallow:
+Sitemap: {{ site.url }}/sitemap.xml
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>octopress常用链接整理</title><link>https://chenzaichun.github.io/post/2012-05-12-octopress-useful-links/</link><pubDate>Sat, 12 May 2012 11:54:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-05-12-octopress-useful-links/</guid><description>&lt;ol>
+&lt;li>
+&lt;p>&lt;a href="http://jasongarber.com/blog/2012/01/10/deploying-octopress-to-heroku-with-a-custom-buildpack">Heroku上搭建octopress自动deploy环境&lt;/a> &amp;ndash; 这篇文章可以让你绕过生成静态页面的过程，通过heroku的build pack在push的时候自动将markdown编译成静态页面。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://geron.heroku.com/blog/2012/03/octo-cate-cn-spo/">Octopress博客分类添加中文支持&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://blog.xdite.net/posts/2011/10/09/how-to-migrate-blog-from-wordpress-to-octopress/">如何從Wordpress Migrate到Octopress&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://blog.xdite.net/posts/2011/10/09/how-to-migrate-blog-from-wordpress-to-octopress/">301轉址&lt;/a> &amp;ndash; 重定向feed到atom.xml&lt;/p>
+&lt;p>比如我的设置:&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>Unlock the McAfee VirusScan Enterprise 8.5i User Interface</title><link>https://chenzaichun.github.io/post/2011-12-09-unlock-mcafee-user-interface/</link><pubDate>Fri, 09 Dec 2011 22:30:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-09-unlock-mcafee-user-interface/</guid><description>&lt;p>&lt;a href="http://it.megocollector.com/?p=1094">传送门&lt;/a>&lt;/p>
+&lt;p>经检验，只要设置以下注册表就行了:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[HKEY_LOCAL_MACHINE\SOFTWARE\McAfee\DesktopProtection]
+&amp;#34;UIPMode&amp;#34;=dword:00000000
+&amp;#34;UIP&amp;#34;=&amp;#34;&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>windows下清空系统dns</title><link>https://chenzaichun.github.io/post/2011-10-28-flush_dns_on_windows/</link><pubDate>Fri, 28 Oct 2011 10:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-28-flush_dns_on_windows/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">ipconfig /flush
+ipconfig /flushdns
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git代理设置</title><link>https://chenzaichun.github.io/post/2011-10-21-usegitbehindproxy/</link><pubDate>Fri, 21 Oct 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-21-usegitbehindproxy/</guid><description>&lt;p>Since someone is asking me to provide an English version about git proxy configuration in my former blog. Here it is. 1). Basically, I know two ways to use git behind a proxy.&lt;/p>
+&lt;ol>
+&lt;li>Set the http_proxy environment if git repository supports http connections.&lt;/li>
+&lt;/ol>
+&lt;p>find a proxy command to bypass the connection: &lt;a href="https://bitbucket.org/chenzaichun/org2blog/src/e82a0244f078/media/connect.c">connect.c&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gcc -o connect connect.c
+mv connect ~/bin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>Set up a wrapper&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;/home/gigi/bin/connect -H proxy.bupt.edu.cn:8080 &lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/bin/proxy
+chmod +x ~/bin/proxy
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Here I&amp;rsquo;m using a http proxy offered by my school, which uses port 8080 The connect command also support socket proxy. Use -S host:port to indicate that.&lt;/p>
+&lt;ol start="3">
+&lt;li>Update bashrc&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export CONNECT_USER=bergwolf&amp;#34;&lt;/span> &amp;gt;&amp;gt; .bashrc
+&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export GIT_PROXY_COMMAND=proxexport GIT_PROXY_COMMAND=proxy&amp;#34;&lt;/span> &amp;gt;&amp;gt; .bashrc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>The connect command reads proxy username and password from &lt;code>CONNECT_USER&lt;/code> and &lt;code>CONNECT_PASSWORD&lt;/code> evironment. The default username is current login user if no CONNECT_USER is set. Password will be requested interactively if CONNECT_PASSWORD is empty. GIT_PROXY_COMMAND indicates that git should use the command &amp;ldquo;proxy&amp;rdquo;(the wrapper we setup at step 2) as its proxy_command. This can also be set in .git/config.&lt;/p>
+&lt;/blockquote>
+&lt;p>Now, everything we need is done. Have a try:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[gigi-Ubuntu:bin]$git clone git://git.kernel.org/pub/scm/fs/ext2/e2fsprogs.git
+Initialized empty Git repository in /home/gigi/bin/e2fsprogs/.git/
+Enter proxy authentication password for bergwolf@proxy.bupt.edu.cn:
+remote: Counting objects: 24006, done.
+remote: Compressing objects: 100% (4701/4701), done.
+ceiving objects: 1% (241/24006), 43.99 KiB | 56 KiB/s
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>增加vmware虚拟机的性能</title><link>https://chenzaichun.github.io/post/2011-08-05-vmware_io_performance/</link><pubDate>Mon, 15 Aug 2011 20:56:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-08-05-vmware_io_performance/</guid><description>&lt;p>vmware跑mac确实卡呀。网上抄了一段，目前还在体验中，效果具体怎么样，还有待观察。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">MemTrimRate=0
+sched.mem.pshare.enable = &amp;#34;FALSE&amp;#34;
+prefvmx.useRecommendedLockedMemSize = &amp;#34;TRUE&amp;#34;
+prefvmx.minVmMemPct = &amp;#34;100&amp;#34;
+mainMem.useNamedFile = &amp;#34;FALSE&amp;#34;
+MemAllowAutoScaleDown = &amp;#34;FALSE&amp;#34;
+mks.enable3d = &amp;#34;FALSE&amp;#34;
+mks.noBeep = &amp;#34;true&amp;#34;
+logging = &amp;#34;FALSE&amp;#34;
+hv.enableIfUnlocked = &amp;#34;TRUE&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>easy_install升级</title><link>https://chenzaichun.github.io/post/2011-01-10-easy_install_upgrade/</link><pubDate>Mon, 10 Jan 2011 19:14:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-10-easy_install_upgrade/</guid><description>&lt;p>如何让easy_install安装的文件升级呢？&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">easy_install --upgrade xxxxx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如何卸载已经安装的包呢？&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">easy_install -m xxxxxx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>保持队形看下去</title><link>https://chenzaichun.github.io/post/2010-12-25-notitle/</link><pubDate>Sat, 25 Dec 2010 19:14:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-25-notitle/</guid><description>&lt;p>&lt;a href="http://static.youku.com/v1.0.0134/v/swf/qplayer.swf?VideoIDS=XMjMxMDE5NTgw&amp;embedid=-&amp;showAd=0" target="_blank">新窗口中打开&lt;/a>&lt;/p>
+&lt;object width="600" height="480" data="http://static.youku.com/v1.0.0134/v/swf/qplayer.swf?VideoIDS=XMjMxMDE5NTgw&amp;embedid=-&amp;showAd=0" type="application/x-shockwave-flash">
+&lt;param name="data" value="http://static.youku.com/v1.0.0134/v/swf/qplayer.swf?VideoIDS=XMjMxMDE5NTgw&amp;embedid=-&amp;showAd=0">
+&lt;param name="src" value="http://static.youku.com/v1.0.0134/v/swf/qplayer.swf?VideoIDS=XMjMxMDE5NTgw&amp;embedid=-&amp;showAd=0">&lt;/object></description></item><item><title>chrome dev无法升级</title><link>https://chenzaichun.github.io/post/2010-12-18-chrome_dev_update_error/</link><pubDate>Sat, 18 Dec 2010 19:54:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-18-chrome_dev_update_error/</guid><description>&lt;p>这两天chrome dev无法升级，貌似dev版都已经升级到10.0.xxxx了，可是我还是9.0。杯具呀！错误代码：Update Server not available (error:7)&lt;/p>
+&lt;p>解决办法：&lt;a href="http://www.google.com/chrome/eula.html?extra=devchannel">Click&lt;/a>重新安装就可以了。&lt;/p></description></item><item><title>值得推荐的国外名牌大学网络课程视频下载</title><link>https://chenzaichun.github.io/post/2010-12-16-course_of_foreign_university/</link><pubDate>Thu, 16 Dec 2010 19:54:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-16-course_of_foreign_university/</guid><description>&lt;p>@&lt;a href="http://www.apple4.cn/2010/12/recommended-course-of-foreign-brand-name-university-network-to-download-videos/">&lt;a href="http://www.apple4.cn/2010/12/recommended-course-of-foreign-brand-name-university-network-to-download-videos/">http://www.apple4.cn/2010/12/recommended-course-of-foreign-brand-name-university-network-to-download-videos/&lt;/a>&lt;/a>&lt;/p></description></item><item><title>我最崇拜的人姓刘总结贴</title><link>https://chenzaichun.github.io/post/2010-12-14-mr_liu/</link><pubDate>Tue, 14 Dec 2010 19:54:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-14-mr_liu/</guid><description>&lt;p>@&lt;a href="http://hxyl.net/2010/12/12/xin-liu/" target="_blank">河蟹娱乐&lt;/a>&lt;/p>
+&lt;p>我最崇拜的人姓刘，他获得过国际大奖，他的所作所为激发了国人的斗志，虽然有一段时间他从我们眼前消失了，但是我相信他的精神永存。他的名字叫刘翔。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他对这个国家以及生活在这片土地上的人满怀悲悯；他想做一番轰轰烈烈的大事业；要拯救万民于水火；他有一帮志同道合并同样令人敬仰的朋友与伙伴；他的人格魅力使很多人都愿意追随着他，为理想而奋斗。他名备字玄德，人称皇叔。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他领导过学生闹学运，出过书，得过外国的奖，后来被冤枉做了很多年牢。但我相信，这些都是历史给他的考验，因为他说过，好在历史是人民写的。他的名字是刘少奇。&lt;/p>
+&lt;p>我最崇拜的人姓刘。他是个博士，他出过书、当过被告。得过西方很多国家的大奖，以及香港台湾等境外组织颁发的奖。他是很多中国人的偶像，他是中国人的自豪和骄傲。他叫刘德华！&lt;/p>
+&lt;p>我最崇拜的人姓刘，ta面对暴力无所畏惧，坚定信仰自己的理念。尽管ta早早地被强权迫害，但ta的名字直到今天仍在流传。ta是刘胡兰。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他是一个和文艺有过不解之缘的名人，他发表的文字曾经引起过轩然大波，他在国内一度名声狼狈，在国外却得到很多同情和帮助。他曾因违反中国法律而入狱，并因此失去自由。他，噢错了是她，她的名字叫刘晓庆。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他获得了世界性的奖项，因为他的推手技惊全球以至于不得不说：我没有敌人。有时候面对记者会结结巴巴，他一度消失在人们的视野。整个世界都经常默念他的名字：国家的未来栋梁！他的名字叫刘国梁。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他十几年如一日，忍辱负重，勤奋耕耘，从一个东北土鳖成长为亿万人瞩目的理性楷模。他致力于一个理想化的行动，让自己备受磨难，但人们心里为他树起了一座丰碑，他的名字叫刘老根儿。&lt;/p>
+&lt;p>我最崇拜的人他姓刘，他一生传奇，80年代就名扬国际，热衷挑战强拳，获得过无数国际大奖。他的一生没有敌人。他就是拳王刘易斯。&lt;/p>
+&lt;p>我崇拜的人姓刘，从80年代开始就写出了一系列传世佳作，在一代又一代爱好自由的人手中传颂。尽管关于他的作品有一些争议，但好无偏见的说他的文字影响和改变了很多推友。他就是刘欣慈。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他获得过很多境外组织的奖杯，他的作品流行海内外，他忠厚的面貌总是让人感到亲切，他也很关心缅甸昂山阿姨的情况，他的名字叫刘青云。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他以人性化的实践，经历和见证了封建小农经济下个人良心的最大发挥。他清白而廉洁，但却历经诬陷，一个好人被钉在耻辱里，体现了专制政权的强横与无耻。然而，他被人传颂为良知的化身和尊严的维护者。他的名字叫刘文彩。&lt;/p>
+&lt;p>我不崇拜的人姓刘，他某年因为因为被央视现场报道使用幕后黑手欺骗全国人民而一举闻名。他荣获过那个领域的国际大奖，他的成就可以说在中国没有敌人。网上关于他的争议一直很多，不过丝毫不影响他的影响力。他就魔术师刘谦。&lt;/p>
+&lt;p>我最崇拜的人姓刘，ta是一个东北人，ta于1989年春夏之交正式登上历史舞台，ta在世界上拥有极高的声望，ta就是我国著名游泳运动员刘子歌。&lt;/p>
+&lt;p>我最崇拜的人姓刘，他为了反抗强权暴政忍辱负重，尽管他有很多先天缺陷，但是仍然不能阻止他成为时代的领袖，他的名字刘邦。&lt;/p>
+&lt;p>我最崇拜的人姓刘，虽然我没有见过他，但他一直为大家的幸福生活在默默的努力。现在越来越多的人知道他喜欢他的作品，甚至还有人盗版他的东西冒充来卖，这是一件好事，他叫刘一手。&lt;/p>
+&lt;p>我最崇拜的人姓刘，Ta和Ta的同志们为了自由和人权与专制进行了不懈的斗争，Ta用自身惨痛的牺牲证明了专制的残暴，人们铭记着Ta的事迹，专制却从学校课本里把Ta的名字拿走，Ta的名字叫刘和珍。&lt;/p>
+&lt;p>我最崇拜的人姓刘，每当我觉得社会太黑暗、生活得太辛苦要放弃时，脑海中出现ta的身影又让我重燃斗志。ta是刘亦菲。&lt;/p>
+&lt;p>我最崇拜的人姓刘。念过大学，刚正不阿，曾被当权者剥夺工作，中年后又被关入监狱。每个中国人都应该记住他的名字。他叫刘墉！&lt;/p></description></item><item><title>【元首】DOTA输掉之后……</title><link>https://chenzaichun.github.io/post/2010-12-11-dota/</link><pubDate>Sat, 11 Dec 2010 18:19:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-11-dota/</guid><description>&lt;object width="600" height="480" data="http://player.youku.com/player.php/sid/XMjI2MzQ3MzU2/v.swf" type="application/x-shockwave-flash">
+&lt;param name="src" value="http://player.youku.com/player.php/sid/XMjI2MzQ3MzU2/v.swf">&lt;/object></description></item><item><title>ps应该这样玩</title><link>https://chenzaichun.github.io/post/2010-12-09-ps/</link><pubDate>Thu, 09 Dec 2010 18:19:19 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-09-ps/</guid><description>&lt;object width="600" height="480" data="http://static.youku.com/v1.0.0133/v/swf/qplayer.swf?VideoIDS=XMjI2MjgxNDY0&amp;embedid=-&amp;showAd=0" type="application/x-shockwave-flash">
+&lt;param name="src" value="http://static.youku.com/v1.0.0133/v/swf/qplayer.swf?VideoIDS=XMjI2MjgxNDY0&amp;embedid=-&amp;showAd=0">&lt;/object>
+&lt;a href="http://static.youku.com/v1.0.0133/v/swf/qplayer.swf?VideoIDS=XMjI2MjgxNDY0&amp;embedid=-&amp;showAd=0" target="_blank">弹出&lt;/a></description></item><item><title>无题</title><link>https://chenzaichun.github.io/post/2010-12-08-wuti/</link><pubDate>Wed, 08 Dec 2010 17:17:27 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-08-wuti/</guid><description>&lt;p>一群人出去旅游，遇到打劫，匪徒只有一个人，他对那群人说：“自觉的把钱交出来，第一个交的我只收他100元，第二个交的150元，第三个交的200元，以此类推，越早交钱越划算，越晚交越亏，还不快来交钱？”于是那帮人争先恐后的去向那个匪徒交钱，还打起架来了。匪徒一边收钱一边维持秩序，“不许打架，都排好队，谁插队谁排到最后面去。”众人顿时秩序井然。有些人没带那么多钱，怎么办？匪徒说：“没关系，把带的先交了，剩下的我借给你，然后你写下欠条，回头我去你家取，我借给你的那部分得算利息。”&lt;/p>
+&lt;p>那群人中有几个小伙子是具有反抗精神的，他们想反正那个匪徒只是一个人，跟他拼了。谁知道那个匪徒根本不屑与那几个小伙子动手，他只是对已经交了钱的人说：“你们瞧，那儿有几个人不想交钱，他们想破坏游戏规则，如果他们不交钱那么你们先交钱的人不就成傻子了吗？他们在损害你们的利益。”于是先交了钱的人开始威逼不肯交钱的人向歹徒交钱，最后大家不管是情愿还是不情愿都向歹徒交了钱。 　　&lt;/p>
+&lt;p>歹徒得钱后扬长而去，留下那群人还在那儿攀比，第一名说：“瞧我多聪明，第一个交钱，我只交了100元。”第二名说：“我也不赖，只交了150元。”。。。。。。。。。。。&lt;/p>
+&lt;p>网上看到的。原始链接找不到了。&lt;/p></description></item><item><title>“我绝不嫁给你”的英语表达</title><link>https://chenzaichun.github.io/post/2010-12-05-never_marry_you/</link><pubDate>Sun, 05 Dec 2010 17:19:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-05-never_marry_you/</guid><description>&lt;p>@&lt;span style="color: #666666;">&lt;a href="http://group.mtime.com/queen/discussion/1285210/" target="_blank">巫界之战&lt;/a>，我发现我只有高中水平&lt;img title="Cry" src="https://chenzaichun.github.io/tinymce/plugins/emotions/img/smiley-cry.gif" border="0" alt="Cry">&lt;/span>&lt;/p>
+&lt;p>高中水平：I will never marry you.&lt;/p>
+&lt;p>高考水平：Never will I marry you.&lt;/p>
+&lt;p>四级水平：You are the last man I am willing to marry.&lt;/p>
+&lt;p>六级水平：Under no circumstances will I marry you.&lt;/p>
+&lt;p>GRE水平：If you were the last man in the world, I would definitely remain single.&lt;/p>
+&lt;p>大神水平：If you were to marry me, I would go to the temple.
+              If the sun rose in the west, I would marry you.
+              I will marry anybody but you.
+              I can suffer anything but marrying you.&lt;/p>
+&lt;p>烈女水平：If you were to marry me, I would jump to the water/river/lake/sea/well.&lt;/p>
+&lt;p>五毛水平：If Li Gang were your father, I would marry you.&lt;/p></description></item><item><title>千万别惹姓孙的</title><link>https://chenzaichun.github.io/post/2010-12-05-sun/</link><pubDate>Sun, 05 Dec 2010 12:47:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-05-sun/</guid><description>&lt;p>今年，上海“钓鱼执法”惹了孙中界，结果…… 数年前，广州收容所打死了孙志刚，结果…… 数十年前，前苏联在珍宝岛惹了孙玉国，结果…… 约八十年前，满清皇室后人惹了孙殿英，结果…… 一百年前，清王朝惹了孙中山，结果…… 一千多年前的三国时代，曹操惹了孙权，结果…… 两千多年前的战国时代，庞涓惹了孙膑，结果…… 两千多年前的春秋时代，吴王的爱姬惹了孙武，结果…… 很久很久以前，玉皇大帝惹了孙悟空，结果……&lt;/p></description></item><item><title>看看黑客是怎么玩游戏的</title><link>https://chenzaichun.github.io/post/2010-12-03-how_hackerr_playing_game/</link><pubDate>Fri, 03 Dec 2010 17:17:17 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-03-how_hackerr_playing_game/</guid><description>&lt;p>几个黑客看了后十指不由大动，于是就有了下面这个视频。&lt;/p>
+&lt;object style="width: 600px; height: 480px;" width="600" height="480" data="http://static.youku.com/v1.0.0133/v/swf/qplayer.swf?VideoIDS=XOTk0MjIxNTY=&amp;embedid=-&amp;showAd=0" type="application/x-shockwave-flash">
+&lt;param name="src" value="http://static.youku.com/v1.0.0133/v/swf/qplayer.swf?VideoIDS=XOTk0MjIxNTY=&amp;embedid=-&amp;showAd=0">&lt;/object></description></item><item><title>和广告说再见</title><link>https://chenzaichun.github.io/post/2010-11-28-say_goodbye_to_ads/</link><pubDate>Sun, 28 Nov 2010 17:27:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-28-say_goodbye_to_ads/</guid><description>&lt;p>在博客上放了几个月的Google adsense，发现也没有人点。算了，去掉吧，既然没有人点，还不如不影响那些使用没有过滤广告的用户的浏览速度。木哈哈！&lt;/p></description></item><item><title>原来chromium不支持youtube html5</title><link>https://chenzaichun.github.io/post/2010-09-05-chrome_html5/</link><pubDate>Sun, 05 Sep 2010 17:32:36 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-05-chrome_html5/</guid><description>&lt;p>今天用chromium打开youtube用html5播放，提示浏览器不支持，可是原来用chrome的时候是可以直接看的。google发现，chromium没有带解码，无奈之下只好重新安装chrome。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">yaourt -S google-chrome-dev
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>幸好aur中用chrome dev channel&lt;/p></description></item><item><title>ubuntu下使用flashget</title><link>https://chenzaichun.github.io/post/2010-08-02-ubuntu_linux_flashget/</link><pubDate>Mon, 02 Aug 2010 17:32:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-08-02-ubuntu_linux_flashget/</guid><description>&lt;p>按照官方说明安装:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Ubunt 10.04下面无法启动,提示找不到libexpat.so.0
+error while loading shared libraries: libexpat.so.0: cannot open shared object file: No such file or directory
+原因,编译flashget使用的是libexpat.so.0版本,系统默认为libexpat.so.1.5.2,做软连接即可.
+$cd /usr/lib
+$sudo ln -s libexpat.so.1.5.2 libexpat.so.0
+$sudo ldconfig
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但是会出现:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">flashget: error while loading shared libraries: libexpat.so.0: wrong ELF class: ELFCLASS64
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>原因是因为我使用的64为系统,而flashget是用32位程序.怎么办呢?因为装有lib32,所以可以直接创建lib32中libexpat.so的软链接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">sudo ln -s /lib32/libexpat.so.1.5.2 /usr/lib/libexpat.so.0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>使用 google voice激活orkut</title><link>https://chenzaichun.github.io/post/2010-05-07-google_voice_orkut_active/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-google_voice_orkut_active/</guid><description>&lt;p>由于orkut需要激活，但是激活的手机中不能选择中国，所以一直无法使用。今天无意中想到了Google voice至申请以来还没有用过，能否通过Google voice来激活orkut呢？&lt;/p>
+&lt;p>答案是Yes。&lt;/p></description></item></channel></rss>

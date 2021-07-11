@@ -1,0 +1,488 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>cobbler 安装 - 木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="环境情况 用于PXE推送测试的相关环境信息如下：
+           Cobbler Server Centos7 172.16.3.30 root/Pioneertest@2016    Cobbler Server网络可以访问测试用物理服务器IPMI及PXE网卡。物理服务器默认连接一根网线用于PXE推送用途。
+   物理设备名称 IPMI带外管理地址 带外管理用户名 带外管理密码 PXE网卡     华为2288v3-1 172.16.2.20 root Huawei12#$ 默认从pxe boot   华为2288v3-2 172.16.2.21 root Huawei12#$ 默认从pxe boot    可以用的dhcp网段为172.16.3.200-172.16.3.230
+"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/post/cobbler/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="cobbler 安装"><meta property="og:description" content="环境情况
+用于PXE推送测试的相关环境信息如下：
+
+
+
+
+
+
+
+
+
+
+
+Cobbler Server
+Centos7
+172.16.3.30
+root/Pioneertest@2016
+
+
+
+Cobbler Server网络可以访问测试用物理服务器IPMI及PXE网卡。物理服务器默认连接一根网线用于PXE推送用途。
+
+
+
+物理设备名称
+IPMI带外管理地址
+带外管理用户名
+带外管理密码
+PXE网卡
+
+
+
+
+华为2288v3-1
+172.16.2.20
+root
+Huawei12#$
+默认从pxe boot
+
+
+华为2288v3-2
+172.16.2.21
+root
+Huawei12#$
+默认从pxe boot
+
+
+
+可以用的dhcp网段为172.16.3.200-172.16.3.230"><meta property="og:type" content="article"><meta property="og:url" content="https://chenzaichun.github.io/post/cobbler/"><meta property="article:section" content="post"><meta property="article:published_time" content="2017-11-26T00:00:00+00:00"><meta property="article:modified_time" content="2017-11-28T09:06:38+08:00"><meta itemprop=name content="cobbler 安装"><meta itemprop=description content="环境情况
+用于PXE推送测试的相关环境信息如下：
+
+
+
+
+
+
+
+
+
+
+
+Cobbler Server
+Centos7
+172.16.3.30
+root/Pioneertest@2016
+
+
+
+Cobbler Server网络可以访问测试用物理服务器IPMI及PXE网卡。物理服务器默认连接一根网线用于PXE推送用途。
+
+
+
+物理设备名称
+IPMI带外管理地址
+带外管理用户名
+带外管理密码
+PXE网卡
+
+
+
+
+华为2288v3-1
+172.16.2.20
+root
+Huawei12#$
+默认从pxe boot
+
+
+华为2288v3-2
+172.16.2.21
+root
+Huawei12#$
+默认从pxe boot
+
+
+
+可以用的dhcp网段为172.16.3.200-172.16.3.230"><meta itemprop=datePublished content="2017-11-26T00:00:00+00:00"><meta itemprop=dateModified content="2017-11-28T09:06:38+08:00"><meta itemprop=wordCount content="1394"><meta itemprop=keywords content="hugo,org,cobbler,"><meta name=twitter:card content="summary"><meta name=twitter:title content="cobbler 安装"><meta name=twitter:description content="环境情况
+用于PXE推送测试的相关环境信息如下：
+
+
+
+
+
+
+
+
+
+
+
+Cobbler Server
+Centos7
+172.16.3.30
+root/Pioneertest@2016
+
+
+
+Cobbler Server网络可以访问测试用物理服务器IPMI及PXE网卡。物理服务器默认连接一根网线用于PXE推送用途。
+
+
+
+物理设备名称
+IPMI带外管理地址
+带外管理用户名
+带外管理密码
+PXE网卡
+
+
+
+
+华为2288v3-1
+172.16.2.20
+root
+Huawei12#$
+默认从pxe boot
+
+
+华为2288v3-2
+172.16.2.21
+root
+Huawei12#$
+默认从pxe boot
+
+
+
+可以用的dhcp网段为172.16.3.200-172.16.3.230"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Even</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Even</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>cobbler 安装</h1><div class=post-meta><span class=post-time>2017-11-26</span><div class=post-category><a href=/categories/emacs/>emacs</a>
+<a href=/categories/linux/>linux</a></div><span class=more-meta>约 1394 字</span>
+<span class=more-meta>预计阅读 3 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#环境情况>环境情况</a></li><li><a href=#安装>安装</a></li><li><a href=#下载镜像>下载镜像</a></li><li><a href=#导入镜像>导入镜像</a><ul><li><a href=#centos>centos</a></li><li><a href=#导入ubuntu>导入ubuntu</a></li></ul></li><li><a href=#开始验证>开始验证</a></li></ul></li></ul></nav></div></div><div class=post-outdated><div class=warn><p>【注意】最后更新于 <span class=timeago datetime=2017-11-28T09:06:38 title="November 28, 2017">November 28, 2017</span>，文中内容可能已过时，请谨慎使用。</p></div></div><div class=post-content><h2 id=环境情况>环境情况</h2><p>用于PXE推送测试的相关环境信息如下：</p><table><thead><tr><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>Cobbler Server</td><td>Centos7</td><td>172.16.3.30</td><td>root/Pioneertest@2016</td></tr></tbody></table><p>Cobbler Server网络可以访问测试用物理服务器IPMI及PXE网卡。物理服务器默认连接一根网线用于PXE推送用途。</p><table><thead><tr><th>物理设备名称</th><th>IPMI带外管理地址</th><th>带外管理用户名</th><th>带外管理密码</th><th>PXE网卡</th></tr></thead><tbody><tr><td>华为2288v3-1</td><td>172.16.2.20</td><td>root</td><td>Huawei12#$</td><td>默认从pxe boot</td></tr><tr><td>华为2288v3-2</td><td>172.16.2.21</td><td>root</td><td>Huawei12#$</td><td>默认从pxe boot</td></tr></tbody></table><p>可以用的dhcp网段为172.16.3.200-172.16.3.230</p><h2 id=安装>安装</h2><p>禁用selinux, <code>/etc/selinux/config</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>SELINUX=disabled
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>setenforce <span class=m>0</span>
+</code></pre></td></tr></table></div></div><p>禁用防火墙</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>systemctl disable firewalld.service
+systemctl stop firewalld
+</code></pre></td></tr></table></div></div><p>重启服务器</p><p>安装</p><ul><li>epel-release</li><li>cobbler</li><li>cobbler-web</li><li>httpd</li><li>dnsmasq</li><li>xinetd</li><li>resync</li><li>fen-agents</li><li>debmirror</li><li>pykickstart</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>yum install -y epel-release
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>yum install -y cobbler cobbler-web httpd dnsmasq xinetd fence-agents debmirror pykickstart
+</code></pre></td></tr></table></div></div><p>修改 <code>/etc/cobbler/dnsmasq</code> 的配置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>dhcp-range=172.16.3.200,172.16.3.230
+</code></pre></td></tr></table></div></div><p>生成密码, 这里的密码是 <code>Pioneer@2016</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>root@localhost cobbler<span class=o>]</span><span class=c1># openssl passwd -1</span>
+Password:
+Verifying - Password:
+<span class=nv>$1$LT0SpDmj$k</span>/UXh9oPX9AwZWWkDd6L./
+</code></pre></td></tr></table></div></div><p>修改 <code>/etc/cobbler/settings</code> 的配置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback># set to 1 to enable Cobbler&#39;s DHCP management features.
+# the choice of DHCP management engine is in /etc/cobbler/modules.conf
+manage_dhcp: 1
+
+# set to 1 to enable Cobbler&#39;s DNS management features.
+# the choice of DNS mangement engine is in /etc/cobbler/modules.conf
+manage_dns: 1
+
+# cobbler has various sample kickstart templates stored
+# in /var/lib/cobbler/kickstarts/.  This controls
+# what install (root) password is set up for those
+# systems that reference this variable.  The factory
+# default is &#34;cobbler&#34; and cobbler check will warn if
+# this is not changed.
+# The simplest way to change the password is to run
+# openssl passwd -1
+# and put the output between the &#34;&#34; below.
+default_password_crypted: &#34;$1$LT0SpDmj$k/UXh9oPX9AwZWWkDd6L./&#34;
+
+
+# if using cobbler with manage_dhcp, put the IP address
+# of the cobbler server here so that PXE booting guests can find it
+# if you do not set this correctly, this will be manifested in TFTP open timeouts.
+next_server: 172.16.3.30
+
+# set to 1 to enable Cobbler&#39;s RSYNC management features.
+manage_rsync: 1
+
+# this is the address of the cobbler server -- as it is used
+# by systems during the install process, it must be the address
+# or hostname of the system as those systems can see the server.
+# if you have a server that appears differently to different subnets
+# (dual homed, etc), you need to read the --server-override section
+# of the manpage for how that works.
+server: 172.16.3.30
+
+
+# if this setting is set to 1, cobbler systems that pxe boot
+# will request at the end of their installation to toggle the
+# --netboot-enabled record in the cobbler system record.  This eliminates
+# the potential for a PXE boot loop if the system is set to PXE
+# first in it&#39;s BIOS order.  Enable this if PXE is first in your BIOS
+# boot order, otherwise leave this disabled.   See the manpage
+# for --netboot-enabled.
+pxe_just_once: 1
+</code></pre></td></tr></table></div></div><p>修改 <code>/etc/cobbler/modules.conf</code>,</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>[dns]
+#module = manage_bind
+module = manage_dnsmasq
+
+[dhcp]
+#module = manage_isc
+module = manage_dnsmasq
+</code></pre></td></tr></table></div></div><p>修改 <code>/etc/xinetd.d/tftp</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>disable = no
+</code></pre></td></tr></table></div></div><p>修改 <code>/etc/debmirror.conf</code>, 注释掉这两行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>#@dists=&#34;sid&#34;;
+#@arches=&#34;i386&#34;;
+</code></pre></td></tr></table></div></div><p>启用服务</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>systemctl <span class=nb>enable</span> httpd xinetd rsyncd cobblerd dnsmasq
+systemctl start httpd xinetd rsyncd cobblerd dnsmasq
+</code></pre></td></tr></table></div></div><p>获取loader</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>cobbler get-loaders
+</code></pre></td></tr></table></div></div><p>检查状态</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>cobbler check
+<span class=c1># No configuration problems found.  All systems go.</span>
+</code></pre></td></tr></table></div></div><p>没有问题了，安装完成</p><h2 id=下载镜像>下载镜像</h2><p>下载两个镜像做测试:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>wget -c http://mirrors.163.com/ubuntu-releases/16.04/ubuntu-16.04.3-server-amd64.iso
+wget -c https://mirrors.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso
+</code></pre></td></tr></table></div></div><h2 id=导入镜像>导入镜像</h2><h3 id=centos>centos</h3><p>mount</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>mount -o loop,ro CentOS-7-x86_64-Minimal-1708.iso /mnt
+</code></pre></td></tr></table></div></div><p>import</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>[root@centosbox ~]# cobbler import --name=Centos7 --arch=x86_64 --path=/mnt
+task started: 2017-11-17_122923_import
+task started (id=Media import, time=Fri Nov 17 12:29:23 2017)
+Found a candidate signature: breed=redhat, version=rhel6
+Found a candidate signature: breed=redhat, version=rhel7
+Found a matching signature: breed=redhat, version=rhel7
+</code></pre></td></tr></table></div></div><p>检查一下是否导入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>[root@centosbox ~]# cobbler distro list
+   Centos7-x86_64
+[root@centosbox ~]# cobbler profile list
+   Centos7-x86_64
+</code></pre></td></tr></table></div></div><p>查看详细信息：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>[root@localhost isos]# cobbler distro report --name=Centos7-x86_64
+Name                           : Centos7-x86_64
+Architecture                   : x86_64
+TFTP Boot Files                : {}
+Breed                          : redhat
+Comment                        :
+Fetchable Files                : {}
+Initrd                         : /var/www/cobbler/ks_mirror/Centos7-x86_64/images/pxeboot/initrd.img
+Kernel                         : /var/www/cobbler/ks_mirror/Centos7-x86_64/images/pxeboot/vmlinuz
+Kernel Options                 : {}
+Kernel Options (Post Install)  : {}
+Kickstart Metadata             : {&#39;tree&#39;: &#39;http://@@http_server@@/cblr/links/Centos7-x86_64&#39;}
+Management Classes             : []
+OS Version                     : rhel7
+Owners                         : [&#39;admin&#39;]
+Red Hat Management Key         : &lt;&lt;inherit&gt;&gt;
+Red Hat Management Server      : &lt;&lt;inherit&gt;&gt;
+Template Files                 : {}
+</code></pre></td></tr></table></div></div><p>在system中添加</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>[root@localhost isos]# cobbler system add --name=test --profile=Centos7-x86_64
+[root@localhost isos]#  cobbler system report --name=test
+Name                           : test
+TFTP Boot Files                : {}
+Comment                        :
+Enable gPXE?                   : &lt;&lt;inherit&gt;&gt;
+Fetchable Files                : {}
+Gateway                        :
+Hostname                       :
+Image                          :
+IPv6 Autoconfiguration         : False
+IPv6 Default Device            :
+Kernel Options                 : {}
+Kernel Options (Post Install)  : {}
+Kickstart                      : &lt;&lt;inherit&gt;&gt;
+Kickstart Metadata             : {}
+LDAP Enabled                   : False
+LDAP Management Type           : authconfig
+Management Classes             : &lt;&lt;inherit&gt;&gt;
+Management Parameters          : &lt;&lt;inherit&gt;&gt;
+Monit Enabled                  : False
+Name Servers                   : []
+Name Servers Search Path       : []
+Netboot Enabled                : True
+Owners                         : &lt;&lt;inherit&gt;&gt;
+Power Management Address       :
+Power Management ID            :
+Power Management Password      :
+Power Management Type          : ipmitool
+Power Management Username      :
+Profile                        : Centos7-x86_64
+Internal proxy                 : &lt;&lt;inherit&gt;&gt;
+Red Hat Management Key         : &lt;&lt;inherit&gt;&gt;
+Red Hat Management Server      : &lt;&lt;inherit&gt;&gt;
+Repos Enabled                  : False
+Server Override                : &lt;&lt;inherit&gt;&gt;
+Status                         : production
+Template Files                 : {}
+Virt Auto Boot                 : &lt;&lt;inherit&gt;&gt;
+Virt CPUs                      : &lt;&lt;inherit&gt;&gt;
+Virt Disk Driver Type          : &lt;&lt;inherit&gt;&gt;
+Virt File Size(GB)             : &lt;&lt;inherit&gt;&gt;
+Virt Path                      : &lt;&lt;inherit&gt;&gt;
+Virt PXE Boot                  : 0
+Virt RAM (MB)                  : &lt;&lt;inherit&gt;&gt;
+Virt Type                      : &lt;&lt;inherit&gt;&gt;
+</code></pre></td></tr></table></div></div><h3 id=导入ubuntu>导入ubuntu</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>umount /mnt
+mount -o loop,ro ubuntu-16.04.3-server-amd64.iso /mnt
+cobbler import --name<span class=o>=</span>ubuntu1604 --arch<span class=o>=</span>x86_64 --path<span class=o>=</span>/mnt
+cobbler system add --name<span class=o>=</span>testubuntu --profile<span class=o>=</span>ubuntu1604-x86_64
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>[root@localhost isos]# cobbler distro list
+   Centos7-x86_64
+   ubuntu1604-amd64-x86_64
+   ubuntu1604-hwe-amd64-x86_64
+</code></pre></td></tr></table></div></div><h2 id=开始验证>开始验证</h2><p>那第一台机器mac地址为 <code>9C:E3:74:FF:82:98</code>, 设置静态ip为 <code>172.16.3.201</code></p><p>给装上centos7</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>[root@localhost isos]# cobbler system edit --name=test --interface=eth0 --mac=9C:E3:74:FF:82:98 --ip-address=172.16.3.201 --netmask=255.255.255.0 --static=1 --dns-name=testcentos7.mydomain.com
+[root@localhost isos]# cobbler system edit --name=test --gateway=172.16.3.1 --hostname=testcentos7.mydomain.com
+</code></pre></td></tr></table></div></div><p>第二台机器的mac地址为 <code>9C:E3:74:42:61:21</code>, 设置静态ip为 <code>172.16.3.202</code>, 装上ubuntu</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>cobbler system edit --name<span class=o>=</span>testubuntu --interface<span class=o>=</span>eth0 --mac<span class=o>=</span>9C:E3:74:42:61:21 --ip-address<span class=o>=</span>172.16.3.202 --netmask<span class=o>=</span>255.255.255.0 --static<span class=o>=</span><span class=m>1</span> --dns-name<span class=o>=</span>testubuntu1604.mydomain.com
+cobbler system edit --name<span class=o>=</span>testubuntu --gateway<span class=o>=</span>172.16.3.1 --hostname<span class=o>=</span>testubuntu1604.mydomain.com
+</code></pre></td></tr></table></div></div><p>安装出问题了, 修改profile为centos一切正常</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>cobbler system edit --name<span class=o>=</span>testubuntu --profile<span class=o>=</span>Centos7-x86_64
+</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>Chen, Zai-Chun</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2017-11-28</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/hugo/>hugo</a>
+<a href=/tags/org/>org</a>
+<a href=/tags/cobbler/>cobbler</a></div><nav class=post-nav><a class=prev href=/post/yumrepocache/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">yum/deb repository cache</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/hugolocalsearch/><span class="next-text nav-default">Hugo Local Search</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=chenzaichun/chenzaichun-utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2009 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chen, Zai-Chun</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin=anonymous></script><script>var languageCode="en".replace(/-/g,'_').replace(/_(.*)/,function(b,a){return b.replace(a,a.toUpperCase())});timeago().render(document.querySelectorAll('.timeago'),languageCode),timeago.cancel()</script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js integrity=sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css integrity=sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF crossorigin=anonymous><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>

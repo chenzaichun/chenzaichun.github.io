@@ -1,0 +1,2035 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>org2blog on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/categories/org2blog/</link><description>Recent content in org2blog on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 10 Apr 2012 20:13:24 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/categories/org2blog/index.xml" rel="self" type="application/rss+xml"/><item><title>SOAPpy Error</title><link>https://chenzaichun.github.io/post/2012-04-10-soappy-error-xml-parsers-expat-expaterror/</link><pubDate>Tue, 10 Apr 2012 20:13:24 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-04-10-soappy-error-xml-parsers-expat-expaterror/</guid><description>&lt;p>今天准备用SOAPpy来写一个最简单的soap client，代码如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- encoding: utf-8 -*-&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">SOAPpy&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">WSDL&lt;/span>
+&lt;span class="n">WSDLfile&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;/path/to/webservice&amp;#34;&lt;/span>
+&lt;span class="n">wsdlObject&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">WSDL&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Proxy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">WSDLfile&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s1">&amp;#39;Available methods:&amp;#39;&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">method&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">wsdlObject&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">methods&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">keys&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">:&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">method&lt;/span>
+&lt;span class="n">ci&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wsdlObject&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">methods&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">method&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="c1"># you can also use ci.inparams&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">param&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">ci&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">outparams&lt;/span> &lt;span class="p">:&lt;/span>
+&lt;span class="c1"># list of the function and type &lt;/span>
+&lt;span class="c1"># depending of the wsdl...&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">param&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ljust&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">,&lt;/span> &lt;span class="n">param&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">type&lt;/span>
+&lt;span class="nb">print&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>运行的时候出现了这个问题：&lt;/p></description></item><item><title>gsoap Error 500</title><link>https://chenzaichun.github.io/post/2012-02-28-gsoap-error-500/</link><pubDate>Tue, 28 Feb 2012 22:31:48 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-28-gsoap-error-500/</guid><description>&lt;p>解决了Error 200之后又遇到了Error 500：&lt;/p>
+&lt;blockquote>
+&lt;p>Error 500 fault: SOAP-ENV:Server[no subcode]&lt;/p>
+&lt;/blockquote>
+&lt;p>通过tcpdump分析得到，gsoap强制加入了一个SOAP-ENV:mustUnderstand=&amp;ldquo;1&amp;quot;属性，而web service方不能解析该属性。&lt;/p>
+&lt;p>解决办法,&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="c1">// set mustUnderstand to 0
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">mustUnderstand&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改soapC.cpp, 注释掉&lt;code>soap-&amp;gt;mustUnderstand=1&lt;/code>这一行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">SOAP_FMAC3&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">SOAP_FMAC4&lt;/span> &lt;span class="nf">soap_out_SOAP_ENV__Header&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">struct&lt;/span> &lt;span class="n">soap&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">tag&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="k">struct&lt;/span> &lt;span class="n">SOAP_ENV__Header&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">type&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">tag&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">type&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">soap_element_begin_out&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">tag&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">soap_embedded_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">SOAP_TYPE_SOAP_ENV__Header&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">type&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">soap&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">//soap-&amp;gt;mustUnderstand = 1;
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">soap_out_PointerTons1__AuthenticationInfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;ns1:AuthenticationInfo&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">ns1__AuthenticationInfo_&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">soap&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">soap_element_end_out&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">soap&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">tag&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>使用tcpdump分析soap包</title><link>https://chenzaichun.github.io/post/2012-02-28-using-tcpdump-analysis-soap-protocol/</link><pubDate>Tue, 28 Feb 2012 13:24:20 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-28-using-tcpdump-analysis-soap-protocol/</guid><description>&lt;p>&lt;a href="http://www.diybl.com/course/6_system/linux/Linuxjs/20090308/159740.html">参考链接&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">tcpdump -A -s0 host endpoint-host-name
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>gsoap Error 200</title><link>https://chenzaichun.github.io/post/2012-02-28-gsoap-error-200/</link><pubDate>Tue, 28 Feb 2012 13:22:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-28-gsoap-error-200/</guid><description>&lt;p>在使用gsoap调用其他web service的时候遇到一下问题：&lt;/p>
+&lt;blockquote>
+&lt;p>Error 200 fault: SOAP-ENV:Client[no subcode]&lt;/p>
+&lt;/blockquote>
+&lt;p>解决办法：&lt;/p>
+&lt;p>修改gsoap init的endpoint为全路径解决问题。&lt;/p></description></item><item><title>MacOS X emacs拖拽打开文件</title><link>https://chenzaichun.github.io/post/2012-02-06-emacs-open-files-by-dragging-and-dropping-on-mac-os-x-7/</link><pubDate>Mon, 06 Feb 2012 18:32:34 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-06-emacs-open-files-by-dragging-and-dropping-on-mac-os-x-7/</guid><description>&lt;p>emacs在mac os x中拖拽文件到buffer会在buffer中嵌入显示拖拽文件的内容，解决办法：&lt;/p>
+&lt;p>在&lt;code>.emacs&lt;/code>中加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nv">define-key&lt;/span> &lt;span class="nv">global-map&lt;/span> &lt;span class="nv">[ns-drag-file]&lt;/span> &lt;span class="ss">&amp;#39;my-ns-open-files&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">my-ns-open-files&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;span class="s">&amp;#34;Open files in the list `ns-input-file&amp;#39;.&amp;#34;&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">interactive&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nf">mapc&lt;/span> &lt;span class="ss">&amp;#39;find-file&lt;/span> &lt;span class="nv">ns-input-file&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">ns-input-file&lt;/span> &lt;span class="no">nil&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>MacOS X上编译gSOAP</title><link>https://chenzaichun.github.io/post/2012-02-03-compile-gsoap-on-mac-os-x/</link><pubDate>Fri, 03 Feb 2012 23:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-03-compile-gsoap-on-mac-os-x/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">automake --ignore-deps &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./configure &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果要编译universal版本，则使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">automake --ignore-deps &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ./configure &lt;span class="nv">CFLAGS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-arch ppc -arch i386&amp;#34;&lt;/span> &lt;span class="nv">LDFLAGS&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;-arch ppc -arch i386&amp;#34;&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Git svn – Can’t locate Term/ReadKey.pm in @INC</title><link>https://chenzaichun.github.io/post/2012-02-02-git-svn-cant-locate-termreadkey-pm-in-inc/</link><pubDate>Thu, 02 Feb 2012 22:31:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-02-02-git-svn-cant-locate-termreadkey-pm-in-inc/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">perl -MCPAN -e shell
+&lt;span class="c1"># install Term::ReadKey&lt;/span>
+&lt;span class="c1"># exit&lt;/span>
+perl -MCPAN -e shellinstall Term::ReadKeyexit
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>archlinux上可以安装&lt;code>extra/perl-term-readkey&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S perl-term-readkey
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git svn代理设置</title><link>https://chenzaichun.github.io/post/2012-01-30-git-svn-proxy-setting/</link><pubDate>Mon, 30 Jan 2012 11:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-30-git-svn-proxy-setting/</guid><description>&lt;p>git svn的代理设置需要通过修改&lt;code>~/.subversion/servers&lt;/code>文件来实现：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[groups]
+assembla = *.assembla.com
+# group1 = *.collab.net
+# othergroup = repository.blarggitywhoomph.com
+# thirdgroup = *.example.com
+[assembla]
+http-proxy-host = proxy-server
+http-proxy-port = 8080
+http-compression = yes
+username = yesokay
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>直接用模拟器运行ios app</title><link>https://chenzaichun.github.io/post/2012-01-19-run-app-directly-on-ios-simulator/</link><pubDate>Thu, 19 Jan 2012 18:13:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-19-run-app-directly-on-ios-simulator/</guid><description>&lt;p>有的时候我们想把编译好的ios发给别人测试，但是又没有真机，同时也不想提供源代码，这个时候就需要直接用ios simulator运行app：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone&lt;span class="se">\ &lt;/span>Simulator.app/Contents/MacOS/iPhone&lt;span class="se">\ &lt;/span>Simulator -SimulateApplication path_to_your_app/YourFavouriteApp.app/YourFavouriteApp
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git换行符问题</title><link>https://chenzaichun.github.io/post/2012-01-18-git-line-ending/</link><pubDate>Wed, 18 Jan 2012 22:12:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-18-git-line-ending/</guid><description>&lt;p>Linux或Mac系统使用LF作为行结束符，因此你不想Git在签出文件时进行自动的转换；当一个以CRLF为行结束符的文件不小心被引入时你肯定想进行修正，把core.autocrlf设置成input来告诉 Git 在提交时把CRLF转换成LF，签出时不转换：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git config --global core.autocrlf input
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样会在Windows系统上的签出文件中保留CRLF，会在Mac和Linux系统上，包括仓库中保留LF。&lt;/p></description></item><item><title>ssh本地tunnel代理</title><link>https://chenzaichun.github.io/post/2012-01-18-ssh-local-tunnel/</link><pubDate>Wed, 18 Jan 2012 11:22:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-18-ssh-local-tunnel/</guid><description>&lt;p>ssh命令用法&lt;/p>
+&lt;blockquote>
+&lt;p>ssh -qTfnN -D 7070 用户名@远程ssh主机名&lt;/p>
+&lt;p>-q :- be very quite, we are acting only as a tunnel.
+-T :- Do not allocate a pseudo tty, we are only acting a tunnel.
+-f :- move the ssh process to background, as we don’t want to interact with this ssh session directly.
+-N :- Do not execute remote command.
+-n :- redirect standard input to /dev/null.&lt;/p>
+&lt;/blockquote>
+&lt;p>plink用法&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">plink -C -D 127.0.0.1:7070 -N -pw 密码 用户名@服务器地址
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>X11 Forwarding提速</title><link>https://chenzaichun.github.io/post/2012-01-13-speed-up-ssh-x11-forwarding/</link><pubDate>Fri, 13 Jan 2012 17:16:14 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-13-speed-up-ssh-x11-forwarding/</guid><description>&lt;p>&lt;a href="http://www.miscdebris.net/blog/2007/06/01/speed-up-ssh-x11-forwarding/%22">参考链接&lt;/a>, 原理就是通过-C压缩传输，-c修改加密算法来提高传输&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">ssh -c arcfour,blowfish-cbc -XC host.com
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>通过alias设置:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">alias&lt;/span> ssh-x&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;ssh -c arcfour,blowfish-cbc -XC&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>gcc mudflap用来检测内存越界的问题</title><link>https://chenzaichun.github.io/post/2012-01-05-gcc-mudflap/</link><pubDate>Thu, 05 Jan 2012 16:12:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-01-05-gcc-mudflap/</guid><description>&lt;p>&lt;a href="http://blog.yufeng.info/archives/698">参考链接&lt;/a>&lt;/p>
+&lt;p>可是我使用这个方法编译运行程序出现了这个问题:&lt;/p>
+&lt;blockquote>
+&lt;p>mf: erroneous reentrancy detected in `__mf_check'
+Aborted&lt;/p>
+&lt;/blockquote>
+&lt;p>网上找了很久，未果。还是用&lt;code>valgrind&lt;/code>吧。&lt;/p></description></item><item><title>git rpc error 56</title><link>https://chenzaichun.github.io/post/2011-12-31-git-rpc-error-56/</link><pubDate>Sat, 31 Dec 2011 19:23:56 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-31-git-rpc-error-56/</guid><description>&lt;p>今天使用git push origin master的时候出现了这个问题：&lt;/p>
+&lt;blockquote>
+&lt;p>Counting objects: 592, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (584/584), done.
+error: RPC failed; result=56, HTTP code = 0
+fatal: The remote end hung up unexpectedly
+Writing objects: 100% (592/592), 12.77 MiB | 10.10 MiB/s, done.
+Total 592 (delta 159), reused 0 (delta 0)
+fatal: The remote end hung up unexpectedly
+fatal: expected ok/error, helper said &amp;lsquo;4004?Va???6?)&amp;amp;?&amp;rsquo;?~$latex ?pt?-i?BS??Κ?hSK}??lmZri?=kf?v??????AqG?&lt;em>??&lt;/em>|q??k?+$?\0Q?&lt;/p>
+&lt;/blockquote>
+&lt;p>解决办法参考&lt;a href="http://codaset.com/codaset/codaset/tickets/723">这里&lt;/a>&lt;/p>
+&lt;p>失败的原因就是git &lt;code>HTTP buffer&lt;/code>太小，设置大一点就没有问题，比如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git config http.postBuffer &lt;span class="m">524288000&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git remove untracked files and directories</title><link>https://chenzaichun.github.io/post/2011-12-31-git-remove-untracked-files-and-directories/</link><pubDate>Sat, 31 Dec 2011 17:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-31-git-remove-untracked-files-and-directories/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git clean -f &lt;span class="c1"># remove untracked files&lt;/span>
+git clean -f -d &lt;span class="c1"># remove untracked directories&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>让Finder显示所有文件</title><link>https://chenzaichun.github.io/post/2011-12-31-show-all-files-in-finder-on-mac/</link><pubDate>Sat, 31 Dec 2011 17:31:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-31-show-all-files-in-finder-on-mac/</guid><description>&lt;p>Finder默认情况是不显示隐藏文件和.开头的文件和目录的，由于很多类unix/Linux的软件的配置文件（目录）是.开头的，有的时候我们想在Finder中使用怎么办呢？&lt;/p>
+&lt;p>开启所有文件的显示：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">defaults write com.apple.finder AppleShowAllFiles -bool &lt;span class="nb">true&lt;/span>
+killall Finder
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重新开启Finder就能看到所有文件了。&lt;/p>
+&lt;p>关闭显示隐藏文件：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">defaults write com.apple.finder AppleShowAllFiles -bool &lt;span class="nb">false&lt;/span>
+killall Finder
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>rsync忽略svn目录</title><link>https://chenzaichun.github.io/post/2011-12-31-rsync-ignore-svn-direcotry/</link><pubDate>Sat, 31 Dec 2011 11:23:58 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-31-rsync-ignore-svn-direcotry/</guid><description>&lt;p>很多时候在使用rsync同步svn管理的代码的时候会出现问题，比如我在本地check了一份代码，使用的是1.6.x的svn client，如果同步到编译服务器上，但是上面只有1.5.x版本的svn client就会出现问题。&lt;/p>
+&lt;p>解决办法就是让rsync忽略svn目录，只同步代码文件：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">rsync --cvs-exclude ...
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>终于搞定Mac OS X上emacs中文的显示</title><link>https://chenzaichun.github.io/post/2011-12-30-mac-os-x-emacs-chinese-font-setting/</link><pubDate>Fri, 30 Dec 2011 23:11:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-30-mac-os-x-emacs-chinese-font-setting/</guid><description>&lt;p>原来一直没有找到怎么设置，昨天从一个日本网站上抄了一段，貌似工作比较良好：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">eq&lt;/span> &lt;span class="nv">window-system&lt;/span> &lt;span class="ss">&amp;#39;ns&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">my-font-height&lt;/span> &lt;span class="mi">140&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">my-font&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">cond&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="no">t&lt;/span> &lt;span class="s">&amp;#34;Monaco&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">;; XCode 3.1 &lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="no">nil&lt;/span> &lt;span class="s">&amp;#34;Menlo&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">;; XCode 3.2&lt;/span>
+&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">my-font-ja&lt;/span> &lt;span class="s">&amp;#34;STHeiti&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">mac-allow-anti-aliasing&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">face-font-rescale-alist&lt;/span>
+&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="s">&amp;#34;^-apple-hiragino.*&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*osaka-bold.*&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*osaka-medium.*&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*courier-bold-.*-mac-roman&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*monaco cy-bold-.*-mac-cyrillic&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">0.9&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;.*monaco-bold-.*-mac-roman&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">0.9&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;-cdac$&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="mf">1.3&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="nv">my-font&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">set-face-attribute&lt;/span> &lt;span class="ss">&amp;#39;default&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="ss">:family&lt;/span> &lt;span class="nv">my-font&lt;/span> &lt;span class="ss">:height&lt;/span> &lt;span class="nv">my-font-height&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1">;;(set-frame-font (format &amp;#34;%s-%d&amp;#34; my-font (/ my-font-height 10)))&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="nv">my-font-ja&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">fn&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">frame-parameter&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="ss">&amp;#39;font&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">rg&lt;/span> &lt;span class="s">&amp;#34;iso10646-1&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">set-fontset-font&lt;/span> &lt;span class="nv">fn&lt;/span> &lt;span class="ss">&amp;#39;chinese-gb2312&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="nv">my-font-ja&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="o">,&lt;/span>&lt;span class="nv">rg&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">set-fontset-font&lt;/span> &lt;span class="nv">fn&lt;/span> &lt;span class="ss">&amp;#39;chinese-gbk&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="nv">my-font-ja&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="o">,&lt;/span>&lt;span class="nv">rg&lt;/span>&lt;span class="p">))))))&lt;/span>
+&lt;span class="c1">;; (set-fontset-font fn &amp;#39;unicode `(,my-font-ja . ,rg))))))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>抛弃MacPorts，用Homebrew吧</title><link>https://chenzaichun.github.io/post/2011-12-30-mac-os-x-homebrew/</link><pubDate>Fri, 30 Dec 2011 22:22:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-30-mac-os-x-homebrew/</guid><description>&lt;p>Homebrew是一个全新的程序包管理器, 用Ruby开发而成, 轻巧, 智能. 它能自动判断当前机器的程序包的状况, 自动和系统中已经有的程序包整合在一起, 有了Homebrew, 世界清净多了 ^_^&lt;/p>
+&lt;p>安装Homebrew&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">ruby -e &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="k">$(&lt;/span>curl -fsS http://gist.github.com/raw/323731/install_homebrew.rb&lt;span class="k">)&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用方法见&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">brew --help
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>MacOS X Swap单独分区</title><link>https://chenzaichun.github.io/post/2011-12-30-macos-x-swap-dan-du-fen-qu/</link><pubDate>Fri, 30 Dec 2011 12:23:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-30-macos-x-swap-dan-du-fen-qu/</guid><description>&lt;p>&lt;a href="http://superuser.com/questions/28414/moving-the-swapfiles-to-a-dedicated-partition-in-snow-leopard">参考链接&lt;/a>&lt;/p>
+&lt;ol>
+&lt;li>备份dynamic_pager.plist&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> /System/Library/LaunchDaemons
+sudo cp com.apple.dynamic_pager.plist&lt;span class="o">{&lt;/span>,_bak&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>将plist转换为xml格式&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo plutil -convert xml1 com.apple.dynamic_pager.plist
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux functions脚本错误</title><link>https://chenzaichun.github.io/post/2011-12-15-archlinux-etc-rc-d-functions-error/</link><pubDate>Thu, 15 Dec 2011 10:23:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-15-archlinux-etc-rc-d-functions-error/</guid><description>&lt;p>今天升级了archlinux，启动过程中出现了错误：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">/etc/rc.d/functions: line 497: syntax error near unexpected token `&amp;lt;&amp;#39;
+/etc/rc.d/functions: line 497: ` done &amp;lt; &amp;lt;(findmnt -runRo TARGET,FSTYPE,OPTIONS / | tac)&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>archlinux.org上给出了一个&lt;a href="https://bugs.archlinux.org/task/27098">patch&lt;/a>&lt;/p>
+&lt;p>patch的内容如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="gd">--- functions_old 2011-11-19 13:05:47.921522255 +0400
+&lt;/span>&lt;span class="gd">&lt;/span>&lt;span class="gi">+++ functions 2011-11-19 12:55:17.411565127 +0400
+&lt;/span>&lt;span class="gi">&lt;/span>&lt;span class="gu">@@ -494,7 +494,7 @@
+&lt;/span>&lt;span class="gu">&lt;/span> fi
+mounts+=(&amp;#34;$target&amp;#34;)
+&lt;span class="gd">- done &amp;lt; &amp;lt;(findmnt -runRo TARGET,FSTYPE,OPTIONS / | tac)
+&lt;/span>&lt;span class="gd">&lt;/span>&lt;span class="gi">+ done &amp;lt; $(findmnt -runRo TARGET,FSTYPE,OPTIONS / | tac)
+&lt;/span>&lt;span class="gi">&lt;/span>
+umount -r &amp;#34;${mounts[@]}&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>下载&lt;a href="https://chenzaichun.github.io/media/wpid-rc-functions-typo.patch_.zip">patch&lt;/a>&lt;/p></description></item><item><title>archlinux下配置GNUStep环境</title><link>https://chenzaichun.github.io/post/2011-12-12-gnustep-env-on-archlinux/</link><pubDate>Mon, 12 Dec 2011 11:11:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-12-gnustep-env-on-archlinux/</guid><description>&lt;p>GNUStep 主要有一下四部分组成，对应着在 Archlinux 系统下面我们也需要安装四个软件包。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>GNUstep Make: 提供类似 Makefile 的功能, 称为 GNUmakefile, 较 Makefile 好用许多。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>GNUstep Base: 提供 OpenStep 的 Foundation 程式库, 处理非图形介面的功能。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>GNUstep GUI: 提供 OpenStep 的 AppKit 程式库, 处理图形介面的功能。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>GNUstep Back: 提供与作业系统相关的后端处理, 提供 GNUstep GUI 有关绘图及字型的功能。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>安装GNUStep：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S gnustep-base gnustep-make gnustep-gui gnustep-back
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>当然也需要安装gcc objc支持:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S gcc-objc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编译obj-c所需命令:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gcc &lt;span class="sb">`&lt;/span>gnustep-config --objc-flags&lt;span class="sb">`&lt;/span> -lgnustep-base -lobjc xxx.m -o xxx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Hello World测试:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-objc" data-lang="objc">&lt;span class="c1">//helloworld.m
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="cp">#import &amp;#34;Foundation/Foundation.h&amp;#34;
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[])&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">NSAutoreleasePool&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pool&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="n">NSAutoreleasePool&lt;/span> &lt;span class="n">alloc&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">init&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="n">NSLog&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">@&amp;#34;Hello World&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">[&lt;/span>&lt;span class="n">pool&lt;/span> &lt;span class="n">drain&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编译运行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">gcc &lt;span class="sb">`&lt;/span>gnustep-config --objc-flags&lt;span class="sb">`&lt;/span> -lgnustep-base -lobjc helloworld.m -o helloworld
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果没有添加-lobjc的话，新版的gcc编辑器会出现链接错误：&lt;/p>
+&lt;blockquote>
+&lt;p>/usr/bin/ld: /usr/lib/gcc/i686-pc-linux-gnu/4.6.2/../../../libgnustep-base.so: undefined reference to symbol &amp;lsquo;objc_get_class&amp;rsquo;
+/usr/bin/ld: note: &amp;lsquo;objc_get_class&amp;rsquo; is defined in DSO /usr/lib/libobjc.so.3 so try adding it to the linker command line
+/usr/lib/libobjc.so.3: could not read symbols: Invalid operation
+collect2: ld returned 1 exit status&lt;/p>
+&lt;/blockquote>
+&lt;p>运行结果：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">$ ./helloworld
+2011-12-12 03:27:14.391 helloworld[6928] No local time zone specified.
+2011-12-12 03:27:14.392 helloworld[6928] Using time zone with absolute offset 0.
+2011-12-12 03:27:14.338 helloworld[6928] Hello World
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里有2个warning, 设置一下:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">defaults write NSGlobalDomain &lt;span class="s2">&amp;#34;Local Time Zone&amp;#34;&lt;/span> &lt;span class="s1">&amp;#39;Asia/Chongqing&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>第一个GNUstep窗口程序</title><link>https://chenzaichun.github.io/post/2011-12-12-first-gnustep-gui/</link><pubDate>Mon, 12 Dec 2011 09:11:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-12-first-gnustep-gui/</guid><description>&lt;p>&lt;a href="http://gnustep.made-it.com/GSPT/xml/Tutorial_en.html#AEN365">参考链接&lt;/a>&lt;/p>
+&lt;p>main.m&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-objc" data-lang="objc">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;#34;AppController.h&amp;#34;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;AppKit/AppKit.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">[])&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">NSAutoreleasePool&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pool&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">AppController&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">delegate&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">pool&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="n">NSAutoreleasePool&lt;/span> &lt;span class="n">alloc&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">init&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="n">delegate&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[&lt;/span>&lt;span class="n">AppController&lt;/span> &lt;span class="n">alloc&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">init&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="p">[&lt;/span>&lt;span class="n">NSApplication&lt;/span> &lt;span class="n">sharedApplication&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="p">[&lt;/span>&lt;span class="n">NSApp&lt;/span> &lt;span class="nl">setDelegate&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">delegate&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="n">RELEASE&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pool&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">NSApplicationMain&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>AppController.h&lt;/p></description></item><item><title>Unlock the McAfee VirusScan Enterprise 8.5i User Interface</title><link>https://chenzaichun.github.io/post/2011-12-09-unlock-mcafee-user-interface/</link><pubDate>Fri, 09 Dec 2011 22:30:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-09-unlock-mcafee-user-interface/</guid><description>&lt;p>&lt;a href="http://it.megocollector.com/?p=1094">传送门&lt;/a>&lt;/p>
+&lt;p>经检验，只要设置以下注册表就行了:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[HKEY_LOCAL_MACHINE\SOFTWARE\McAfee\DesktopProtection]
+&amp;#34;UIPMode&amp;#34;=dword:00000000
+&amp;#34;UIP&amp;#34;=&amp;#34;&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>void: org-save-outline-visibility</title><link>https://chenzaichun.github.io/post/2011-12-09-org-save-outline-visibility/</link><pubDate>Fri, 09 Dec 2011 22:23:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-09-org-save-outline-visibility/</guid><description>&lt;p>今天在mac上用org2blog发布博客的时候，遇到了这个问题:&lt;/p>
+&lt;blockquote>
+&lt;p>Symbol&amp;rsquo;s function definition is void: org-save-outline-visibility&lt;/p>
+&lt;/blockquote>
+&lt;p>原来是emacs自动的org-mode为7.4版本，升级到7.5或者以后版本解决问题。&lt;/p></description></item><item><title>emacs代理设置</title><link>https://chenzaichun.github.io/post/2011-12-09-emacs-http-proxy-setting/</link><pubDate>Fri, 09 Dec 2011 11:23:21 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-09-emacs-http-proxy-setting/</guid><description>&lt;p>在Linux上，用环境变量的方式可以直接让emacs使用代理，如设置http_proxy&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>xxx.xx.xx.xx:port
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但是在mac上这样做就不行了。由于elisp中一般http都是使用的&lt;code>url package&lt;/code>，所以可以通过&lt;code>url package&lt;/code>的接口来设置代理:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">url-using-proxy&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">url-proxy-services&lt;/span> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="s">&amp;#34;http&amp;#34;&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="s">&amp;#34;proxyserver:port&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>getenv assignment makes pointer from integer without a cast</title><link>https://chenzaichun.github.io/post/2011-12-01-genenv-assignment-makes-pointer-from-integer-without-a-cast/</link><pubDate>Thu, 01 Dec 2011 22:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-01-genenv-assignment-makes-pointer-from-integer-without-a-cast/</guid><description>&lt;p>今天在使用getenv获取环境变量的时候遇到这个问题，代码类似于这样&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdio.h&amp;gt; &lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="k">extern&lt;/span> &lt;span class="s">&amp;#34;C&amp;#34;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">getenv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">value&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">getenv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;HOME&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">printf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;%s&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编译的时候会出现一个warning&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">test.c: In function `main&amp;#39;:
+test.c:9: warning: assignment makes pointer from integer without a cast
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>运行的时候会出现segment fault&lt;/p>
+&lt;p>原来是缺少stdlib.h的问题（可是我已经申明了原型呀……）&lt;/p>
+&lt;p>加入stdlib.h解决问题:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdlib.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>linux下开启coredump</title><link>https://chenzaichun.github.io/post/2011-12-01-turn-on-coredump-on-linux/</link><pubDate>Thu, 01 Dec 2011 22:01:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-12-01-turn-on-coredump-on-linux/</guid><description>&lt;p>当linux下的程序运行异常时，会在运行程序的目录下生成core dump文件。通过&lt;code>ulimit -c&lt;/code>查看，结果为0则为关闭（默认值）.&lt;/p>
+&lt;p>临时开启只要在shell中执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">ulimit&lt;/span> -c unlimited
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>也可以在&lt;code>~/.profile&lt;/code>文件中添加来默认开启core dump。&lt;/p></description></item><item><title>为Mercurial（hg）添加进度条</title><link>https://chenzaichun.github.io/post/2011-11-30-mercurial-hg-add-progress/</link><pubDate>Wed, 30 Nov 2011 10:20:30 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-30-mercurial-hg-add-progress/</guid><description>&lt;p>hg1.5之后内置了progress扩展，可以直接启用：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[extensions]
+progress =
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>chrome vim按键绑定</title><link>https://chenzaichun.github.io/post/2011-11-18-chrome-vim-key-binding/</link><pubDate>Fri, 18 Nov 2011 22:13:47 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-18-chrome-vim-key-binding/</guid><description>&lt;p>&lt;a href="https://github.com/philc/vimium">传送门&lt;/a>&lt;/p>
+&lt;p>插件安装&lt;a href="https://chrome.google.com/webstore/detail/dbepggeogbaibhgnhhndojpepiihcmeb">地址&lt;/a>&lt;/p>
+&lt;p>Navigating the current page:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Using find:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Navigating your history:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Manipulating tabs:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Additional advanced browsing commands:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Vimium supports command repetition so, for example, hitting &amp;lsquo;5t&amp;rsquo; will open 5 tabs in rapid succession. ESC (or &amp;lt;c-[&amp;gt;) will clear any partial commands in the queue and will also exit insert and find modes.&lt;/p>
+&lt;p>自定义快捷键详情请自行阅读&lt;a href="https://github.com/philc/vimium#readme">readme&lt;/a>&lt;/p></description></item><item><title>mount –bind</title><link>https://chenzaichun.github.io/post/2011-11-18-mount-bind/</link><pubDate>Fri, 18 Nov 2011 21:10:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-18-mount-bind/</guid><description>&lt;p>我想应该大家都会用版本管理来处理配置文件吧。本人一般用git来管理自己的配置（emacs, vim, ssh, zshrc, svn, git, hg…），我将这写配置文件放到了一个git repo中。但是很多时候需要对这些文件进行修改，我想大家也不会把文件在repo中修改好之后然后手动copy到相应的目录中。这里一般有两种方法来避免手动拷贝，一种是通过Makefile的方式，另外一种就是建立文件的软链接。我原来一直采用的是后者，因为我不想没一次修改都make一下。对于建立软链接的方式，一般的软件都能很好的处理。 我的git repo放在windows分区（这样windows和linux都能使用），用virtualbox安装了archlinux，通过mount vboxsf的方式mount windows分区到linux下。这里mount vboxsf的时候需要注意权限问题，然后像.ssh/config文件会出现访问权限问题。我的 =/etc/fstab= 文件如下:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"># /etc/fstab
+sharename mountpoint vboxsf \
+rw,fmode=0644,dmode=0755,uid=1000,gid=1000,exec 0 0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>对于symlink模式，绝大部分软件都能满足了，但是这里有个意外, &lt;code>Oracle&lt;/code>的&lt;code>gethostbyname&lt;/code>对于&lt;code>/etc/hosts&lt;/code> symlinks是不认的，比如我创建一个软链接到&lt;code>/etc/hosts&lt;/code>，启动oracle会出现&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">ORA-00600 arguments: [keltnfy-ldmInit], [46], [1]
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>既然软链接不行，这个时候就需要&lt;code>mount –bind&lt;/code>的帮助了。 &lt;code>mount –bind&lt;/code>是将一个目录中的内容挂载到另一个目录上，用法是:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">mount --bind olddir newdir
+mount --bind olddir/file newdir/file
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果想将&lt;code>mount –bind&lt;/code>写入&lt;code>/etc/fstab&lt;/code>，则用法是：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">olddir newdir none &lt;span class="nb">bind&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里又有一个问题了，我如果想把/etc/fstab也放到git repo中进行管理怎么办呢？由于不可能为/etc/fstab创建symlink，也不能为其使用mount –bind的方式到/etc/fstab。那就只能在git repo中想办法了。可是git是不会follow symlink的，如果我将/etc/fstab软链接到git repo中，git并不会将该文件加入到repo，加入的只是一个symlink而已。 解决办法就是反过来bind, 将/etc/fstab bind到git repo中的目录:)&lt;/p></description></item><item><title>常用软件的代理设置</title><link>https://chenzaichun.github.io/post/2011-11-17-common-proxy-settings/</link><pubDate>Thu, 17 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-17-common-proxy-settings/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># http_proxy&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">http_proxy&lt;/span>&lt;span class="o">=&lt;/span>host:port
+&lt;span class="c1"># https_proxy&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">https_proxy&lt;/span>&lt;span class="o">=&lt;/span>host:port
+&lt;span class="c1"># ftp_proxy&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">ftp_proxy&lt;/span>&lt;span class="o">=&lt;/span>host:port
+&lt;span class="c1"># rsync proxy&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">RSYNC_PROXY&lt;/span>&lt;span class="o">=&lt;/span>host:port
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"># ssh over http_proxy depends on your tools used.
+# Modify .ssh/config file for host configuration:
+# Following are connect.c and corkscrew example.
+# For connect.c, -h option means use http_proxy
+# environment.
+Host *
+ProxyCommand corkscrew http-proxy.example.com 8080 %h %p
+ProxyCommand connect -h %h %p
+ProxyCommand connect -H proxy-host:proxy-port %h %p
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"># git over http_proxy
+export GIT_PROXY_COMMAND=&amp;#34;connect -h $@&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>git合并多个repositories到子目录</title><link>https://chenzaichun.github.io/post/2011-11-16-merge-git-repositories-to-subdirectory/</link><pubDate>Wed, 16 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-16-merge-git-repositories-to-subdirectory/</guid><description>&lt;p>在每个repo都很小的情况下，维护多个repo是很麻烦的事情。如何在保留原来版本信息的情况下将repo合并到另外一个repo的子目录下呢？有很多的方法，比如在不删除原来的repo，使用submodule。或者使用subtree的方式。但是我不想用submodule保留原来的repo，而且感觉subtree也是一个比较麻烦的东东。这里要介绍git的read-tree（可以参考&lt;a href="http://blog.ossxp.com/2010/10/2041/">这里&lt;/a>)。 网上讲了很多，我总结一下并写了一个脚本repomerge.sh。先把脚本贴出来&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="cp">#!/bin/sh
+&lt;/span>&lt;span class="cp">&lt;/span>
+git remote add -f &lt;span class="nv">$1&lt;/span> &lt;span class="nv">$2&lt;/span>
+git merge -s ours --no-commit &lt;span class="nv">$1&lt;/span>/master
+git read-tree --prefix&lt;span class="o">=&lt;/span>&lt;span class="nv">$1&lt;/span>/ -u &lt;span class="nv">$1&lt;/span>/master
+git commit -m &lt;span class="s2">&amp;#34;merging &lt;/span>&lt;span class="nv">$1&lt;/span>&lt;span class="s2"> into subdirectory&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用的方法是$1为子目录名字，$2为repo的路径。&lt;/p>
+&lt;p>这里有一个问题需要注意，合并到的repo（即目标repo）不能为空（至少要有一个commit)。&lt;/p>
+&lt;p>比如要合并一个repo A 到A目录，repo B到B目录&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> dest-repo-dir
+git init .
+&lt;span class="c1"># add one file and commit&lt;/span>
+touch just-test-file
+git add just-test-file
+git commit -am &lt;span class="s2">&amp;#34;init&amp;#34;&lt;/span>
+/path/to/repomerge.sh A /path/to/repo/A
+/path/to/repomerge.sh B /path/to/repo/B
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样repo A和repo B就分别被合并到了A、B目录了。&lt;/p></description></item><item><title>Archlinux下安装oracle 10gr2 Enterprise</title><link>https://chenzaichun.github.io/post/2011-11-15-install-oracle-10gr2-on-archlinux/</link><pubDate>Tue, 15 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-15-install-oracle-10gr2-on-archlinux/</guid><description>&lt;p>由于Oracle XE精简了很多，跟教科书上很多不一样，所以还是装一个企业版吧。&lt;/p>
+&lt;p>&lt;a href="http://meansonw-work.blogspot.com/2008/10/archlinux-oracle-10g.html">参考链接&lt;/a>&lt;/p>
+&lt;p>安装跟archlinux的wiki上差不多，注意两个链接必须创建：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo ln -s /usr/lib/libgcc_s.so.1 /lib/libgcc_s.so.1
+sudo ln -s /bin/tr /usr/bin/tr
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>将hg转换为git</title><link>https://chenzaichun.github.io/post/2011-11-15-convert-hg-to-git/</link><pubDate>Tue, 15 Nov 2011 10:10:10 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-15-convert-hg-to-git/</guid><description>&lt;p>首先安装&lt;a href="http://repo.or.cz/w/fast-export.git">fast-export&lt;/a>&lt;/p>
+&lt;p>基本命令:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> somedir
+git init .
+/path/to/fast-export -r /path/to/hg/repo
+git reset HEAD
+git checkout .
+git remote add origin user@server/repo.git
+git push origin master
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>That&amp;rsquo;s all!&lt;/p></description></item><item><title>Emacs进程/系统环境变量</title><link>https://chenzaichun.github.io/post/2011-11-13-emacs_sys_process_environment/</link><pubDate>Sun, 13 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-13-emacs_sys_process_environment/</guid><description>&lt;p>Emacs中获取进程（系统）环境变量并进行修改，比如&lt;code>http_proxy&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nv">getenv&lt;/span> &lt;span class="s">&amp;#34;http_proxy&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;http_proxy&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;http://proxy-server:port&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Pymacs</title><link>https://chenzaichun.github.io/post/2011-11-13-pymacs/</link><pubDate>Sun, 13 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-13-pymacs/</guid><description>&lt;p>一直以来配置emacs都是从网上抄的，想写一些东西来配置一下emacs使之更加的方便，但是elisp的括号让人望而生畏。所以还是用python来扩展吧。幸好有&lt;a href="http://pymacs.progiciels-bpi.ca/index.html">pymacs&lt;/a>这个强大的东东。&lt;/p>
+&lt;p>官方对其的介绍：&lt;/p>
+&lt;blockquote>
+&lt;p>Pymacs is a powerful tool which, once started from Emacs, allows both-way communication between Emacs Lisp and Python. Pymacs aims Python as an extension language for Emacs rather than the other way around, and this asymmetry is reflected in some design choices. Within Emacs Lisp code, one may load and use Python modules. Python functions may themselves use Emacs services, and handle Emacs Lisp objects kept in Emacs Lisp space.&lt;/p>
+&lt;/blockquote>
+&lt;p>archlinux下安装pymacs：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">sudo pacman -S pymacs
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>配置pymacs, 在.emacs中添加：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-apply&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-call&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-eval&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-exec&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">autoload&lt;/span> &lt;span class="ss">&amp;#39;pymacs-load&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">eval-after-load&lt;/span> &lt;span class="s">&amp;#34;pymacs&amp;#34;&lt;/span>
+&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">add-to-list&lt;/span> &lt;span class="ss">&amp;#39;pymacs-load-path&lt;/span> &lt;span class="s">&amp;#34;~/.emacs.d/my-lisp&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>现在我要将elisp的函数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">proxyfunc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">server&lt;/span> &lt;span class="nv">port&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;http_proxy&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">concat&lt;/span> &lt;span class="s">&amp;#34;http://&amp;#34;&lt;/span>&lt;span class="nv">server&lt;/span>&lt;span class="s">&amp;#34;:&amp;#34;&lt;/span>&lt;span class="nv">port&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;https_proxy&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">concat&lt;/span> &lt;span class="s">&amp;#34;https://&amp;#34;&lt;/span>&lt;span class="nv">server&lt;/span>&lt;span class="s">&amp;#34;:&amp;#34;&lt;/span>&lt;span class="nv">port&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;ftp_proxy&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">concat&lt;/span> &lt;span class="s">&amp;#34;http://&amp;#34;&lt;/span>&lt;span class="nv">server&lt;/span>&lt;span class="s">&amp;#34;:&amp;#34;&lt;/span>&lt;span class="nv">port&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">proxyoff&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">interactive&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;http_proxy&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;https_proxy&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;ftp_proxy&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">proxyjpn&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">interactive&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">proxyfunc&lt;/span> &lt;span class="s">&amp;#34;16.146.32.100&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;8080&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="nv">转换为Python,&lt;/span> &lt;span class="nv">如setproxy.py&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">将文件放到PYTHONPATH中&lt;/span>&lt;span class="err">）&lt;/span>
+&lt;span class="o">```&lt;/span>&lt;span class="nv">python&lt;/span>
+&lt;span class="err">#&lt;/span>&lt;span class="nv">!/usr/bin/env&lt;/span> &lt;span class="nv">python&lt;/span>
+&lt;span class="err">#&lt;/span> &lt;span class="nv">-*-&lt;/span> &lt;span class="nv">coding:&lt;/span> &lt;span class="nv">utf-8&lt;/span> &lt;span class="nv">-*-&lt;/span>
+&lt;span class="nf">import&lt;/span> &lt;span class="nv">os&lt;/span>
+&lt;span class="nv">def&lt;/span> &lt;span class="nv">setproxy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">server,&lt;/span> &lt;span class="nv">port&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;http_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="ss">&amp;#39;http://&amp;#39;+server+&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="ss">&amp;#39;+port&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;https_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="ss">&amp;#39;https://&amp;#39;+server+&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="ss">&amp;#39;+port&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;ftp_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="ss">&amp;#39;http://&amp;#39;+server+&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="ss">&amp;#39;+port&lt;/span>
+&lt;span class="nv">def&lt;/span> &lt;span class="nv">setproxyoff&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;http_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;https_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">os.environ[&lt;/span>&lt;span class="ss">&amp;#39;ftp_proxy&amp;#39;]&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">def&lt;/span> &lt;span class="nv">proxyjpn&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;span class="nv">setproxy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">&amp;#39;16.146.32.100&amp;#39;,&lt;/span> &lt;span class="ss">&amp;#39;8080&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nv">def&lt;/span> &lt;span class="nv">proxysgn&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="err">:&lt;/span>
+&lt;span class="nv">setproxy&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">&amp;#39;16.158.235.10&amp;#39;,&lt;/span> &lt;span class="ss">&amp;#39;8080&lt;/span>&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="err">#&lt;/span> &lt;span class="nv">need&lt;/span> &lt;span class="nv">to&lt;/span> &lt;span class="nf">set&lt;/span> &lt;span class="k">the&lt;/span> &lt;span class="nv">property&lt;/span> &lt;span class="nv">interaction&lt;/span>
+&lt;span class="nv">proxyjpn.interaction&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">setproxyoff.interaction&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="nv">proxysgn.interaction&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>通过pymacs-load加载python模块&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">M-x pymacs-load RET MODULE RET PREFIX RET
+# e.g. M-x pymacs-load setproxy RET setproxy- RET
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>调用python函数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">M-x setproxy-proxyjpn
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>对于pymacs的详细教程，中文版可以参考&lt;a href="http://www.cnblogs.com/rockcode/archive/2011/08/20/2147404.html">这里&lt;/a>&lt;/p></description></item><item><title>Linux默认Erase Key(Backspace Key)</title><link>https://chenzaichun.github.io/post/2011-11-12-stty_erase_key/</link><pubDate>Sat, 12 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-12-stty_erase_key/</guid><description>&lt;p>由于经常登陆solaris和hp-ux，所以将默认的backspace key设置成了^H（Terminal中设置），可是当使用在本地使用sqlplus的时候，会出现backspace无法使用的情况（Linux默认stty erase可以为^?），解决办法：&lt;/p>
+&lt;p>在&lt;code>~/.profile&lt;/code>文件中加入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">stty erase ^H
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>rpm常用命令</title><link>https://chenzaichun.github.io/post/2011-11-07-rpm_command/</link><pubDate>Mon, 07 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-07-rpm_command/</guid><description>&lt;ol>
+&lt;li>安装rpm文件&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">rpm -ivh *.rpm
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>查找已经安装的包&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">rpm -ivh *.rpm
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>删除已经安装的包&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">rpm -ivh *.rpm
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Python ftplib</title><link>https://chenzaichun.github.io/post/2011-11-05-python_ftplib/</link><pubDate>Sat, 05 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-05-python_ftplib/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">ftplib&lt;/span>
+&lt;span class="n">session&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ftplib&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">FTP&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;server&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;usr&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;pwd&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">myfile&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;test.txt&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;rb&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">session&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">storbinary&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;STOR test.txt&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">myfile&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">myfile&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">session&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">quit&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>将google chrome设置为emacs默认浏览器</title><link>https://chenzaichun.github.io/post/2011-11-04-use_google_chrome_as_emacs_default_browser/</link><pubDate>Fri, 04 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-04-use_google_chrome_as_emacs_default_browser/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="k">setq&lt;/span> &lt;span class="nv">browse-url-generic-program&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">executable-find&lt;/span> &lt;span class="s">&amp;#34;google-chrome&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nv">browse-url-browser-function&lt;/span> &lt;span class="ss">&amp;#39;browse-url-generic&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>OrgMode Post Process Hook</title><link>https://chenzaichun.github.io/post/2011-11-03-my-org_post_process_hook/</link><pubDate>Thu, 03 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-03-my-org_post_process_hook/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">my-org-post-process-hook&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">re-search-forward&lt;/span> &lt;span class="s">&amp;#34;&amp;lt;pre &amp;#34;&lt;/span> &lt;span class="no">nil&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">replace-match&lt;/span>
+&lt;span class="s">&amp;#34;&amp;lt;pre style=&amp;#34;&lt;/span>&lt;span class="nv">background-color:#272821&lt;/span>&lt;span class="c1">; color: #F8F8F2&amp;#34; &amp;#34;&lt;/span>
+&lt;span class="no">t&lt;/span> &lt;span class="no">nil&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook&lt;/span> &lt;span class="ss">&amp;#39;org-export-html-final-hook&lt;/span> &lt;span class="ss">&amp;#39;my-org-post-process-hook&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>RSS输出添加css支持</title><link>https://chenzaichun.github.io/post/2011-11-03-add_css_support_for_rss_output/</link><pubDate>Thu, 03 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-03-add_css_support_for_rss_output/</guid><description>&lt;p>修改views/rss.xml， 在xml版本定义下加入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="cp">&amp;lt;?xml-stylesheet type=&amp;#34;text/css&amp;#34; href=&amp;#34;{{ blog.baseurl }}/themes/iNove/style.css&amp;#34; ?&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>测试一下是否成功:)&lt;/p></description></item><item><title>Micolog RSS输出代码背景色问题</title><link>https://chenzaichun.github.io/post/2011-11-02-micolog_code_backgroud_in_rss_output/</link><pubDate>Wed, 02 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-02-micolog_code_backgroud_in_rss_output/</guid><description>&lt;p>大家可能注意到用阅读器读取rss的时候代码看不清（没有背景色的缘故)，所以修改了一下代码的输出：&lt;/p>
+&lt;p>添加两个函数来插入代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">i-babel-quote&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">beg&lt;/span> &lt;span class="nv">end&lt;/span> &lt;span class="nv">str1&lt;/span> &lt;span class="nv">str2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">goto-char&lt;/span> &lt;span class="nv">end&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">forward-line&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">insert&lt;/span> &lt;span class="nv">str2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">newline&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">goto-char&lt;/span> &lt;span class="nv">beg&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">forward-line&lt;/span> &lt;span class="mi">-1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">newline&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">insert&lt;/span> &lt;span class="nv">str1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">isrc&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">St&lt;/span> &lt;span class="nv">Ed&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="s">&amp;#34;Enclose code for Emacser.cn&amp;#34;&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">interactive&lt;/span> &lt;span class="s">&amp;#34;r&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">beg&lt;/span> &lt;span class="nv">St&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">end&lt;/span> &lt;span class="nv">Ed&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">message&lt;/span> &lt;span class="s">&amp;#34;%s %s&amp;#34;&lt;/span> &lt;span class="nv">beg&lt;/span> &lt;span class="nv">end&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">i-babel-quote&lt;/span> &lt;span class="nv">beg&lt;/span> &lt;span class="nv">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>禁用zsh中的git prompt</title><link>https://chenzaichun.github.io/post/2011-11-02-disable_zsh_git_prompt/</link><pubDate>Wed, 02 Nov 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-02-disable_zsh_git_prompt/</guid><description>&lt;p>git prompt很多时候其实挺方面的，但是的我cd到一个nfs目录的时候，会出现卡很久的情况。果断disable掉。&lt;/p>
+&lt;p>首先根据你的theme找到$PROMPT&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">echo&lt;/span> &lt;span class="nv">$PROMPT&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>比如我的是:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">%{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>去掉&lt;code>git_prompt_info&lt;/code>即可:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PROMPT&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;%{&lt;/span>&lt;span class="nv">$fg_bold&lt;/span>&lt;span class="s2">[red]%}➜ %{&lt;/span>&lt;span class="nv">$fg_bold&lt;/span>&lt;span class="s2">[green]%}%p %{&lt;/span>&lt;span class="nv">$fg&lt;/span>&lt;span class="s2">[cyan]%}%c %{&lt;/span>&lt;span class="nv">$fg_bold&lt;/span>&lt;span class="s2">[blue]%}%{&lt;/span>&lt;span class="nv">$fg_bold&lt;/span>&lt;span class="s2">[blue]%} % %{&lt;/span>&lt;span class="nv">$reset_color&lt;/span>&lt;span class="s2">%}&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Python获取当前用户名</title><link>https://chenzaichun.github.io/post/2011-10-29-get_user_name_by_python/</link><pubDate>Sat, 29 Oct 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-29-get_user_name_by_python/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="err">!&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">usr&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nb">bin&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">env&lt;/span> &lt;span class="n">python&lt;/span>
+&lt;span class="o">-*-&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">utf&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">8&lt;/span> &lt;span class="o">-*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">getpass&lt;/span>
+&lt;span class="n">getpass&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getuser&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>python获取本机公网IP</title><link>https://chenzaichun.github.io/post/2011-10-28-python_get_public_ip/</link><pubDate>Fri, 28 Oct 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-28-python_get_public_ip/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="c1">#-*- encoding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">re&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">urllib2&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="s2">&amp;#34;public IP address is: &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">re&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">search&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;d+.d+.d+.d+&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">urllib2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">urlopen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;http://www.whereismyip.com&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read&lt;/span>&lt;span class="p">())&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">group&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>colored man page output</title><link>https://chenzaichun.github.io/post/2011-10-28-colored_man_page_output/</link><pubDate>Fri, 28 Oct 2011 10:11:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-28-colored_man_page_output/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># colorful man page&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">PAGER&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;`which less` -s&amp;#34;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">BROWSER&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$PAGER&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_mb&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;34m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_md&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;34m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_me&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[0m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_se&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[0m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_so&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;44;33m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_ue&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[0m&amp;#39;&lt;/span>
+&lt;span class="nb">export&lt;/span> &lt;span class="nv">LESS_TERMCAP_us&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">$&amp;#39;E[01;33m&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>windows下清空系统dns</title><link>https://chenzaichun.github.io/post/2011-10-28-flush_dns_on_windows/</link><pubDate>Fri, 28 Oct 2011 10:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-28-flush_dns_on_windows/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">ipconfig /flush
+ipconfig /flushdns
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>org2blog代码背景色</title><link>https://chenzaichun.github.io/post/2011-10-27-orgblog_code_theme/</link><pubDate>Thu, 27 Oct 2011 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-27-orgblog_code_theme/</guid><description>&lt;p>如果使用了color-theme，用org2blog发布出来的代码看不太请，根据自己的color-theme修改css文件就行，比如我用的almost-monokai:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="nt">pre&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">src&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">background&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#272821&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#F8F8F2&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>zenburn-code css</title><link>https://chenzaichun.github.io/post/2011-10-27-zenburn_code_css_test/</link><pubDate>Thu, 27 Oct 2011 09:10:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-27-zenburn_code_css_test/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="c">/* zenburnesque code blocks in for html-exported org mode */&lt;/span>
+&lt;span class="nt">pre&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nc">src&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">background&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#3f3f3f&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#dcdccc&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-preprocessor&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#8cd0d3&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-preprocessor&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#8cd0d3&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-variable-name&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#f0dfaf&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-string&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#cc9393&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-type&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#dfdfbf&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">font-weight&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">bold&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-function-name&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#8cd0d3&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">font-weight&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">bold&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-keyword&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#f0dfaf&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">font-weight&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">bold&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-comment&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#7f9f7f&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-doc&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#afd8af&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-comment-delimiter&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#708070&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-constant&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#dca3ac&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">font-weight&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kc">bold&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">org-builtin&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#7f9f7f&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Python二维条形码生成</title><link>https://chenzaichun.github.io/post/2011-10-26-python_barcode_generate/</link><pubDate>Wed, 26 Oct 2011 09:10:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-26-python_barcode_generate/</guid><description>&lt;p>Python下可以用&lt;a href="http://code.google.com/p/elaphe/">Elaphe&lt;/a>来生成二维条形码，如果不想安装软件的话，可以试试下面的脚本：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="ch">#!/usr/bin/env python&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">re&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nn">Image&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nn">ImageDraw&lt;/span>
+&lt;span class="n">code_img_data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;11011001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001101100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001100110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10010011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10010001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10011001000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011000100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11001001000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001000100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10110011100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011011100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011001110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10111001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011101100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011100110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11001110010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001011100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001001110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11011100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001110100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11101101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100101100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100100110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100110100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100110010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11011011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11011000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10100011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10110001000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11010001000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10110111000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10110001110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10111011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10111000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11010001110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11000101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11011101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11011100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11011101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101011000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11101000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100010110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11101100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11100011010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11101111010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001000010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110001010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10100110000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10100001100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10010110000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10010000110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10000101100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10000100110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10110010000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10110000100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011010000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10011000010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10000110100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10000110010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11000010010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11001010000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110111010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11000010100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001111010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10100111100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10010111100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10010011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10111100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10011110100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10011110010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110100100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11110010100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110010010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11011011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11011110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110110110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10101111000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10100011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10001011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10111101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10111100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110101000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11110100010&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;10111011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;10111101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11101011110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11110101110&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11010000100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;11010010000&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;11010011100&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;1100011101011&amp;#39;&lt;/span>
+&lt;span class="p">]&lt;/span>
+&lt;span class="n">code_b_data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;!&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#34;&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;#&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;$&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s1">&amp;#39;%&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;amp;&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;: 7, &amp;#39;(&amp;#39;: 8, &amp;#39;)&amp;#39;: 9,
+&lt;/span>&lt;span class="s1"> &amp;#39;*&amp;#39;: 10, &amp;#39;+&amp;#39;: 11, &amp;#39;,&amp;#39;: 12, &amp;#39;-&amp;#39;: 13, &amp;#39;.&amp;#39;: 14,
+&lt;/span>&lt;span class="s1"> &amp;#39;/&amp;#39;: 15, &amp;#39;0&amp;#39;: 16, &amp;#39;1&amp;#39;: 17, &amp;#39;2&amp;#39;: 18, &amp;#39;3&amp;#39;: 19,
+&lt;/span>&lt;span class="s1"> &amp;#39;4&amp;#39;: 20, &amp;#39;5&amp;#39;: 21, &amp;#39;6&amp;#39;: 22, &amp;#39;7&amp;#39;: 23, &amp;#39;8&amp;#39;: 24,
+&lt;/span>&lt;span class="s1"> &amp;#39;9&amp;#39;: 25, &amp;#39;:&amp;#39;: 26, &amp;#39;;&amp;#39;: 27, &amp;#39;&amp;lt;&amp;#39;: 28, &amp;#39;=&amp;#39;: 29,
+&lt;/span>&lt;span class="s1"> &amp;#39;&amp;gt;&amp;#39;: 30, &amp;#39;?&amp;#39;: 31, &amp;#39;@&amp;#39;: 32, &amp;#39;A&amp;#39;: 33, &amp;#39;B&amp;#39;: 34,
+&lt;/span>&lt;span class="s1"> &amp;#39;C&amp;#39;: 35, &amp;#39;D&amp;#39;: 36, &amp;#39;E&amp;#39;: 37, &amp;#39;F&amp;#39;: 38, &amp;#39;G&amp;#39;: 39,
+&lt;/span>&lt;span class="s1"> &amp;#39;H&amp;#39;: 40, &amp;#39;I&amp;#39;: 41, &amp;#39;J&amp;#39;: 42, &amp;#39;K&amp;#39;: 43, &amp;#39;L&amp;#39;: 44,
+&lt;/span>&lt;span class="s1"> &amp;#39;M&amp;#39;: 45, &amp;#39;N&amp;#39;: 46, &amp;#39;O&amp;#39;: 47, &amp;#39;P&amp;#39;: 48, &amp;#39;Q&amp;#39;: 49,
+&lt;/span>&lt;span class="s1"> &amp;#39;R&amp;#39;: 50, &amp;#39;S&amp;#39;: 51, &amp;#39;T&amp;#39;: 52, &amp;#39;U&amp;#39;: 53, &amp;#39;V&amp;#39;: 54,
+&lt;/span>&lt;span class="s1"> &amp;#39;W&amp;#39;: 55, &amp;#39;X&amp;#39;: 56, &amp;#39;Y&amp;#39;: 57, &amp;#39;Z&amp;#39;: 58, &amp;#39;[&amp;#39;: 59,
+&lt;/span>&lt;span class="s1"> &amp;#39;&lt;/span>&lt;span class="se">\&amp;#39;&lt;/span>&lt;span class="s1">: 60, &amp;#39;]&amp;#39;: 61, &amp;#39;^&amp;#39;: 62, &amp;#39;_&amp;#39;: 63, &amp;#39;`&amp;#39;: 64,
+&lt;/span>&lt;span class="s1"> &amp;#39;a&amp;#39;: 65, &amp;#39;b&amp;#39;: 66, &amp;#39;c&amp;#39;: 67, &amp;#39;d&amp;#39;: 68, &amp;#39;e&amp;#39;: 69,
+&lt;/span>&lt;span class="s1"> &amp;#39;f&amp;#39;: 70, &amp;#39;g&amp;#39;: 71, &amp;#39;h&amp;#39;: 72, &amp;#39;I&amp;#39;: 73, &amp;#39;j&amp;#39;: 74,
+&lt;/span>&lt;span class="s1"> &amp;#39;k&amp;#39;: 75, &amp;#39;l&amp;#39;: 76, &amp;#39;m&amp;#39;: 77, &amp;#39;n&amp;#39;: 78, &amp;#39;o&amp;#39;: 79,
+&lt;/span>&lt;span class="s1"> &amp;#39;p&amp;#39;: 80, &amp;#39;q&amp;#39;: 81, &amp;#39;r&amp;#39;: 82, &amp;#39;s&amp;#39;: 83, &amp;#39;t&amp;#39;: 84,
+&lt;/span>&lt;span class="s1"> &amp;#39;u&amp;#39;: 85, &amp;#39;v&amp;#39;: 86, &amp;#39;w&amp;#39;: 87, &amp;#39;x&amp;#39;: 88, &amp;#39;y&amp;#39;: 89,
+&lt;/span>&lt;span class="s1"> &amp;#39;z&amp;#39;: 90, &amp;#39;{&amp;#39;: 91, &amp;#39;|&amp;#39;: 92, &amp;#39;}&amp;#39;: 93, &amp;#39;~&amp;#39;: 94,
+&lt;/span>&lt;span class="s1"> &amp;#39;DEL&amp;#39;: 95, &amp;#39;FNC3&amp;#39;: 96, &amp;#39;FNC2&amp;#39;: 97, &amp;#39;SHIFT&amp;#39;: 98,
+&lt;/span>&lt;span class="s1"> &amp;#39;Code C&amp;#39;: 99, &amp;#39;FNC4&amp;#39;: 100, &amp;#39;Code A&amp;#39;: 101,
+&lt;/span>&lt;span class="s1"> &amp;#39;FNC1&amp;#39;: 102, &amp;#39;START A&amp;#39;: 103, &amp;#39;START B&amp;#39;: 104,
+&lt;/span>&lt;span class="s1"> &amp;#39;START C&amp;#39;: 105, &amp;#39;STOP&amp;#39;: 106
+&lt;/span>&lt;span class="s1"> }
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1">def codeBFromString (string):
+&lt;/span>&lt;span class="s1"> code=code_img_data[code_b_data[&amp;#39;START B&amp;#39;]]
+&lt;/span>&lt;span class="s1"> count=1
+&lt;/span>&lt;span class="s1"> checksum=code_b_data[&amp;#39;START B&amp;#39;]
+&lt;/span>&lt;span class="s1"> for letter in string:
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[letter]]
+&lt;/span>&lt;span class="s1"> checksum += count*code_b_data[letter]
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> code += code_img_data[checksum%103]
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[&amp;#39;STOP&amp;#39;]]
+&lt;/span>&lt;span class="s1"> return (code)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1">def codeBCFromString (string):
+&lt;/span>&lt;span class="s1"> # Look for even numbered groups of digits (at least 4) to use code c
+&lt;/span>&lt;span class="s1"> frags = re.split(&amp;#39;(dd(?:dd)+)&amp;#39;, string)
+&lt;/span>&lt;span class="s1"> if frags[0]:
+&lt;/span>&lt;span class="s1"> # the string starts with regular code b data
+&lt;/span>&lt;span class="s1"> code = code_img_data[code_b_data[&amp;#39;START B&amp;#39;]]
+&lt;/span>&lt;span class="s1"> checksum = code_b_data[&amp;#39;START B&amp;#39;]
+&lt;/span>&lt;span class="s1"> codeb = True
+&lt;/span>&lt;span class="s1"> else:
+&lt;/span>&lt;span class="s1"> # the string starts with a matching set of numbers - code c
+&lt;/span>&lt;span class="s1"> code = code_img_data[code_b_data[&amp;#39;START C&amp;#39;]]
+&lt;/span>&lt;span class="s1"> checksum = code_b_data[&amp;#39;START C&amp;#39;]
+&lt;/span>&lt;span class="s1"> codeb = False
+&lt;/span>&lt;span class="s1"> frags.pop(0)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> # remove the last frag if it&amp;#39;s blank
+&lt;/span>&lt;span class="s1"> # i.e. if the string ends with a matching numeric sequence
+&lt;/span>&lt;span class="s1"> if not(frags[-1]):
+&lt;/span>&lt;span class="s1"> frags.pop(-1)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> count = 1
+&lt;/span>&lt;span class="s1"> for frag in frags:
+&lt;/span>&lt;span class="s1"> if codeb:
+&lt;/span>&lt;span class="s1"> if count &amp;gt; 1: #switch to code b
+&lt;/span>&lt;span class="s1"> code += code_img_data[100]
+&lt;/span>&lt;span class="s1"> checksum += count*100
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> for letter in frag:
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[letter]]
+&lt;/span>&lt;span class="s1"> checksum += count*code_b_data[letter]
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> else:
+&lt;/span>&lt;span class="s1"> if count &amp;gt; 1: #switch to code c
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[&amp;#39;Code C&amp;#39;]]
+&lt;/span>&lt;span class="s1"> checksum += count*code_b_data[&amp;#39;Code C&amp;#39;]
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> for pair in re.findall(&amp;#39;..&amp;#39;, frag):
+&lt;/span>&lt;span class="s1"> code += code_img_data[int(pair)]
+&lt;/span>&lt;span class="s1"> checksum += count*int(pair)
+&lt;/span>&lt;span class="s1"> count += 1
+&lt;/span>&lt;span class="s1"> codeb = not(codeb)
+&lt;/span>&lt;span class="s1"> code += code_img_data[checksum%103]
+&lt;/span>&lt;span class="s1"> code += code_img_data[code_b_data[&amp;#39;STOP&amp;#39;]]
+&lt;/span>&lt;span class="s1"> return (code)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1">def barcodeImg (string, label=&amp;#39;&amp;#39;):
+&lt;/span>&lt;span class="s1"> width = len(string) + 20
+&lt;/span>&lt;span class="s1"> im = Image.new(&amp;#39;1&amp;#39;, (width,70), 1)
+&lt;/span>&lt;span class="s1"> draw = ImageDraw.Draw(im)
+&lt;/span>&lt;span class="s1"> x = 10
+&lt;/span>&lt;span class="s1"> for char in string:
+&lt;/span>&lt;span class="s1"> draw.rectangle(((x, 10),(x, 50)), fill=not(int(char)))
+&lt;/span>&lt;span class="s1"> x += 1
+&lt;/span>&lt;span class="s1"> if label:
+&lt;/span>&lt;span class="s1"> labelsize = draw.textsize(label)
+&lt;/span>&lt;span class="s1"> draw.text((int((width-labelsize[0])/2.0), 55), label, fill=0)
+&lt;/span>&lt;span class="s1"> return im
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1">bc_img = barcodeImg(codeBCFromString(&amp;#39;496340&amp;#39;), &amp;#39;496340&amp;#39;)
+&lt;/span>&lt;span class="s1">#bc_img.show()
+&lt;/span>&lt;span class="s1">bc_img.save(&amp;#34;dsafdsa.png&amp;#34;)
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ibus-sunpinyin翻页设置</title><link>https://chenzaichun.github.io/post/2011-10-24-ibus_sunpinyin_cadidates/</link><pubDate>Mon, 24 Oct 2011 09:10:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-24-ibus_sunpinyin_cadidates/</guid><description>&lt;p>安装完ibus-sunpinyin之后，默认情况在ibus下是不能设置翻页快捷键的，同时ibus-sunpinyin也没有开启默认的翻页快捷键，此时只能通过上下箭头翻页。&lt;/p>
+&lt;p>开启方法，在console下执行:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">/usr/lib/ibus-sunpinyin/ibus-setup-sunpinyin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>解压tar包中特定文件</title><link>https://chenzaichun.github.io/post/2011-10-24-extract_specified_files_in_tar/</link><pubDate>Mon, 24 Oct 2011 08:10:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-24-extract_specified_files_in_tar/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">tar -zxvf xx.tar.gz file-to-be-extracted
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ArchLinux下配置ssh/http代理</title><link>https://chenzaichun.github.io/post/2011-10-24-archlinux_ssh_http_privoxy/</link><pubDate>Mon, 24 Oct 2011 06:10:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-24-archlinux_ssh_http_privoxy/</guid><description>&lt;p>被墙煎的滋味确实很难受，ssh转发大家的方法还是比较方便的。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">ssh -C -f -N -g -D port user@Server
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但是很多的软件并不一定支持sock5代理，这个时候就需要将sock5代理转化为http代理。ArchLinux下的配置安装方法为：&lt;/p>
+&lt;ol>
+&lt;li>安装Privoxy&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S privoxy
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>修改&lt;code>/etc/privoxy/config&lt;/code> , 添加以下语句&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">forward-socks5 / 127.0.0.1:sock_port .
+listen-address 0.0.0.0:http_port
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>重新启动privoxy&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo /etc/rc.d/privoxy restart
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Bingo! Enjoy it:)&lt;/p></description></item><item><title>Spark在Linux下的乱码解决</title><link>https://chenzaichun.github.io/post/2011-10-21-spark_display_chinese_on_linux/</link><pubDate>Fri, 21 Oct 2011 21:56:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-21-spark_display_chinese_on_linux/</guid><description>&lt;p>@ &lt;a href="http://www.cnblogs.com/highriver/archive/2010/06/24/1764520.html">&lt;a href="http://www.cnblogs.com/highriver/archive/2010/06/24/1764520.html">http://www.cnblogs.com/highriver/archive/2010/06/24/1764520.html&lt;/a>&lt;/a>&lt;/p>
+&lt;p>解决Spark乱码：&lt;/p>
+&lt;p>Linux下Java图形界面中文显示乱码问题往往是所合适的jre/fonts里面没有合适的字体。&lt;/p>
+&lt;p>比如spark会往~/.install4j里面写入最后一行，说明spark使用的jre是其自带的jre.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">JRE_VERSION /home/gaoyibo/work/jdk1.6.0_05 1 6 0 05
+JRE_VERSION /usr 1 6 0 0
+JRE_VERSION /home/gaoyibo/comodo/openfire/Spark/jre 1 6 0 02
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>所以遇到乱码问题解决：&lt;/p>
+&lt;p>1，找到jre路径，创建fallback文件夹&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> &amp;lt;path_to_spark&amp;gt;/Spark/jre/lib/fonts
+sudo mkdir fallback
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>进入fallback文件夹，链接中文字体（我选的是文泉驿正黑）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> fallback
+sudo ln -s /usr/share/fonts/truetype/wqy/wqy-zenhei.ttc
+sudo mkfontdir
+sudo mkfontscale
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ibus在emacs下不能输入</title><link>https://chenzaichun.github.io/post/2011-10-21-emacs_ibus_cannot_input_chinese/</link><pubDate>Fri, 21 Oct 2011 20:56:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-21-emacs_ibus_cannot_input_chinese/</guid><description>&lt;p>参考链接: &lt;a href="http://blog.pluskid.org/?p=328">&lt;a href="http://blog.pluskid.org/?p=328">http://blog.pluskid.org/?p=328&lt;/a>&lt;/a>&lt;/p>
+&lt;p>最简单的解决办法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nv">LC_CTYPE&lt;/span>&lt;span class="o">=&lt;/span>zh_CN.utf8 emacs &lt;span class="p">&amp;amp;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

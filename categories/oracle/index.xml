@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>oracle on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/categories/oracle/</link><description>Recent content in oracle on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 08 Apr 2011 19:24:31 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/categories/oracle/index.xml" rel="self" type="application/rss+xml"/><item><title>archlinux下安装oracle 10g enterprise</title><link>https://chenzaichun.github.io/post/2011-04-08-install_oracle_10g_enterprise_on_archlinux/</link><pubDate>Fri, 08 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-08-install_oracle_10g_enterprise_on_archlinux/</guid><description>&lt;p>按照arch wiki做就可以了。参考链接&lt;a href="https://wiki.archlinux.org/index.php/Oracle">&lt;a href="https://wiki.archlinux.org/index.php/Oracle">https://wiki.archlinux.org/index.php/Oracle&lt;/a>&lt;/a>&lt;/p>
+&lt;p>这里，安装ksh的步骤可以跳过，直接安装pdksh&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo pacman -S pdksh
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安装过程中可能在62%左右提示一个错误，点continue不影响使用。&lt;/p>
+&lt;p>默认安装完成之后，重新启动archlinux之后，oracle是不会启动的。手动启动的方法：&lt;/p>
+&lt;ol>
+&lt;li>su - oracle # 这里得以oracle启动&lt;/li>
+&lt;li>sqlplus /nologo&lt;/li>
+&lt;li>sql> conn / as sysdba&lt;/li>
+&lt;li>sql> startup&lt;/li>
+&lt;li>sql> exit&lt;/li>
+&lt;li>lsnrctl start&lt;/li>
+&lt;/ol></description></item></channel></rss>

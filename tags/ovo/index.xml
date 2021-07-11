@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ovo on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/ovo/</link><description>Recent content in ovo on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 28 Jun 2012 13:21:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/ovo/index.xml" rel="self" type="application/rss+xml"/><item><title>Certificate not Installed on the Node</title><link>https://chenzaichun.github.io/post/2012-06-28-certificate-not-installed-on-the-node/</link><pubDate>Thu, 28 Jun 2012 13:21:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-06-28-certificate-not-installed-on-the-node/</guid><description>&lt;p>今天在启动ovo的时候遇到了这个问题：&lt;/p>
+&lt;blockquote>
+&lt;p>0: WRN: Thu Jun 28 13:08:42 2012: ovbbccb (1821/4): (bbc-90) The incoming HTTPS client connection from host 127.0.0.1 failed due to the SSL error:
+1: WRN: Thu Jun 28 13:08:42 2012: ovbbccb (1821/4): (sec.core-116) An SSL connection IO error has occurred. This may be due to a network problem or an SSL handshake er
+ror. Possible causes for SSL handshake errors are that no certificate is installed, an invalid certificate is installed, or the peer does not trust the initiator&amp;rsquo;s cer
+tificate.
+0: WRN: Thu Jun 28 13:08:43 2012: ovbbccb (1821/9): (bbc-90) The incoming HTTPS client connection from host 127.0.0.1 failed due to the SSL error:
+1: WRN: Thu Jun 28 13:08:43 2012: ovbbccb (1821/9): (sec.core-116) An SSL connection IO error has occurred. This may be due to a network problem or an SSL handshake er
+ror. Possible causes for SSL handshake errors are that no certificate is installed, an invalid certificate is installed, or the peer does not trust the initiator&amp;rsquo;s cer
+tificate.
+0: WRN: Thu Jun 28 13:08:44 2012: ovbbccb (1821/5): (bbc-90) The incoming HTTPS client connection from host 127.0.0.1 failed due to the SSL error:
+1: WRN: Thu Jun 28 13:08:44 2012: ovbbccb (1821/5): (sec.core-116) An SSL connection IO error has occurred. This may be due to a network problem or an SSL handshake er
+ror. Possible causes for SSL handshake errors are that no certificate is installed, an invalid certificate is installed, or the peer does not trust the initiator&amp;rsquo;s cer
+tificate.
+0: WRN: Thu Jun 28 13:08:44 2012: ovbbccb (1821/6): (bbc-90) The incoming HTTPS client connection from host 127.0.0.1 failed due to the SSL error:
+1: WRN: Thu Jun 28 13:08:44 2012: ovbbccb (1821/6): (sec.core-116) An SSL connection IO error has occurred. This may be due to a network problem or an SSL handshake er
+ror. Possible causes for SSL handshake errors are that no certificate is installed, an invalid certificate is installed, or the peer does not trust the initiator&amp;rsquo;s cer
+tificate.&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

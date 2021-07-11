@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>android on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/android/</link><description>Recent content in android on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 31 Jul 2012 14:08:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/android/index.xml" rel="self" type="application/rss+xml"/><item><title>adb putty</title><link>https://chenzaichun.github.io/post/2012-07-31-adbputty/</link><pubDate>Tue, 31 Jul 2012 14:08:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-07-31-adbputty/</guid><description>&lt;p>Windows下&lt;code>adb shell&lt;/code>的显示太恶心了。而且&lt;code>cmd&lt;/code>下拷贝复制也很麻烦。所以能不能直接使用&lt;code>putty&lt;/code>来连接android shell呢？答案是肯定的，国外的geek太nx了。赞一个。&lt;/p>
+&lt;p>下载&lt;code>adbputty&lt;/code>: &lt;a href="http://github.com/sztupy/adbputty/downloads">下载&lt;/a>&lt;/p>
+&lt;p>主机填写&lt;code>transport-usb&lt;/code> ，连接类型选择&lt;code>Adb&lt;/code>（对应&lt;code>5037&lt;/code>端口）即可&lt;/p>
+&lt;p>如果要显示颜色，直接启用bash吧&lt;/p>
+&lt;p>详情见&lt;a href="http://forum.xda-developers.com/showthread.php?t=803223">这里&lt;/a>&lt;/p></description></item><item><title>remove android lock-screen pin with sqlite3</title><link>https://chenzaichun.github.io/post/2012-07-27-remove-android-lock-screen-pin-with-sqlite3/</link><pubDate>Fri, 27 Jul 2012 16:16:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-07-27-remove-android-lock-screen-pin-with-sqlite3/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">adb shell
+# sqlite3 /data/data/com.android.providers.settings/databases/settings.db
+sqlite&amp;gt; update secure set value=65536 where name=&amp;#39;lockscreen.password_type&amp;#39;;
+sqlite&amp;gt; .exit
+# exit
+adb reboot
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android模拟器使用代理</title><link>https://chenzaichun.github.io/post/2010-12-01-android_emulator_proxy/</link><pubDate>Wed, 01 Dec 2010 17:32:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-01-android_emulator_proxy/</guid><description>&lt;p>网上找了很多，最后总结一下最简单的方法:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">emulator -avd devicename -http-proxy &lt;span class="s2">&amp;#34;http://proxyname:port&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android调用Google Maps导航</title><link>https://chenzaichun.github.io/post/2010-11-30-android_invoke_maps_to_direction/</link><pubDate>Tue, 30 Nov 2010 17:27:32 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-30-android_invoke_maps_to_direction/</guid><description>&lt;p>直接代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">String&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">format&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;http://maps.google.com/maps?f=d&amp;amp;saddr=jiangbei,chongqing&amp;amp;daddr=shapingba,chongqing&amp;amp;hl=en&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Uri&lt;/span> &lt;span class="n">uri&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Uri&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">parse&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">s&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Intent&lt;/span> &lt;span class="n">intent&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Intent&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Intent&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ACTION_VIEW&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">uri&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">startActivity&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">intent&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android下程序直接调用Google自己的地图程序</title><link>https://chenzaichun.github.io/post/2010-11-30-android_call_google_maps_apk/</link><pubDate>Tue, 30 Nov 2010 12:37:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-30-android_call_google_maps_apk/</guid><description>&lt;p>直接贴代码吧&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">Intent&lt;/span> &lt;span class="n">intent&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Intent&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Intent&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ACTION_MAIN&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">ComponentName&lt;/span> &lt;span class="n">com&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ComponentName&lt;/span>&lt;span class="o">(&lt;/span>
+&lt;span class="s">&amp;#34;com.google.android.apps.maps&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="c1">//要打开的程序的包名
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="s">&amp;#34;com.google.android.maps.MapsActivity&amp;#34;&lt;/span> &lt;span class="c1">//程序中入口MainActivity，在Mainifent.xml查看
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="o">);&lt;/span>
+&lt;span class="n">intent&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setComponent&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">com&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">startActivity&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">intent&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Android Intent的几种用法全面总结</title><link>https://chenzaichun.github.io/post/2010-11-30-android_intent_usage/</link><pubDate>Tue, 30 Nov 2010 12:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-30-android_intent_usage/</guid><description>&lt;p>@&lt;a href="http://hi.baidu.com/devil%B6%C0%B0%AE/blog/item/5f5caf5e3ce43f48faf2c004.html" target="_blank">Devil独爱的空间 &lt;/a>&lt;/p>
+&lt;p>&lt;span class="t_tag" style="line-height: normal;">Intent&lt;/span>应该算是Android中特有的东西。你可以在Intent中指定&lt;span class="t_tag" style="line-height: normal;">程序&lt;/span>要执行的动作（比如：view,edit,dial），以及程序执行到该动作时所需要的&lt;span class="t_tag" style="line-height: normal;">资料&lt;/span>。都指定好后，只要调用startActivity()，Android&lt;span class="t_tag" style="line-height: normal;">系统&lt;/span>会自动寻找最符合你指定要求的&lt;span class="t_tag" style="line-height: normal;">应用&lt;/span>程序，并执行该程序。&lt;br style="line-height: normal;">&lt;br style="line-height: normal;">下面列出几种Intent的用法&lt;br style="line-height: normal;">显示网页:&lt;/p>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("http://www.google.com");&lt;/li>
+&lt;li style="line-height: normal;">Intent it   = new Intent(Intent.ACTION_VIEW,uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+显示地图:
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("geo:38.899533,-77.036476");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.Action_VIEW,uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+路径规划:
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("http://maps.google.com/maps?f=d&amp;saddr=startLat%20startLng&amp;daddr=endLat%20endLng&amp;hl=en");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_VIEW,URI);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+拨打电话:&lt;br style="line-height: normal;">调用拨号程序
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("tel:xxxxxx");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_DIAL, uri);  &lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("tel.xxxxxx");&lt;/li>
+&lt;li style="line-height: normal;">Intent it =new Intent(Intent.ACTION_CALL,uri);&lt;/li>
+&lt;li style="line-height: normal;">要使用这个必须在配置&lt;span class="t_tag" style="line-height: normal;">文件&lt;/span>中加入&lt;uses-permission id="&lt;span class="t_tag" style="line-height: normal;">android&lt;/span>.permission.CALL_PHONE" />&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+发送SMS/MMS&lt;br style="line-height: normal;">调用发送&lt;span class="t_tag" style="line-height: normal;">短信&lt;/span>的程序
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_VIEW);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra("sms_body", "The SMS text");&lt;/li>
+&lt;li style="line-height: normal;">it.setType("vnd.android-dir/mms-sms");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+发送短信
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("smsto:0800000123");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SENDTO, uri);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra("sms_body", "The SMS text");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+发送彩信
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("content://media/external/images/media/23");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SEND);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra("sms_body", "some text");&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_STREAM, uri);&lt;/li>
+&lt;li style="line-height: normal;">it.setType("image/png");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+发送Email
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("mailto:xxx@abc.com");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SENDTO, uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SEND);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_EMAIL, "me@abc.com");&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_TEXT, "The email body text");&lt;/li>
+&lt;li style="line-height: normal;">it.setType("text/plain");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(Intent.createChooser(it, "Choose Email Client"));  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Intent it=new Intent(Intent.ACTION_SEND);    &lt;/li>
+&lt;li style="line-height: normal;">String[] tos={"me@abc.com"};    &lt;/li>
+&lt;li style="line-height: normal;">String[] ccs={"you@abc.com"};    &lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_EMAIL, tos);    &lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_CC, ccs);    &lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_TEXT, "The email body text");    &lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_SUBJECT, "The email subject text");    &lt;/li>
+&lt;li style="line-height: normal;">it.setType("message/rfc822");    &lt;/li>
+&lt;li style="line-height: normal;">startActivity(Intent.createChooser(it, "Choose Email Client"));&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+添加附件
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_SEND);&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_SUBJECT, "The email subject text");&lt;/li>
+&lt;li style="line-height: normal;">it.putExtra(Intent.EXTRA_STREAM, "file:///sdcard/mysong.mp3");&lt;/li>
+&lt;li style="line-height: normal;">sendIntent.setType("audio/mp3");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(Intent.createChooser(it, "Choose Email Client"));&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;span class="t_tag" style="line-height: normal;">播放&lt;/span>多媒体
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">  &lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_VIEW);&lt;/li>
+&lt;li style="line-height: normal;">Uri uri = Uri.parse("file:///sdcard/song.mp3");&lt;/li>
+&lt;li style="line-height: normal;">it.setDataAndType(uri, "audio/mp3");&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.withAppendedPath(MediaStore.Audio.Media.INTERNAL_CONTENT_URI, "1");&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_VIEW, uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);  &lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div>
+Uninstall 程序
+&lt;div class="blockcode" style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">
+&lt;div style="font-family: Arial; word-wrap: break-word; word-break: break-all; visibility: visible !important; zoom: 1 !important; filter: none; font-size: 12px; line-height: normal;">&lt;ol style="line-height: normal;">
+&lt;li style="line-height: normal;">Uri uri = Uri.fromParts("package", strPackageName, null);&lt;/li>
+&lt;li style="line-height: normal;">Intent it = new Intent(Intent.ACTION_DELETE, uri);&lt;/li>
+&lt;li style="line-height: normal;">startActivity(it);&lt;/li>
+&lt;/ol>&lt;/div>
+&lt;/div></description></item><item><title>MapView中画图</title><link>https://chenzaichun.github.io/post/2010-10-10-mapview_overlay/</link><pubDate>Sun, 10 Oct 2010 23:16:17 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-10-10-mapview_overlay/</guid><description>&lt;p>通过Overlay的方式画图，不废话了，直接代码吧。需要完整代码的这里下载：&lt;a href="http://commondatastorage.googleapis.com/czc_public/code/android/maptest2.tar.gz" target="_blank">猛击这里&lt;/a>&lt;/p>
+&lt;p>参考链接： &lt;a href="http://westyi.blogbus.com/logs/69324000.html">&lt;a href="http://westyi.blogbus.com/logs/69324000.html">http://westyi.blogbus.com/logs/69324000.html&lt;/a>&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.appspot.zaichunchen&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">android.graphics.Bitmap&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">android.graphics.Canvas&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">android.graphics.Point&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.google.android.maps.GeoPoint&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.google.android.maps.MapView&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.google.android.maps.Overlay&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.google.android.maps.Projection&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * Map Overlay
+&lt;/span>&lt;span class="cm"> *
+&lt;/span>&lt;span class="cm"> * @author ChenZaichun
+&lt;/span>&lt;span class="cm"> *
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Marker&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Overlay&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">GeoPoint&lt;/span> &lt;span class="n">point&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">bmp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">Point&lt;/span> &lt;span class="n">deviation&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> *
+&lt;/span>&lt;span class="cm"> * @param point
+&lt;/span>&lt;span class="cm"> * GeoPoint of icon
+&lt;/span>&lt;span class="cm"> * @param bmp
+&lt;/span>&lt;span class="cm"> * Icon Bitmap
+&lt;/span>&lt;span class="cm"> * @param deviation
+&lt;/span>&lt;span class="cm"> * icon offset, use window coordinates (left --&amp;gt; right, up --&amp;gt; down)
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="nf">Marker&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">GeoPoint&lt;/span> &lt;span class="n">point&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Bitmap&lt;/span> &lt;span class="n">bmp&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Point&lt;/span> &lt;span class="n">deviation&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">point&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">point&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">bmp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">bmp&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">deviation&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">deviation&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * Draw the icon
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="nd">@Override&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">draw&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Canvas&lt;/span> &lt;span class="n">canvas&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">MapView&lt;/span> &lt;span class="n">mapView&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kt">boolean&lt;/span> &lt;span class="n">shadow&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(!&lt;/span>&lt;span class="n">shadow&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>&lt;span class="c1">// not the shadow layer
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Projection&lt;/span> &lt;span class="n">projection&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">mapView&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProjection&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">point&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="kc">null&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">bmp&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Point&lt;/span> &lt;span class="n">pos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">projection&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">toPixels&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">point&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//add offset
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">canvas&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">drawBitmap&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">bmp&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">pos&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">deviation&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">x&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">pos&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">y&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">deviation&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">y&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用的方法：&lt;/p></description></item><item><title>Android地图MapView</title><link>https://chenzaichun.github.io/post/2010-10-10-android_google_map_view/</link><pubDate>Sun, 10 Oct 2010 17:17:17 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-10-10-android_google_map_view/</guid><description>&lt;p>今天想在android使用Google地图，查了一下，难点就是要自己去申请一个api key，不然是不能够正确获取地图服务的。方法如下：&lt;/p>
+&lt;ol>
+&lt;li>查看debug key的md5 finger，如果在windows下，自己去“打开Eclipse&amp;mdash;&amp;gt;Windows&amp;mdash;&amp;gt;Preferences&amp;mdash;&amp;gt;Android&amp;mdash;&amp;gt;Build，查看默认的debug keystore位置”&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">keytool -list -alias androiddebugkey -keystore ~/.android/debug.keystore&lt;span class="s2">&amp;#34; -storepass android -keypass android
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>得到&lt;/p></description></item><item><title>android-x86关机</title><link>https://chenzaichun.github.io/post/2010-07-29-android-x86_halt/</link><pubDate>Thu, 29 Jul 2010 18:23:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-29-android-x86_halt/</guid><description>&lt;p>android-x86里面busybox没有关机命令,所以要想关机,切换到命令行模式(alt+f1),&lt;/p>
+&lt;p>关机命令:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">reboot -p
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重启命令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">reboot
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ubuntu下adb驱动问题</title><link>https://chenzaichun.github.io/post/2010-07-27-ubuntu_adb_driver/</link><pubDate>Tue, 27 Jul 2010 11:23:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-27-ubuntu_adb_driver/</guid><description>&lt;p>ubuntu下adb默认无法识别,得到error: insufficient permissions for device,使用adb devices得到no permissions.解决办法有两种:&lt;/p>
+&lt;ol>
+&lt;li>使用root账户(su到root账户)&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">su
+&lt;span class="nb">cd&lt;/span> android-tools-dir
+./adb kill-server
+./adb start-server
+./adb devices
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>修改udev的权限,&lt;a href="http://bradchow.wordpress.com/2009/02/16/adb-on-windows-and-ubuntu-linux/" target="_blank">猛击这里&lt;/a>,添加/etc/udev/rules.d/50-android.rules&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">SUBSYSTEM==&amp;#34;usb&amp;#34;, SYSFS(idVendor)==&amp;#34;18d1&amp;#34;, MODE=&amp;#34;0666&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后修改执行权限&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">chmod a+rx /etc/udev/rules.d/50-android.rules
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>重启udev&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo restart udev
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">su
+&lt;span class="nb">cd&lt;/span> android-tools-dir
+./adb kill-server
+./adb start-server
+./adb devices
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>解决Error executing aapt. Please check aapt is present at %错误</title><link>https://chenzaichun.github.io/post/2010-07-21-android_aapt_error/</link><pubDate>Wed, 21 Jul 2010 17:23:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-21-android_aapt_error/</guid><description>&lt;p>原文：&lt;a href="http://blog.csdn.net/ovsynnia/archive/2007/12/06/1920365.aspx" target="_blank">猛击这里&lt;/a>&lt;/p>
+&lt;p>根据指南先配置好JDK，和设置path，并且更新sdk要重新更改path，按照指南来还出现问题！&lt;/p>
+&lt;p>Error executing aapt. Please check aapt is present at %&lt;/p>
+&lt;p>解决方案：在eclipse–&amp;gt;window–&amp;gt;属性–&amp;gt;android–&amp;gt;设置sdk的路径为解压缩的&lt;code>android_sdk_&amp;lt;platform&amp;gt;_&amp;lt;release&amp;gt;_&amp;lt;build&amp;gt;&lt;/code>.确定ＯＫ　小红叉没有了&lt;/p>
+&lt;p>但是在linux下还是出现了这个问题（因为更新了sdk），后来发现是因为platform/android-1.x/tools/下的工具没有执行权限&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">chmod +x *
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android屏幕旋转问题</title><link>https://chenzaichun.github.io/post/2010-06-29-android_screen_rotation/</link><pubDate>Tue, 29 Jun 2010 12:21:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-29-android_screen_rotation/</guid><description>&lt;p>转自：&lt;a href="http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx" target="_blank">&lt;a href="http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx">http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx&lt;/a>&lt;/a>&lt;/p>
+&lt;p>要让程序界面保持一个方向，不随手机方向转动而变化的处理办法：&lt;br>在AndroidManifest.xml里面配置一下就可以了。加入这一行android:screenOrientation=&amp;ldquo;landscape&amp;rdquo;。&lt;/p>
+&lt;p>例如（landscape是横向，portrait是纵向）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;manifest&lt;/span> &lt;span class="na">xmlns:android=&lt;/span>&lt;span class="s">&amp;#34;http://schemas.android.com/apk/res/android&amp;#34;&lt;/span>
+&lt;span class="na">package=&lt;/span>&lt;span class="s">&amp;#34;com.ray.linkit&amp;#34;&lt;/span>
+&lt;span class="na">android:versionCode=&lt;/span>&lt;span class="s">&amp;#34;1&amp;#34;&lt;/span>
+&lt;span class="na">android:versionName=&lt;/span>&lt;span class="s">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;application&lt;/span> &lt;span class="na">android:icon=&lt;/span>&lt;span class="s">&amp;#34;@drawable/icon&amp;#34;&lt;/span> &lt;span class="na">android:label=&lt;/span>&lt;span class="s">&amp;#34;@string/app_name&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;activity&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;.Main&amp;#34;&lt;/span>
+&lt;span class="na">android:label=&lt;/span>&lt;span class="s">&amp;#34;@string/app_name&amp;#34;&lt;/span>
+&lt;span class="na">android:screenOrientation=&lt;/span>&lt;span class="s">&amp;#34;portrait&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;intent-filter&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;action&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;android.intent.action.MAIN&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;category&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;android.intent.category.LAUNCHER&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/intent-filter&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/activity&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;activity&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;.GamePlay&amp;#34;&lt;/span>
+&lt;span class="na">android:screenOrientation=&lt;/span>&lt;span class="s">&amp;#34;portrait&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&amp;lt;/activity&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;activity&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;.OptionView&amp;#34;&lt;/span>
+&lt;span class="na">android:screenOrientation=&lt;/span>&lt;span class="s">&amp;#34;portrait&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&amp;lt;/activity&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/application&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;uses-sdk&lt;/span> &lt;span class="na">android:minSdkVersion=&lt;/span>&lt;span class="s">&amp;#34;3&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/manifest&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>另外，android中每次屏幕的切换都会重启Activity，所以应该在Activity销毁前保存当前活动的状态，在Activity再次 Create的时候载入配置，那样，进行中的游戏就不会自动重启了！也可以给每个activity加上 android:configChanges=&amp;ldquo;keyboardHidden|orientation&amp;quot;属性，就不会重启activity，而是去调用 onConfigurationChanged(Configuration newConfig)。这样就可以在这个方法里调整显示方式：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">newConfig&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">orientation&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">Configuration&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android模拟器中使用应用商店(appstore)</title><link>https://chenzaichun.github.io/post/2010-06-28-android_emulator_appstore/</link><pubDate>Mon, 28 Jun 2010 23:11:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-28-android_emulator_appstore/</guid><description>&lt;p>如何在android模拟器中使用应用商店呢？&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>去&lt;a href="http://developer.htc.com/adp.html">&lt;a href="http://developer.htc.com/adp.html">http://developer.htc.com/adp.html&lt;/a>&lt;/a>下载对应sdk的system.img，比如你装有1.6的android sdk，那么下载&lt;a href="http://member.america.htc.com/download/RomCode/ADP/signed-dream_devphone_userdebug-img-14721.zip" target="_blank">&lt;a href="http://member.america.htc.com/download/RomCode/ADP/signed-dream_devphone_userdebug-img-14721.zip?">http://member.america.htc.com/download/RomCode/ADP/signed-dream_devphone_userdebug-img-14721.zip?&lt;/a>&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>将包里面的system.img解压缩到所建立的虚拟设备目录下，比如你的虚拟设备叫做htc，那么虚拟设备目录windows下在%APPLICATIONDATA%.androidavdhtc.avd下，linux在$HOME/.android/avd/htc.avd/下&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果在创建虚拟设备的时候没有添加sdcard，不然会出现connection error错误！那么请添加sdcard，在虚拟设备目录下执行（前提当然是将android sdk中tools加入$PATH中）&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">mksdcard 512M sdcard.img
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>启动模拟器，现在你就可以使用Google帐户登录appstore了，免费软件尽情下载安装吧！&lt;/li>
+&lt;/ol></description></item><item><title>android设置APN</title><link>https://chenzaichun.github.io/post/2010-06-27-android_apn_setting/</link><pubDate>Sun, 27 Jun 2010 23:22:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-27-android_apn_setting/</guid><description>&lt;p>在android下如何通过程序设置APN连接呢，比如我想通过一个私有的APN连接到网络。查询到的结果是：&lt;/p>
+&lt;ol>
+&lt;li>第一步，创建activity，使用如下代码设置APN： &lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">ContentValues&lt;/span> &lt;span class="n">values&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ContentValues&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">values&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;NAME&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;CMCC&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">values&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;APN&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;CMCC&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">values&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;PROXY&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;192.168.0.171&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">values&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;PORT&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;80&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">values&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;USER&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">values&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;PASSWORD&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getContentResolver&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">insert&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Uri&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">parse&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;content://telephony/carriers&amp;#34;&lt;/span>&lt;span class="o">),&lt;/span> &lt;span class="n">values&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>在AndroidManifest.xml中添加如下内容：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="nt">&amp;lt;uses-permission&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;android.permission.WRITE_APN_SETTINGS&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android下设置默认APN</title><link>https://chenzaichun.github.io/post/2010-06-27-android_set_default_apn/</link><pubDate>Sun, 27 Jun 2010 12:22:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-27-android_set_default_apn/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * set default apn
+&lt;/span>&lt;span class="cm"> * @param id
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">setDefaultApn&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="c1">// TODO Auto-generated method stub
+&lt;/span>&lt;span class="c1">&lt;/span>　　&lt;span class="n">ContentResolver&lt;/span> &lt;span class="n">cr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">getContentResolver&lt;/span>&lt;span class="o">();&lt;/span>
+　　&lt;span class="n">ContentValues&lt;/span> &lt;span class="n">cv&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ContentValues&lt;/span>&lt;span class="o">();&lt;/span>
+　　&lt;span class="n">cv&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;apn_id&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">id&lt;/span>&lt;span class="o">);&lt;/span>
+　　&lt;span class="k">try&lt;/span> &lt;span class="o">{&lt;/span>
+　　　　&lt;span class="n">cr&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">preferapnUri&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">cv&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+　 &lt;span class="o">}&lt;/span> &lt;span class="k">catch&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">Exception&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+　　　　&lt;span class="c1">// TODO Auto-generated catch block
+&lt;/span>&lt;span class="c1">&lt;/span> 　 &lt;span class="n">e&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">printStackTrace&lt;/span>&lt;span class="o">();&lt;/span>
+　 &lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android获取手机号码</title><link>https://chenzaichun.github.io/post/2010-06-21-android_phone_number/</link><pubDate>Mon, 21 Jun 2010 13:21:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-21-android_phone_number/</guid><description>&lt;p>android下获取手机的号码&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="c1">//创建电话管理
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">TelephonyManager&lt;/span> &lt;span class="n">tm&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">TelephonyManager&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//与手机建立连接
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">activity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getSystemService&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Context&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">TELEPHONY_SERVICE&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//获取手机号码
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">phoneId&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">tm&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getLine1Number&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在manifest file中添加&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="c">&amp;lt;!-- 记得在manifest file中添加 --&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;uses-permission&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;android.permission.READ_PHONE_STATE&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>程序在模拟器上无法获取，必须连接手机&lt;/p>
+&lt;p>参考连接：&lt;/p>
+&lt;p>&lt;a href="http://hi.baidu.com/hencechen/blog/item/e4d983094c01b4c73ac76349.html" target="_blank">&lt;a href="http://hi.baidu.com/hencechen/blog/item/e4d983094c01b4c73ac76349.html">http://hi.baidu.com/hencechen/blog/item/e4d983094c01b4c73ac76349.html&lt;/a>&lt;/a>&lt;/p></description></item><item><title>android md5 string</title><link>https://chenzaichun.github.io/post/2010-06-20-android.md5_string/</link><pubDate>Sun, 20 Jun 2010 21:11:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-20-android.md5_string/</guid><description>&lt;p>android下用md5加密一个字符串：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java"> &lt;span class="kd">public&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="nf">md5&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">try&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="c1">// Create MD5 Hash
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">MessageDigest&lt;/span> &lt;span class="n">digest&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">java&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">security&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">MessageDigest&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getInstance&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;MD5&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">digest&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">s&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="kt">byte&lt;/span> &lt;span class="n">messageDigest&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">digest&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">digest&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="c1">// Create HEX String
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">StringBuffer&lt;/span> &lt;span class="n">hexString&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">StringBuffer&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">messageDigest&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">length&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">hexString&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">append&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">toHexString&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">0xFF&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">messageDigest&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">]));&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">hexString&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">toString&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">catch&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">NoSuchAlgorithmException&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">e&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">printStackTrace&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ubuntu下配置emacs android开发环境</title><link>https://chenzaichun.github.io/post/2010-06-18-ubuntu_emacs_android/</link><pubDate>Fri, 18 Jun 2010 12:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-18-ubuntu_emacs_android/</guid><description>&lt;ol>
+&lt;li>首先安装jdk&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install openjdk-6-jdk
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>
+&lt;p>下载并解压android sdk&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>将adnroid sdk目录下的tools添加到PATH&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>安装android-mode&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">git clone git://github.com/remvee/android-mode.git
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>5. 创建一个android虚拟设备如test1，在.emacs中配置android-mode&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-lisp" data-lang="lisp">&lt;span class="c1">;; android-mode&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">add-to-list&lt;/span> &lt;span class="ss">&amp;#39;load-path&lt;/span> &lt;span class="s">&amp;#34;~/android/android-mode&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nf">require&lt;/span> &lt;span class="ss">&amp;#39;android-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="nv">custom-set-variables&lt;/span>
+&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">android-mode-avd&lt;/span> &lt;span class="s">&amp;#34;test1&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">android-mode-sdk-dir&lt;/span> &lt;span class="s">&amp;#34;~/android/&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="6">
+&lt;li>测试模拟器是否正常&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">android-start-emulator
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="7">
+&lt;li>安装ant&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get instal ant
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="8">
+&lt;li>中创建一个android工程使用命令android create project&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">android create project -n helloworld -t &lt;span class="m">12&lt;/span> -p ./ -k org.example.helloworld -a helloworld
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="9">
+&lt;li>在emacs安装工程&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">M-x android-ant-install
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="10">
+&lt;li>重新安装工程使用&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">M-x android-ant-reinstall
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gamedev on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/categories/gamedev/</link><description>Recent content in gamedev on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 21 Jul 2010 17:23:37 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/categories/gamedev/index.xml" rel="self" type="application/rss+xml"/><item><title>解决Error executing aapt. Please check aapt is present at %错误</title><link>https://chenzaichun.github.io/post/2010-07-21-android_aapt_error/</link><pubDate>Wed, 21 Jul 2010 17:23:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-21-android_aapt_error/</guid><description>&lt;p>原文：&lt;a href="http://blog.csdn.net/ovsynnia/archive/2007/12/06/1920365.aspx" target="_blank">猛击这里&lt;/a>&lt;/p>
+&lt;p>根据指南先配置好JDK，和设置path，并且更新sdk要重新更改path，按照指南来还出现问题！&lt;/p>
+&lt;p>Error executing aapt. Please check aapt is present at %&lt;/p>
+&lt;p>解决方案：在eclipse–&amp;gt;window–&amp;gt;属性–&amp;gt;android–&amp;gt;设置sdk的路径为解压缩的&lt;code>android_sdk_&amp;lt;platform&amp;gt;_&amp;lt;release&amp;gt;_&amp;lt;build&amp;gt;&lt;/code>.确定ＯＫ　小红叉没有了&lt;/p>
+&lt;p>但是在linux下还是出现了这个问题（因为更新了sdk），后来发现是因为platform/android-1.x/tools/下的工具没有执行权限&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">chmod +x *
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>android屏幕旋转问题</title><link>https://chenzaichun.github.io/post/2010-06-29-android_screen_rotation/</link><pubDate>Tue, 29 Jun 2010 12:21:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-29-android_screen_rotation/</guid><description>&lt;p>转自：&lt;a href="http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx" target="_blank">&lt;a href="http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx">http://blog.csdn.net/jump_1990/archive/2009/11/04/4766853.aspx&lt;/a>&lt;/a>&lt;/p>
+&lt;p>要让程序界面保持一个方向，不随手机方向转动而变化的处理办法：&lt;br>在AndroidManifest.xml里面配置一下就可以了。加入这一行android:screenOrientation=&amp;ldquo;landscape&amp;rdquo;。&lt;/p>
+&lt;p>例如（landscape是横向，portrait是纵向）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;manifest&lt;/span> &lt;span class="na">xmlns:android=&lt;/span>&lt;span class="s">&amp;#34;http://schemas.android.com/apk/res/android&amp;#34;&lt;/span>
+&lt;span class="na">package=&lt;/span>&lt;span class="s">&amp;#34;com.ray.linkit&amp;#34;&lt;/span>
+&lt;span class="na">android:versionCode=&lt;/span>&lt;span class="s">&amp;#34;1&amp;#34;&lt;/span>
+&lt;span class="na">android:versionName=&lt;/span>&lt;span class="s">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;application&lt;/span> &lt;span class="na">android:icon=&lt;/span>&lt;span class="s">&amp;#34;@drawable/icon&amp;#34;&lt;/span> &lt;span class="na">android:label=&lt;/span>&lt;span class="s">&amp;#34;@string/app_name&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;activity&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;.Main&amp;#34;&lt;/span>
+&lt;span class="na">android:label=&lt;/span>&lt;span class="s">&amp;#34;@string/app_name&amp;#34;&lt;/span>
+&lt;span class="na">android:screenOrientation=&lt;/span>&lt;span class="s">&amp;#34;portrait&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;intent-filter&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;action&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;android.intent.action.MAIN&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;category&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;android.intent.category.LAUNCHER&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/intent-filter&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/activity&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;activity&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;.GamePlay&amp;#34;&lt;/span>
+&lt;span class="na">android:screenOrientation=&lt;/span>&lt;span class="s">&amp;#34;portrait&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&amp;lt;/activity&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;activity&lt;/span> &lt;span class="na">android:name=&lt;/span>&lt;span class="s">&amp;#34;.OptionView&amp;#34;&lt;/span>
+&lt;span class="na">android:screenOrientation=&lt;/span>&lt;span class="s">&amp;#34;portrait&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&amp;lt;/activity&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/application&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;uses-sdk&lt;/span> &lt;span class="na">android:minSdkVersion=&lt;/span>&lt;span class="s">&amp;#34;3&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/manifest&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>另外，android中每次屏幕的切换都会重启Activity，所以应该在Activity销毁前保存当前活动的状态，在Activity再次 Create的时候载入配置，那样，进行中的游戏就不会自动重启了！也可以给每个activity加上 android:configChanges=&amp;ldquo;keyboardHidden|orientation&amp;quot;属性，就不会重启activity，而是去调用 onConfigurationChanged(Configuration newConfig)。这样就可以在这个方法里调整显示方式：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">newConfig&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">orientation&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">Configuration&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ogre中文路径和文件名</title><link>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</link><pubDate>Sat, 08 May 2010 16:11:38 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</guid><description>&lt;p>VS2005之后版本的std::fstream对中文路径处理不正确的原因，所以加载中文路径或文件名不成功，解决办法：&lt;/p>
+&lt;p>在主函数开始加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">setlocale&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">LC_ALL&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s">&amp;#34;Chinese-simplified&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ogre资源整理</title><link>https://chenzaichun.github.io/post/2010-05-07-ogre_resources/</link><pubDate>Fri, 07 May 2010 17:23:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ogre_resources/</guid><description>&lt;p>&lt;a href="www.ogre3d.org">官方网站&lt;/a>&lt;/p>
+&lt;p>&lt;a href="http://www.ogre3d.org/developers/addons">addons&lt;/a>&lt;/p>
+&lt;p>场景编辑器(Scene Editor)&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="http://www.ogre3d.org/wiki/index.php/Ogitor">ogitor&lt;/a> 直接编辑场景，目前还不支持PLSM2&lt;/li>
+&lt;li>&lt;a href="http://www.ofusiontechnologies.com/">ofusion&lt;/a> 在3dsmax中编辑场景，然后导出，提供加载器&lt;/li>
+&lt;/ol>
+&lt;p>还有一些插件：&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="www.ogre3d.org/wiki/index.php/Hydrax">水面 hydrax&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.ogre3d.org/wiki/index.php/Caelum">天空 Caelum&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.ogre3d.org/wiki/index.php/PagedGeometry_Engine">PagedGeometry&lt;/a> PagedGeometry是OGRE引擎的一个插件，它对（无穷）大区域的海量网格的渲 染提供优化策略。它非常适合于稠密的森林和室外场景，那里有海量的树，草，岩石，灌木丛等场景对象。 官方目前在弄PagedTerrain，对于大地图相信就有很好的解决方案了（配合pagedgeometry）&lt;/li>
+&lt;/ol></description></item><item><title>获取glsl version</title><link>https://chenzaichun.github.io/post/2010-05-07-get_glsl_version/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-get_glsl_version/</guid><description>&lt;p>直接上代码:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="kt">void&lt;/span> &lt;span class="nf">getGlslVersion&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">major&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">minor&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">gl_major&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">gl_minor&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">getGlVersion&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">gl_major&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">gl_minor&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">*&lt;/span>&lt;span class="n">major&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">minor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">gl_major&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// GL v1.x can only provide GLSL v1.00 as an extension
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">extstr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">glGetString&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GL_EXTENSIONS&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">extstr&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="n">strstr&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">extstr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;GL_ARB_shading_lanuage_100&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="o">*&lt;/span>&lt;span class="n">major&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="o">*&lt;/span>&lt;span class="n">minor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">gl_major&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// GL v2.0 and greater must parse the version string
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">verstr&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">glGetString&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GL_SHADING_LANGUAGE_VERSION&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">verstr&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">||&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="n">sscanf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">verstr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;%d.%d&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">major&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">minor&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="o">*&lt;/span>&lt;span class="n">major&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">minor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">fprintf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">stderr&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s">&amp;#34;Invalid GL_SHADING_LANGUAGE_VERSION format!!!n&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

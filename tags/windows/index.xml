@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Windows on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/windows/</link><description>Recent content in Windows on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 28 Oct 2011 10:11:11 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml"/><item><title>windows下清空系统dns</title><link>https://chenzaichun.github.io/post/2011-10-28-flush_dns_on_windows/</link><pubDate>Fri, 28 Oct 2011 10:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-10-28-flush_dns_on_windows/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">ipconfig /flush
+ipconfig /flushdns
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>archlinux搭建MinGW跨平台编译环境</title><link>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_environment/</link><pubDate>Sun, 24 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_environment/</guid><description>&lt;p>由于MinGW在Windows上的速度实在不敢恭维，所以决定在archlinux下搭建MinGW的跨平台编译环境。方法有两种。&lt;/p>
+&lt;ol>
+&lt;li>通过安装community中的mingw32-gcc实现&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 安装mingw32-gcc就行，其他的如mingw32-base, mingw32-runtime...等会作为依赖安装&lt;/span>
+sudo pacman -S mingw32-gcc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这种方法安装了最基本的编译环境，如果需要其他的库，则需要自行编译或者通过aur安装。&lt;/p>
+&lt;ol start="2">
+&lt;li>通过MinGW cross compiling environment来实现。&lt;a href="http://mingw-cross-env.nongnu.org/">&lt;a href="http://mingw-cross-env.nongnu.org">http://mingw-cross-env.nongnu.org&lt;/a>&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1">#1. 下载&lt;/span>
+wget https://bitbucket.org/vog/mingw-cross-env/downloads/mingw-cross-env-2.20.tar.gz
+&lt;span class="c1">#2. 解压&lt;/span>
+tar -xzvf mingw-cross-env-2.20.tar.gz
+&lt;span class="c1">#3. 移动到/opt目录（可选）&lt;/span>
+mv mingw-cross-env-2.20 /opt/mingw
+&lt;span class="c1">#4. 安装&lt;/span>
+su -
+&lt;span class="nb">cd&lt;/span> /opt/mingw
+make
+&lt;span class="c1">#5. 其他的包可以参见mingw-cross-env的文档&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>在Windows下用Python查看进程信息</title><link>https://chenzaichun.github.io/post/2011-01-26-view_process_with_python_and_pywin32/</link><pubDate>Wed, 26 Jan 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-01-26-view_process_with_python_and_pywin32/</guid><description>&lt;p>得益于PyWin32的强大，在Windows下可以通过Python调用Performon COM接口来查看进程的信息。下面的代码就是查看svhost进程的相关信息的示例代码，如果需要其他信息，请自行添加counter&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="c1">#/!/usr/bin/env python&lt;/span>
+&lt;span class="c1"># -*- coding: utf-8 -*-&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">win32api&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nn">win32pdh&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nn">win32pdhutil&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">ShowAllProcesses&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="n">procs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="nb">object&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdhutil&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_pdh_counter_localized_name&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Process&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">items&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">instances&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">EnumObjectItems&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nb">object&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">PERF_DETAIL_WIZARD&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">instance_dict&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{}&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">instance&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">instances&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">instance&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;svchost&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">instance_dict&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">instance_dict&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="k">except&lt;/span> &lt;span class="ne">KeyError&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">instance_dict&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="n">items&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">win32pdhutil&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_pdh_counter_localized_name&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;ID Process&amp;#34;&lt;/span>&lt;span class="p">)]&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">items&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">:]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">instance&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">max_instances&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">instance_dict&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">items&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">inum&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">xrange&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">max_instances&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">hq&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">OpenQuery&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">hcs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">item&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">items&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">MakeCounterPath&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nb">object&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">instance&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">inum&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="n">hcs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">AddCounter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hq&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">path&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CollectQueryData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hq&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">0.01&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CollectQueryData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hq&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">proc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">instance&lt;/span>&lt;span class="p">[:&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">hc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">hcs&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">vals&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hcs&lt;/span>&lt;span class="p">)):&lt;/span>
+&lt;span class="n">hc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">hcs&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="nb">type&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">val&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">GetFormattedCounterValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">PDH_FMT_LONG&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">vals&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">val&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">RemoveCounter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hc&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">procs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="n">proc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">vals&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="p">])&lt;/span>
+&lt;span class="n">win32pdh&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CloseQuery&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hq&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">print&lt;/span> &lt;span class="n">procs&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">procs&lt;/span>
+&lt;span class="n">ShowAllProcesses&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Resize a Portable Ubuntu Image</title><link>https://chenzaichun.github.io/post/2010-11-30-resize_portable_ubuntu_image/</link><pubDate>Tue, 30 Nov 2010 17:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-30-resize_portable_ubuntu_image/</guid><description>&lt;p>&lt;a href="http://blog.ruski.co.za/page/Resize-a-Portable-Ubuntu-Image.aspx">&lt;a href="http://blog.ruski.co.za/page/Resize-a-Portable-Ubuntu-Image.aspx">http://blog.ruski.co.za/page/Resize-a-Portable-Ubuntu-Image.aspx&lt;/a>&lt;/a>
+ When you first download and install &lt;a style="text-decoration: none; color: #336699; border: 0px initial initial;" href="http://portableubuntu.sourceforge.net/" target="_blank">Portable Ubuntu&lt;/a>, you&amp;rsquo;re going to be left with only about 500 MB of space on your Linux file system. This isn&amp;rsquo;t enough to do much of anything with, so the first order of business is going to be increasing the size of the image.
+There are instructions for doing so at the &lt;a style="text-decoration: none; color: #336699; border: 0px initial initial;" href="http://portableubuntu.sourceforge.net/index.php?section=documentation" target="_blank">Portable Ubuntu website&lt;/a>, but for convenience sake I am repeating them here.
+The process is fairly straight forward and basically consists of creating a new larger image file and then copying the existing image over to it. Once that is done we make the new image our primary partition.
+To start, make sure that you&amp;rsquo;re not currently running Portable Ubuntu. Exit it if you are.
+Open a Windows Command Prompt window by clicking Start -&amp;gt; Run and entering &amp;ldquo;cmd&amp;rdquo;.
+Change to the directory in which you&amp;rsquo;ve installed Portable Ubuntu. For the purposes of this article we&amp;rsquo;ll assume that is C&lt;strong>:Portable_Ubuntu&lt;/strong>.
+Change to the images folder:&lt;/p>
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">C:Portable_Ubuntu&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> cd images&lt;/div>
+Then we create a new image using the &lt;strong>fsutil&lt;/strong> utility. The number at the end is the size of the new image you want to create in bytes. I've opted to create a 4 GB image in the example below.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">C:Portable_Ubuntuimages&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> fsutil file createnew rootfs_.img 4294967296&lt;/div>
+Next we must mount the new image in our Ubuntu instance. Edit the &lt;strong>portable_ubuntu.conf&lt;/strong>file in the C&lt;strong>:Portable_Ubuntuconfig&lt;/strong> directory using Notepad. You can use explorer for this or the commands below.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">C:Portable_Ubuntuimages&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> cd .. C:Portable_Ubuntu&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> cd config C:Portable_Ubuntuconfig&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> notepad portable_ubuntu.conf&lt;/div>
+Replace the line in the config file that starts with "&lt;strong>cobd3=&lt;/strong>" with the following in notepad:&lt;strong>cobd3=imagesrootfs_.img&lt;/strong>
+Save the file and close Notepad.
+Now we need to run Portable Ubuntu again so that we can copy the contents of the original image over to the new image.
+Run Portable Ubuntu and open a Terminal window when it is ready.
+Type the following to make sure you have root access:
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">$ sudo su&lt;/div>
+You will be asked for a password. The default password for Portable Ubuntu is &lt;strong>123456&lt;/strong>
+Next we'll run the Data Definition (&lt;strong>dd&lt;/strong>) tool on linux to create a raw copy of the original image. Don't screw this up as the dd tool has earned the nickname "Data Destroyer" for a good reason.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">$ dd if=/dev/cobd0 of=/dev/cobd3&lt;/div>
+Once that is completed we'll have an exact copy of our data from the original image to the new larger image.
+Next we'll do a file system check on the new image to make sure it's good.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">fsck.ext3 -f /dev/cobd3&lt;/div>
+Then we resize the partition on the new image to take up all the space.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">resize2fs -f /dev/cobd3&lt;/div>
+Now that that is done, we can make the new image our main image. To do this, exit the running Portable Ubuntu image.
+Go back to the images folder and rename &lt;strong>rootfs.img&lt;/strong> to &lt;strong>rootfs.img.old&lt;/strong> and &lt;strong>rootfs_img&lt;/strong> to&lt;strong>rootfs.img&lt;/strong>.
+Remove the line that you had modified in the &lt;strong>portable_ubuntu.conf&lt;/strong> file (&lt;strong>cobd3=imagesrootfs_.img&lt;/strong>) using Notepad.
+Now you can run Portable Ubuntu again and you'll have a useful amount of free space left. You can delete the &lt;strong>rootfs.img.old&lt;/strong> file if everything is working properly.</description></item><item><title>使用res协议打开exe里面资源文件</title><link>https://chenzaichun.github.io/post/2010-11-29-res_protocol/</link><pubDate>Mon, 29 Nov 2010 23:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-29-res_protocol/</guid><description>&lt;p>参考：&lt;a href="http://www.cnblogs.com/dazhong/archive/2008/06/16/720507.html">&lt;a href="http://www.cnblogs.com/dazhong/archive/2008/06/16/720507.html">http://www.cnblogs.com/dazhong/archive/2008/06/16/720507.html&lt;/a>&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">GetModuleFileName&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">szModule&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">szModule&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">TCHAR&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="n">_stprintf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">szFileURL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">_T&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;res://%s/%d&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">szModule&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IDR_HTML1&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但是他们都没有说清楚，最主要的一点就是上面一定要用IDR_HTML1（即资源id），如果使用资源名称，则始终都是不能访问的。&lt;/p></description></item><item><title>在任务栏中隐藏windows程序</title><link>https://chenzaichun.github.io/post/2010-07-22-windows_hide_taskbar/</link><pubDate>Thu, 22 Jul 2010 23:11:37 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-windows_hide_taskbar/</guid><description>&lt;p>直接代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">ModifyStyleEx&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">WS_EX_APPWINDOW&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">WS_EX_TOOLWINDOW&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">SWP_DRAWFRAME&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>CDHtmlDialog启用滚动条</title><link>https://chenzaichun.github.io/post/2010-07-22-cdhtmldialog_scrollbar/</link><pubDate>Thu, 22 Jul 2010 19:23:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-cdhtmldialog_scrollbar/</guid><description>&lt;p>在CDHtmlDialog中启用滚动条：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">SetHostFlags&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">DOCHOSTUIFLAG_NO3DBORDER&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>windows下获取屏幕分辨率</title><link>https://chenzaichun.github.io/post/2010-07-22-windows_get_resolution/</link><pubDate>Thu, 22 Jul 2010 18:33:16 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-windows_get_resolution/</guid><description>&lt;p>windows下获取屏幕分辨率:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="kt">int&lt;/span> &lt;span class="n">nWidth&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetSystemMetrics&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">SM_CXSCREEN&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">//屏幕宽度
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">nHeight&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetSystemMetrics&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">SM_CYSCREEN&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">//屏幕高度
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>CDHtmlDialog中禁用右键菜单和F5刷新</title><link>https://chenzaichun.github.io/post/2010-07-22-cdhtmldialog_disable_context_menu_and_f5/</link><pubDate>Thu, 22 Jul 2010 17:26:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-cdhtmldialog_disable_context_menu_and_f5/</guid><description>&lt;p>参考：&lt;a href="http://www.codeproject.com/KB/MFC/dhtmldialog.aspx?msg=2016381#xx2016381xx" target="_blank">猛击这里&lt;/a>
+在头文件中加入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">STDMETHOD&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ShowContextMenu&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">DWORD&lt;/span> &lt;span class="n">dwID&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">POINT&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">ppt&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IUnknown&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pcmdtReserved&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IDispatch&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pdispReserved&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">STDMETHOD&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">TranslateAccelerator&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="n">LPMSG&lt;/span> &lt;span class="n">lpMsg&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="n">GUID&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">pguidCmdGroup&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">DWORD&lt;/span> &lt;span class="n">nCmdID&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在cpp中加入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">STDMETHODIMP&lt;/span> &lt;span class="n">ChtmldialogDlg&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">ShowContextMenu&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">DWORD&lt;/span> &lt;span class="n">dwID&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">POINT&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">ppt&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IUnknown&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pcmdtReserved&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IDispatch&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pdispReserved&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="c1">//return CDHtmlDialog::ShowContextMenu(dwID, ppt, pcmdtReserved, pdispReserved);
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">return&lt;/span> &lt;span class="n">S_OK&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="n">STDMETHODIMP&lt;/span> &lt;span class="n">ChtmldialogDlg&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">TranslateAccelerator&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">LPMSG&lt;/span> &lt;span class="n">lpMsg&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="n">GUID&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">pguidCmdGroup&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">DWORD&lt;/span> &lt;span class="n">nCmdID&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">lpMsg&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">lpMsg&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">message&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">WM_KEYDOWN&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">lpMsg&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">wParam&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">VK_F5&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">S_OK&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">CDHtmlDialog&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">TranslateAccelerator&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lpMsg&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">pguidCmdGroup&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">nCmdID&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>windows获取任务栏高度</title><link>https://chenzaichun.github.io/post/2010-07-22-windows_task_bar_height/</link><pubDate>Thu, 22 Jul 2010 16:23:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-07-22-windows_task_bar_height/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">RECT&lt;/span> &lt;span class="n">Rect&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">HWND&lt;/span> &lt;span class="n">hWnd&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FindWindow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Shell_TrayWnd&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">GetWindowRect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hWnd&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">Rect&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">//Rect.bottom-Rect.top 就是任务栏的高度
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>windows下使用incredibuild编译Qt</title><link>https://chenzaichun.github.io/post/2010-06-07-qt_incredibuild_compile/</link><pubDate>Mon, 07 Jun 2010 23:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-07-qt_incredibuild_compile/</guid><description>&lt;p>默认configure的时候qt的编译程序会检测incredibuild的xge支持，所以如果安装了incredibuild的话，会检测到xge选项，而configure的时候得到using incredibuildxge &amp;ndash;yes&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">configure -no-qt3support -no-webkit -release -opensource -platform win32-msvc2008
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>完成configure之后，会在根目录生成一个projects.sln，这个时候就可以使用incredibuild编译了。&lt;/p></description></item><item><title>vs2005下编译boost</title><link>https://chenzaichun.github.io/post/2010-06-02-vs2005_boost/</link><pubDate>Wed, 02 Jun 2010 11:33:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-02-vs2005_boost/</guid><description>&lt;p>vs2005下编译boost速度比较慢，由于默认使用的是bjam，不能通过incredibuild直接联编，所以只能通过incredibuild的xge接口来编译。我的编译过程:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>首先编译bjam，cd到tools/jam/src目录,执行build.bat vc8,拷贝bin.ntx86下bjam.exe到boost根目录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>新建一个boostib.xml文件，内容如下&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34; standalone=&amp;#34;no&amp;#34; ?&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Profile&lt;/span> &lt;span class="na">FormatVersion=&lt;/span>&lt;span class="s">&amp;#34;1&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tools&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;python&amp;#34;&lt;/span> &lt;span class="na">AllowIntercept=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;bjam&amp;#34;&lt;/span> &lt;span class="na">AllowIntercept=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;cl&amp;#34;&lt;/span> &lt;span class="na">AllowRemote=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span> &lt;span class="na">VCCompiler=&lt;/span>&lt;span class="s">&amp;#34;True&amp;#34;&lt;/span>&lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;link&amp;#34;&lt;/span> &lt;span class="na">AllowRemote=&lt;/span>&lt;span class="s">&amp;#34;false&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/Tools&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/Profile&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>新建一个boostib.bat文件，内容如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">XGConsole /command&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;bjam -j16 --toolset=msvc-8.0 --build-type=complete stage&amp;#34;&lt;/span> /openmonitor /profile&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;boostib.xml&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>执行boostlib.bat,库文件就在stage/lib目录下。至此完成编译！可是一看stage目录，这个硬盘占用也忒大了吧（2.58G）!!!&lt;/li>
+&lt;/ol></description></item><item><title>ogre中文路径和文件名</title><link>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</link><pubDate>Sat, 08 May 2010 16:11:38 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</guid><description>&lt;p>VS2005之后版本的std::fstream对中文路径处理不正确的原因，所以加载中文路径或文件名不成功，解决办法：&lt;/p>
+&lt;p>在主函数开始加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">setlocale&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">LC_ALL&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s">&amp;#34;Chinese-simplified&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ssh sock 5代理</title><link>https://chenzaichun.github.io/post/2010-05-08-ssh_sock_5/</link><pubDate>Sat, 08 May 2010 13:11:32 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ssh_sock_5/</guid><description>&lt;p>由于学校使用drcom，在Windows下任何代理都无解。在linux下可以通过iptable forward实现，在Windows下使用andlinux的时候如何挂代理呢，通过plink开sock5代理的方法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">plink -C -D myip:port -N -pw pasword username@127.0.0.1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>则外面就能使用sock5代理上 网了（使用sockscap尤其方便）。&lt;/p></description></item><item><title>Apache 2 启动错误的解决</title><link>https://chenzaichun.github.io/post/2010-05-08-apache2_start_error/</link><pubDate>Sat, 08 May 2010 11:12:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-apache2_start_error/</guid><description>&lt;p>&lt;a href="http://www.ourcampus.cn/blog/?action=show&amp;amp;id=27">参考地址&lt;/a>&lt;/p>
+&lt;p>启动Apache服务，测试一下环境是否正确，在浏览器中输入 &lt;a href="http://127.0.0.1/">http://127.0.0.1&lt;/a> 或是 &lt;a href="http://localhost/">http://localhost&lt;/a> 均半天不出页面，查看Apache状态为启动，估计Apache有问题，于是转到Apache安装目录的logs目录下，发现果然有一个error.log, 打开看到里面的内容如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">[Thu Nov 22 15:19:53 2007] [notice] Parent: Created child process 2816
+[Thu Nov 22 15:19:53 2007] [notice] Child 2816: Child process is running
+[Thu Nov 22 15:19:53 2007] [crit] (OS 10022)提供了一个无效的参数。Child 2816:
+setup_inherited_listeners(), WSASocket failed to open the inherited
+socket.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决方案如下：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>网上邻居-&amp;gt;本地连接-&amp;gt;属性-&amp;gt;Internet协议(TCP/IP)-&amp;gt;属性-&amp;gt;高级-&amp;gt;WINS标签 -&amp;gt;去掉启用LMhosts查询前的勾。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>网上邻居-&amp;gt;本地连接-&amp;gt;属性-&amp;gt;Internet协议 (TCP/IP)-&amp;gt;属性-&amp;gt;高级-&amp;gt;WINS标签-&amp;gt;NetBOIS设置-&amp;gt;禁用 TCP/IP 上的 NetBOIS。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>控制面版-&amp;gt;Windows防火墙-&amp;gt;高级标签-&amp;gt;本地连接设置-&amp;gt;服务标签-&amp;gt;勾 选安全Web服务器(HTTPS)。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>按照上面的步骤做完，问题解决。&lt;/p></description></item><item><title>git windows</title><link>https://chenzaichun.github.io/post/2010-05-07-git_windows/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-git_windows/</guid><description>&lt;p>在测试过很多中dvcs之后，最后决定用git。git在linux表现是非常完美的，不管是中文文件名，还是log，同时git svn clone也相当的完美。但是在windows下，乱码问题一直得不到解决。万般无赖之下只有抛弃以前的历史，直接svn co下来之后，生成一个新的git repo。&lt;/p>
+&lt;p>要想中文显示正常，在msysgit的安装目录下的/etc/git-completion.bash中增加一行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">alias ls=&amp;#39;ls --show-control-chars --color=auto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改&lt;code>/etc/inputrc&lt;/code>中对应的行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">alias ls=&amp;#39;ls --show-control-chars --color=auto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在&lt;code>/etc/profile&lt;/code>中增加一行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">alias ls=&amp;#39;ls --show-control-chars --color=auto&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>windows下完美解决问题。可惜windows下的repo在linux下是不能够正常使用的！等待解决git官方utf-8支持吧&lt;/p></description></item><item><title>ms vc下stderr到文件</title><link>https://chenzaichun.github.io/post/2010-05-07-ms_vc_stderr_file/</link><pubDate>Fri, 07 May 2010 11:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ms_vc_stderr_file/</guid><description>&lt;p>msvc下使用&lt;code>fprintf(stderr, ...)&lt;/code>的时候，如果系统不是&lt;code>/subsystem:console&lt;/code>的话，我们将看不到信息。如果程序要将消息重定位到文件的话，可以使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">program&lt;/span> &lt;span class="nl">begein&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="n">FILE&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">newstderr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">freopen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;xxx.log&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">stderr&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">program&lt;/span> &lt;span class="nl">end&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">fclose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">newstderr&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>就可以了&lt;/p></description></item><item><title>libcurl http下载时文件不存在的问题</title><link>https://chenzaichun.github.io/post/2010-05-07-libcurl_http_download_error/</link><pubDate>Fri, 07 May 2010 08:21:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-libcurl_http_download_error/</guid><description>&lt;p>当用&lt;code>libcurl&lt;/code>下载http文件不存在的时候，如果使用&lt;code>curl_easy_perform&lt;/code>得到的结果也是&lt;code>CURLE_OK&lt;/code> ，此时不能通过直接通过返回值来判断结果。&lt;/p>
+&lt;p>可以使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="kt">int&lt;/span> &lt;span class="n">code&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">curl_easy_getinfo&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">curl&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">CURLINFO_RESPONSE_CODE&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">code&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">code&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// download error
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>chrome on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/chrome/</link><description>Recent content in chrome on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 18 Nov 2011 22:13:47 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/chrome/index.xml" rel="self" type="application/rss+xml"/><item><title>chrome vim按键绑定</title><link>https://chenzaichun.github.io/post/2011-11-18-chrome-vim-key-binding/</link><pubDate>Fri, 18 Nov 2011 22:13:47 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-11-18-chrome-vim-key-binding/</guid><description>&lt;p>&lt;a href="https://github.com/philc/vimium">传送门&lt;/a>&lt;/p>
+&lt;p>插件安装&lt;a href="https://chrome.google.com/webstore/detail/dbepggeogbaibhgnhhndojpepiihcmeb">地址&lt;/a>&lt;/p>
+&lt;p>Navigating the current page:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Using find:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Navigating your history:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Manipulating tabs:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Additional advanced browsing commands:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">? show the help dialog for a list of all available keys
+h scroll left
+j scroll down
+k scroll up
+l scroll right
+gg scroll to top of the page
+G scroll to bottom of the page
+d scroll down half a page
+u scroll up half a page
+f open a link in the current tab
+F open a link in a new tab
+r reload
+gs view source
+i enter insert mode -- all commands will be ignored until
+you hit esc to exit
+yy copy the current url to the clipboard
+yf copy a link url to the clipboard
+gf cycle forward to the next frame
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Vimium supports command repetition so, for example, hitting &amp;lsquo;5t&amp;rsquo; will open 5 tabs in rapid succession. ESC (or &amp;lt;c-[&amp;gt;) will clear any partial commands in the queue and will also exit insert and find modes.&lt;/p>
+&lt;p>自定义快捷键详情请自行阅读&lt;a href="https://github.com/philc/vimium#readme">readme&lt;/a>&lt;/p></description></item><item><title>chrome for cause作弊码</title><link>https://chenzaichun.github.io/post/2010-12-19-chrome_for_cause_cheating_code/</link><pubDate>Sun, 19 Dec 2010 19:14:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-19-chrome_for_cause_cheating_code/</guid><description>&lt;p>没有想到的是竟然真的有人去弄了个作弊码。由于对js不熟，不知道到底有没有什么副作用。木哈哈&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="nx">javascript&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="kd">var&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="nx">loop&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nx">setInterval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span>&lt;span class="p">(){&lt;/span>&lt;span class="kd">var&lt;/span> &lt;span class="nx">newwin&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;http://www.google.com&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="nx">setTimeout&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span>&lt;span class="p">(){&lt;/span>&lt;span class="nx">newwin&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">close&lt;/span>&lt;span class="p">();},&lt;/span>&lt;span class="mi">500&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mi">250&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nx">clearInterval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">loop&lt;/span>&lt;span class="p">);},&lt;/span>&lt;span class="mi">500&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="k">void&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>chrome dev无法升级</title><link>https://chenzaichun.github.io/post/2010-12-18-chrome_dev_update_error/</link><pubDate>Sat, 18 Dec 2010 19:54:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-18-chrome_dev_update_error/</guid><description>&lt;p>这两天chrome dev无法升级，貌似dev版都已经升级到10.0.xxxx了，可是我还是9.0。杯具呀！错误代码：Update Server not available (error:7)&lt;/p>
+&lt;p>解决办法：&lt;a href="http://www.google.com/chrome/eula.html?extra=devchannel">Click&lt;/a>重新安装就可以了。&lt;/p></description></item><item><title>安装Chrome行善事</title><link>https://chenzaichun.github.io/post/2010-12-18-chrome_for_a_cause/</link><pubDate>Sat, 18 Dec 2010 19:14:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-12-18-chrome_for_a_cause/</guid><description>&lt;p>@&lt;a href="http://goo.gl/OUMAy" target="_blank">cnbeta&lt;/a>&lt;/p>
+&lt;p>安装Chrome插件，行善事。公益活动推广。&lt;br style="padding: 0px; margin: 0px;">活动日期：12月15日-19日&lt;br style="padding: 0px; margin: 0px;">给谷歌Chrome浏览器装个插件，然后从15-19日，你每打开一个新标签页，谷歌就会捐赠书籍，清水，树木，疫苗等给慈善机构。&lt;/p>
+&lt;p>&lt;strong>活动网址：&lt;/strong>&lt;a style="color: #003366; text-decoration: none; padding: 0px; margin: 0px;" href="http://www.google.com/chrome/intl/zh/p/cause/" target="_blank">&lt;a href="http://www.google.com/chrome/intl/zh/p/cause/">http://www.google.com/chrome/intl/zh/p/cause/&lt;/a>&lt;/a>&lt;/p>
+&lt;p>P.S. 貌似有点晚了，不过还有最后两天，大家可以试试看。&lt;/p></description></item><item><title>chrome代理相关命令行总结</title><link>https://chenzaichun.github.io/post/2010-09-16-chrome_proxy_.md_arg/</link><pubDate>Thu, 16 Sep 2010 17:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-16-chrome_proxy_.md_arg/</guid><description>&lt;p>chrome关于代理的命令行参数有：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">--proxy-auto-detect --proxy-pac-url=http://xxx.xxx.com // 使用自动在线pac代理
+--proxy-auto-detect --proxy-pac-url=file:///pac-file-path // 使用本地pac文件自动代理
+--proxy-server=127.0.0.1:8000 // 使用http代理
+--proxy-server=socks5://127.0.0.1:8000 // 使用socks5代理
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>原来chromium不支持youtube html5</title><link>https://chenzaichun.github.io/post/2010-09-05-chrome_html5/</link><pubDate>Sun, 05 Sep 2010 17:32:36 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-09-05-chrome_html5/</guid><description>&lt;p>今天用chromium打开youtube用html5播放，提示浏览器不支持，可是原来用chrome的时候是可以直接看的。google发现，chromium没有带解码，无奈之下只好重新安装chrome。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">yaourt -S google-chrome-dev
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>幸好aur中用chrome dev channel&lt;/p></description></item><item><title>chrome dev channel的更新源</title><link>https://chenzaichun.github.io/post/2010-06-20-chrome_dev_channel_source/</link><pubDate>Sun, 20 Jun 2010 22:11:25 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-20-chrome_dev_channel_source/</guid><description>&lt;p>原来chrome dev channel的更新源在&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">deb http://dl.google.com/linux/deb/ stable main #Google
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>原来一直以为在unstable 目录下，一直不能更新，木哈哈！&lt;/p></description></item><item><title>archlinux 下chrome autoproxy</title><link>https://chenzaichun.github.io/post/2010-05-08-archlinux_chrome_autoproxy/</link><pubDate>Sat, 08 May 2010 22:11:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-archlinux_chrome_autoproxy/</guid><description>&lt;p>在chrome下使用switchy自动代理需要依赖gnome和kde,所以在没有安装这两个套件的情况下,可以直接添加这两个命令行参数即可&lt;code>--proxy-auto-detect&lt;/code> &lt;code>--proxy-pac-url=pac&lt;/code>文件路径(本地,在线都可)以达到自动使用代理的功能&lt;/p></description></item><item><title>Google chrome与firefox</title><link>https://chenzaichun.github.io/post/2010-05-07-googlechrome_firefox_feeling/</link><pubDate>Fri, 07 May 2010 22:22:22 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-googlechrome_firefox_feeling/</guid><description>&lt;p>Google chrome与firefox的感受：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>chrome速度比较快，但是内存消耗来看，在开n个页面（n &amp;gt; 3)的时候，chrome消耗的内存比较大。如果页面一直在加载（但是此时已经断开了连接&amp;ndash;超时，chrome一直在等待）这个时候chrome的 cpu消耗是相当大的；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>chrome的插件系统还不够强大。比如现在chrome上面没有autoproxy这个用来翻墙的工具，虽然 有proxy switchy，但是从易用性方面来说没有autoproxy强大。adblock的功能还太弱，scribefire目前还没有上传图片的功能；（这三 个功能是我的基本要求）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>chrome的安装默认在系统盘（windows下），虽然方便了用户，但是我不喜欢；&lt;/p>
+&lt;/li>
+&lt;/ol></description></item></channel></rss>

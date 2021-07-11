@@ -1,0 +1,124 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Even</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Even</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2012-12-26-archlinux-fontconfig-for-chinese/>archlinux下修改默认中文字体</a></h1><div class=post-meta><span class=post-time>2012-12-26</span><div class=post-category><a href=/categories/programming/>programming</a>
+<a href=/categories/tools/>tools</a></div><span class=more-meta>约 1952 字</span>
+<span class=more-meta>预计阅读 4 分钟</span></div></header><div class=post-content><div class=post-summary><p>archlinux中的字体看起来真的很搓，试过ubuntu patch过的版本，还是不尽如人意。后来发现了<code>fontconfig-infinality</code>, 整个世界突然美好了。跟windows下的<code>MacType</code>差不多。</p><p>当我将ibus换成fcitx之后，问题又出现了，3.6版本之后的fcitx竟然没有字体设置了，对于字体的控制必须使用fontconfig。这必须的修改默认的中文字体。</p></div><div class=read-more><a href=/post/2012-12-26-archlinux-fontconfig-for-chinese/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2012-11-28-start-x-font-server-on-hp-ux/>在hp-ux上启动x font server</a></h1><div class=post-meta><span class=post-time>2012-11-28</span><div class=post-category><a href=/categories/programming/>programming</a>
+<a href=/categories/tools/>tools</a></div><span class=more-meta>约 46 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>编辑<code>/etc/rc.config.d/xfs</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>RUN_X_FONT_SERVER=1
+</code></pre></td></tr></table></div></div><p>然后启动</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>/sbin/init.d/xfs start
+</code></pre></td></tr></table></div></div><p>检查是否启动:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>ps -ef<span class=p>|</span>grep xfs
+netstat -an<span class=p>|</span>grep <span class=m>7000</span>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2012-11-28-start-x-font-server-on-hp-ux/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2012-11-27-emacs-mac-like-key-binding/>让emacs具有mac下的按键绑定</a></h1><div class=post-meta><span class=post-time>2012-11-27</span><div class=post-category><a href=/categories/programming/>programming</a>
+<a href=/categories/tools/>tools</a></div><span class=more-meta>约 150 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-lisp data-lang=lisp><span class=p>(</span><span class=k>setq</span> <span class=vg>*true-mac-cut-buffer*</span> <span class=s>&#34;&#34;</span><span class=p>)</span>
+<span class=p>(</span><span class=k>setq</span> <span class=vg>*true-mac-cut-buffer2*</span> <span class=no>t</span><span class=p>)</span>
+
+<span class=p>(</span><span class=k>setq</span> <span class=nv>interprogram-cut-function</span>
+      <span class=o>&#39;</span><span class=p>(</span><span class=nb>lambda</span> <span class=p>(</span><span class=nv>str</span> <span class=nb>push</span><span class=p>)</span>
+         <span class=p>(</span><span class=k>setq</span> <span class=vg>*true-mac-cut-buffer*</span> <span class=nv>str</span><span class=p>)</span>
+         <span class=p>(</span><span class=k>setq</span> <span class=vg>*true-mac-cut-buffer2*</span> <span class=nb>push</span><span class=p>)))</span>
+
+<span class=p>(</span><span class=k>setq</span> <span class=nv>interprogram-paste-function</span>
+      <span class=o>&#39;</span><span class=p>(</span><span class=nb>lambda</span> <span class=p>()</span> <span class=no>nil</span><span class=p>))</span>
+
+<span class=p>(</span><span class=nb>defun</span> <span class=nv>true-mac-cut-function</span> <span class=p>()</span> <span class=p>(</span><span class=nv>interactive</span><span class=p>)</span>
+  <span class=p>(</span><span class=k>if</span> <span class=nv>mark-active</span>
+      <span class=p>(</span><span class=k>progn</span> 
+        <span class=p>(</span><span class=nv>true-mac-copy-function</span><span class=p>)</span>
+        <span class=p>(</span><span class=nv>kill-region</span> <span class=p>(</span><span class=nv>point</span><span class=p>)</span> <span class=p>(</span><span class=nv>mark</span><span class=p>)))</span>
+    <span class=p>(</span><span class=nv>beep</span><span class=p>)))</span>
+        
+<span class=p>(</span><span class=nb>defun</span> <span class=nv>true-mac-copy-function</span> <span class=p>()</span> <span class=p>(</span><span class=nv>interactive</span><span class=p>)</span>
+  <span class=p>(</span><span class=k>if</span> <span class=nv>mark-active</span>
+      <span class=p>(</span><span class=nv>mac-cut-function</span> 
+       <span class=vg>*true-mac-cut-buffer*</span>
+       <span class=vg>*true-mac-cut-buffer2*</span><span class=p>)</span>
+    <span class=p>(</span><span class=nv>beep</span><span class=p>)))</span>
+
+<span class=p>(</span><span class=nb>defun</span> <span class=nv>true-mac-paste-function</span> <span class=p>()</span> <span class=p>(</span><span class=nv>interactive</span><span class=p>)</span>
+  <span class=p>(</span><span class=k>if</span> <span class=nv>mark-active</span>
+      <span class=p>(</span><span class=nv>kill-region</span> <span class=p>(</span><span class=nv>point</span><span class=p>)</span> <span class=p>(</span><span class=nv>mark</span><span class=p>)))</span>
+  <span class=p>(</span><span class=nv>insert</span> <span class=p>(</span><span class=nv>mac-paste-function</span><span class=p>)))</span>
+
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-x]</span> <span class=ss>&#39;true-mac-cut-function</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=s>&#34;\S-c&#34;</span> <span class=ss>&#39;true-mac-copy-function</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-v]</span> <span class=ss>&#39;true-mac-paste-function</span><span class=p>)</span>
+
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-a]</span> <span class=ss>&#39;mark-whole-buffer</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-s]</span> <span class=ss>&#39;save-buffer</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-S]</span> <span class=ss>&#39;write-file</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-p]</span> <span class=ss>&#39;ps-print-buffer</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-o]</span> <span class=ss>&#39;find-file</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-q]</span> <span class=ss>&#39;save-buffers-kill-emacs</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-w]</span> <span class=ss>&#39;kill-buffer-and-window</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-z]</span> <span class=ss>&#39;undo</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-f]</span> <span class=ss>&#39;isearch-forward</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-g]</span> <span class=ss>&#39;query-replace</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-l]</span> <span class=ss>&#39;goto-line</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-m]</span> <span class=ss>&#39;iconify-frame</span><span class=p>)</span>
+<span class=p>(</span><span class=nv>global-set-key</span> <span class=nv>[?\A-n]</span> <span class=ss>&#39;new-frame</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2012-11-27-emacs-mac-like-key-binding/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2012-11-27-iphone/>你以为</a></h1><div class=post-meta><span class=post-time>2012-11-27</span><div class=post-category><a href=/categories/programming/>programming</a>
+<a href=/categories/tools/>tools</a></div><span class=more-meta>约 0 字</span>
+<span class=more-meta>预计阅读 0 分钟</span></div></header><div class=post-content><div class=post-summary><p><img src=../media/iphone.png alt=iphone></p></div><div class=read-more><a href=/post/2012-11-27-iphone/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2012-11-26-generate-core-dump-on-linux/>Linux下让进程生成core文件</a></h1><div class=post-meta><span class=post-time>2012-11-26</span><div class=post-category><a href=/categories/programming/>programming</a>
+<a href=/categories/tools/>tools</a></div><span class=more-meta>约 30 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>在linux下让进程强制生成core dump文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>gcore &lt;-o filename&gt; pid
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2012-11-26-generate-core-dump-on-linux/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/4/><i class="iconfont icon-left"></i>
+<span class=prev-text>上一页</span></a>
+<a class=next href=/page/6/><span class=next-text>下一页</span>
+<i class="iconfont icon-right"></i></a></nav></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2009 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chen, Zai-Chun</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin=anonymous></script><script>var languageCode="en".replace(/-/g,'_').replace(/_(.*)/,function(b,a){return b.replace(a,a.toUpperCase())});timeago().render(document.querySelectorAll('.timeago'),languageCode),timeago.cancel()</script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js integrity=sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css integrity=sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF crossorigin=anonymous><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>

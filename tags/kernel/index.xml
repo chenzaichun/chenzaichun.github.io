@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kernel on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/kernel/</link><description>Recent content in kernel on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 08 May 2010 19:33:11 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/kernel/index.xml" rel="self" type="application/rss+xml"/><item><title>ubuntu删除无用旧内核</title><link>https://chenzaichun.github.io/post/2010-05-08-ubuntu_kernel_clean/</link><pubDate>Sat, 08 May 2010 19:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ubuntu_kernel_clean/</guid><description>&lt;p>用这个可以删除旧内核&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo aptitude purge ~ilinux-image-.*&lt;span class="o">(&lt;/span>!&lt;span class="sb">`&lt;/span>uname -r&lt;span class="sb">`&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;a class="postlink" href="http://forum.ubuntu.org.cn/viewtopic.php?t=129876">&lt;a href="http://forum.ubuntu.org.cn/viewtopic.php?t=129876">http://forum.ubuntu.org.cn/viewtopic.php?t=129876&lt;/a>&lt;/a>&lt;/p></description></item></channel></rss>

@@ -1,0 +1,927 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>yum/deb repository cache - 木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="怎么做cache，参考了以下方式：
+ squid nginx apt-mirror Apt-Cacher python pip cache python cache nginx like squid ansible with vagrant "><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/post/yumrepocache/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="yum/deb repository cache"><meta property="og:description" content="怎么做cache，参考了以下方式：
+
+squid
+nginx
+apt-mirror Apt-Cacher
+python pip cache
+python cache
+nginx like squid
+ansible with vagrant
+"><meta property="og:type" content="article"><meta property="og:url" content="https://chenzaichun.github.io/post/yumrepocache/"><meta property="article:section" content="post"><meta property="article:published_time" content="2017-11-28T00:00:00+00:00"><meta property="article:modified_time" content="2017-12-04T20:23:45+08:00"><meta itemprop=name content="yum/deb repository cache"><meta itemprop=description content="怎么做cache，参考了以下方式：
+
+squid
+nginx
+apt-mirror Apt-Cacher
+python pip cache
+python cache
+nginx like squid
+ansible with vagrant
+"><meta itemprop=datePublished content="2017-11-28T00:00:00+00:00"><meta itemprop=dateModified content="2017-12-04T20:23:45+08:00"><meta itemprop=wordCount content="3055"><meta itemprop=keywords content="hugo,org,linux,"><meta name=twitter:card content="summary"><meta name=twitter:title content="yum/deb repository cache"><meta name=twitter:description content="怎么做cache，参考了以下方式：
+
+squid
+nginx
+apt-mirror Apt-Cacher
+python pip cache
+python cache
+nginx like squid
+ansible with vagrant
+"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Even</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Even</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>yum/deb repository cache</h1><div class=post-meta><span class=post-time>2017-11-28</span><div class=post-category><a href=/categories/emacs/>emacs</a>
+<a href=/categories/tools/>tools</a></div><span class=more-meta>约 3055 字</span>
+<span class=more-meta>预计阅读 7 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#yum-使用createrepo方式来创建>yum 使用createrepo方式来创建</a></li><li><a href=#aptly>aptly</a><ul><li><a href=#下载>下载</a></li><li><a href=#gen-key>gen key</a></li><li><a href=#create-mirror>create mirror</a></li><li><a href=#update-it>update it</a></li><li><a href=#snapshots>snapshots</a></li><li><a href=#merging-snapshots>MERGING SNAPSHOTS</a></li><li><a href=#verify>verify</a></li><li><a href=#publishing-repository>PUBLISHING REPOSITORY</a></li><li><a href=#server>server</a></li><li><a href=#nginx-backports>nginx backports</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-outdated><div class=warn><p>【注意】最后更新于 <span class=timeago datetime=2017-12-04T20:23:45 title="December 4, 2017">December 4, 2017</span>，文中内容可能已过时，请谨慎使用。</p></div></div><div class=post-content><p>怎么做cache，参考了以下方式：</p><ul><li><a href=http://serverascode.com/2014/03/29/squid-cache-yum.html>squid</a></li><li><a href=http://tdt.rocks/repo_cache_ft_nginx.html>nginx</a></li><li><a href=https://www.packtpub.com/books/content/create-local-ubuntu-repository-using-apt-mirror-and-apt-cacher>apt-mirror</a> Apt-Cacher</li><li><a href=https://packaging.python.org/guides/index-mirrors-and-caches/>python pip cache</a></li><li><a href=http://www.dctrwatson.com/2013/06/simple-pypi-caching-proxy/>python cache</a></li><li><a href=http://sudhaker.com/60/caching-yum-proxy>nginx like squid</a></li><li><a href=https://github.com/mrmoje/repo_cache_plays_ft_nginx>ansible with vagrant</a></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-nginx data-lang=nginx><span class=c1># The upstream directive defining the backend/upstream repo hosts
+</span><span class=c1># see http://nginx.org/en/docs/http/ngx_http_upstream_module.html
+</span><span class=c1># There is a primary and a backup. You can have more than that.
+</span><span class=c1># NGINX will try to load balance between them using a &#34;weighted round-robin&#34;
+</span><span class=c1># algorithm.
+</span><span class=c1># Most requests go to the primary, fewer to the rest.
+</span><span class=c1># Error retries trickle down the server definitions. If the last errs,
+</span><span class=c1># the result is passed on to the client.
+</span><span class=c1># By default I found that if one is unreachable during startup, nginx will
+</span><span class=c1># kaput leaving clues in the error log.
+</span><span class=c1></span><span class=k>upstream</span> <span class=s>ubuntu</span> <span class=p>{</span>
+  <span class=kn>server</span> <span class=s>mirrors.ustc.edu.cn</span><span class=p>;</span>
+  <span class=kn>server</span> <span class=s>mirrors.163.com</span> <span class=s>backup</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=k>upstream</span> <span class=s>centos</span> <span class=p>{</span>
+    <span class=kn>server</span> <span class=s>mirrors.ustc.edu.cn</span><span class=p>;</span>
+    <span class=kn>server</span> <span class=s>mirrors.163.com</span> <span class=s>backup</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=c1># The following directive configures the cache. Storage et all. You may want
+</span><span class=c1># the storage location  at a mount point with a filesystem on separate storage
+</span><span class=c1># device/backend to match.
+</span><span class=c1># see http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path.
+</span><span class=c1></span><span class=k>proxy_cache_path</span> <span class=s>/var/repo_mirror</span> <span class=c1># defines where the cache is stashed
+</span><span class=c1></span>
+        <span class=c1># defines cache path heirarchy (yaani num directory levels in cache)
+</span><span class=c1></span>        <span class=s>levels=1:2</span>
+
+        <span class=c1># defines name and size of zone where all cache keys and cache metadata are stashed.
+</span><span class=c1></span>        <span class=c1># Servers as a lookup for cached data
+</span><span class=c1></span>        <span class=s>keys_zone=repository_cache:50m</span>
+
+        <span class=c1># The cached data access timeout. Pkgs get nuked if no access in 14 days.
+</span><span class=c1></span>        <span class=s>inactive=14d</span>
+
+        <span class=c1># Cache size limit
+</span><span class=c1></span>        <span class=s>max_size=200g</span><span class=p>;</span>
+
+<span class=c1># Our no-name server block
+</span><span class=c1></span><span class=k>server</span> <span class=p>{</span>
+
+  <span class=c1># Keep our eyes peeled on port 80
+</span><span class=c1></span>  <span class=kn>listen</span> <span class=mi>80</span><span class=p>;</span>
+
+  <span class=c1># Location directive for the /ubuntu path
+</span><span class=c1></span>  <span class=kn>location</span> <span class=s>/ubuntu</span> <span class=p>{</span>
+    <span class=c1># our cache&#39;s root
+</span><span class=c1></span>    <span class=kn>root</span> <span class=s>/var/repo_mirror/index_data</span><span class=p>;</span>
+
+    <span class=c1># look for packages in the following order
+</span><span class=c1></span>    <span class=kn>try_files</span> <span class=nv>$uri</span> <span class=s>@ubuntu</span><span class=p>;</span>
+  <span class=p>}</span>
+
+  <span class=c1># Location directive for the named location defined above
+</span><span class=c1></span>  <span class=kn>location</span> <span class=s>@ubuntu</span> <span class=p>{</span>
+
+    <span class=c1># map this to the upstream definition above
+</span><span class=c1></span>    <span class=kn>proxy_pass</span> <span class=s>http://ubuntu</span><span class=p>;</span>
+
+    <span class=c1># 14days of caching for http code 200 response content
+</span><span class=c1></span>    <span class=kn>proxy_cache_valid</span> <span class=mi>200</span> <span class=s>14d</span><span class=p>;</span>
+
+    <span class=c1># we set our &#34;repository_cache&#34; zone for caching
+</span><span class=c1></span>    <span class=kn>proxy_cache</span> <span class=s>repository_cache</span><span class=p>;</span>
+
+    <span class=c1># Use stale cached data in the error events defined
+</span><span class=c1></span>    <span class=kn>proxy_cache_use_stale</span> <span class=s>error</span> <span class=s>timeout</span> <span class=s>invalid_header</span> <span class=s>updating</span><span class=p>;</span>
+
+    <span class=c1># pass request to next (backup) server in the error events defined
+</span><span class=c1></span>    <span class=kn>proxy_next_upstream</span> <span class=s>error</span> <span class=s>timeout</span> <span class=s>invalid_header</span> <span class=s>http_500</span> <span class=s>http_502</span> <span class=s>http_503</span> <span class=s>http_504</span><span class=p>;</span>
+  <span class=p>}</span>
+
+  <span class=c1># Location directive for the /ubuntu path
+</span><span class=c1></span>  <span class=kn>location</span> <span class=s>/centos</span> <span class=p>{</span>
+      <span class=c1># our cache&#39;s root
+</span><span class=c1></span>      <span class=kn>root</span> <span class=s>/var/repo_mirror/index_data</span><span class=p>;</span>
+
+      <span class=c1># look for packages in the following order
+</span><span class=c1></span>      <span class=kn>try_files</span> <span class=nv>$uri</span> <span class=s>@centos</span><span class=p>;</span>
+  <span class=p>}</span>
+
+  <span class=c1># Location directive for the named location defined above
+</span><span class=c1></span>  <span class=kn>location</span> <span class=s>@centos</span> <span class=p>{</span>
+
+      <span class=c1># map this to the upstream definition above
+</span><span class=c1></span>      <span class=kn>proxy_pass</span> <span class=s>http://centos</span><span class=p>;</span>
+
+      <span class=c1># 14days of caching for http code 200 response content
+</span><span class=c1></span>      <span class=kn>proxy_cache_valid</span> <span class=mi>200</span> <span class=s>14d</span><span class=p>;</span>
+
+      <span class=c1># we set our &#34;repository_cache&#34; zone for caching
+</span><span class=c1></span>      <span class=kn>proxy_cache</span> <span class=s>repository_cache</span><span class=p>;</span>
+
+      <span class=c1># Use stale cached data in the error events defined
+</span><span class=c1></span>      <span class=kn>proxy_cache_use_stale</span> <span class=s>error</span> <span class=s>timeout</span> <span class=s>invalid_header</span> <span class=s>updating</span><span class=p>;</span>
+
+      <span class=c1># pass request to next (backup) server in the error events defined
+</span><span class=c1></span>      <span class=kn>proxy_next_upstream</span> <span class=s>error</span> <span class=s>timeout</span> <span class=s>invalid_header</span> <span class=s>http_500</span> <span class=s>http_502</span> <span class=s>http_503</span> <span class=s>http_504</span><span class=p>;</span>
+  <span class=p>}</span>
+
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>首先拿ubuntu来试，发现死活不行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>Fetched 415 kB in 23s (17.9 kB/s)
+Reading package lists... Done
+W: The repository &#39;http://mirrors.rc.com/ubuntu xenial Release&#39; does not have a Release file.
+N: Data from such a repository can&#39;t be authenticated and is therefore potentially dangerous to use.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+W: The repository &#39;http://mirrors.rc.com/ubuntu xenial-updates Release&#39; does not have a Release file.
+N: Data from such a repository can&#39;t be authenticated and is therefore potentially dangerous to use.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+E: Failed to fetch http://mirrors.rc.com/ubuntu/dists/xenial-backports/main/source/Sources  404  Not Found
+E: Failed to fetch http://mirrors.rc.com/ubuntu/dists/xenial/main/source/Sources  404  Not Found
+E: Failed to fetch http://mirrors.rc.com/ubuntu/dists/xenial-updates/main/source/Sources  404  Not Found
+E: Some index files failed to download. They have been ignored, or old ones used instead.
+</code></pre></td></tr></table></div></div><p>还是不行，升级一下nginx试一下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>add-apt-repository ppa:nginx/stable
+apt-get update
+apt-get install nginx
+</code></pre></td></tr></table></div></div><p>还是不行，网上怎么行的？？？？</p><p>直接用docker试试看。</p><p>没有分析日志的结果，哎，貌似是国内源不允许做upstream的。</p><p>发现这个： <a href=https://pulpproject.org/>https://pulpproject.org/</a></p><p>这里有常用方式的介绍： <a href=http://yum.baseurl.org/wiki/YumMultipleMachineCaching>http://yum.baseurl.org/wiki/YumMultipleMachineCaching</a></p><p>试试squid的方式:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>docker run <span class=se>\
+</span><span class=se></span>       --name lazy-distro-mirrors <span class=se>\
+</span><span class=se></span>       -d <span class=se>\
+</span><span class=se></span>       -p 80:8080 <span class=se>\
+</span><span class=se></span>       -v <span class=sb>`</span><span class=nb>pwd</span><span class=sb>`</span>/config:/docker_configurator/user <span class=se>\
+</span><span class=se></span>       -v <span class=sb>`</span><span class=nb>pwd</span><span class=sb>`</span>/cache:/var/spool/squid3 <span class=se>\
+</span><span class=se></span>       enigmacurry/lazy-distro-mirrors
+</code></pre></td></tr></table></div></div><p>都是同样的问题呢？？？</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>Reading package lists... Done
+W: The repository &#39;http://mirrors.rc.com/ubuntu xenial Release&#39; does not have a Release file.
+N: Data from such a repository can&#39;t be authenticated and is therefore potentially dangerous to use.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+W: The repository &#39;http://mirrors.rc.com/ubuntu xenial-updates Release&#39; does not have a Release file.
+N: Data from such a repository can&#39;t be authenticated and is therefore potentially dangerous to use.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+W: The repository &#39;http://mirrors.rc.com/ubuntu xenial-backports Release&#39; does not have a Release file.
+N: Data from such a repository can&#39;t be authenticated and is therefore potentially dangerous to use.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+E: Failed to fetch http://mirrors.rc.com/ubuntu/dists/xenial/main/source/Sources  Connection failed
+E: Failed to fetch http://mirrors.rc.com/ubuntu/dists/xenial-updates/main/source/Sources  Connection failed
+E: Failed to fetch http://mirrors.rc.com/ubuntu/dists/xenial-backports/main/source/Sources  Connection failed
+E: Some index files failed to download. They have been ignored, or old ones used instead.
+</code></pre></td></tr></table></div></div><p>终于通了，真的方式是这样的，</p><ul><li>修改mirror的地址比如: mirrors.ustc.edu.cn</li><li>修改/etc/hosts, 添加 mirrors.ustc.edu.cn -> 10.69.0.2</li><li>修改nginx的配置，添加 server_name -> mirrors.ustc.edu.cn *.ubuntu.com &mldr;.</li></ul><h2 id=yum-使用createrepo方式来创建>yum 使用createrepo方式来创建</h2><p><a href=https://www.digitalocean.com/community/tutorials/how-to-set-up-and-use-yum-repositories-on-a-centos-6-vps>https://www.digitalocean.com/community/tutorials/how-to-set-up-and-use-yum-repositories-on-a-centos-6-vps</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>mkdir -p /mysql <span class=o>&amp;&amp;</span> <span class=nb>cd</span> /mysql
+wget -c https://mirrors.ustc.edu.cn/mysql-repo/yum/mysql-5.7-community/el/7/x86_64/mysql-community-server-5.7.19-1.el7.x86_64.rpm
+createrepo /mysql
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>yum --disablerepo<span class=o>=</span><span class=s2>&#34;*&#34;</span> --enablerepo<span class=o>=</span><span class=s2>&#34;docker-ce-stable&#34;</span> list available<span class=p>|</span>grep libselinux-python
+</code></pre></td></tr></table></div></div><p>查看deps</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>[root@cmp-vi650rc4 mysql]# rpm -qpR ./mysql-community-server-5.7.19-1.el7.x86_64.rpm
+警告：./mysql-community-server-5.7.19-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY
+/bin/bash
+/bin/sh
+/bin/sh
+/bin/sh
+/bin/sh
+/usr/bin/perl
+config(mysql-community-server) = 5.7.19-1.el7
+coreutils
+grep
+ld-linux-x86-64.so.2()(64bit)
+ld-linux-x86-64.so.2(GLIBC_2.3)(64bit)
+libaio.so.1()(64bit)
+libaio.so.1(LIBAIO_0.1)(64bit)
+libaio.so.1(LIBAIO_0.4)(64bit)
+libc.so.6()(64bit)
+libc.so.6(GLIBC_2.10)(64bit)
+libc.so.6(GLIBC_2.14)(64bit)
+libc.so.6(GLIBC_2.15)(64bit)
+libc.so.6(GLIBC_2.16)(64bit)
+libc.so.6(GLIBC_2.17)(64bit)
+libc.so.6(GLIBC_2.2.5)(64bit)
+libc.so.6(GLIBC_2.3)(64bit)
+libc.so.6(GLIBC_2.3.4)(64bit)
+libc.so.6(GLIBC_2.4)(64bit)
+libc.so.6(GLIBC_2.7)(64bit)
+libc.so.6(GLIBC_2.8)(64bit)
+libcrypt.so.1()(64bit)
+libcrypt.so.1(GLIBC_2.2.5)(64bit)
+libdl.so.2()(64bit)
+libdl.so.2(GLIBC_2.2.5)(64bit)
+libgcc_s.so.1()(64bit)
+libgcc_s.so.1(GCC_3.0)(64bit)
+libgcc_s.so.1(GCC_3.3.1)(64bit)
+libgcc_s.so.1(GCC_3.4)(64bit)
+libm.so.6()(64bit)
+libm.so.6(GLIBC_2.2.5)(64bit)
+libnuma.so.1()(64bit)
+libnuma.so.1(libnuma_1.1)(64bit)
+libnuma.so.1(libnuma_1.2)(64bit)
+libpthread.so.0()(64bit)
+libpthread.so.0(GLIBC_2.12)(64bit)
+libpthread.so.0(GLIBC_2.2.5)(64bit)
+libpthread.so.0(GLIBC_2.3.2)(64bit)
+librt.so.1()(64bit)
+librt.so.1(GLIBC_2.2.5)(64bit)
+librt.so.1(GLIBC_2.3.3)(64bit)
+libsasl2.so.3()(64bit)
+libstdc++.so.6()(64bit)
+libstdc++.so.6(CXXABI_1.3)(64bit)
+libstdc++.so.6(CXXABI_1.3.1)(64bit)
+libstdc++.so.6(GLIBCXX_3.4)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.11)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.15)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.5)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.6)(64bit)
+libstdc++.so.6(GLIBCXX_3.4.9)(64bit)
+mysql-community-client(x86-64) &gt;= 5.7.9
+mysql-community-common(x86-64) = 5.7.19-1.el7
+net-tools
+perl(Getopt::Long)
+perl(strict)
+procps
+rpmlib(CompressedFileNames) &lt;= 3.0.4-1
+rpmlib(FileDigests) &lt;= 4.6.0-1
+rpmlib(PayloadFilesHavePrefix) &lt;= 4.0-1
+rtld(GNU_HASH)
+shadow-utils
+systemd
+systemd
+systemd
+rpmlib(PayloadIsXz) &lt;= 5.2-1
+</code></pre></td></tr></table></div></div><p>安装 <code>repotrack</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>yum install yum-utils
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>repotrack mysql-community-server.x86_64
+</code></pre></td></tr></table></div></div><p>脚本创建: <a href=https://gist.github.com/alastori/f65de76039e11668396761e4b8ba7e7b>https://gist.github.com/alastori/f65de76039e11668396761e4b8ba7e7b</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>## Enable to use MySQL 5.6 Commercial Server
+[mysql56-commercial]
+name=MySQL 5.6 Commercial Server
+baseurl=$REPO_URL/mysql-5.6-commercial/el/7/$basearch/
+enabled=0
+gpgcheck=0
+#gpgkey=$REPO_URL/RPM-GPG-KEY-mysql
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>createrepo el/7/x86_64/
+</code></pre></td></tr></table></div></div><p>看看ubuntu的方式:</p><p><a href=https://stackoverflow.com/questions/22008193/how-to-list-download-the-recursive-dependencies-of-a-debian-package>https://stackoverflow.com/questions/22008193/how-to-list-download-the-recursive-dependencies-of-a-debian-package</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>apt-get download <span class=k>$(</span>apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances --no-pre-depends mysql-server mysql-client <span class=p>|</span> grep <span class=s2>&#34;^\w&#34;</span> <span class=p>|</span> sort -u<span class=k>)</span>
+dpkg-scanpackages . <span class=p>|</span> gzip -9c &gt; Packages.gz
+</code></pre></td></tr></table></div></div><p><a href=https://www.itzhoulin.com/2016/05/24/create-ubuntu-source-file-based-local-deb-files/>https://www.itzhoulin.com/2016/05/24/create-ubuntu-source-file-based-local-deb-files/</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>apt-get install reprepro -y
+reprepro --ask-passphrase -Vb . includedeb trusty deb/*.deb
+</code></pre></td></tr></table></div></div><h2 id=aptly>aptly</h2><h3 id=下载>下载</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>wget -c https://bintray.com/artifact/download/smira/aptly/aptly_1.1.1_linux_amd64.tar.gz
+tar xvf aptly_1.1.1_linux_amd64.tar.gz
+<span class=nb>cd</span> aptly_1.1.1_linux_amd64 <span class=o>&amp;&amp;</span> cp aptly /usr/bin/
+</code></pre></td></tr></table></div></div><p>使用aptly: <a href=https://www.aptly.info/tutorial/mirror/>https://www.aptly.info/tutorial/mirror/</a></p><h3 id=gen-key>gen key</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>gpg --gen-key
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>oot@cmp-k6czjga2:~/aptly/aptly_1.1.1_linux_amd64# gpg --gen-key
+gpg (GnuPG) 1.4.16; Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+Your selection?
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048)
+Requested keysize is 2048 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0)
+Key does not expire at all
+Is this correct? (y/N) y
+
+You need a user ID to identify your key; the software constructs the user ID
+from the Real Name, Comment and Email Address in this form:
+    &#34;Heinrich Heine (Der Dichter) &lt;heinrichh@duesseldorf.de&gt;&#34;
+
+Real name: chenzaichun
+Email address: chenzaichun@cloud-star.com.cn
+Comment: Signing Repo
+You selected this USER-ID:
+    &#34;chenzaichun (Signing Repo) &lt;chenzaichun@cloud-star.com.cn&gt;&#34;
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+You need a Passphrase to protect your secret key.
+
+gpg: gpg-agent is not available in this session
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+.+++++
+..+++++
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
++++++
+....+++++
+gpg: /root/.gnupg/trustdb.gpg: trustdb created
+gpg: key 3FFC607E marked as ultimately trusted
+public and secret key created and signed.
+
+gpg: checking the trustdb
+gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+pub   2048R/3FFC607E 2017-12-01
+      Key fingerprint = 4403 5E29 0227 B84D 0793  A72E 2254 C689 3FFC 607E
+uid                  chenzaichun (Signing Repo) &lt;chenzaichun@cloud-star.com.cn&gt;
+sub   2048R/0189E080 2017-12-01
+</code></pre></td></tr></table></div></div><h3 id=create-mirror>create mirror</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>root@cmp-k6czjga2:~/aptly# aptly mirror create -architectures=amd64 -filter=&#39;Priority (required) | Priority (important) | Priority (standard)&#39; trusty-main http://mirrors.ustc.edu.cn/ubuntu/ trusty main
+Config file not found, creating default config at /root/.aptly.conf
+
+
+Looks like your keyring with trusted keys is empty. You might consider importing some keys.
+If you&#39;re running Debian or Ubuntu, it&#39;s a good idea to import current archive keys by running:
+
+  gpg --no-default-keyring --keyring /usr/share/keyrings/debian-archive-keyring.gpg --export | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+
+(for Ubuntu, use /usr/share/keyrings/ubuntu-archive-keyring.gpg)
+
+Downloading http://mirrors.ustc.edu.cn/ubuntu/dists/trusty/InRelease...
+Downloading http://mirrors.ustc.edu.cn/ubuntu/dists/trusty/Release...
+Downloading http://mirrors.ustc.edu.cn/ubuntu/dists/trusty/Release.gpg...
+gpgv: Signature made Thursday, May 08, 2014 PM10:20:33 CST using DSA key ID 437D05B5
+gpgv: Can&#39;t check signature: public key not found
+gpgv: Signature made Thursday, May 08, 2014 PM10:20:33 CST using RSA key ID C0B21F32
+gpgv: Can&#39;t check signature: public key not found
+
+Looks like some keys are missing in your trusted keyring, you may consider importing them from keyserver:
+
+gpg --no-default-keyring --keyring trustedkeys.gpg --keyserver keys.gnupg.net --recv-keys 40976EAF437D05B5 3B4FE6ACC0B21F32
+
+Sometimes keys are stored in repository root in file named Release.key, to import such key:
+
+wget -O - https://some.repo/repository/Release.key | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+
+ERROR: unable to fetch mirror: verification of detached signature failed: exit status 2
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>root@cmp-k6czjga2:~/aptly# gpg --no-default-keyring --keyring /usr/share/keyrings/ --export | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+debian-archive-keyring.gpg       ubuntu-archive-keyring.gpg       ubuntu-archive-removed-keys.gpg  ubuntu-master-keyring.gpg
+root@cmp-k6czjga2:~/aptly# gpg --no-default-keyring --keyring /usr/share/keyrings/ --export | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+debian-archive-keyring.gpg       ubuntu-archive-keyring.gpg       ubuntu-archive-removed-keys.gpg  ubuntu-master-keyring.gpg
+root@cmp-k6czjga2:~/aptly# gpg --no-default-keyring --keyring /usr/share/keyrings/ubuntu-archive-keyring.gpg --export | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+gpg: key 437D05B5: public key &#34;Ubuntu Archive Automatic Signing Key &lt;ftpmaster@ubuntu.com&gt;&#34; imported
+gpg: key FBB75451: public key &#34;Ubuntu CD Image Automatic Signing Key &lt;cdimage@ubuntu.com&gt;&#34; imported
+gpg: key C0B21F32: public key &#34;Ubuntu Archive Automatic Signing Key (2012) &lt;ftpmaster@ubuntu.com&gt;&#34; imported
+gpg: key EFE21092: public key &#34;Ubuntu CD Image Automatic Signing Key (2012) &lt;cdimage@ubuntu.com&gt;&#34; imported
+gpg: Total number processed: 4
+gpg:               imported: 4  (RSA: 2)
+gpg: public key of ultimately trusted key 3FFC607E not found
+gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>root@cmp-k6czjga2:~/aptly# gpg --no-default-keyring --keyring /usr/share/keyrings/ubuntu-master-keyring.gpg --export | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+gpg: key 3F272F5B: public key &#34;Ubuntu Archive Master Signing Key &lt;ftpmaster@ubuntu.com&gt;&#34; imported
+gpg: Total number processed: 1
+gpg:               imported: 1  (RSA: 1)
+gpg: public key of ultimately trusted key 3FFC607E not found
+gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>aptly mirror create -architectures<span class=o>=</span>amd64 -filter<span class=o>=</span><span class=s1>&#39;Priority (required) | Priority (important) | Priority (standard) | mysql-server | ngnix &#39;</span> -filter-with-deps trusty-main http://mirrors.ustc.edu.cn/ubuntu/ trusty main
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>root@cmp-k6czjga2:~/aptly# aptly mirror create -architectures=amd64 -filter=&#39;Priority (required) | Priority (important) | Priority (standard) | mysql-server | ngnix &#39; -filter-with-deps trusty-main http://mirrors.ustc.edu.cn/ubuntu/ trusty main
+Downloading http://mirrors.ustc.edu.cn/ubuntu/dists/trusty/InRelease...
+Downloading http://mirrors.ustc.edu.cn/ubuntu/dists/trusty/Release...
+Downloading http://mirrors.ustc.edu.cn/ubuntu/dists/trusty/Release.gpg...
+gpgv: Signature made Thursday, May 08, 2014 PM10:20:33 CST using DSA key ID 437D05B5
+gpgv: Good signature from &#34;Ubuntu Archive Automatic Signing Key &lt;ftpmaster@ubuntu.com&gt;&#34;
+gpgv: Signature made Thursday, May 08, 2014 PM10:20:33 CST using RSA key ID C0B21F32
+gpgv: Good signature from &#34;Ubuntu Archive Automatic Signing Key (2012) &lt;ftpmaster@ubuntu.com&gt;&#34;
+
+Mirror [trusty-main]: http://mirrors.ustc.edu.cn/ubuntu/ trusty successfully added.
+You can run &#39;aptly mirror update trusty-main&#39; to download repository contents.
+</code></pre></td></tr></table></div></div><p>Create also trusty-updates and trusty-security mirrors to get important updates:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>aptly mirror create -architectures<span class=o>=</span>amd64 -filter<span class=o>=</span><span class=s1>&#39;Priority (required) | Priority (important) | Priority (standard) | mysql-server | mysql-client&#39;</span> -filter-with-deps trusty-updates http://mirrors.ustc.edu.cn/ubuntu/ trusty-updates main
+
+aptly mirror create -architectures<span class=o>=</span>amd64 -filter<span class=o>=</span><span class=s1>&#39;Priority (required) | Priority (important) | Priority (standard) | mysql-server | mysql-client&#39;</span> -filter-with-deps trusty-security http://security.ubuntu.com/ubuntu trusty-security main
+
+</code></pre></td></tr></table></div></div><h3 id=update-it>update it</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>aptly mirror update trusty-main
+aptly mirror update trusty-updates
+aptly mirror update trusty-security
+</code></pre></td></tr></table></div></div><h3 id=snapshots>snapshots</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>aptly snapshot create trusty-main-12.1 from mirror trusty-main
+aptly snapshot create trusty-updates-12.1 from mirror trusty-updates
+aptly snapshot create trusty-security-12.1 from mirror trusty-security
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>root@cmp-k6czjga2:~/aptly# aptly snapshot create trusty-main-12.1 from mirror trusty-main
+
+Snapshot trusty-main-12.1 successfully created.
+You can run &#39;aptly publish snapshot trusty-main-12.1&#39; to publish snapshot as Debian repository.
+root@cmp-k6czjga2:~/aptly#   aptly snapshot create trusty-updates-12.1 from mirror trusty-updates
+
+Snapshot trusty-updates-12.1 successfully created.
+You can run &#39;aptly publish snapshot trusty-updates-12.1&#39; to publish snapshot as Debian repository.
+
+Snapshot trusty-security-12.1 successfully created.
+You can run &#39;aptly publish snapshot trusty-security-12.1&#39; to publish snapshot as Debian repository.
+root@cmp-k6czjga2:~/aptly#
+</code></pre></td></tr></table></div></div><h3 id=merging-snapshots>MERGING SNAPSHOTS</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>aptly snapshot merge -latest trusty-final-12.1 trusty-main-12.1 trusty-updates-12.1 trusty-security-12.1
+</code></pre></td></tr></table></div></div><h3 id=verify>verify</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>root@cmp-k6czjga2:~/aptly# aptly package show -with-references mysql-server
+Package: mysql-server
+Priority: optional
+Section: database
+Installed-Size: 132
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Original-Maintainer: Debian MySQL Maintainers &lt;pkg-mysql-maint@lists.alioth.debian.org&gt;
+Architecture: all
+Source: mysql-5.5
+Version: 5.5.35+dfsg-1ubuntu1
+Depends: mysql-server-5.5
+Filename: mysql-server_5.5.35+dfsg-1ubuntu1_all.deb
+Size: 12460
+MD5sum: d16af3d1cdb56d9c901566a0f9a47a0a
+SHA1: cc2ca722277fa1b00a32000985cffb6e188a798b
+SHA256: 37dba3b3f7094813f557c3852d0891fef7959e3d10134fae2627aaa270c92ab2
+SHA512: a40330b74bb45b7f974012e64bcf1c09659cd8d66c4d6b2a47afceef5173c1a1dad20d313ff461019c91f37f87296a1a3841c885e8a57b2523006ddd91da5739
+Description: MySQL database server (metapackage depending on the latest version)
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Homepage: http://dev.mysql.com/
+Supported: 5y
+Task: lamp-server, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-master, mythbuntu-backend-master
+Description-Md5: e519a9c4f87658afbd1d077af63f9269
+
+References to package:
+  mirror [trusty-main]: http://mirrors.ustc.edu.cn/ubuntu/ trusty
+  snapshot [trusty-main-12.1]: Snapshot from mirror [trusty-main]: http://mirrors.ustc.edu.cn/ubuntu/ trusty
+
+Package: mysql-server
+Priority: optional
+Section: database
+Installed-Size: 125
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Original-Maintainer: Debian MySQL Maintainers &lt;pkg-mysql-maint@lists.alioth.debian.org&gt;
+Architecture: all
+Source: mysql-5.5
+Version: 5.5.58-0ubuntu0.14.04.1
+Depends: mysql-server-5.5
+Filename: mysql-server_5.5.58-0ubuntu0.14.04.1_all.deb
+Size: 11272
+MD5sum: 259d272c6d280266c51974504638dc9d
+SHA1: 3be315aed287644449e4243625d8fb02d1fb222a
+SHA256: ac571af3081af0781061d47d812b30c0cd16b9f8f8639e8af8f2e0bf74e93007
+SHA512: e6379fc8a8c64dc194194f9939c98a52f86ebfaa100c5a52b67d2a1609a25a9bde7b4ddf83db89f63fdd554a92c21f3ab2a5dbffb2bf4d6f598458c77f8021c0
+Description: MySQL database server (metapackage depending on the latest version)
+Supported: 5y
+Task: lamp-server, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-master, mythbuntu-backend-master
+Origin: Ubuntu
+Description-Md5: e519a9c4f87658afbd1d077af63f9269
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Homepage: http://dev.mysql.com/
+
+References to package:
+  mirror [trusty-updates]: http://mirrors.ustc.edu.cn/ubuntu/ trusty-updates
+  mirror [trusty-security]: http://security.ubuntu.com/ubuntu/ trusty-security
+  snapshot [trusty-updates-12.1]: Snapshot from mirror [trusty-updates]: http://mirrors.ustc.edu.cn/ubuntu/ trusty-updates
+  snapshot [trusty-final-12.1]: Merged from sources: &#39;trusty-main-12.1&#39;, &#39;trusty-updates-12.1&#39;, &#39;trusty-security-12.1&#39;
+  snapshot [trusty-security-12.1]: Snapshot from mirror [trusty-security]: http://security.ubuntu.com/ubuntu/ trusty-security
+</code></pre></td></tr></table></div></div><h3 id=publishing-repository>PUBLISHING REPOSITORY</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>aptly publish snapshot -distribution<span class=o>=</span>trusty trusty-final-12.1
+</code></pre></td></tr></table></div></div><h3 id=server>server</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>aptly serve
+</code></pre></td></tr></table></div></div><h3 id=nginx-backports>nginx backports</h3><p><a href=https://www.aptly.info/tutorial/pull/>https://www.aptly.info/tutorial/pull/</a></p><p>mirror script: <a href=https://gist.github.com/EntropyWorks/94055445c19dabe6a870>https://gist.github.com/EntropyWorks/94055445c19dabe6a870</a></p><p>用这个版本来试试看：<a href=https://github.com/smira/aptly/pull/608>https://github.com/smira/aptly/pull/608</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>Chen, Zai-Chun</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2017-12-04</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/hugo/>hugo</a>
+<a href=/tags/org/>org</a>
+<a href=/tags/linux/>linux</a></div><nav class=post-nav><a class=prev href=/post/2021-07-11-transfer-to-hugo-on-github/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">将博客从heroku迁移到github</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/cobbler/><span class="next-text nav-default">cobbler 安装</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=chenzaichun/chenzaichun-utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2009 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chen, Zai-Chun</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin=anonymous></script><script>var languageCode="en".replace(/-/g,'_').replace(/_(.*)/,function(b,a){return b.replace(a,a.toUpperCase())});timeago().render(document.querySelectorAll('.timeago'),languageCode),timeago.cancel()</script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js integrity=sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css integrity=sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF crossorigin=anonymous><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>

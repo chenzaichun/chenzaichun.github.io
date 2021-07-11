@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vs on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/vs/</link><description>Recent content in vs on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 29 Nov 2010 23:33:11 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/vs/index.xml" rel="self" type="application/rss+xml"/><item><title>使用res协议打开exe里面资源文件</title><link>https://chenzaichun.github.io/post/2010-11-29-res_protocol/</link><pubDate>Mon, 29 Nov 2010 23:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-29-res_protocol/</guid><description>&lt;p>参考：&lt;a href="http://www.cnblogs.com/dazhong/archive/2008/06/16/720507.html">&lt;a href="http://www.cnblogs.com/dazhong/archive/2008/06/16/720507.html">http://www.cnblogs.com/dazhong/archive/2008/06/16/720507.html&lt;/a>&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">GetModuleFileName&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">szModule&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">szModule&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">TCHAR&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="n">_stprintf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">szFileURL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">_T&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;res://%s/%d&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">szModule&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">IDR_HTML1&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但是他们都没有说清楚，最主要的一点就是上面一定要用IDR_HTML1（即资源id），如果使用资源名称，则始终都是不能访问的。&lt;/p></description></item><item><title>ogre中文路径和文件名</title><link>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</link><pubDate>Sat, 08 May 2010 16:11:38 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ogre_chinese_path_filename/</guid><description>&lt;p>VS2005之后版本的std::fstream对中文路径处理不正确的原因，所以加载中文路径或文件名不成功，解决办法：&lt;/p>
+&lt;p>在主函数开始加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">setlocale&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">LC_ALL&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s">&amp;#34;Chinese-simplified&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

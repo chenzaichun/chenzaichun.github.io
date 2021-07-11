@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mingw on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/mingw/</link><description>Recent content in mingw on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 24 Apr 2011 19:34:31 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/mingw/index.xml" rel="self" type="application/rss+xml"/><item><title>archlinux下使用MinGW交叉编译testdisk</title><link>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_testdisk/</link><pubDate>Sun, 24 Apr 2011 19:34:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_testdisk/</guid><description>&lt;p>前面已经配置好了MinGW的交叉编译环境，现在就可以在archlinux下编译testdisk了。由于testdisk需要curses的支持，可以使用PDcureses。&lt;/p>
+&lt;p>安装PDCurses&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">yaourt -S mingw32-pdcurses
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>编译testdisk&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">./configure --host&lt;span class="o">=&lt;/span>i486-mingw32 --disable-missing-uuid-ok &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样就编译好了。在windows下运行发现没有问题。:) （终于可以不用忍受windows下mingw的蜗牛速度了）&lt;/p></description></item><item><title>archlinux搭建MinGW跨平台编译环境</title><link>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_environment/</link><pubDate>Sun, 24 Apr 2011 19:24:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-04-24-archlinux_mingw_cross_compile_environment/</guid><description>&lt;p>由于MinGW在Windows上的速度实在不敢恭维，所以决定在archlinux下搭建MinGW的跨平台编译环境。方法有两种。&lt;/p>
+&lt;ol>
+&lt;li>通过安装community中的mingw32-gcc实现&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 安装mingw32-gcc就行，其他的如mingw32-base, mingw32-runtime...等会作为依赖安装&lt;/span>
+sudo pacman -S mingw32-gcc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这种方法安装了最基本的编译环境，如果需要其他的库，则需要自行编译或者通过aur安装。&lt;/p>
+&lt;ol start="2">
+&lt;li>通过MinGW cross compiling environment来实现。&lt;a href="http://mingw-cross-env.nongnu.org/">&lt;a href="http://mingw-cross-env.nongnu.org">http://mingw-cross-env.nongnu.org&lt;/a>&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1">#1. 下载&lt;/span>
+wget https://bitbucket.org/vog/mingw-cross-env/downloads/mingw-cross-env-2.20.tar.gz
+&lt;span class="c1">#2. 解压&lt;/span>
+tar -xzvf mingw-cross-env-2.20.tar.gz
+&lt;span class="c1">#3. 移动到/opt目录（可选）&lt;/span>
+mv mingw-cross-env-2.20 /opt/mingw
+&lt;span class="c1">#4. 安装&lt;/span>
+su -
+&lt;span class="nb">cd&lt;/span> /opt/mingw
+make
+&lt;span class="c1">#5. 其他的包可以参见mingw-cross-env的文档&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

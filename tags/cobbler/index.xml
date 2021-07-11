@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cobbler on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/cobbler/</link><description>Recent content in cobbler on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 26 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/cobbler/index.xml" rel="self" type="application/rss+xml"/><item><title>cobbler 安装</title><link>https://chenzaichun.github.io/post/cobbler/</link><pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate><guid>https://chenzaichun.github.io/post/cobbler/</guid><description>&lt;h2 id="环境情况">环境情况&lt;/h2>
+&lt;p>用于PXE推送测试的相关环境信息如下：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Cobbler Server&lt;/td>
+&lt;td>Centos7&lt;/td>
+&lt;td>172.16.3.30&lt;/td>
+&lt;td>root/Pioneertest@2016&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Cobbler Server网络可以访问测试用物理服务器IPMI及PXE网卡。物理服务器默认连接一根网线用于PXE推送用途。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>物理设备名称&lt;/th>
+&lt;th>IPMI带外管理地址&lt;/th>
+&lt;th>带外管理用户名&lt;/th>
+&lt;th>带外管理密码&lt;/th>
+&lt;th>PXE网卡&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>华为2288v3-1&lt;/td>
+&lt;td>172.16.2.20&lt;/td>
+&lt;td>root&lt;/td>
+&lt;td>Huawei12#$&lt;/td>
+&lt;td>默认从pxe boot&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>华为2288v3-2&lt;/td>
+&lt;td>172.16.2.21&lt;/td>
+&lt;td>root&lt;/td>
+&lt;td>Huawei12#$&lt;/td>
+&lt;td>默认从pxe boot&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>可以用的dhcp网段为172.16.3.200-172.16.3.230&lt;/p></description></item></channel></rss>

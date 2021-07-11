@@ -1,0 +1,400 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>VKVideoPlayer爬坑记 - 木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="前言 在 iOS 开发过程中，视频播放相对来说还是比较简单，可以是用MPMoviePlayerController，MPMoviePlayerViewController, 或者 iOS8中引入的AVPlayerViewController，如果要更底层一点，也可以使用AVKit来做, 更极端的方式就是使用 WebView 来加载视频。
+这里简单说明一下他们的区别:
+ MPMoviePlayerController和MPMoviePlayerViewController使用起来类似，不足之处就是不能自定义控件，在使用HDMI来投影屏幕的时候会出现很多莫名其妙的问题，同时在 iOS9中将被标记为deprecated并不再维护 AVPlayerViewController使用起来也很方便，但是在 iOS8中同样有 HDMI 投影问题 AVKit AVPlayer自己实现，比较麻烦 WebView加载使用起来也很方便，HDMI投影也有问题  最近想写一个简单的 Demo，需要播放视频，同时需要自定义播放控件，上面的都不满足条件，网上很多人说VKVideoPlayer很不错，查看了一下VKVideoPlayer, 貌似 feature 特别多：
+VKVideoPlayer VKVideoPlayer的Feature Some of the advance features are:
+ Fully customizable UI No full screen restrictions (have it any size and position you would like!) Display subtitles (SRT supported out of the box) Customize subtitles (use CSS for styling courtesy of DTCoreText) Supports HTTP Live streaming Orientation change support (even when orientation lock is enabled) Bulletproof event machine to easily integrate features like video ads Lots of delegate callbacks for your own logging requirements  看上了这一点Fully customizable UI, 这就是我想要的, {% ruby 哈哈|矫情 %}
+测试VKVideoPlayer Demo 直接 clone 代码来试试看：
+1 2 3 4 5  git clone git@github.com:viki-org/VKVideoPlayer.git pod install open VKVideoPlayer.xcworkspace   编译Demo, 因为使用xcode 7 beta的缘故，iOS9默认是禁用 http 访问的（貌似这样比较{% ruby 操蛋|安全 %}），运行的时候会报错。
+ 2015-08-18 14:58:22.059 VKVideoPlayer[2845:41325] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&amp;rsquo;s Info.plist file.
+ 解决办法, 修改Supporting Files下VKVideoPlayer-Info.plist, 加入NSAppTransportSecurity dictionary，添加一个 bool 类型的 key NSAllowsArbitraryLoads, 设置为YES
+{% alert success %}所有使用iOS9编译的工程，默认都要这样添加才能使用http。{% endalert %}
+重新编译运行，默认界面有黑边，而且竟然在横屏和竖屏切换情况下layout有问题，
+原因在于VKVideoPlayer是为 iOS5设计的，并没有使用Size Classes和Auto Layout。{% ruby 不用管|没办法 %}
+使用VKVideoPlayer 创建一个工程vkplayertest, 创建Podfile
+1 2 3 4  inhibit_all_warnings! workspace &amp;#39;vkplayertest&amp;#39; pod &amp;#34;VKVideoPlayer&amp;#34;, &amp;#34;~&amp;gt; 0.1.1&amp;#34;   安装依赖
+1 2 3  pod install open vkplayertest.xcworkspace   在View中添加一个按钮并绑定Action来播放视频：
+1 2 3 4 5 6 7  #import &amp;#34;VKVideoPlayerViewController.h&amp;#34;  - (IBAction)playVideo:(id)sender { VKVideoPlayerViewController *viewController = [[VKVideoPlayerViewController alloc] init]; [self presentModalViewController:viewController animated:YES]; [viewController playVideoWithStreamURL:[NSURL URLWithString:@&amp;#34;http://baobab.cdn.wandoujia.com/14394406774325.mp4&amp;#34;]]; }   layout问题在多次切换屏幕方向再一次出现：
+{% textcolor danger %}难道是我打开方式不对？{% endtextcolor %}
+xcode 6测试 用xcode 6来测试一下试试看。结果是一样的，将模拟器换成iPhone4S，结果还是一样。
+不折腾，果断放弃之。有空自己用AVPlayer实现一下。
+"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/post/2015-08-18-vkvideoplayer-customization/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="VKVideoPlayer爬坑记"><meta property="og:description" content="前言
+在 iOS 开发过程中，视频播放相对来说还是比较简单，可以是用MPMoviePlayerController，MPMoviePlayerViewController, 或者 iOS8中引入的AVPlayerViewController，如果要更底层一点，也可以使用AVKit来做, 更极端的方式就是使用 WebView 来加载视频。
+这里简单说明一下他们的区别:
+
+MPMoviePlayerController和MPMoviePlayerViewController使用起来类似，不足之处就是不能自定义控件，在使用HDMI来投影屏幕的时候会出现很多莫名其妙的问题，同时在 iOS9中将被标记为deprecated并不再维护
+AVPlayerViewController使用起来也很方便，但是在 iOS8中同样有 HDMI 投影问题
+AVKit AVPlayer自己实现，比较麻烦
+WebView加载使用起来也很方便，HDMI投影也有问题
+
+最近想写一个简单的 Demo，需要播放视频，同时需要自定义播放控件，上面的都不满足条件，网上很多人说VKVideoPlayer很不错，查看了一下VKVideoPlayer, 貌似 feature 特别多：
+
+VKVideoPlayer
+VKVideoPlayer的Feature
+Some of the advance features are:
+
+Fully customizable UI
+No full screen restrictions (have it any size and position you would like!)
+Display subtitles (SRT supported out of the box)
+Customize subtitles (use CSS for styling courtesy of DTCoreText)
+Supports HTTP Live streaming
+Orientation change support (even when orientation lock is enabled)
+Bulletproof event machine to easily integrate features like video ads
+Lots of delegate callbacks for your own logging requirements
+
+看上了这一点Fully customizable UI, 这就是我想要的, {% ruby 哈哈|矫情 %}
+测试VKVideoPlayer Demo
+直接 clone 代码来试试看：
+
+
+1
+2
+3
+4
+5
+
+
+git clone git@github.com:viki-org/VKVideoPlayer.git
+
+pod install
+
+open VKVideoPlayer.xcworkspace
+
+
+编译Demo, 因为使用xcode 7 beta的缘故，iOS9默认是禁用 http 访问的（貌似这样比较{% ruby 操蛋|安全 %}），运行的时候会报错。
+
+2015-08-18 14:58:22.059 VKVideoPlayer[2845:41325] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&rsquo;s Info.plist file.
+
+解决办法, 修改Supporting Files下VKVideoPlayer-Info.plist, 加入NSAppTransportSecurity dictionary，添加一个 bool 类型的 key NSAllowsArbitraryLoads, 设置为YES
+
+{% alert success %}所有使用iOS9编译的工程，默认都要这样添加才能使用http。{% endalert %}
+重新编译运行，默认界面有黑边，而且竟然在横屏和竖屏切换情况下layout有问题，
+
+原因在于VKVideoPlayer是为 iOS5设计的，并没有使用Size Classes和Auto Layout。{% ruby 不用管|没办法 %}
+使用VKVideoPlayer
+创建一个工程vkplayertest, 创建Podfile
+
+
+1
+2
+3
+4
+
+
+inhibit_all_warnings!
+workspace 'vkplayertest'
+
+pod &#34;VKVideoPlayer&#34;, &#34;~> 0.1.1&#34;
+
+
+安装依赖
+
+
+1
+2
+3
+
+
+pod install
+
+open vkplayertest.xcworkspace
+
+
+在View中添加一个按钮并绑定Action来播放视频：
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+#import &#34;VKVideoPlayerViewController.h&#34;
+
+- (IBAction)playVideo:(id)sender {
+    VKVideoPlayerViewController *viewController = [[VKVideoPlayerViewController alloc] init];
+    [self presentModalViewController:viewController animated:YES];
+    [viewController playVideoWithStreamURL:[NSURL URLWithString:@&#34;http://baobab.cdn.wandoujia.com/14394406774325.mp4&#34;]];
+}
+
+
+layout问题在多次切换屏幕方向再一次出现：
+
+{% textcolor danger %}难道是我打开方式不对？{% endtextcolor %}
+xcode 6测试
+用xcode 6来测试一下试试看。结果是一样的，将模拟器换成iPhone4S，结果还是一样。
+不折腾，果断放弃之。有空自己用AVPlayer实现一下。"><meta property="og:type" content="article"><meta property="og:url" content="https://chenzaichun.github.io/post/2015-08-18-vkvideoplayer-customization/"><meta property="article:section" content="post"><meta property="article:published_time" content="2015-08-18T14:33:00+08:00"><meta property="article:modified_time" content="2015-08-18T14:33:00+08:00"><meta itemprop=name content="VKVideoPlayer爬坑记"><meta itemprop=description content="前言
+在 iOS 开发过程中，视频播放相对来说还是比较简单，可以是用MPMoviePlayerController，MPMoviePlayerViewController, 或者 iOS8中引入的AVPlayerViewController，如果要更底层一点，也可以使用AVKit来做, 更极端的方式就是使用 WebView 来加载视频。
+这里简单说明一下他们的区别:
+
+MPMoviePlayerController和MPMoviePlayerViewController使用起来类似，不足之处就是不能自定义控件，在使用HDMI来投影屏幕的时候会出现很多莫名其妙的问题，同时在 iOS9中将被标记为deprecated并不再维护
+AVPlayerViewController使用起来也很方便，但是在 iOS8中同样有 HDMI 投影问题
+AVKit AVPlayer自己实现，比较麻烦
+WebView加载使用起来也很方便，HDMI投影也有问题
+
+最近想写一个简单的 Demo，需要播放视频，同时需要自定义播放控件，上面的都不满足条件，网上很多人说VKVideoPlayer很不错，查看了一下VKVideoPlayer, 貌似 feature 特别多：
+
+VKVideoPlayer
+VKVideoPlayer的Feature
+Some of the advance features are:
+
+Fully customizable UI
+No full screen restrictions (have it any size and position you would like!)
+Display subtitles (SRT supported out of the box)
+Customize subtitles (use CSS for styling courtesy of DTCoreText)
+Supports HTTP Live streaming
+Orientation change support (even when orientation lock is enabled)
+Bulletproof event machine to easily integrate features like video ads
+Lots of delegate callbacks for your own logging requirements
+
+看上了这一点Fully customizable UI, 这就是我想要的, {% ruby 哈哈|矫情 %}
+测试VKVideoPlayer Demo
+直接 clone 代码来试试看：
+
+
+1
+2
+3
+4
+5
+
+
+git clone git@github.com:viki-org/VKVideoPlayer.git
+
+pod install
+
+open VKVideoPlayer.xcworkspace
+
+
+编译Demo, 因为使用xcode 7 beta的缘故，iOS9默认是禁用 http 访问的（貌似这样比较{% ruby 操蛋|安全 %}），运行的时候会报错。
+
+2015-08-18 14:58:22.059 VKVideoPlayer[2845:41325] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&rsquo;s Info.plist file.
+
+解决办法, 修改Supporting Files下VKVideoPlayer-Info.plist, 加入NSAppTransportSecurity dictionary，添加一个 bool 类型的 key NSAllowsArbitraryLoads, 设置为YES
+
+{% alert success %}所有使用iOS9编译的工程，默认都要这样添加才能使用http。{% endalert %}
+重新编译运行，默认界面有黑边，而且竟然在横屏和竖屏切换情况下layout有问题，
+
+原因在于VKVideoPlayer是为 iOS5设计的，并没有使用Size Classes和Auto Layout。{% ruby 不用管|没办法 %}
+使用VKVideoPlayer
+创建一个工程vkplayertest, 创建Podfile
+
+
+1
+2
+3
+4
+
+
+inhibit_all_warnings!
+workspace 'vkplayertest'
+
+pod &#34;VKVideoPlayer&#34;, &#34;~> 0.1.1&#34;
+
+
+安装依赖
+
+
+1
+2
+3
+
+
+pod install
+
+open vkplayertest.xcworkspace
+
+
+在View中添加一个按钮并绑定Action来播放视频：
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+#import &#34;VKVideoPlayerViewController.h&#34;
+
+- (IBAction)playVideo:(id)sender {
+    VKVideoPlayerViewController *viewController = [[VKVideoPlayerViewController alloc] init];
+    [self presentModalViewController:viewController animated:YES];
+    [viewController playVideoWithStreamURL:[NSURL URLWithString:@&#34;http://baobab.cdn.wandoujia.com/14394406774325.mp4&#34;]];
+}
+
+
+layout问题在多次切换屏幕方向再一次出现：
+
+{% textcolor danger %}难道是我打开方式不对？{% endtextcolor %}
+xcode 6测试
+用xcode 6来测试一下试试看。结果是一样的，将模拟器换成iPhone4S，结果还是一样。
+不折腾，果断放弃之。有空自己用AVPlayer实现一下。"><meta itemprop=datePublished content="2015-08-18T14:33:00+08:00"><meta itemprop=dateModified content="2015-08-18T14:33:00+08:00"><meta itemprop=wordCount content="1216"><meta itemprop=keywords content="programming,objc,iOS,video,"><meta name=twitter:card content="summary"><meta name=twitter:title content="VKVideoPlayer爬坑记"><meta name=twitter:description content="前言
+在 iOS 开发过程中，视频播放相对来说还是比较简单，可以是用MPMoviePlayerController，MPMoviePlayerViewController, 或者 iOS8中引入的AVPlayerViewController，如果要更底层一点，也可以使用AVKit来做, 更极端的方式就是使用 WebView 来加载视频。
+这里简单说明一下他们的区别:
+
+MPMoviePlayerController和MPMoviePlayerViewController使用起来类似，不足之处就是不能自定义控件，在使用HDMI来投影屏幕的时候会出现很多莫名其妙的问题，同时在 iOS9中将被标记为deprecated并不再维护
+AVPlayerViewController使用起来也很方便，但是在 iOS8中同样有 HDMI 投影问题
+AVKit AVPlayer自己实现，比较麻烦
+WebView加载使用起来也很方便，HDMI投影也有问题
+
+最近想写一个简单的 Demo，需要播放视频，同时需要自定义播放控件，上面的都不满足条件，网上很多人说VKVideoPlayer很不错，查看了一下VKVideoPlayer, 貌似 feature 特别多：
+
+VKVideoPlayer
+VKVideoPlayer的Feature
+Some of the advance features are:
+
+Fully customizable UI
+No full screen restrictions (have it any size and position you would like!)
+Display subtitles (SRT supported out of the box)
+Customize subtitles (use CSS for styling courtesy of DTCoreText)
+Supports HTTP Live streaming
+Orientation change support (even when orientation lock is enabled)
+Bulletproof event machine to easily integrate features like video ads
+Lots of delegate callbacks for your own logging requirements
+
+看上了这一点Fully customizable UI, 这就是我想要的, {% ruby 哈哈|矫情 %}
+测试VKVideoPlayer Demo
+直接 clone 代码来试试看：
+
+
+1
+2
+3
+4
+5
+
+
+git clone git@github.com:viki-org/VKVideoPlayer.git
+
+pod install
+
+open VKVideoPlayer.xcworkspace
+
+
+编译Demo, 因为使用xcode 7 beta的缘故，iOS9默认是禁用 http 访问的（貌似这样比较{% ruby 操蛋|安全 %}），运行的时候会报错。
+
+2015-08-18 14:58:22.059 VKVideoPlayer[2845:41325] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&rsquo;s Info.plist file.
+
+解决办法, 修改Supporting Files下VKVideoPlayer-Info.plist, 加入NSAppTransportSecurity dictionary，添加一个 bool 类型的 key NSAllowsArbitraryLoads, 设置为YES
+
+{% alert success %}所有使用iOS9编译的工程，默认都要这样添加才能使用http。{% endalert %}
+重新编译运行，默认界面有黑边，而且竟然在横屏和竖屏切换情况下layout有问题，
+
+原因在于VKVideoPlayer是为 iOS5设计的，并没有使用Size Classes和Auto Layout。{% ruby 不用管|没办法 %}
+使用VKVideoPlayer
+创建一个工程vkplayertest, 创建Podfile
+
+
+1
+2
+3
+4
+
+
+inhibit_all_warnings!
+workspace 'vkplayertest'
+
+pod &#34;VKVideoPlayer&#34;, &#34;~> 0.1.1&#34;
+
+
+安装依赖
+
+
+1
+2
+3
+
+
+pod install
+
+open vkplayertest.xcworkspace
+
+
+在View中添加一个按钮并绑定Action来播放视频：
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+#import &#34;VKVideoPlayerViewController.h&#34;
+
+- (IBAction)playVideo:(id)sender {
+    VKVideoPlayerViewController *viewController = [[VKVideoPlayerViewController alloc] init];
+    [self presentModalViewController:viewController animated:YES];
+    [viewController playVideoWithStreamURL:[NSURL URLWithString:@&#34;http://baobab.cdn.wandoujia.com/14394406774325.mp4&#34;]];
+}
+
+
+layout问题在多次切换屏幕方向再一次出现：
+
+{% textcolor danger %}难道是我打开方式不对？{% endtextcolor %}
+xcode 6测试
+用xcode 6来测试一下试试看。结果是一样的，将模拟器换成iPhone4S，结果还是一样。
+不折腾，果断放弃之。有空自己用AVPlayer实现一下。"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Even</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Even</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>VKVideoPlayer爬坑记</h1><div class=post-meta><span class=post-time>2015-08-18</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 1216 字</span>
+<span class=more-meta>预计阅读 3 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#前言>前言</a></li><li><a href=#vkvideoplayer>VKVideoPlayer</a><ul><li><a href=#vkvideoplayer的feature>VKVideoPlayer的Feature</a></li><li><a href=#测试vkvideoplayer-demo>测试VKVideoPlayer Demo</a></li><li><a href=#使用vkvideoplayer>使用VKVideoPlayer</a></li><li><a href=#xcode-6测试>xcode 6测试</a></li></ul></li></ul></nav></div></div><div class=post-outdated><div class=warn><p>【注意】最后更新于 <span class=timeago datetime=2015-08-18T14:33:00 title="August 18, 2015">August 18, 2015</span>，文中内容可能已过时，请谨慎使用。</p></div></div><div class=post-content><h1 id=前言>前言</h1><p>在 iOS 开发过程中，视频播放相对来说还是比较简单，可以是用<code>MPMoviePlayerController</code>，<code>MPMoviePlayerViewController</code>, 或者 iOS8中引入的<code>AVPlayerViewController</code>，如果要更底层一点，也可以使用<code>AVKit</code>来做, 更极端的方式就是使用 <code>WebView</code> 来加载视频。</p><p>这里简单说明一下他们的区别:</p><ul><li><code>MPMoviePlayerController</code>和<code>MPMoviePlayerViewController</code>使用起来类似，不足之处就是不能自定义控件，在使用<code>HDMI</code>来投影屏幕的时候会出现很多莫名其妙的问题，同时在 iOS9中将被标记为<code>deprecated</code>并不再维护</li><li><code>AVPlayerViewController</code>使用起来也很方便，但是在 iOS8中同样有 HDMI 投影问题</li><li><code>AVKit</code> <code>AVPlayer</code>自己实现，比较麻烦</li><li><code>WebView</code>加载使用起来也很方便，HDMI投影也有问题</li></ul><p>最近想写一个简单的 Demo，需要播放视频，同时需要自定义播放控件，上面的都不满足条件，网上很多人说<code>VKVideoPlayer</code>很不错，查看了一下<a href=https://github.com/viki-org/VKVideoPlayer>VKVideoPlayer</a>, 貌似 feature 特别多：</p><h1 id=vkvideoplayer>VKVideoPlayer</h1><h2 id=vkvideoplayer的feature>VKVideoPlayer的Feature</h2><p>Some of the advance features are:</p><ul><li>Fully customizable UI</li><li>No full screen restrictions (have it any size and position you would like!)</li><li>Display subtitles (SRT supported out of the box)</li><li>Customize subtitles (use CSS for styling courtesy of DTCoreText)</li><li>Supports HTTP Live streaming</li><li>Orientation change support (even when orientation lock is enabled)</li><li>Bulletproof event machine to easily integrate features like video ads</li><li>Lots of delegate callbacks for your own logging requirements</li></ul><p>看上了这一点<code>Fully customizable UI</code>, 这就是我想要的, {% ruby 哈哈|矫情 %}</p><h2 id=测试vkvideoplayer-demo>测试VKVideoPlayer Demo</h2><p>直接 clone 代码来试试看：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>git clone git@github.com:viki-org/VKVideoPlayer.git
+
+pod install
+
+open VKVideoPlayer.xcworkspace
+</code></pre></td></tr></table></div></div><p>编译Demo, 因为使用xcode 7 beta的缘故，iOS9默认是禁用 http 访问的（貌似这样比较{% ruby 操蛋|安全 %}），运行的时候会报错。</p><blockquote><p>2015-08-18 14:58:22.059 VKVideoPlayer[2845:41325] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app&rsquo;s Info.plist file.</p></blockquote><p>解决办法, 修改<code>Supporting Files</code>下<code>VKVideoPlayer-Info.plist</code>, 加入<code>NSAppTransportSecurity</code> dictionary，添加一个 bool 类型的 key <code>NSAllowsArbitraryLoads</code>, 设置为<code>YES</code></p><p><img src=/media/ios9-http-load.png alt="iOS 9 HTTP Load"></p><p>{% alert success %}所有使用iOS9编译的工程，默认都要这样添加才能使用http。{% endalert %}</p><p>重新编译运行，默认界面有黑边，而且竟然在横屏和竖屏切换情况下layout有问题，</p><p><img src=/media/vkvideoplayer-layout-issue-ios9.png alt="VKVideoPlayer Layout Issue on iOS 9"></p><p>原因在于<code>VKVideoPlayer</code>是为 iOS5设计的，并没有使用<code>Size Classes</code>和<code>Auto Layout</code>。{% ruby 不用管|没办法 %}</p><h2 id=使用vkvideoplayer>使用VKVideoPlayer</h2><p>创建一个工程<code>vkplayertest</code>, 创建<code>Podfile</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>inhibit_all_warnings!
+workspace &#39;vkplayertest&#39;
+
+pod &#34;VKVideoPlayer&#34;, &#34;~&gt; 0.1.1&#34;
+</code></pre></td></tr></table></div></div><p>安装依赖</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>pod install
+
+open vkplayertest.xcworkspace
+</code></pre></td></tr></table></div></div><p>在View中添加一个按钮并绑定Action来播放视频：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-objc data-lang=objc><span class=cp>#import &#34;VKVideoPlayerViewController.h&#34;
+</span><span class=cp></span>
+<span class=p>-</span> <span class=p>(</span><span class=kt>IBAction</span><span class=p>)</span><span class=nf>playVideo:</span><span class=p>(</span><span class=kt>id</span><span class=p>)</span><span class=nv>sender</span> <span class=p>{</span>
+    <span class=n>VKVideoPlayerViewController</span> <span class=o>*</span><span class=n>viewController</span> <span class=o>=</span> <span class=p>[[</span><span class=n>VKVideoPlayerViewController</span> <span class=n>alloc</span><span class=p>]</span> <span class=n>init</span><span class=p>];</span>
+    <span class=p>[</span><span class=nb>self</span> <span class=nl>presentModalViewController</span><span class=p>:</span><span class=n>viewController</span> <span class=nl>animated</span><span class=p>:</span><span class=nb>YES</span><span class=p>];</span>
+    <span class=p>[</span><span class=n>viewController</span> <span class=nl>playVideoWithStreamURL</span><span class=p>:[</span><span class=n>NSURL</span> <span class=nl>URLWithString</span><span class=p>:</span><span class=s>@&#34;http://baobab.cdn.wandoujia.com/14394406774325.mp4&#34;</span><span class=p>]];</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>layout问题在多次切换屏幕方向再一次出现：</p><p><img src=/media/vkvideoplayer-layout-issue-2.png alt="VKVideoPlayer Layout Issue"></p><p>{% textcolor danger %}难道是我打开方式不对？{% endtextcolor %}</p><h2 id=xcode-6测试>xcode 6测试</h2><p>用<code>xcode 6</code>来测试一下试试看。结果是一样的，将模拟器换成iPhone4S，结果还是一样。</p><p>不折腾，果断放弃之。有空自己用<code>AVPlayer</code>实现一下。</p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>Chen, Zai-Chun</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2015-08-18</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/programming/>programming</a>
+<a href=/tags/objc/>objc</a>
+<a href=/tags/ios/>iOS</a>
+<a href=/tags/video/>video</a></div><nav class=post-nav><a class=prev href=/post/2015-08-21-ios-transition-libs/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">iOS中Tranisition常用库</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/2015-08-18-hexo-3-robots-txt-error/><span class="next-text nav-default">升级到 Hexo 3后发现 robots.txt失效</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=chenzaichun/chenzaichun-utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2009 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chen, Zai-Chun</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin=anonymous></script><script>var languageCode="en".replace(/-/g,'_').replace(/_(.*)/,function(b,a){return b.replace(a,a.toUpperCase())});timeago().render(document.querySelectorAll('.timeago'),languageCode),timeago.cancel()</script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js integrity=sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css integrity=sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF crossorigin=anonymous><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>

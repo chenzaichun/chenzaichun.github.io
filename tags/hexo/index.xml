@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hexo on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/hexo/</link><description>Recent content in hexo on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 26 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/hexo/index.xml" rel="self" type="application/rss+xml"/><item><title>从hexo迁移到hugo</title><link>https://chenzaichun.github.io/post/hexo2hugowithorg/</link><pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate><guid>https://chenzaichun.github.io/post/hexo2hugowithorg/</guid><description>&lt;h2 id="从hexo迁移到hugo">从hexo迁移到hugo&lt;/h2>
+&lt;h3 id="hexo2hugo-dot-py">hexo2hugo.py&lt;/h3>
+&lt;p>这里有个脚本：&lt;a href="https://github.com/wd/hexo2hugo">https://github.com/wd/hexo2hugo&lt;/a> ，但是有些问题，使用的是 &lt;code>python3&lt;/code> ，一定要注意。 &lt;code>categories&lt;/code> 如果是列表会出错, 添加转换&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="k">if&lt;/span> &lt;span class="s1">&amp;#39;tags&amp;#39;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">meta&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;tags&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;tags&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;tags&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;,&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="s1">&amp;#39;categories&amp;#39;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">meta&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;categories&amp;#39;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;categories&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;categories&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;,&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>时间不对的时候要出错:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">no_tz_date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">meta&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;date&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">no_tz_date&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">no_tz_date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strptime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">no_tz_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s1"> %H:%M&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">except&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">no_tz_date&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">no_tz_date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strptime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">no_tz_date&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s1"> %H:%M:%S&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>因为没有 &lt;code>more&lt;/code> tag，在主页summary不好看，给加上&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd"></description></item><item><title>升级到 Hexo 3后发现 robots.txt失效</title><link>https://chenzaichun.github.io/post/2015-08-18-hexo-3-robots-txt-error/</link><pubDate>Tue, 18 Aug 2015 13:30:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-18-hexo-3-robots-txt-error/</guid><description>&lt;p>升级到 hexo3之后一直没注意，今天查看&lt;code>Google WebMaster Tools&lt;/code>发现竟然没抓去多少，查看原来的&lt;code>robots.txt&lt;/code>, 是这样的:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">---
+layout: nil
+---
+User-agent: *
+Disallow:
+Sitemap: {{ site.url }}/sitemap.xml
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打开生成的&lt;a href="https://chenzaichun.github.io/robots.txt">robots.txt&lt;/a>查看，竟然没有解析, 竟然是这样的&lt;/p>
+&lt;!-- more -->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">---
+layout: nil
+---
+User-agent: *
+Disallow:
+Sitemap: {{ site.url }}/sitemap.xml
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>完全没有处理这个文件, 安装&lt;code>hexo-generator-robotstxt&lt;/code>, 由于官方的版本只有一个 sitemap，如果要添加 baidusitemap 的话，可以使用我的 fork &lt;a href="https://github.com/chenzaichun/hexo-generator-robotstxt">hexo-generator-robotstxt&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">npm install chenzaichun/hexo-generator-robotstxt --save
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改&lt;code>_config.yml&lt;/code>文件，加入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">plugins:
+- hexo-generator-robotstxt
+robotstxt:
+useragent: &amp;#34;*&amp;#34;
+sitemap:
+- /sitemap.xml
+- /baidusitemap.xml
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>{%ruby 搞定|无聊 %}&lt;/p></description></item></channel></rss>

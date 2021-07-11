@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>unix on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/unix/</link><description>Recent content in unix on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 14 May 2012 10:16:00 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/unix/index.xml" rel="self" type="application/rss+xml"/><item><title>Unix/Linux计算程序消耗的时间（毫秒)</title><link>https://chenzaichun.github.io/post/2012-05-14-calculate-elapsed-time-in-milliseconds-unix-slash-linux/</link><pubDate>Mon, 14 May 2012 10:16:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2012-05-14-calculate-elapsed-time-in-milliseconds-unix-slash-linux/</guid><description>&lt;p>使用&lt;code>time(NULL)&lt;/code>得到的是从1970年1月1日到目前的秒，这种精度很多时候是不够用的。为了得到毫秒级的精度，需要使用&lt;code>gettimeofday&lt;/code>:&lt;/p>
+&lt;p>直接上代码:&lt;/p></description></item><item><title>X Server连接到hp-ux字体问题解决办法</title><link>https://chenzaichun.github.io/post/2011-07-17-hp_ux_font_error_fix/</link><pubDate>Sun, 17 Jul 2011 20:56:31 +0800</pubDate><guid>https://chenzaichun.github.io/post/2011-07-17-hp_ux_font_error_fix/</guid><description>&lt;p>在用x server连接到hp-ux的时候，open view启动失败：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Warning: Missing charsets in String to FontSet conversion
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontSet
+Warning: Missing charsets in String to FontSet conversion
+Warning: Unable to load any usable fontset
+Warning:
+Name: FONTLIST_DEFAULT_TAG_STRING
+Class: XmRendition
+Conversion failed. Cannot load font.
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontList
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*:&amp;#34; to type FontList
+Warning:
+Name: FONTLIST_DEFAULT_TAG_STRING
+Class: XmRendition
+Conversion failed. Cannot load font.
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontList
+Warning: Cannot convert string &amp;#34;-dt-interface system-medium-r-normal-s*-*-*-*-*-*-*-*-*:&amp;#34; to type FontList
+Warning: Missing charsets in String to FontSet conversion
+Warning: Cannot convert string &amp;#34;-dt-interface user-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontSet
+Warning: Missing charsets in String to FontSet conversion
+Warning: Unable to load any usable fontset
+Warning:
+Name: FONTLIST_DEFAULT_TAG_STRING
+Class: XmRendition
+Conversion failed. Cannot load font.
+Warning: Cannot convert string &amp;#34;-dt-interface user-medium-r-normal-s*-*-*-*-*-*-*-*-*&amp;#34; to type FontList
+Warning: Cannot convert string &amp;#34;-dt-interface user-medium-r-normal-s*-*-*-*-*-*-*-*-*:&amp;#34; to type FontList
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Cannot convert string &amp;#34;-*-helvetica-medium-r-*-140-*&amp;#34; to type FontSet
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Unable to load any usable fontset
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Cannot convert string &amp;#34;-*-helvetica-medium-r-*-120-*&amp;#34; to type FontSet
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Unable to load any usable fontset
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Cannot convert string &amp;#34;-*-helvetica-medium-r-*-100-*&amp;#34; to type FontSet
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Unable to load any usable fontset
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Cannot convert string &amp;#34;-*-helvetica-medium-r-*-80-*&amp;#34; to type FontSet
+ovw: Xt Warning: Missing charsets in String to FontSet conversion
+ovw: Xt Warning: Unable to load any usable fontset
+/opt/OV/bin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法：&lt;/p></description></item></channel></rss>

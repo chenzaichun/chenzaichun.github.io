@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ubuntu on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/ubuntu/</link><description>Recent content in ubuntu on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 30 Nov 2010 17:32:11 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml"/><item><title>Resize a Portable Ubuntu Image</title><link>https://chenzaichun.github.io/post/2010-11-30-resize_portable_ubuntu_image/</link><pubDate>Tue, 30 Nov 2010 17:32:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-11-30-resize_portable_ubuntu_image/</guid><description>&lt;p>&lt;a href="http://blog.ruski.co.za/page/Resize-a-Portable-Ubuntu-Image.aspx">&lt;a href="http://blog.ruski.co.za/page/Resize-a-Portable-Ubuntu-Image.aspx">http://blog.ruski.co.za/page/Resize-a-Portable-Ubuntu-Image.aspx&lt;/a>&lt;/a>
+ When you first download and install &lt;a style="text-decoration: none; color: #336699; border: 0px initial initial;" href="http://portableubuntu.sourceforge.net/" target="_blank">Portable Ubuntu&lt;/a>, you&amp;rsquo;re going to be left with only about 500 MB of space on your Linux file system. This isn&amp;rsquo;t enough to do much of anything with, so the first order of business is going to be increasing the size of the image.
+There are instructions for doing so at the &lt;a style="text-decoration: none; color: #336699; border: 0px initial initial;" href="http://portableubuntu.sourceforge.net/index.php?section=documentation" target="_blank">Portable Ubuntu website&lt;/a>, but for convenience sake I am repeating them here.
+The process is fairly straight forward and basically consists of creating a new larger image file and then copying the existing image over to it. Once that is done we make the new image our primary partition.
+To start, make sure that you&amp;rsquo;re not currently running Portable Ubuntu. Exit it if you are.
+Open a Windows Command Prompt window by clicking Start -&amp;gt; Run and entering &amp;ldquo;cmd&amp;rdquo;.
+Change to the directory in which you&amp;rsquo;ve installed Portable Ubuntu. For the purposes of this article we&amp;rsquo;ll assume that is C&lt;strong>:Portable_Ubuntu&lt;/strong>.
+Change to the images folder:&lt;/p>
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">C:Portable_Ubuntu&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> cd images&lt;/div>
+Then we create a new image using the &lt;strong>fsutil&lt;/strong> utility. The number at the end is the size of the new image you want to create in bytes. I've opted to create a 4 GB image in the example below.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">C:Portable_Ubuntuimages&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> fsutil file createnew rootfs_.img 4294967296&lt;/div>
+Next we must mount the new image in our Ubuntu instance. Edit the &lt;strong>portable_ubuntu.conf&lt;/strong>file in the C&lt;strong>:Portable_Ubuntuconfig&lt;/strong> directory using Notepad. You can use explorer for this or the commands below.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">C:Portable_Ubuntuimages&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> cd .. C:Portable_Ubuntu&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> cd config C:Portable_Ubuntuconfig&lt;span class="kwrd" style="color: #0000ff;">>&lt;/span> notepad portable_ubuntu.conf&lt;/div>
+Replace the line in the config file that starts with "&lt;strong>cobd3=&lt;/strong>" with the following in notepad:&lt;strong>cobd3=imagesrootfs_.img&lt;/strong>
+Save the file and close Notepad.
+Now we need to run Portable Ubuntu again so that we can copy the contents of the original image over to the new image.
+Run Portable Ubuntu and open a Terminal window when it is ready.
+Type the following to make sure you have root access:
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">$ sudo su&lt;/div>
+You will be asked for a password. The default password for Portable Ubuntu is &lt;strong>123456&lt;/strong>
+Next we'll run the Data Definition (&lt;strong>dd&lt;/strong>) tool on linux to create a raw copy of the original image. Don't screw this up as the dd tool has earned the nickname "Data Destroyer" for a good reason.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">$ dd if=/dev/cobd0 of=/dev/cobd3&lt;/div>
+Once that is completed we'll have an exact copy of our data from the original image to the new larger image.
+Next we'll do a file system check on the new image to make sure it's good.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">fsck.ext3 -f /dev/cobd3&lt;/div>
+Then we resize the partition on the new image to take up all the space.
+&lt;div class="code" style="font-size: 12px; color: black; font-family: Consolas, 'Courier New', Courier, monospace; background-color: #f1f1f1; line-height: normal; padding: 5px;">resize2fs -f /dev/cobd3&lt;/div>
+Now that that is done, we can make the new image our main image. To do this, exit the running Portable Ubuntu image.
+Go back to the images folder and rename &lt;strong>rootfs.img&lt;/strong> to &lt;strong>rootfs.img.old&lt;/strong> and &lt;strong>rootfs_img&lt;/strong> to&lt;strong>rootfs.img&lt;/strong>.
+Remove the line that you had modified in the &lt;strong>portable_ubuntu.conf&lt;/strong> file (&lt;strong>cobd3=imagesrootfs_.img&lt;/strong>) using Notepad.
+Now you can run Portable Ubuntu again and you'll have a useful amount of free space left. You can delete the &lt;strong>rootfs.img.old&lt;/strong> file if everything is working properly.</description></item><item><title>ubuntu下安装telnet服务器</title><link>https://chenzaichun.github.io/post/2010-06-21-ubuntu_telnet_server/</link><pubDate>Mon, 21 Jun 2010 23:11:34 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-21-ubuntu_telnet_server/</guid><description>&lt;ol>
+&lt;li>安装xinetd和telnetd&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install xinetd telnetd
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>/etc/inetd.conf在安装过程中已经配置好，修改/etc/xinetd.conf&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">defaults{
+# Please note that you need a log_type line to be able to use log_on_success
+# and log_on_failure. The default is the following :
+# log_type = SYSLOG daemon info
+## Please note that you need a log_type line to be able to use log_on_success
+## and log_on_failure. The default is the following :## log_type = SYSLOG daemon info
+#
+## start the insert content
+#
+# if I have time, I will add some comments about this part.
+# instances =60#log_type = SYSLOG authpriv
+# log_on_success = HOST PID
+# log_on_failure = HOST
+# tcps = 25 30
+## end the insert content
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>添加/etc/xinet.d/telnet&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">#service telnet
+#{
+#disable = no
+#flags = REUSE
+#socket_type = stream
+#wait = no
+#user = root
+#server = /usr/sbin/in.telnetd
+#log_on_failure += USERID
+#}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>重启xinetd服务&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo /etc/init.d/xinetd restart
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="5">
+&lt;li>测试一下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">telnet 127.0.0.1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>命令行下查看deb包的依赖</title><link>https://chenzaichun.github.io/post/2010-06-06-debian_depends/</link><pubDate>Sun, 06 Jun 2010 12:37:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-06-debian_depends/</guid><description>&lt;p>命令行下察看deb包的依赖(如察看google chrome的依赖）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">dpkg --info google-chrome-unstable_current_amd64.deb &lt;span class="p">|&lt;/span> grep Depends
+Pre-Depends: dpkg &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.14.0&lt;span class="o">)&lt;/span>
+Depends: ca-certificates, libasound2, libatk1.0-0 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.13.2&lt;span class="o">)&lt;/span>, libbz2-1.0, libc6 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.6-1&lt;span class="o">)&lt;/span>, libcairo2 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.4.0&lt;span class="o">)&lt;/span>, libfontconfig1 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.4.0&lt;span class="o">)&lt;/span>, libfreetype6 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.3.5&lt;span class="o">)&lt;/span>, libgcc1 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1:4.2.1&lt;span class="o">)&lt;/span>, libgconf2-4, libglib2.0-0 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.14.0&lt;span class="o">)&lt;/span>, libgtk2.0-0 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 2.12.0&lt;span class="o">)&lt;/span>, libjpeg62, libnspr4-0d &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 4.7.1&lt;span class="o">)&lt;/span>, libnss3-1d &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 3.12.3&lt;span class="o">)&lt;/span>, libpango1.0-0 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.18.3&lt;span class="o">)&lt;/span>, libpng12-0, libstdc++6 &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 4.2.1&lt;span class="o">)&lt;/span>, libxslt1.1, libxss1, lsb-base &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 3.2&lt;span class="o">)&lt;/span>, wget, xdg-utils &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1.0.1&lt;span class="o">)&lt;/span>, zlib1g &lt;span class="o">(&lt;/span>&amp;gt;&lt;span class="o">=&lt;/span> 1:1.2.3.3.dfsg-1&lt;span class="o">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p> &lt;/p></description></item><item><title>sudo环境变量</title><link>https://chenzaichun.github.io/post/2010-06-01-sudo_environment/</link><pubDate>Tue, 01 Jun 2010 11:43:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-01-sudo_environment/</guid><description>&lt;p>由于sudo运行程序不继承当前用户的环境变量，所以不能使用export var=value； sudo command的方式执行。解决办法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo &lt;span class="nv">var&lt;/span>&lt;span class="o">=&lt;/span>value &lt;span class="nb">command&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>修改Grub2,XP默认首启动</title><link>https://chenzaichun.github.io/post/2010-05-18-grub2_boot_default/</link><pubDate>Tue, 18 May 2010 12:12:23 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-18-grub2_boot_default/</guid><description>&lt;p>参考： &lt;a href="http://swsw4321.blog.163.com/blog/static/3245245201003121842841/">&lt;a href="http://swsw4321.blog.163.com/blog/static/3245245201003121842841/">http://swsw4321.blog.163.com/blog/static/3245245201003121842841/&lt;/a>&lt;/a>
+修改启动项, 终端输入：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">cd&lt;/span> /etc/grub.d &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> ls
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>显示的文件是这样的：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">00_header 05_debian_theme 10_linux 20_memtest86+ 30_os-prober 40_custom README
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中：10_linux就是当前所使用的操作系统，30_os-prober的作用是自动查找计算机的其他系统，比如是windows xp，要XP默认首启动只要执行命令：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo mv 20_os-prober 06_os-prober，把20_os-prober 改成06_os-prober
+sudo mv 30_os-prober 06_os-prober
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样，以后grub再次更新时，XP就默认在linux前启动了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo update-grub
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>看看效果吧，这样以后每次更新grub,都是默认XP启动。&lt;/p></description></item><item><title>ubuntu删除无用旧内核</title><link>https://chenzaichun.github.io/post/2010-05-08-ubuntu_kernel_clean/</link><pubDate>Sat, 08 May 2010 19:33:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-08-ubuntu_kernel_clean/</guid><description>&lt;p>用这个可以删除旧内核&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo aptitude purge ~ilinux-image-.*&lt;span class="o">(&lt;/span>!&lt;span class="sb">`&lt;/span>uname -r&lt;span class="sb">`&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;a class="postlink" href="http://forum.ubuntu.org.cn/viewtopic.php?t=129876">&lt;a href="http://forum.ubuntu.org.cn/viewtopic.php?t=129876">http://forum.ubuntu.org.cn/viewtopic.php?t=129876&lt;/a>&lt;/a>&lt;/p></description></item><item><title>ubuntu 10.04 unable to load the kernel module 'nvidia.ko'</title><link>https://chenzaichun.github.io/post/2010-05-07-ubuntu_nvidia_ko/</link><pubDate>Fri, 07 May 2010 16:14:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ubuntu_nvidia_ko/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">ERROR: Unable to load the kernel module &amp;#39;nvidia.ko&amp;#39;. This happens most frequently when this kernel module was built against the wrong or improperly configured kernel sources, with a version of gcc that differs from the one used to build the target kernel, or if a driver such as rivafb/nvidiafb is present and prevents the NVIDIA kernel module from obtaining ownership of the NVIDIA graphics device(s), or NVIDIA GPU installed in this system is not supported by this NVIDIA Linux graphics driver release.
+Please see the log entries &amp;#39;Kernel module load error&amp;#39; and &amp;#39;Kernel messages&amp;#39; at the end of the file &amp;#39;/var/log/nvidia-installer.log&amp;#39; for more information.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo sh NVIDA-Linux-x86_64-190.53-pkg.run -k &lt;span class="k">$(&lt;/span>uname -r&lt;span class="k">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ubuntu 10.04 lucid安装distcc</title><link>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_distcc/</link><pubDate>Fri, 07 May 2010 12:11:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_distcc/</guid><description>&lt;p>在ubuntu下安装distcc（后面两个可选）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install distcc distccmon-gnome distcc-pump
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>设置环境变量:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/usr/lib/distcc:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>打开&lt;code>/etc/default/distcc&lt;/code>进行以下修改&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">STARTDISTCC=&amp;#34;true&amp;#34; # auto start
+ALLOWEDNETS=&amp;#34;192.168.39.0/24&amp;#34; # ip range allowed
+LISTENER=&amp;#34;&amp;#34; # if use on intranet, must be empty, otherwise distcc: connection refused
+ZEROCONF=&amp;#34;true&amp;#34; # auto lookup distcc server
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后重启distcc服务&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo /etc/init.d/distcc restart
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>搞定！:-)&lt;/p></description></item><item><title>ubuntu 10.04 beta Fail to query the GLX server vendor</title><link>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_failed_query_glx_vendor/</link><pubDate>Fri, 07 May 2010 09:11:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_failed_query_glx_vendor/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">unlink /usr/lib/libGL.so
+unlink /usr/lib/libGL.so.1
+unlink
+/usr/lib64/libGL.so
+unlink /usr/lib64/libGL.so.1
+ln -s /usr/lib/nvidia-current/libGL.so /usr/lib/libGL.so.1
+ln -s /usr/lib64/nvidia-current/libGL.so /usr/lib64/libGL.so.1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

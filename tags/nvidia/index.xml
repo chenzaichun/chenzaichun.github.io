@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>nvidia on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/nvidia/</link><description>Recent content in nvidia on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 07 May 2010 16:14:11 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/nvidia/index.xml" rel="self" type="application/rss+xml"/><item><title>ubuntu 10.04 unable to load the kernel module 'nvidia.ko'</title><link>https://chenzaichun.github.io/post/2010-05-07-ubuntu_nvidia_ko/</link><pubDate>Fri, 07 May 2010 16:14:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ubuntu_nvidia_ko/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">ERROR: Unable to load the kernel module &amp;#39;nvidia.ko&amp;#39;. This happens most frequently when this kernel module was built against the wrong or improperly configured kernel sources, with a version of gcc that differs from the one used to build the target kernel, or if a driver such as rivafb/nvidiafb is present and prevents the NVIDIA kernel module from obtaining ownership of the NVIDIA graphics device(s), or NVIDIA GPU installed in this system is not supported by this NVIDIA Linux graphics driver release.
+Please see the log entries &amp;#39;Kernel module load error&amp;#39; and &amp;#39;Kernel messages&amp;#39; at the end of the file &amp;#39;/var/log/nvidia-installer.log&amp;#39; for more information.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解决办法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo sh NVIDA-Linux-x86_64-190.53-pkg.run -k &lt;span class="k">$(&lt;/span>uname -r&lt;span class="k">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ubuntu 10.04 beta Fail to query the GLX server vendor</title><link>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_failed_query_glx_vendor/</link><pubDate>Fri, 07 May 2010 09:11:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-07-ubuntu_lucid_failed_query_glx_vendor/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">unlink /usr/lib/libGL.so
+unlink /usr/lib/libGL.so.1
+unlink
+/usr/lib64/libGL.so
+unlink /usr/lib64/libGL.so.1
+ln -s /usr/lib/nvidia-current/libGL.so /usr/lib/libGL.so.1
+ln -s /usr/lib64/nvidia-current/libGL.so /usr/lib64/libGL.so.1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

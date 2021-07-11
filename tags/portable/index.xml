@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>portable on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/portable/</link><description>Recent content in portable on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 09 May 2010 21:13:43 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/portable/index.xml" rel="self" type="application/rss+xml"/><item><title>将archlinux安装到u盘</title><link>https://chenzaichun.github.io/post/2010-05-09-archlinux_usb_pen/</link><pubDate>Sun, 09 May 2010 21:13:43 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-09-archlinux_usb_pen/</guid><description>&lt;p>将archlinux安装到优盘上！试了很多方法，在虚拟机上将优盘设置成硬盘安装和在虚拟机上设置usb设备安装，启动时都会出现找不到硬盘的情况。（使用虚拟机启动没有问题）解决办法（&lt;a href="http://blog.sina.com.cn/s/blog_59cf67260100cwqr.html">参考地址&lt;/a>）：&lt;/p>
+&lt;p>设置系统的参数的时候，修改/etc/mkinitcpio.conf ，在HOOKS中加入usb选项，这似乎是让linux内核认usb。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">HOOKS=&amp;#34;base udev autodetect pata scsi sata usb filesystems&amp;#34;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样就可以正常启动了！如果出现&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">The superblock could not be read or does not describe a correct ext2 filesystem. If the device is valid and it really contains an ext2 filesystem (and not swap or ufs or something else), then the superblock is corrupt, and you might try running e2fsck with an alternate superblock:
+e2fsck -b 8193
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>请修改fstab，使用uuid的方式，见&lt;a href="http://wiki.archlinux.org/index.php/Fstab">&lt;a href="http://wiki.archlinux.org/index.php/Fstab">http://wiki.archlinux.org/index.php/Fstab&lt;/a>&lt;/a>&lt;/p></description></item></channel></rss>

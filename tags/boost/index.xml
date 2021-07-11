@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>boost on 木哈哈--瞎折腾</title><link>https://chenzaichun.github.io/tags/boost/</link><description>Recent content in boost on 木哈哈--瞎折腾</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 03 Jun 2010 11:37:11 +0800</lastBuildDate><atom:link href="https://chenzaichun.github.io/tags/boost/index.xml" rel="self" type="application/rss+xml"/><item><title>让boost::program_options支持未注册的参数</title><link>https://chenzaichun.github.io/post/2010-06-03-boost_program_options_unregistered_param/</link><pubDate>Thu, 03 Jun 2010 11:37:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-03-boost_program_options_unregistered_param/</guid><description>&lt;p>如果在使用boost::program_options的时候传递了未注册的参数，则会throw exception，要想无视我们不需要的参数，可以通过使用&lt;code>basic_command_line_parser&lt;/code>类来分析 (而不是&lt;code>parse_command_line&lt;/code>) ，并且调用该类的 allow_unregistered 方法：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">parsed_options&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;span class="n">command_line_parser&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">argv&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">).&lt;/span>
+&lt;span class="n">options&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">desc&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="n">allow_unregistered&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果使用配置文件，则在调用&lt;code>parse_config_file&lt;/code>的时候第三个参数传递true:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="n">parse_config_file&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">char&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">cfgfilename&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">desc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">true&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>vs2005下编译boost</title><link>https://chenzaichun.github.io/post/2010-06-02-vs2005_boost/</link><pubDate>Wed, 02 Jun 2010 11:33:13 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-02-vs2005_boost/</guid><description>&lt;p>vs2005下编译boost速度比较慢，由于默认使用的是bjam，不能通过incredibuild直接联编，所以只能通过incredibuild的xge接口来编译。我的编译过程:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>首先编译bjam，cd到tools/jam/src目录,执行build.bat vc8,拷贝bin.ntx86下bjam.exe到boost根目录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>新建一个boostib.xml文件，内容如下&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34; standalone=&amp;#34;no&amp;#34; ?&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Profile&lt;/span> &lt;span class="na">FormatVersion=&lt;/span>&lt;span class="s">&amp;#34;1&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tools&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;python&amp;#34;&lt;/span> &lt;span class="na">AllowIntercept=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;bjam&amp;#34;&lt;/span> &lt;span class="na">AllowIntercept=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;cl&amp;#34;&lt;/span> &lt;span class="na">AllowRemote=&lt;/span>&lt;span class="s">&amp;#34;true&amp;#34;&lt;/span> &lt;span class="na">VCCompiler=&lt;/span>&lt;span class="s">&amp;#34;True&amp;#34;&lt;/span>&lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;Tool&lt;/span> &lt;span class="na">Filename=&lt;/span>&lt;span class="s">&amp;#34;link&amp;#34;&lt;/span> &lt;span class="na">AllowRemote=&lt;/span>&lt;span class="s">&amp;#34;false&amp;#34;&lt;/span> &lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/Tools&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/Profile&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>新建一个boostib.bat文件，内容如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">XGConsole /command&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;bjam -j16 --toolset=msvc-8.0 --build-type=complete stage&amp;#34;&lt;/span> /openmonitor /profile&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;boostib.xml&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>执行boostlib.bat,库文件就在stage/lib目录下。至此完成编译！可是一看stage目录，这个硬盘占用也忒大了吧（2.58G）!!!&lt;/li>
+&lt;/ol></description></item><item><title>boost::program_options</title><link>https://chenzaichun.github.io/post/2010-06-01-boost_program_options/</link><pubDate>Tue, 01 Jun 2010 12:32:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-01-boost_program_options/</guid><description>&lt;p>由于windows上没有getopt，使用第三方库也比较麻烦，考虑boost提供了program_options可以用来替代getopt，见[Tutorial]&lt;/p>
+&lt;p>我在linux下测试了一下，挺方便的。&lt;/p>
+&lt;p>贴一下代码，唯一注意的是链接的时候需要&lt;code>libboost_program_options&lt;/code>, &lt;code>ubuntu&lt;/code>下安装&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo apt-get install libboost-program-options-dev
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>链接的时候加入&lt;code>-lboost_program_options&lt;/code>就行了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;boost/program_options.hpp&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">boost&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">program_options&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">// compile: g++ boostprogramoption.cpp -o boostprogramoption -lboost_program_options
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">**&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="c1">// need to pass the buffer size (e.g. 1024) to the constructor, otherwise:
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// undefined reference to &amp;#39;boost::program_options::options_description::m_default_line_length&amp;#39;
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">options_description&lt;/span> &lt;span class="n">desc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Allowed options&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1024&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">desc&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">add_options&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;help,h&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;produce help message&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;compression,c&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="s">&amp;#34;set compression level&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">;&lt;/span>
+&lt;span class="n">variables_map&lt;/span> &lt;span class="n">vm&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">store&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">parse_command_line&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">desc&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">vm&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">notify&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">vm&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">vm&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;help&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">desc&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">vm&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;compression&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="s">&amp;#34;Compression level was set to &amp;#34;&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">vm&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s">&amp;#34;compression&amp;#34;&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">as&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="s">&amp;#34;Compression level was not set.&amp;#34;&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;a href="http://www.boost.org/doc/libs/1_43_0/doc/html/program_options/tutorial.html">Tutorial&lt;/a>&lt;/p></description></item><item><title>boost::parse_environment</title><link>https://chenzaichun.github.io/post/2010-06-01-boost_parse_environment/</link><pubDate>Tue, 01 Jun 2010 12:11:11 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-06-01-boost_parse_environment/</guid><description>&lt;p>&lt;code>boost::program_options::parse_environment&lt;/code>通过环境变量来设置&lt;code>options&lt;/code>。&lt;/p>
+&lt;p>这里需要注意的是需要注意的是：一定要将所需要的环境变量加入到&lt;code>options&lt;/code>中。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;string&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;boost/program_options.hpp&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">boost&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">program_options&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">// compile: g++ boostprogramoption.cpp -o boostprogramoption -lboost_program_options
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="c1">// envs
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="n">string&lt;/span> &lt;span class="n">ENVS&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="s">&amp;#34;HOME&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s">&amp;#34;PKG_CONFIG_PATH&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s">&amp;#34;PATH&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s">&amp;#34;http_proxy&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="p">};&lt;/span>
+&lt;span class="k">const&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">ENVCOUNT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">static&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">string&lt;/span> &lt;span class="n">name_mapper&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">string&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">var_name&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">ENVCOUNT&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">++&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">var_name&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">ENVS&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">var_name&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">char&lt;/span>&lt;span class="o">**&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="c1">// need to pass the buffer size to constructor (e.g. 1024), otherwise:
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// undefined reference to &amp;#39;boost::program_options::options_description::m_default_line_length&amp;#39;
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">options_description&lt;/span> &lt;span class="n">desc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Allowed options&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1024&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">desc&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">add_options&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;help,h&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;produce help message&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;compression,c&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="s">&amp;#34;set compression level&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1">// need to use the env as option, otherwise exception throwed:
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;HOME,m&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">string&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">default_value&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;home dir&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;PATH,p&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">string&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">default_value&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;path&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;PKG_CONFIG_PATH,k&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">string&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">default_value&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;pkg config&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;http_proxy&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">string&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">default_value&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;http proxy&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">;&lt;/span>
+&lt;span class="n">variables_map&lt;/span> &lt;span class="n">vm&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">store&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">parse_command_line&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">argc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">argv&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">desc&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">vm&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">store&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">parse_environment&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">desc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name_mapper&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">vm&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">notify&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">vm&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">vm&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;help&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">desc&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">vm&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;compression&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="s">&amp;#34;Compression level was set to &amp;#34;&lt;/span>
+&lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">vm&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s">&amp;#34;compression&amp;#34;&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">as&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="s">&amp;#34;Compression level was not set.&amp;#34;&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">ENVCOUNT&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">++&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">vm&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ENVS&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">ENVS&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="s">&amp;#34; is &amp;#34;&lt;/span>
+&lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">vm&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">ENVS&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]].&lt;/span>&lt;span class="n">as&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">string&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>boost::timer</title><link>https://chenzaichun.github.io/post/2010-05-31-boost_timer/</link><pubDate>Mon, 31 May 2010 13:12:32 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-31-boost_timer/</guid><description>&lt;p>在linux平台下使用boost::timer,得到的并不是所经过的时间,比如以下代码，因为sleep了1s，所以得到的结果应该大于1s，但是得出来的结果确是0&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;boost/timer.hpp&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">boost&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="s">&amp;#34;test boost::timer&amp;#34;&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">timer&lt;/span> &lt;span class="n">tmer&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">cout&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">tmer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">elapsed&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">endl&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ ./boosttimer
+&lt;span class="nb">test&lt;/span> boost::timer
+&lt;span class="m">0&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>究其原因：察看boost::timer的源代码/usr/include/boost/timer.hpp&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="k">class&lt;/span> &lt;span class="nc">timer&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="k">public&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="n">timer&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">_start_time&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">clock&lt;/span>&lt;span class="p">();&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="c1">// postcondition: elapsed()==0
+&lt;/span>&lt;span class="c1">// timer( const timer&amp;amp; src ); // post: elapsed()==src.elapsed()
+&lt;/span>&lt;span class="c1">// ~timer(){}
+&lt;/span>&lt;span class="c1">// timer&amp;amp; operator=( const timer&amp;amp; src ); // post: elapsed()==src.elapsed()
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">restart&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">_start_time&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">clock&lt;/span>&lt;span class="p">();&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="c1">// post: elapsed()==0
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kt">double&lt;/span> &lt;span class="nf">elapsed&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="c1">// return elapsed time in seconds
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="kt">double&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">clock&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">_start_time&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">CLOCKS_PER_SEC&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="kt">double&lt;/span> &lt;span class="nf">elapsed_max&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="c1">// return estimated maximum value for elapsed()
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// Portability warning: elapsed_max() may return too high a value on systems
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// where std::clock_t overflows or resets at surprising values.
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">double&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">numeric_limits&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">clock_t&lt;/span>&lt;span class="o">&amp;gt;::&lt;/span>&lt;span class="n">max&lt;/span>&lt;span class="p">)())&lt;/span>
+&lt;span class="o">-&lt;/span> &lt;span class="kt">double&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">_start_time&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="kt">double&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">CLOCKS_PER_SEC&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kt">double&lt;/span> &lt;span class="nf">elapsed_min&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="c1">// return minimum value for elapsed()
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="kt">double&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="kt">double&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">CLOCKS_PER_SEC&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="k">private&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">clock_t&lt;/span> &lt;span class="n">_start_time&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">};&lt;/span> &lt;span class="c1">// timer
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以看到boost::timer的实现在linux下是通过std::clock()实现的.经测试std::clock()每次返回的值都是一样的。原因就是我们在这里使用的是sleep，而man 3 clock得到的是function returns an approximation of processor time used by the program.即得到的是cpu执行的时间，sleep的时候cpu执行时间（cpu  time）为0，所以每次都得到的一样的值，最后结果为0，如果我们将sleep改为一个循环，结果就将是这是的值了！测试的时候不能被sleep所迷惑了，所以我们用来测实际经过的时间的时候不能用boost::timer!可以选择alarm&lt;/p></description></item><item><title>boost::progress_display</title><link>https://chenzaichun.github.io/post/2010-05-31-boost_progress_display/</link><pubDate>Mon, 31 May 2010 11:12:33 +0800</pubDate><guid>https://chenzaichun.github.io/post/2010-05-31-boost_progress_display/</guid><description>&lt;p>boost::progress_display是个好玩的东东,用来现实一个进度条。测试代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;boost/progress.hpp&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="k">using&lt;/span> &lt;span class="k">namespace&lt;/span> &lt;span class="n">boost&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="n">progress_display&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">++&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="o">++&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>运行结果:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ ./boostprogress
+0% &lt;span class="m">10&lt;/span> &lt;span class="m">20&lt;/span> &lt;span class="m">30&lt;/span> &lt;span class="m">40&lt;/span> &lt;span class="m">50&lt;/span> &lt;span class="m">60&lt;/span> &lt;span class="m">70&lt;/span> &lt;span class="m">80&lt;/span> &lt;span class="m">90&lt;/span> 100%
+&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>----&lt;span class="p">|&lt;/span>
+****************************************
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
