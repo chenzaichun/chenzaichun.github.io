@@ -109,6 +109,7 @@
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd"></description></item><item><title>Writing Hugo blog in Org (File Export)</title><link>https://chenzaichun.github.io/post/test-easy-hugo/</link><pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate><guid>https://chenzaichun.github.io/post/test-easy-hugo/</guid><description>&lt;hr>
 &lt;h2 id="test-hugo-with-ox-hugo">test hugo with ox-hugo&lt;/h2>

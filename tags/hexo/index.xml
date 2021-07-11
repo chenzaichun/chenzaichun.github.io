@@ -46,6 +46,7 @@
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd"></description></item><item><title>升级到 Hexo 3后发现 robots.txt失效</title><link>https://chenzaichun.github.io/post/2015-08-18-hexo-3-robots-txt-error/</link><pubDate>Tue, 18 Aug 2015 13:30:00 +0800</pubDate><guid>https://chenzaichun.github.io/post/2015-08-18-hexo-3-robots-txt-error/</guid><description>&lt;p>升级到 hexo3之后一直没注意，今天查看&lt;code>Google WebMaster Tools&lt;/code>发现竟然没抓去多少，查看原来的&lt;code>robots.txt&lt;/code>, 是这样的:&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
