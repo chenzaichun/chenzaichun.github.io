@@ -1,6 +1,10 @@
 #+TITLE: {{ replace .Name "-" " " | title }}
 #+DATE: {{ .Date }}
-#+TAGS[]: emacs org hugo
-#+KEYWORDS[]:
-#+CATEGORIES[]:  emacs org
-#+lastmod: [2021-03-04 Thu 12:37]
+
+#+HUGO_BASE_DIR: ~/src/blog/chenzaichun
+#+HUGO_SECTION: ./post/
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_TAGS: hugo org emacs 
+#+HUGO_CATEGORIES: emacs linux org
+#+options: author:nil
