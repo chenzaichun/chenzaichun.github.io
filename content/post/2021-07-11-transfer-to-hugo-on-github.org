@@ -91,6 +91,9 @@
                publish_dir: ./public
    #+end_src
 
+   进入repo设置界面，设置pages：
+
+  [[./2021-07-11-transfer-to-hugo-on-github.org_imgs/20210711_180305_TQ66as.png]] 
 ** comment
 
    这里采用了[[https://utteranc.es/?installation_id=18211811&setup_action=install][utteranc]] , 配置见对应的文档。这里不再详述
