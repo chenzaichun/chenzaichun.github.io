@@ -1,7 +1,7 @@
 +++
 title = "将博客从heroku迁移到github"
 date = 2021-07-11T16:29:26+08:00
-lastmod = 2021-07-11T18:25:02+08:00
+lastmod = 2021-07-11T18:47:06+08:00
 tags = ["hugo", "org", "emacs"]
 categories = ["emacs", "linux", "org"]
 draft = false
