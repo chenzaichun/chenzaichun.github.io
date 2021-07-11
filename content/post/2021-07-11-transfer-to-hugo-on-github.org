@@ -39,7 +39,22 @@
 
 ** 配置github actions自动发布
 
-   这里使用了[[https://github.com/peaceiris/actions-hugo][peaceiris/actions-hugo]] 来自动发布，我修改了一下， 使用了 =master= 分支来发布， =.github/workflows/gh-pages.yml= 配置如下：
+*** 设置密钥
+生成密钥
+
+#+begin_src sh
+  ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
+#+end_src
+
+得到 =gh-pages= 和 =gh-pages.pub= 两个文件
+
+打开 =GitHub= 上 =Hugo= 项目代码库的 =Setting= 页面
+
++ =Deploy keys= > =Add deploy key= ，把文件 =gh-pages.pub= 的内容填入，勾选 =Allow write access=
++ =Secrets= > =Add a new secret= ，Name 为 =ACTIONS_DEPLOY_KEY= ，Value 为文件 =gh-pages= 的内容
+
+*** 添加配置文件
+   这里使用了[[https://github.com/peaceiris/actions-hugo][peaceiris/actions-hugo]] 来自动发布，我修改了一下， 使用了 =main= 分支来发布， =.github/workflows/gh-pages.yml= 配置如下：
 
    #+begin_src yaml
      name: github pages
@@ -47,7 +62,7 @@
      on:
        push:
          branches:
-           - master  # Set a branch to deploy
+           - main  # Set a branch to deploy
        pull_request:
      
      jobs:
@@ -70,7 +85,7 @@
      
            - name: Deploy
              uses: peaceiris/actions-gh-pages@v3
-             if: github.ref == 'refs/heads/master'
+             if: github.ref == 'refs/heads/main
              with:
                github_token: ${{ secrets.GITHUB_TOKEN }}
                publish_dir: ./public
@@ -78,7 +93,8 @@
 
 ** comment
 
-   这里采用了[[https://github.com/gitalk/gitalk][gitalk]]来作为comment， =even= 只需要简单的配置好对应的repo, client id, client sec就可以直接使用了
+   这里采用了[[https://utteranc.es/?installation_id=18211811&setup_action=install][utteranc]] , 配置见对应的文档。这里不再详述
+   
 * 迁移完成
 
   每次push代码后会自动发布
