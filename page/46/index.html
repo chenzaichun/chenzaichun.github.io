@@ -1,4 +1,145 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://chenzaichun.github.io/running_page/><li class=mobile-menu-item>running</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://chenzaichun.github.io/running_page/>running</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-06-01-sudo_environment/>sudo环境变量</a></h1><div class=post-meta><span class=post-time>2010-06-01</span><div class=post-category><a href=/categories/linux/>Linux</a>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://chenzaichun.github.io/running_page/><li class=mobile-menu-item>running</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://chenzaichun.github.io/running_page/>running</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-06-01-boost_parse_environment/>boost::parse_environment</a></h1><div class=post-meta><span class=post-time>2010-06-01</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 368 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p><code>boost::program_options::parse_environment</code>通过环境变量来设置<code>options</code>。</p><p>这里需要注意的是需要注意的是：一定要将所需要的环境变量加入到<code>options</code>中。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;string&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;boost/program_options.hpp&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>boost</span><span class=o>::</span><span class=n>program_options</span><span class=p>;</span>
+
+<span class=c1>// compile: g++ boostprogramoption.cpp -o boostprogramoption -lboost_program_options
+</span><span class=c1></span>
+<span class=c1>// envs
+</span><span class=c1></span><span class=k>const</span> <span class=n>string</span> <span class=n>ENVS</span><span class=p>[]</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=s>&#34;HOME&#34;</span><span class=p>,</span>
+    <span class=s>&#34;PKG_CONFIG_PATH&#34;</span><span class=p>,</span>
+    <span class=s>&#34;PATH&#34;</span><span class=p>,</span>
+    <span class=s>&#34;http_proxy&#34;</span><span class=p>,</span>
+<span class=p>};</span>
+
+<span class=k>const</span> <span class=kt>int</span> <span class=n>ENVCOUNT</span> <span class=o>=</span> <span class=mi>4</span><span class=p>;</span>
+
+<span class=k>static</span> <span class=n>std</span><span class=o>::</span><span class=n>string</span> <span class=n>name_mapper</span><span class=p>(</span><span class=k>const</span> <span class=n>std</span><span class=o>::</span><span class=n>string</span> <span class=o>&amp;</span><span class=n>var_name</span><span class=p>){</span>
+    <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>ENVCOUNT</span><span class=p>;</span> <span class=o>++</span><span class=n>i</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=p>(</span><span class=n>var_name</span> <span class=o>==</span> <span class=n>ENVS</span><span class=p>[</span><span class=n>i</span><span class=p>])</span>
+            <span class=k>return</span> <span class=n>var_name</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=k>return</span> <span class=s>&#34;&#34;</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kt>int</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span><span class=o>**</span> <span class=n>argv</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=c1>// need to pass the buffer size to constructor (e.g. 1024), otherwise:
+</span><span class=c1></span>    <span class=c1>// undefined reference to &#39;boost::program_options::options_description::m_default_line_length&#39;
+</span><span class=c1></span>    <span class=n>options_description</span> <span class=n>desc</span><span class=p>(</span><span class=s>&#34;Allowed options&#34;</span><span class=p>,</span> <span class=mi>1024</span><span class=p>);</span>
+    <span class=n>desc</span><span class=p>.</span><span class=n>add_options</span><span class=p>()</span>
+        <span class=p>(</span><span class=s>&#34;help,h&#34;</span><span class=p>,</span> <span class=s>&#34;produce help message&#34;</span><span class=p>)</span>
+        <span class=p>(</span><span class=s>&#34;compression,c&#34;</span><span class=p>,</span> <span class=n>value</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span><span class=p>(),</span> <span class=s>&#34;set compression level&#34;</span><span class=p>)</span>
+
+	<span class=c1>// need to use the env as option, otherwise exception throwed:
+</span><span class=c1></span>        <span class=p>(</span><span class=s>&#34;HOME,m&#34;</span><span class=p>,</span> <span class=n>value</span><span class=o>&lt;</span><span class=n>string</span><span class=o>&gt;</span><span class=p>()</span><span class=o>-&gt;</span><span class=n>default_value</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>),</span> <span class=s>&#34;home dir&#34;</span><span class=p>)</span>
+        <span class=p>(</span><span class=s>&#34;PATH,p&#34;</span><span class=p>,</span> <span class=n>value</span><span class=o>&lt;</span><span class=n>string</span><span class=o>&gt;</span><span class=p>()</span><span class=o>-&gt;</span><span class=n>default_value</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>),</span> <span class=s>&#34;path&#34;</span><span class=p>)</span>
+        <span class=p>(</span><span class=s>&#34;PKG_CONFIG_PATH,k&#34;</span><span class=p>,</span> <span class=n>value</span><span class=o>&lt;</span><span class=n>string</span><span class=o>&gt;</span><span class=p>()</span><span class=o>-&gt;</span><span class=n>default_value</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>),</span> <span class=s>&#34;pkg config&#34;</span><span class=p>)</span>
+        <span class=p>(</span><span class=s>&#34;http_proxy&#34;</span><span class=p>,</span> <span class=n>value</span><span class=o>&lt;</span><span class=n>string</span><span class=o>&gt;</span><span class=p>()</span><span class=o>-&gt;</span><span class=n>default_value</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>),</span> <span class=s>&#34;http proxy&#34;</span><span class=p>);</span>
+        <span class=p>;</span>
+
+    <span class=n>variables_map</span> <span class=n>vm</span><span class=p>;</span>
+    <span class=n>store</span><span class=p>(</span><span class=n>parse_command_line</span><span class=p>(</span><span class=n>argc</span><span class=p>,</span> <span class=n>argv</span><span class=p>,</span> <span class=n>desc</span><span class=p>),</span> <span class=n>vm</span><span class=p>);</span>
+    <span class=n>store</span><span class=p>(</span><span class=n>parse_environment</span><span class=p>(</span><span class=n>desc</span><span class=p>,</span> <span class=n>name_mapper</span><span class=p>),</span> <span class=n>vm</span><span class=p>);</span>
+    <span class=n>notify</span><span class=p>(</span><span class=n>vm</span><span class=p>);</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=n>vm</span><span class=p>.</span><span class=n>count</span><span class=p>(</span><span class=s>&#34;help&#34;</span><span class=p>))</span> <span class=p>{</span>
+        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>desc</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+        <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=n>vm</span><span class=p>.</span><span class=n>count</span><span class=p>(</span><span class=s>&#34;compression&#34;</span><span class=p>))</span> <span class=p>{</span>
+        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;Compression level was set to &#34;</span>
+             <span class=o>&lt;&lt;</span> <span class=n>vm</span><span class=p>[</span><span class=s>&#34;compression&#34;</span><span class=p>].</span><span class=n>as</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;Compression level was not set.&#34;</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>ENVCOUNT</span><span class=p>;</span> <span class=o>++</span><span class=n>i</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=p>(</span><span class=n>vm</span><span class=p>.</span><span class=n>count</span><span class=p>(</span><span class=n>ENVS</span><span class=p>[</span><span class=n>i</span><span class=p>]))</span> <span class=p>{</span>
+            <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>ENVS</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; is &#34;</span>
+                 <span class=o>&lt;&lt;</span> <span class=n>vm</span><span class=p>[</span><span class=n>ENVS</span><span class=p>[</span><span class=n>i</span><span class=p>]].</span><span class=n>as</span><span class=o>&lt;</span><span class=n>string</span><span class=o>&gt;</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+
+    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-06-01-boost_parse_environment/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-06-01-sudo_environment/>sudo环境变量</a></h1><div class=post-meta><span class=post-time>2010-06-01</span><div class=post-category><a href=/categories/linux/>Linux</a>
 <a href=/categories/tools/>tools</a></div><span class=more-meta>约 68 字</span>
 <span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>由于sudo运行程序不继承当前用户的环境变量，所以不能使用export var=value； sudo command的方式执行。解决办法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>sudo <span class=nv>var</span><span class=o>=</span>value <span class=nb>command</span>
@@ -141,20 +282,7 @@
 0%   <span class=m>10</span>   <span class=m>20</span>   <span class=m>30</span>   <span class=m>40</span>   <span class=m>50</span>   <span class=m>60</span>   <span class=m>70</span>   <span class=m>80</span>   <span class=m>90</span>   100%
 <span class=p>|</span>----<span class=p>|</span>----<span class=p>|</span>----<span class=p>|</span>----<span class=p>|</span>----<span class=p>|</span>----<span class=p>|</span>----<span class=p>|</span>----<span class=p>|</span>----<span class=p>|</span>----<span class=p>|</span>
 ****************************************
-</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-05-31-boost_progress_display/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-18-grub2_boot_default/>修改Grub2,XP默认首启动</a></h1><div class=post-meta><span class=post-time>2010-05-18</span><div class=post-category><a href=/categories/linux/>Linux</a>
-<a href=/categories/tools/>tools</a></div><span class=more-meta>约 230 字</span>
-<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>参考： <a href=http://swsw4321.blog.163.com/blog/static/3245245201003121842841/><a href=http://swsw4321.blog.163.com/blog/static/3245245201003121842841/>http://swsw4321.blog.163.com/blog/static/3245245201003121842841/</a></a>
-修改启动项, 终端输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=nb>cd</span> /etc/grub.d <span class=o>&amp;&amp;</span> ls
-</code></pre></td></tr></table></div></div><p>显示的文件是这样的：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>00_header  05_debian_theme  10_linux  20_memtest86+ 30_os-prober  40_custom  README
-</code></pre></td></tr></table></div></div><p>其中：10_linux就是当前所使用的操作系统，30_os-prober的作用是自动查找计算机的其他系统，比如是windows xp，要XP默认首启动只要执行命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>sudo mv 20_os-prober 06_os-prober，把20_os-prober 改成06_os-prober
-sudo mv 30_os-prober 06_os-prober
-</code></pre></td></tr></table></div></div><p>这样，以后grub再次更新时，XP就默认在linux前启动了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>sudo update-grub
-</code></pre></td></tr></table></div></div><p>看看效果吧，这样以后每次更新grub,都是默认XP启动。</p></div><div class=read-more><a href=/post/2010-05-18-grub2_boot_default/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/45/><i class="iconfont icon-left"></i>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-05-31-boost_progress_display/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/45/><i class="iconfont icon-left"></i>
 <span class=prev-text>上一页</span></a>
 <a class=next href=/page/47/><span class=next-text>下一页</span>
 <i class="iconfont icon-right"></i></a></nav></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
