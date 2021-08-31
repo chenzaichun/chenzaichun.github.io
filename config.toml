@@ -49,6 +49,12 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   identifier = "categories"
   url = "/categories/"
 
+[[menu.main]]
+  name = "running"
+  weight = 40
+  identifier = "running"
+  url = "https://chenzaichun.github.io/running_page/"
+
 [params]
   version = "4.x"           # Used to give a friendly message when you have an incompatible update
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
