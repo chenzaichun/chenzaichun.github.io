@@ -1,0 +1,20 @@
+#+HUGO_BASE_DIR: ~/src/blog/chenzaichun
+#+HUGO_SECTION: ./post/
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_TAGS: hugo org emacs running
+#+HUGO_CATEGORIES: emacs linux org
+#+options: author:nil
+
+#+TITLE: 我的跑步记录
+#+DATE: 2021-08-31T15:05:26+08:00
+
+这是我的2021的跑步记录：
+
+[[https://raw.githubusercontent.com/chenzaichun/running_page/master/assets/github_2021.svg]]
+
+这是总的跑步记录：
+
+[[https://raw.githubusercontent.com/chenzaichun/running_page/master/assets/github.svg]]
+
+也可以看这里：[[https://chenzaichun.github.io/running_page/]]
