@@ -1,4 +1,86 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://chenzaichun.github.io/running_page/><li class=mobile-menu-item>running</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://chenzaichun.github.io/running_page/>running</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-12-12-pywin32_word/>pywin32访问word文件</a></h1><div class=post-meta><span class=post-time>2010-12-12</span><div class=post-category><a href=/categories/programming/>programming</a>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://chenzaichun.github.io/running_page/><li class=mobile-menu-item>running</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://chenzaichun.github.io/running_page/>running</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-12-13-python_manipulate_windows_service/>Python操作Windows Service</a></h1><div class=post-meta><span class=post-time>2010-12-13</span><div class=post-category><a href=/categories/programming/>programming</a>
+<a href=/categories/tools/>tools</a></div><span class=more-meta>约 229 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>python中可以通过pywin32操作Windows Service：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>win32service</span>
+
+<span class=k>def</span> <span class=nf>PrintServiceStatus</span><span class=p>(</span><span class=n>status</span><span class=p>):</span>
+    <span class=n>svcType</span><span class=p>,</span> <span class=n>svcState</span><span class=p>,</span> <span class=n>svcControls</span><span class=p>,</span> <span class=n>err</span><span class=p>,</span> <span class=n>svcErr</span><span class=p>,</span> <span class=n>svcCP</span><span class=p>,</span> <span class=n>svcWH</span> <span class=o>=</span> <span class=n>status</span>
+    <span class=k>if</span> <span class=n>svcType</span> <span class=o>&amp;</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_WIN32_OWN_PROCESS</span><span class=p>:</span>
+        <span class=nb>print</span> <span class=s2>&#34;The service runs in its own process&#34;</span>
+    <span class=k>if</span> <span class=n>svcType</span> <span class=o>&amp;</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_WIN32_SHARE_PROCESS</span><span class=p>:</span>
+        <span class=nb>print</span> <span class=s2>&#34;The service shares a process with other services&#34;</span>
+    <span class=k>if</span> <span class=n>svcType</span> <span class=o>&amp;</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_INTERACTIVE_PROCESS</span><span class=p>:</span>
+        <span class=nb>print</span> <span class=s2>&#34;The service can interact with the desktop&#34;</span>
+    <span class=c1># Other svcType flags not shown.</span>
+    <span class=k>if</span> <span class=n>svcState</span><span class=o>==</span><span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_STOPPED</span><span class=p>:</span>
+        <span class=nb>print</span> <span class=s2>&#34;The service is stopped&#34;</span>
+    <span class=k>elif</span> <span class=n>svcState</span><span class=o>==</span><span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_START_PENDING</span><span class=p>:</span>
+        <span class=nb>print</span> <span class=s2>&#34;The service is starting&#34;</span>
+    <span class=k>elif</span> <span class=n>svcState</span><span class=o>==</span><span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_STOP_PENDING</span><span class=p>:</span>
+        <span class=nb>print</span> <span class=s2>&#34;The service is stopping&#34;</span>
+    <span class=k>elif</span> <span class=n>svcState</span><span class=o>==</span><span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_RUNNING</span><span class=p>:</span>
+        <span class=nb>print</span> <span class=s2>&#34;The service is running&#34;</span>
+    <span class=c1># Other svcState flags not shown.</span>
+    <span class=k>if</span> <span class=n>svcControls</span> <span class=o>&amp;</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_ACCEPT_STOP</span><span class=p>:</span>
+        <span class=nb>print</span> <span class=s2>&#34;The service can be stopped&#34;</span>
+    <span class=k>if</span> <span class=n>svcControls</span> <span class=o>&amp;</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_ACCEPT_PAUSE_CONTINUE</span><span class=p>:</span>
+        <span class=nb>print</span> <span class=s2>&#34;The service can be paused&#34;</span>
+    <span class=c1># Other svcControls flags not shown</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+    <span class=n>scm</span> <span class=o>=</span> <span class=n>win32service</span><span class=o>.</span><span class=n>OpenSCManager</span><span class=p>(</span><span class=kc>None</span><span class=p>,</span> <span class=kc>None</span><span class=p>,</span>
+                                     <span class=n>win32service</span><span class=o>.</span><span class=n>SC_MANAGER_ALL_ACCESS</span><span class=p>)</span>
+    <span class=n>allservice</span> <span class=o>=</span> <span class=n>win32service</span><span class=o>.</span><span class=n>EnumServicesStatus</span><span class=p>(</span><span class=n>scm</span><span class=p>,</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_WIN32</span><span class=p>,</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_STATE_ALL</span><span class=p>)</span>
+    <span class=n>svc</span> <span class=o>=</span> <span class=n>win32service</span><span class=o>.</span><span class=n>OpenService</span><span class=p>(</span><span class=n>scm</span><span class=p>,</span> <span class=s1>&#39;Cash Download&#39;</span><span class=p>,</span>
+                                   <span class=n>win32service</span><span class=o>.</span><span class=n>SC_MANAGER_ALL_ACCESS</span><span class=p>)</span>
+    <span class=n>win32service</span><span class=o>.</span><span class=n>ChangeServiceConfig</span><span class=p>(</span><span class=n>svc</span><span class=p>,</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_NO_CHANGE</span><span class=p>,</span>
+                                     <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_AUTO_START</span><span class=p>,</span>
+                                     <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_NO_CHANGE</span><span class=p>,</span>
+                                     <span class=kc>None</span><span class=p>,</span> <span class=kc>None</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=kc>None</span><span class=p>,</span> <span class=kc>None</span><span class=p>,</span> <span class=kc>None</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+    <span class=n>win32service</span><span class=o>.</span><span class=n>StartService</span><span class=p>(</span><span class=n>svc</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+    <span class=n>win32service</span><span class=o>.</span><span class=n>ControlService</span><span class=p>(</span><span class=n>svc</span><span class=p>,</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_CONTROL_STOP</span><span class=p>)</span>
+    <span class=n>win32service</span><span class=o>.</span><span class=n>ControlService</span><span class=p>(</span><span class=n>svc</span><span class=p>,</span> <span class=n>win32service</span><span class=o>.</span><span class=n>SERVICE_CONTROL_START</span><span class=p>)</span>
+    <span class=n>PrintServiceStatus</span><span class=p>(</span><span class=n>win32service</span><span class=o>.</span><span class=n>QueryServiceStatus</span><span class=p>(</span><span class=n>svc</span><span class=p>))</span>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-12-13-python_manipulate_windows_service/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-12-12-pywin32_word/>pywin32访问word文件</a></h1><div class=post-meta><span class=post-time>2010-12-12</span><div class=post-category><a href=/categories/programming/>programming</a>
 <a href=/categories/tools/>tools</a></div><span class=more-meta>约 74 字</span>
 <span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -168,97 +250,7 @@
     <span class=n>url</span> <span class=o>=</span> <span class=n>shortcut</span><span class=o>.</span><span class=n>GetPath</span><span class=p>(</span><span class=n>shell</span><span class=o>.</span><span class=n>SLGP_SHORTPATH</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span>
 
     <span class=k>return</span> <span class=n>url</span>
-</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-12-12-pythoncom_lnk_file_path/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-12-12-python_get_pe_version_info/>python获取PE文件版本信息</a></h1><div class=post-meta><span class=post-time>2010-12-12</span><div class=post-category><a href=/categories/programming/>programming</a>
-<a href=/categories/tools/>tools</a></div><span class=more-meta>约 237 字</span>
-<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>通过pywin32中的win32api.GetFileVersionInfo来获取</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=ch>#!/usr/bin/env python</span>
-<span class=c1># -*- coding: utf-8 -*-</span>
-<span class=c1># Get the version information from Windows PE</span>
-
-<span class=kn>from</span> <span class=nn>win32api</span> <span class=kn>import</span> <span class=n>GetFileVersionInfo</span><span class=p>,</span> <span class=n>LOWORD</span><span class=p>,</span> <span class=n>HIWORD</span>
-
-<span class=k>def</span> <span class=nf>get_version_number</span> <span class=p>(</span><span class=n>filename</span><span class=p>):</span>
-    <span class=k>try</span><span class=p>:</span>
-        <span class=n>info</span> <span class=o>=</span> <span class=n>GetFileVersionInfo</span> <span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s2>&#34;</span><span class=se>\&#34;</span><span class=s2>)</span>
-        <span class=n>ms</span> <span class=o>=</span> <span class=n>info</span><span class=p>[</span><span class=s1>&#39;FileVersionMS&#39;</span><span class=p>]</span>
-        <span class=n>ls</span> <span class=o>=</span> <span class=n>info</span><span class=p>[</span><span class=s1>&#39;FileVersionLS&#39;</span><span class=p>]</span>
-        <span class=k>return</span> <span class=n>HIWORD</span> <span class=p>(</span><span class=n>ms</span><span class=p>),</span> <span class=n>LOWORD</span> <span class=p>(</span><span class=n>ms</span><span class=p>),</span> <span class=n>HIWORD</span> <span class=p>(</span><span class=n>ls</span><span class=p>),</span> <span class=n>LOWORD</span> <span class=p>(</span><span class=n>ls</span><span class=p>)</span>
-    <span class=k>except</span><span class=p>:</span>
-        <span class=k>return</span> <span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span>
-
-<span class=k>def</span> <span class=nf>printOtherInfo</span><span class=p>(</span><span class=n>filename</span><span class=p>):</span>
-    <span class=k>try</span><span class=p>:</span>
-        <span class=n>info</span> <span class=o>=</span> <span class=n>GetFileVersionInfo</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s2>&#34;</span><span class=se>\&#34;</span><span class=s2>)</span>
-        <span class=nb>print</span><span class=p>(</span><span class=n>info</span><span class=p>)</span>
-
-	<span class=c1># In order to get the company information, we need to get the lang </span>
-	<span class=c1># and code page first, then get the related strings</span>
-        <span class=n>trans</span> <span class=o>=</span> <span class=n>GetFileVersionInfo</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s2>&#34;\VarFileInfo\Translation&#34;</span><span class=p>)</span>
-        <span class=k>if</span> <span class=ow>not</span> <span class=n>trans</span><span class=p>:</span>
-            <span class=k>return</span> 
-        <span class=nb>print</span><span class=p>(</span><span class=n>info</span><span class=p>)</span>
-
-        <span class=c1># Common string lists:</span>
-        <span class=c1># &#34;CompanyName&#34;,&#34;FileDescription&#34;, &#34;FileVersion&#34;, &#34;InternalName&#34;,</span>
-        <span class=c1># &#34;LegalCopyright&#34;, &#34;OriginalFilename&#34;, &#34;ProductName&#34;, &#34;ProductVersion&#34;</span>
-        <span class=c1># You can use this way to get custom defined strings.</span>
-
-        <span class=n>info</span> <span class=o>=</span> <span class=n>GetFileVersionInfo</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s2>&#34;\StringFileInfo\</span><span class=si>%04x%04x</span><span class=s2>\</span><span class=si>%s</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>trans</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>0</span><span class=p>],</span> <span class=n>trans</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>1</span><span class=p>],</span> <span class=s2>&#34;CompanyName&#34;</span><span class=p>))</span>
-        <span class=nb>print</span><span class=p>(</span><span class=n>info</span><span class=p>)</span>
-        <span class=n>info</span> <span class=o>=</span> <span class=n>GetFileVersionInfo</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s2>&#34;\StringFileInfo\</span><span class=si>%04x%04x</span><span class=s2>\</span><span class=si>%s</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=p>(</span><span class=n>trans</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>0</span><span class=p>],</span> <span class=n>trans</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>1</span><span class=p>],</span> <span class=s2>&#34;FileVersion&#34;</span><span class=p>))</span>
-        <span class=nb>print</span><span class=p>(</span><span class=n>info</span><span class=p>)</span>
-    <span class=k>except</span><span class=p>:</span>
-        <span class=k>pass</span>
-
-<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
-    <span class=kn>import</span> <span class=nn>os</span>
-    <span class=n>filename</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=p>[</span><span class=s2>&#34;COMSPEC&#34;</span><span class=p>]</span>
-    <span class=nb>print</span> <span class=s2>&#34;.&#34;</span><span class=o>.</span><span class=n>join</span> <span class=p>([</span><span class=nb>str</span> <span class=p>(</span><span class=n>i</span><span class=p>)</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>get_version_number</span> <span class=p>(</span><span class=n>filename</span><span class=p>)])</span>
-    <span class=n>printOtherInfo</span><span class=p>(</span><span class=n>filename</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-12-12-python_get_pe_version_info/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/30/><i class="iconfont icon-left"></i>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-12-12-pythoncom_lnk_file_path/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/30/><i class="iconfont icon-left"></i>
 <span class=prev-text>上一页</span></a>
 <a class=next href=/page/32/><span class=next-text>下一页</span>
 <i class="iconfont icon-right"></i></a></nav></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
