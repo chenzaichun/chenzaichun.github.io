@@ -1,0 +1,56 @@
+#+HUGO_BASE_DIR: ~/src/blog/chenzaichun
+#+HUGO_SECTION: ./post/
+#+HUGO_WEIGHT: auto
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_TAGS: hugo org emacs
+#+HUGO_CATEGORIES: emacs linux org
+#+options: author:nil
+
+#+TITLE: Flameshot中文输入
+#+DATE: 2021-09-07T09:29:26+08:00
+
+在我的系统上 =ubuntu 20.04= ， =flameshot 0.10.0= 上，中文输入的候选词窗口不可见。
+
+查了一下 =flameshot= 的 =issue= ，关联的项有以下几条：
+
+- [[https://github.com/flameshot-org/flameshot/issues/562]]
+- [[https://github.com/flameshot-org/flameshot/issues/1585]] 
+ 
+查看 =flameshot= 进程的环境变量：
+
+#+begin_src sh
+  flameshotpid=$(pidof flameshot)
+  cat /proc/${flameshotpid}/environ | tr '\0' '\n'
+#+end_src
+
+可以看到对应的 =IM= 相关环境变量都是存在并且正常设置为 =fcitx= 的。
+
+#+begin_src sh
+  XMODIFIERS=@im=fcitx
+  GTK_IM_MODULE=fcitx
+  QT_IM_MODULE=fcitx
+#+end_src
+
+而且对应的 =fcitx-qt5-1= 这个包是已经安装状态。
+
+使用  =fcitx-diagnose= 查看，发现了一个有趣的输出
+
+#+begin_example
+  4.  User Interface:
+  
+      Found 2 enabled user interface addons:
+  
+          fcitx-classic-ui
+          fcitx-kimpanel-ui
+  
+      Kimpanel process:
+  
+            12425 /usr/bin/gnome-shell
+#+end_example
+
+
+禁用 =kimpanel-ui= 
+#+ATTR_ORG: :width 300/400/500/600
+[[file:2021-09-07-flameshot-chinese-input.org_imgs/20210907_103547_KNd4pb.png]]
+
+候选词窗口就出来了，这里不能截图了（禁止套娃）
