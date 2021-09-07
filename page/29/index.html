@@ -1,4 +1,116 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://chenzaichun.github.io/running_page/><li class=mobile-menu-item>running</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://chenzaichun.github.io/running_page/>running</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2011-01-16-hg_cert_warning/>hg certificate warnings</a></h1><div class=post-meta><span class=post-time>2011-01-16</span><div class=post-category><a href=/categories/programming/>programming</a>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://chenzaichun.github.io/running_page/><li class=mobile-menu-item>running</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://chenzaichun.github.io/running_page/>running</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2011-01-26-view_process_with_python_and_pywin32/>在Windows下用Python查看进程信息</a></h1><div class=post-meta><span class=post-time>2011-01-26</span><div class=post-category><a href=/categories/programming/>programming</a>
+<a href=/categories/tools/>tools</a></div><span class=more-meta>约 277 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>得益于PyWin32的强大，在Windows下可以通过Python调用Performon COM接口来查看进程的信息。下面的代码就是查看svhost进程的相关信息的示例代码，如果需要其他信息，请自行添加counter</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=c1>#/!/usr/bin/env python</span>
+<span class=c1># -*- coding: utf-8 -*-</span>
+
+<span class=kn>import</span> <span class=nn>win32api</span><span class=o>,</span> <span class=nn>win32pdh</span><span class=o>,</span> <span class=nn>win32pdhutil</span>
+<span class=kn>import</span> <span class=nn>time</span>
+
+<span class=k>def</span> <span class=nf>ShowAllProcesses</span><span class=p>():</span>
+
+    <span class=n>procs</span> <span class=o>=</span> <span class=p>[]</span>
+    <span class=nb>object</span> <span class=o>=</span> <span class=n>win32pdhutil</span><span class=o>.</span><span class=n>find_pdh_counter_localized_name</span><span class=p>(</span><span class=s2>&#34;Process&#34;</span><span class=p>)</span>
+
+    <span class=n>items</span><span class=p>,</span> <span class=n>instances</span> <span class=o>=</span> <span class=n>win32pdh</span><span class=o>.</span><span class=n>EnumObjectItems</span><span class=p>(</span><span class=kc>None</span><span class=p>,</span><span class=kc>None</span><span class=p>,</span><span class=nb>object</span><span class=p>,</span><span class=n>win32pdh</span><span class=o>.</span><span class=n>PERF_DETAIL_WIZARD</span><span class=p>)</span>
+    <span class=n>instance_dict</span> <span class=o>=</span> <span class=p>{}</span>
+
+    <span class=k>for</span> <span class=n>instance</span> <span class=ow>in</span> <span class=n>instances</span><span class=p>:</span>
+        <span class=k>try</span><span class=p>:</span>
+            <span class=k>if</span> <span class=n>instance</span> <span class=o>==</span> <span class=s1>&#39;svchost&#39;</span><span class=p>:</span>
+                <span class=n>instance_dict</span><span class=p>[</span><span class=n>instance</span><span class=p>]</span> <span class=o>=</span> <span class=n>instance_dict</span><span class=p>[</span><span class=n>instance</span><span class=p>]</span> <span class=o>+</span> <span class=mi>1</span>
+        <span class=k>except</span> <span class=ne>KeyError</span><span class=p>:</span>
+            <span class=n>instance_dict</span><span class=p>[</span><span class=n>instance</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span>
+
+    <span class=n>items</span> <span class=o>=</span> <span class=p>[</span><span class=n>win32pdhutil</span><span class=o>.</span><span class=n>find_pdh_counter_localized_name</span><span class=p>(</span><span class=s2>&#34;ID Process&#34;</span><span class=p>)]</span> <span class=o>+</span> <span class=n>items</span><span class=p>[</span><span class=mi>0</span><span class=p>:]</span>
+
+    <span class=k>for</span> <span class=n>instance</span><span class=p>,</span> <span class=n>max_instances</span> <span class=ow>in</span> <span class=n>instance_dict</span><span class=o>.</span><span class=n>items</span><span class=p>():</span>
+
+        <span class=k>for</span> <span class=n>inum</span> <span class=ow>in</span> <span class=n>xrange</span><span class=p>(</span><span class=n>max_instances</span><span class=o>+</span><span class=mi>1</span><span class=p>):</span>
+
+            <span class=n>hq</span> <span class=o>=</span> <span class=n>win32pdh</span><span class=o>.</span><span class=n>OpenQuery</span><span class=p>()</span>
+
+            <span class=n>hcs</span> <span class=o>=</span> <span class=p>[]</span>
+            <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>items</span><span class=p>:</span>
+                <span class=n>path</span> <span class=o>=</span> <span class=n>win32pdh</span><span class=o>.</span><span class=n>MakeCounterPath</span><span class=p>((</span><span class=kc>None</span><span class=p>,</span><span class=nb>object</span><span class=p>,</span> <span class=n>instance</span><span class=p>,</span><span class=kc>None</span><span class=p>,</span> <span class=n>inum</span><span class=p>,</span> <span class=n>item</span><span class=p>))</span>
+                <span class=n>hcs</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>win32pdh</span><span class=o>.</span><span class=n>AddCounter</span><span class=p>(</span><span class=n>hq</span><span class=p>,</span> <span class=n>path</span><span class=p>))</span>
+
+            <span class=n>win32pdh</span><span class=o>.</span><span class=n>CollectQueryData</span><span class=p>(</span><span class=n>hq</span><span class=p>)</span>
+
+            <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mf>0.01</span><span class=p>)</span>
+            <span class=n>win32pdh</span><span class=o>.</span><span class=n>CollectQueryData</span><span class=p>(</span><span class=n>hq</span><span class=p>)</span>
+            <span class=n>proc</span> <span class=o>=</span> <span class=n>instance</span><span class=p>[:</span><span class=mi>15</span><span class=p>]</span>
+            <span class=n>hc</span> <span class=o>=</span> <span class=n>hcs</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+
+            <span class=n>vals</span> <span class=o>=</span> <span class=p>[]</span>
+            <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>hcs</span><span class=p>)):</span>
+                <span class=n>hc</span> <span class=o>=</span> <span class=n>hcs</span><span class=p>[</span><span class=n>i</span><span class=p>]</span>
+                <span class=nb>type</span><span class=p>,</span> <span class=n>val</span> <span class=o>=</span> <span class=n>win32pdh</span><span class=o>.</span><span class=n>GetFormattedCounterValue</span><span class=p>(</span><span class=n>hc</span><span class=p>,</span> <span class=n>win32pdh</span><span class=o>.</span><span class=n>PDH_FMT_LONG</span><span class=p>)</span>
+                <span class=n>vals</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>val</span><span class=p>)</span>
+
+            <span class=n>win32pdh</span><span class=o>.</span><span class=n>RemoveCounter</span><span class=p>(</span><span class=n>hc</span><span class=p>)</span>
+
+            <span class=n>procs</span><span class=o>.</span><span class=n>append</span><span class=p>([</span><span class=n>proc</span><span class=p>,</span> <span class=p>[</span><span class=n>vals</span><span class=p>]</span> <span class=p>])</span>
+            <span class=n>win32pdh</span><span class=o>.</span><span class=n>CloseQuery</span><span class=p>(</span><span class=n>hq</span><span class=p>)</span>
+
+    <span class=nb>print</span> <span class=n>procs</span>
+    <span class=k>return</span> <span class=n>procs</span>
+<span class=n>ShowAllProcesses</span><span class=p>()</span>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2011-01-26-view_process_with_python_and_pywin32/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2011-01-16-hg_cert_warning/>hg certificate warnings</a></h1><div class=post-meta><span class=post-time>2011-01-16</span><div class=post-category><a href=/categories/programming/>programming</a>
 <a href=/categories/tools/>tools</a></div><span class=more-meta>约 174 字</span>
 <span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>升级到mercurial 1.7.3之后，频繁会遇到像这样的错误：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>warning: bitbucket.org certificate not verified (check web.cacerts config setting)
@@ -46,9 +158,7 @@ $ hg push
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>easy_install --upgrade xxxxx
 </code></pre></td></tr></table></div></div><p>如何卸载已经安装的包呢？</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>easy_install -m xxxxxx
-</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2011-01-10-easy_install_upgrade/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-12-25-notitle/>保持队形看下去</a></h1><div class=post-meta><span class=post-time>2010-12-25</span><div class=post-category><a href=/categories/%E6%97%A0%E6%89%80%E4%BA%8B%E4%BA%8B/>无所事事</a></div><span class=more-meta>约 6 字</span>
-<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p><a href="http://static.youku.com/v1.0.0134/v/swf/qplayer.swf?VideoIDS=XMjMxMDE5NTgw&embedid=-&showAd=0" target=_blank>新窗口中打开</a></p><object width=600 height=480 data="http://static.youku.com/v1.0.0134/v/swf/qplayer.swf?VideoIDS=XMjMxMDE5NTgw&embedid=-&showAd=0" type=application/x-shockwave-flash>
-<param name=data value="http://static.youku.com/v1.0.0134/v/swf/qplayer.swf?VideoIDS=XMjMxMDE5NTgw&embedid=-&showAd=0"><param name=src value="http://static.youku.com/v1.0.0134/v/swf/qplayer.swf?VideoIDS=XMjMxMDE5NTgw&embedid=-&showAd=0"></object></div><div class=read-more><a href=/post/2010-12-25-notitle/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/28/><i class="iconfont icon-left"></i>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2011-01-10-easy_install_upgrade/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/28/><i class="iconfont icon-left"></i>
 <span class=prev-text>上一页</span></a>
 <a class=next href=/page/30/><span class=next-text>下一页</span>
 <i class="iconfont icon-right"></i></a></nav></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>

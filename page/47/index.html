@@ -1,4 +1,91 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://chenzaichun.github.io/running_page/><li class=mobile-menu-item>running</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://chenzaichun.github.io/running_page/>running</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-31-boost_progress_display/>boost::progress_display</a></h1><div class=post-meta><span class=post-time>2010-05-31</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 111 字</span>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="木哈哈乱七八糟记录"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/><link href=https://chenzaichun.github.io/index.xml rel=alternate type=application/rss+xml title=木哈哈--瞎折腾><link href=https://chenzaichun.github.io/index.xml rel=feed type=application/rss+xml title=木哈哈--瞎折腾><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="木哈哈--瞎折腾"><meta property="og:description" content="木哈哈乱七八糟记录"><meta property="og:type" content="website"><meta property="og:url" content="https://chenzaichun.github.io/"><meta itemprop=name content="木哈哈--瞎折腾"><meta itemprop=description content="木哈哈乱七八糟记录"><meta name=twitter:card content="summary"><meta name=twitter:title content="木哈哈--瞎折腾"><meta name=twitter:description content="木哈哈乱七八糟记录"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://chenzaichun.github.io/running_page/><li class=mobile-menu-item>running</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://chenzaichun.github.io/running_page/>running</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><section id=posts class=posts><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-31-boost_timer/>boost::timer</a></h1><div class=post-meta><span class=post-time>2010-05-31</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 606 字</span>
+<span class=more-meta>预计阅读 2 分钟</span></div></header><div class=post-content><div class=post-summary><p>在linux平台下使用boost::timer,得到的并不是所经过的时间,比如以下代码，因为sleep了1s，所以得到的结果应该大于1s，但是得出来的结果确是0</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cp>#include</span> <span class=cpf>&lt;boost/timer.hpp&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>boost</span><span class=p>;</span>
+
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+<span class=p>{</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;test boost::timer&#34;</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+    <span class=n>timer</span> <span class=n>tmer</span><span class=p>;</span>
+    <span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>tmer</span><span class=p>.</span><span class=n>elapsed</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+
+    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>$ ./boosttimer
+<span class=nb>test</span> boost::timer
+<span class=m>0</span>
+</code></pre></td></tr></table></div></div><p>究其原因：察看boost::timer的源代码/usr/include/boost/timer.hpp</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=k>class</span> <span class=nc>timer</span>
+<span class=p>{</span>
+ <span class=k>public</span><span class=o>:</span>
+         <span class=n>timer</span><span class=p>()</span> <span class=p>{</span> <span class=n>_start_time</span> <span class=o>=</span> <span class=n>std</span><span class=o>::</span><span class=n>clock</span><span class=p>();</span> <span class=p>}</span> <span class=c1>// postcondition: elapsed()==0
+</span><span class=c1>//         timer( const timer&amp; src );      // post: elapsed()==src.elapsed()
+</span><span class=c1>//        ~timer(){}
+</span><span class=c1>//  timer&amp; operator=( const timer&amp; src );  // post: elapsed()==src.elapsed()
+</span><span class=c1></span>  <span class=kt>void</span>   <span class=nf>restart</span><span class=p>()</span> <span class=p>{</span> <span class=n>_start_time</span> <span class=o>=</span> <span class=n>std</span><span class=o>::</span><span class=n>clock</span><span class=p>();</span> <span class=p>}</span> <span class=c1>// post: elapsed()==0
+</span><span class=c1></span>  <span class=kt>double</span> <span class=nf>elapsed</span><span class=p>()</span> <span class=k>const</span>                  <span class=c1>// return elapsed time in seconds
+</span><span class=c1></span>    <span class=p>{</span> <span class=k>return</span>  <span class=kt>double</span><span class=p>(</span><span class=n>std</span><span class=o>::</span><span class=n>clock</span><span class=p>()</span> <span class=o>-</span> <span class=n>_start_time</span><span class=p>)</span> <span class=o>/</span> <span class=n>CLOCKS_PER_SEC</span><span class=p>;</span> <span class=p>}</span>
+
+  <span class=kt>double</span> <span class=nf>elapsed_max</span><span class=p>()</span> <span class=k>const</span>   <span class=c1>// return estimated maximum value for elapsed()
+</span><span class=c1></span>  <span class=c1>// Portability warning: elapsed_max() may return too high a value on systems
+</span><span class=c1></span>  <span class=c1>// where std::clock_t overflows or resets at surprising values.
+</span><span class=c1></span>  <span class=p>{</span>
+    <span class=k>return</span> <span class=p>(</span><span class=kt>double</span><span class=p>((</span><span class=n>std</span><span class=o>::</span><span class=n>numeric_limits</span><span class=o>&lt;</span><span class=n>std</span><span class=o>::</span><span class=n>clock_t</span><span class=o>&gt;::</span><span class=n>max</span><span class=p>)())</span>
+       <span class=o>-</span> <span class=kt>double</span><span class=p>(</span><span class=n>_start_time</span><span class=p>))</span> <span class=o>/</span> <span class=kt>double</span><span class=p>(</span><span class=n>CLOCKS_PER_SEC</span><span class=p>);</span>
+  <span class=p>}</span>
+
+  <span class=kt>double</span> <span class=nf>elapsed_min</span><span class=p>()</span> <span class=k>const</span>            <span class=c1>// return minimum value for elapsed()
+</span><span class=c1></span>   <span class=p>{</span> <span class=k>return</span> <span class=kt>double</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=o>/</span><span class=kt>double</span><span class=p>(</span><span class=n>CLOCKS_PER_SEC</span><span class=p>);</span> <span class=p>}</span>
+
+ <span class=k>private</span><span class=o>:</span>
+  <span class=n>std</span><span class=o>::</span><span class=n>clock_t</span> <span class=n>_start_time</span><span class=p>;</span>
+<span class=p>};</span> <span class=c1>// timer
+</span></code></pre></td></tr></table></div></div><p>可以看到boost::timer的实现在linux下是通过std::clock()实现的.经测试std::clock()每次返回的值都是一样的。原因就是我们在这里使用的是sleep，而man 3 clock得到的是function returns an approximation of processor time used by the program.即得到的是cpu执行的时间，sleep的时候cpu执行时间（cpu  time）为0，所以每次都得到的一样的值，最后结果为0，如果我们将sleep改为一个循环，结果就将是这是的值了！测试的时候不能被sleep所迷惑了，所以我们用来测实际经过的时间的时候不能用boost::timer!可以选择alarm</p></div><div class=read-more><a href=/post/2010-05-31-boost_timer/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-31-boost_progress_display/>boost::progress_display</a></h1><div class=post-meta><span class=post-time>2010-05-31</span><div class=post-category><a href=/categories/programming/>programming</a></div><span class=more-meta>约 111 字</span>
 <span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>boost::progress_display是个好玩的东东,用来现实一个进度条。测试代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -67,21 +154,7 @@ host=127.0.0.1:8580
 X11Forwarding yes
 X11DisplayOffset 10
 X11UseLocalhost yes
-</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-05-11-archlinux_x11_forwarding/ class=read-more-link>阅读更多</a></div></div></article><article class=post><header class=post-header><h1 class=post-title><a class=post-link href=/post/2010-05-10-archlinux_install_yaourt/>archlinux安装yaourt</a></h1><div class=post-meta><span class=post-time>2010-05-10</span><div class=post-category><a href=/categories/linux/>Linux</a>
-<a href=/categories/tools/>tools</a></div><span class=more-meta>约 161 字</span>
-<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary><p>参照arch wiki：<a href=http://wiki.archlinux.org/index.php/Yaourt_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)><a href=http://wiki.archlinux.org/index.php/Yaourt_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)>http://wiki.archlinux.org/index.php/Yaourt_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)</a></a></p><p>最简单安装Yaourt的方式是添加Yaourt源至您的 /etc/pacman.conf:</p><p>i686架构：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>[archlinuxfr]
-Server = http://repo.archlinux.fr/i686
-</code></pre></td></tr></table></div></div><p>x86-64架构：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>[archlinuxfr]
-Server = http://repo.archlinux.fr/x86_64
-</code></pre></td></tr></table></div></div><p>同步并安装：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>pacman -Syu
-pacman -S yaourt
-</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-05-10-archlinux_install_yaourt/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/46/><i class="iconfont icon-left"></i>
+</code></pre></td></tr></table></div></div></div><div class=read-more><a href=/post/2010-05-11-archlinux_x11_forwarding/ class=read-more-link>阅读更多</a></div></div></article></section><nav class=pagination><a class=prev href=/page/46/><i class="iconfont icon-left"></i>
 <span class=prev-text>上一页</span></a>
 <a class=next href=/page/48/><span class=next-text>下一页</span>
 <i class="iconfont icon-right"></i></a></nav></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
