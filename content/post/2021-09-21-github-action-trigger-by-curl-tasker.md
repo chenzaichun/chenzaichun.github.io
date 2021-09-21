@@ -1,7 +1,7 @@
 +++
 title = "使用tasker自动触发打卡早起"
-date = 2021-07-22T16:57:26+08:00
-lastmod = 2021-09-21T10:35:15+08:00
+date = 2021-09-21T10:40:26+08:00
+lastmod = 2021-09-21T10:40:38+08:00
 tags = ["hugo", "org", "emacs"]
 categories = ["emacs", "linux", "org"]
 draft = false
