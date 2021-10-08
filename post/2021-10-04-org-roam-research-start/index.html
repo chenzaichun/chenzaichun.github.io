@@ -1,0 +1,201 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>开启org roam之旅 - 木哈哈--瞎折腾</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Chen, Zai-Chun"><meta name=description content="前言 听说 org-roam 已经差不多一年多了，但是一直没有去实践，前面阅读了《认知天性》这本书， 觉得自己还是应该整理一下目前的笔记系统（太乱了，每次都在很多"><meta name=keywords content="Hugo,theme,even,emacs,programming,linux,go,java,python,spring,hadoop,ai"><meta name=generator content="Hugo 0.85.0 with theme even"><link rel=canonical href=https://chenzaichun.github.io/post/2021-10-04-org-roam-research-start/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="开启org roam之旅"><meta property="og:description" content="前言 听说 org-roam 已经差不多一年多了，但是一直没有去实践，前面阅读了《认知天性》这本书， 觉得自己还是应该整理一下目前的笔记系统（太乱了，每次都在很多"><meta property="og:type" content="article"><meta property="og:url" content="https://chenzaichun.github.io/post/2021-10-04-org-roam-research-start/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-10-04T10:40:49+08:00"><meta property="article:modified_time" content="2021-10-08T09:30:45+08:00"><meta itemprop=name content="开启org roam之旅"><meta itemprop=description content="前言 听说 org-roam 已经差不多一年多了，但是一直没有去实践，前面阅读了《认知天性》这本书， 觉得自己还是应该整理一下目前的笔记系统（太乱了，每次都在很多"><meta itemprop=datePublished content="2021-10-04T10:40:49+08:00"><meta itemprop=dateModified content="2021-10-08T09:30:45+08:00"><meta itemprop=wordCount content="1118"><meta itemprop=keywords content="hugo,org,emacs,"><meta name=twitter:card content="summary"><meta name=twitter:title content="开启org roam之旅"><meta name=twitter:description content="前言 听说 org-roam 已经差不多一年多了，但是一直没有去实践，前面阅读了《认知天性》这本书， 觉得自己还是应该整理一下目前的笔记系统（太乱了，每次都在很多"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>木哈哈</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=https://chenzaichun.github.io/running_page/><li class=mobile-menu-item>running</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>木哈哈</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://chenzaichun.github.io/running_page/>running</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>开启org roam之旅</h1><div class=post-meta><span class=post-time>2021-10-04</span><div class=post-category><a href=/categories/emacs/>emacs</a>
+<a href=/categories/linux/>linux</a>
+<a href=/categories/org/>org</a></div><span class=more-meta>约 1118 字</span>
+<span class=more-meta>预计阅读 3 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#前言>前言</a></li><li><a href=#参考连接>参考连接</a></li><li><a href=#安装>安装</a></li><li><a href=#使用>使用</a><ul><li><a href=#org-roam-protocol>org-roam-protocol</a></li></ul></li><li><a href=#模板>模板</a></li><li><a href=#org-roam-ui>org-roam-ui</a></li></ul></li></ul></nav></div></div><div class=post-content><h2 id=前言>前言</h2><p>听说 <code>org-roam</code> 已经差不多一年多了，但是一直没有去实践，前面阅读了《认知天性》这本书，
+觉得自己还是应该整理一下目前的笔记系统（太乱了，每次都在很多文件里面用grep大法）。趁
+这个十一没出门，在家里也不太想工作的事情，于是就折腾一下。</p><h2 id=参考连接>参考连接</h2><p>主要的参考来源有以下这些（排名不分先后）</p><ul><li><a href=https://zhuanlan.zhihu.com/p/378591718>如何用好 Roam Research ？（一）：「双向链接」</a></li><li><a href=https://zhuanlan.zhihu.com/p/378597918>如何用好 Roam Research ？（二）：笔记节点粒度</a></li><li><a href=https://zhuanlan.zhihu.com/p/378627738>如何用好 Roam Research ？（三）：Roam 不是卡片盒</a></li><li><a href=https://www.lucacambiaghi.com/posts/discovering-org-roam.html>Discovering org-roam</a></li><li><a href=https://notes.andymatuschak.org/About%5Fthese%5Fnotes>Andyʼs working notes</a></li><li><a href=https://www.orgroam.com/manual.html>org-roam manual</a></li><li><a href=https://www.zmonster.me/2020/06/27/org-roam-introduction.html>使用 org-roam 构建自己的知识网络</a></li></ul><h2 id=安装>安装</h2><p>因为我使用的是 <code>spacemacs=， 在 =spacemacs</code> 的 <code>layers</code> 中enable <code>org-roam</code> ：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-lisp data-lang=lisp><span class=p>(</span><span class=nv>org</span> <span class=ss>:variables</span>
+     <span class=o>...</span>
+     <span class=nv>org-enable-roam-support</span> <span class=no>t</span>
+     <span class=nv>org-enable-roam-protocol</span> <span class=no>t</span>
+     <span class=nv>org-enable-roam-server</span> <span class=no>t</span>
+     <span class=nv>org-roam-directory</span> <span class=s>&#34;~/org/roam/&#34;</span>
+     <span class=nv>org-roam-v2-ack</span> <span class=no>t</span>
+     <span class=o>...</span>
+     <span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>如果想用最新的代码（非melpa），可以直接在 <code>additional-package</code> 里面配置对应的安装方式，这里选择的是 <code>master</code> 分支：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-lisp data-lang=lisp><span class=p>(</span><span class=nv>org-roam</span> <span class=ss>:location</span> <span class=p>(</span><span class=nv>recipe</span> <span class=ss>:fetcher</span> <span class=nv>github</span> <span class=ss>:repo</span> <span class=s>&#34;org-roam/org-roam&#34;</span> <span class=ss>:branch</span> <span class=s>&#34;master&#34;</span><span class=p>))</span>
+</code></pre></td></tr></table></div></div><p>使用 <code>org-roam-version</code> 查看，当前版本为 <code>2.1.0</code></p><h2 id=使用>使用</h2><p>先使用 <code>org-roam-capture</code> 来创建一篇测试，这个跟 <code>org-capture</code> 是一致的（对于模板，我们后面熟悉后再配置）。</p><p>然后文件就船舰在了 <code>~/org/roam/</code> 下了。</p><p>创建连接测试，使用 <code>org-roam-node-insert</code> 可以链接到其他node或者创建一个新的node，
+这样就可以创建关联关系了。</p><p>然后使用 <code>org-roam-graph</code> 查看，发现出错了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>Wrong type argument: commandp, org-roam-graph
+</code></pre></td></tr></table></div></div><p>这是什么情况？（后面有说明，org-roam没有安装好）</p><p>查看文档，文档上说现在有个 <code>org-roam-buffer</code> 显示对应的关系，可是我这边没有找到，
+buffer是空的。</p><figure><img src=/ox-hugo/20211007_115126_R54b1v.png></figure><p>查看日志，发现有个错误：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>No such file or directory, org-roam-protocol
+</code></pre></td></tr></table></div></div><p>是没有安装好的原因，重新安装 <code>org-roam</code> 就可以了。</p><figure><img src=/ox-hugo/20211007_121956_dLNa4X.png></figure><h3 id=org-roam-protocol>org-roam-protocol</h3><p>根据文档配置好desktopfile，见<a href=https://www.orgroam.com/manual.html#Org%5F002droam-Protocol>这里</a></p><p><code>~/.local/share/applications/org-protocol.desktop</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>[Desktop Entry]
+Name=Org-Protocol
+Exec=emacsclient %u
+Icon=emacs-icon
+Type=Application
+Terminal=false
+MimeType=x-scheme-handler/org-protocol
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>xdg-mime default org-protocol.desktop x-scheme-handler/org-protocol
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>sudo mkdir -p /etc/opt/chrome/policies/managed/
+sudo tee /etc/opt/chrome/policies/managed/external_protocol_dialog.json &gt;/dev/null <span class=s>&lt;&lt;&#39;EOF&#39;
+</span><span class=s>{
+</span><span class=s>  &#34;ExternalProtocolDialogShowAlwaysOpenCheckbox&#34;: true
+</span><span class=s>}
+</span><span class=s>EOF</span>
+sudo chmod <span class=m>644</span> /etc/opt/chrome/policies/managed/external_protocol_dialog.json
+</code></pre></td></tr></table></div></div><h2 id=模板>模板</h2><p>这里参考了<a href=https://www.zmonster.me/2020/06/27/org-roam-introduction.html>这里</a>的模板设置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-elisp data-lang=elisp><span class=p>(</span><span class=nb>setq</span> <span class=nv>org-roam-capture-templates</span>
+      <span class=o>&#39;</span><span class=p>(</span>
+        <span class=p>(</span><span class=s>&#34;d&#34;</span> <span class=s>&#34;default&#34;</span> <span class=nv>plain</span> <span class=p>(</span><span class=nb>function</span> <span class=nv>org-roam-capture--get-point</span><span class=p>)</span>
+         <span class=s>&#34;%?&#34;</span>
+         <span class=nb>:file-name</span> <span class=s>&#34;%&lt;%Y%m%d%H%M%S&gt;-${slug}&#34;</span>
+         <span class=nb>:head</span> <span class=s>&#34;#+title: ${title}\n#+roam_alias:\n#+roam_key:\n#+roam_tags:\n\n&#34;</span><span class=p>)</span>
+        <span class=p>(</span><span class=s>&#34;a&#34;</span> <span class=s>&#34;Annotation&#34;</span> <span class=nv>plain</span> <span class=p>(</span><span class=nb>function</span> <span class=nv>org-roam-capture--get-point</span><span class=p>)</span>
+         <span class=s>&#34;%U ${body}\n&#34;</span>
+         <span class=nb>:file-name</span> <span class=s>&#34;${slug}&#34;</span>
+         <span class=nb>:head</span> <span class=s>&#34;#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n#+roam_tags:\n\n&#34;</span>
+         <span class=nb>:immediate-finish</span> <span class=no>t</span>
+         <span class=nb>:unnarrowed</span> <span class=no>t</span><span class=p>)</span>
+        <span class=p>(</span><span class=s>&#34;g&#34;</span> <span class=s>&#34;group&#34;</span><span class=p>)</span>
+        <span class=p>(</span><span class=s>&#34;ga&#34;</span> <span class=s>&#34;Group A&#34;</span> <span class=nv>plain</span> <span class=p>(</span><span class=nb>function</span> <span class=nv>org-roam-capture--get-point</span><span class=p>)</span>
+         <span class=s>&#34;%?&#34;</span>
+         <span class=nb>:file-name</span> <span class=s>&#34;%&lt;%Y%m%d%H%M%S&gt;-${slug}&#34;</span>
+         <span class=nb>:head</span> <span class=s>&#34;#+title: ${title}\n#+roam_alias:\n\n&#34;</span><span class=p>)</span>
+        <span class=p>(</span><span class=s>&#34;gb&#34;</span> <span class=s>&#34;Group B&#34;</span> <span class=nv>plain</span> <span class=p>(</span><span class=nb>function</span> <span class=nv>org-roam-capture--get-point</span><span class=p>)</span>
+         <span class=s>&#34;%?&#34;</span>
+         <span class=nb>:file-name</span> <span class=s>&#34;%&lt;%Y%m%d%H%M%S&gt;-${slug}&#34;</span>
+         <span class=nb>:head</span> <span class=s>&#34;#+title: ${title}\n#+roam_alias:\n\n&#34;</span><span class=p>)</span>
+        <span class=p>)</span>
+      <span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>测试一下，发现出错了，错误如下:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>Template needs to specify ‘:target’
+</code></pre></td></tr></table></div></div><p>原来是因为模板的格式已经变化了。修改一下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-elisp data-lang=elisp><span class=p>(</span><span class=nb>setq</span> <span class=nv>org-roam-capture-templates</span>
+      <span class=o>&#39;</span><span class=p>(</span>
+        <span class=p>(</span><span class=s>&#34;d&#34;</span> <span class=s>&#34;default&#34;</span> <span class=nv>plain</span> <span class=s>&#34;%?&#34;</span>
+         <span class=nb>:target</span> <span class=p>(</span><span class=nv>file+head</span> <span class=s>&#34;%&lt;%Y%m%d%H%M%S&gt;-${slug}.org&#34;</span>
+                            <span class=s>&#34;#+title: ${title}\n#+roam_alias:\n#+roam_key:\n#+roam_tags:\n\n&#34;</span><span class=p>)</span>
+         <span class=nb>:unnarrowed</span> <span class=no>t</span><span class=p>)</span>
+        <span class=p>)</span>
+      <span class=p>)</span>
+
+<span class=p>(</span><span class=nb>setq</span> <span class=nv>org-roam-capture-ref-templates</span>
+      <span class=o>&#39;</span><span class=p>(</span>
+        <span class=p>(</span><span class=s>&#34;a&#34;</span> <span class=s>&#34;Annotation&#34;</span> <span class=nv>plain</span>
+         <span class=s>&#34;%U ${body}\n&#34;</span>
+         <span class=nb>:target</span> <span class=p>(</span><span class=nv>file+head</span> <span class=s>&#34;${slug}.org&#34;</span>
+                            <span class=s>&#34;#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n#+roam_tags:\n\n&#34;</span><span class=p>)</span>
+         <span class=c1>;; :immediate-finish t</span>
+         <span class=nb>:unnarrowed</span> <span class=no>t</span>
+         <span class=p>)</span>
+        <span class=p>(</span><span class=s>&#34;r&#34;</span> <span class=s>&#34;ref&#34;</span> <span class=nv>plain</span> <span class=s>&#34;&#34;</span>
+         <span class=nb>:target</span> <span class=p>(</span><span class=nv>file+head</span> <span class=s>&#34;${slug}.org&#34;</span>
+                            <span class=s>&#34;#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n#+roam_tags:\n\n&#34;</span><span class=p>)</span>
+         <span class=nb>:unnarrowed</span> <span class=no>t</span><span class=p>)</span>
+        <span class=p>)</span>
+      <span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>添加俩个 <code>chrome</code> 书签，内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>javascript</span><span class=o>:</span><span class=nx>location</span><span class=p>.</span><span class=nx>href</span> <span class=o>=</span> <span class=s1>&#39;org-protocol://roam-ref?template=r&amp;ref=&#39;</span> <span class=o>+</span> <span class=nb>encodeURIComponent</span><span class=p>(</span><span class=nx>location</span><span class=p>.</span><span class=nx>href</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;&amp;title=&#39;</span> <span class=o>+</span> <span class=nb>encodeURIComponent</span><span class=p>(</span><span class=nb>document</span><span class=p>.</span><span class=nx>title</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>javascript</span><span class=o>:</span><span class=nx>location</span><span class=p>.</span><span class=nx>href</span> <span class=o>=</span> <span class=s1>&#39;org-protocol://roam-ref?template=a&amp;ref=&#39;</span> <span class=o>+</span> <span class=nb>encodeURIComponent</span><span class=p>(</span><span class=nx>location</span><span class=p>.</span><span class=nx>href</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;&amp;title=&#39;</span><span class=o>+</span><span class=nb>encodeURIComponent</span><span class=p>(</span><span class=nb>document</span><span class=p>.</span><span class=nx>title</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;&amp;body=&#39;</span><span class=o>+</span><span class=nb>encodeURIComponent</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span><span class=kd>var</span> <span class=nx>html</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span><span class=p>;</span><span class=kd>var</span> <span class=nx>sel</span> <span class=o>=</span> <span class=nb>window</span><span class=p>.</span><span class=nx>getSelection</span><span class=p>();</span><span class=k>if</span> <span class=p>(</span><span class=nx>sel</span><span class=p>.</span><span class=nx>rangeCount</span><span class=p>)</span> <span class=p>{</span><span class=kd>var</span> <span class=nx>container</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s2>&#34;div&#34;</span><span class=p>);</span><span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span> <span class=nx>len</span> <span class=o>=</span> <span class=nx>sel</span><span class=p>.</span><span class=nx>rangeCount</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>len</span><span class=p>;</span> <span class=o>++</span><span class=nx>i</span><span class=p>)</span> <span class=p>{</span><span class=nx>container</span><span class=p>.</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>sel</span><span class=p>.</span><span class=nx>getRangeAt</span><span class=p>(</span><span class=nx>i</span><span class=p>).</span><span class=nx>cloneContents</span><span class=p>());}</span><span class=nx>html</span> <span class=o>=</span> <span class=nx>container</span><span class=p>.</span><span class=nx>innerHTML</span><span class=p>;}</span><span class=kd>var</span> <span class=nx>dataDom</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s1>&#39;div&#39;</span><span class=p>);</span><span class=nx>dataDom</span><span class=p>.</span><span class=nx>innerHTML</span> <span class=o>=</span> <span class=nx>html</span><span class=p>;[</span><span class=s1>&#39;p&#39;</span><span class=p>,</span> <span class=s1>&#39;h1&#39;</span><span class=p>,</span> <span class=s1>&#39;h2&#39;</span><span class=p>,</span> <span class=s1>&#39;h3&#39;</span><span class=p>,</span> <span class=s1>&#39;h4&#39;</span><span class=p>].</span><span class=nx>forEach</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>tag</span><span class=p>,</span> <span class=nx>idx</span><span class=p>){</span><span class=nx>dataDom</span><span class=p>.</span><span class=nx>querySelectorAll</span><span class=p>(</span><span class=nx>tag</span><span class=p>).</span><span class=nx>forEach</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>item</span><span class=p>,</span> <span class=nx>index</span><span class=p>)</span> <span class=p>{</span><span class=kd>var</span> <span class=nx>content</span> <span class=o>=</span> <span class=nx>item</span><span class=p>.</span><span class=nx>innerHTML</span><span class=p>.</span><span class=nx>trim</span><span class=p>();</span><span class=k>if</span> <span class=p>(</span><span class=nx>content</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span><span class=nx>item</span><span class=p>.</span><span class=nx>innerHTML</span> <span class=o>=</span> <span class=nx>content</span> <span class=o>+</span> <span class=s1>&#39;&amp;#13;&amp;#10;&#39;</span><span class=p>;}});});</span><span class=k>return</span> <span class=nx>dataDom</span><span class=p>.</span><span class=nx>innerText</span><span class=p>.</span><span class=nx>trim</span><span class=p>();}())</span>
+</code></pre></td></tr></table></div></div><p>基本搞定。现在是思考怎么用起来的问题了。</p><h2 id=org-roam-ui>org-roam-ui</h2><p>安装，首先在addtional pacakges里面添加</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-lisp data-lang=lisp><span class=p>(</span><span class=nv>org-roam-ui</span> <span class=ss>:location</span> <span class=p>(</span><span class=nv>recipe</span> <span class=ss>:fetcher</span> <span class=nv>github</span> <span class=ss>:repo</span> <span class=s>&#34;org-roam/org-roam-ui&#34;</span> <span class=ss>:branch</span> <span class=s>&#34;main&#34;</span> <span class=ss>:files</span> <span class=p>(</span><span class=s>&#34;*.el&#34;</span> <span class=s>&#34;out&#34;</span><span class=p>)))</span>
+</code></pre></td></tr></table></div></div><p>然后配置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-lisp data-lang=lisp><span class=p>(</span><span class=nf>use-package</span> <span class=nv>org-roam-ui</span>
+  <span class=ss>:after</span> <span class=nv>org-roam</span>
+  <span class=c1>;;         normally we&#39;d recommend hooking orui after org-roam, but since org-roam does not have</span>
+  <span class=c1>;;         a hookable mode anymore, you&#39;re advised to pick something yourself</span>
+  <span class=c1>;;         if you don&#39;t care about startup time, use</span>
+  <span class=c1>;;  :hook (after-init . org-roam-ui-mode)</span>
+  <span class=ss>:config</span>
+  <span class=p>(</span><span class=k>setq</span> <span class=nv>org-roam-ui-sync-theme</span> <span class=no>t</span>
+        <span class=nv>org-roam-ui-follow</span> <span class=no>t</span>
+        <span class=nv>org-roam-ui-update-on-save</span> <span class=no>t</span>
+        <span class=nv>org-roam-ui-open-on-start</span> <span class=no>t</span><span class=p>)</span>
+  <span class=p>)</span>
+</code></pre></td></tr></table></div></div><figure><img src=/ox-hugo/20211007_183620_BNt7QS.png></figure><p>虽然提供了ui，但是我并不是很喜欢这个功能（因为我感觉有点无用），反而我想要的是<a href=https://notes.andymatuschak.org/About%5Fthese%5Fnotes>这里</a>的效果。</p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>Chen, Zai-Chun</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2021-10-08</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/hugo/>hugo</a>
+<a href=/tags/org/>org</a>
+<a href=/tags/emacs/>emacs</a></div><nav class=post-nav><a class=next href=/post/2021-09-21-github-action-trigger-by-curl-tasker/><span class="next-text nav-default">使用tasker自动触发打卡早起</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=chenzaichun/chenzaichun-utterances issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:ChenZaichun@gmail.com class="iconfont icon-email" title=email></a><a href=https://twitter.com/chenzaichun class="iconfont icon-twitter" title=twitter></a><a href=https://facebook.com/chenzaichun class="iconfont icon-facebook" title=facebook></a><a href=https://github.com/chenzaichun class="iconfont icon-github" title=github></a><a href=https://weibo.com/archlinux class="iconfont icon-weibo" title=weibo></a><a href=https://chenzaichun.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2009 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chen, Zai-Chun</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin=anonymous></script><script>var languageCode="en".replace(/-/g,'_').replace(/_(.*)/,function(b,a){return b.replace(a,a.toUpperCase())});timeago().render(document.querySelectorAll('.timeago'),languageCode),timeago.cancel()</script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js integrity=sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css integrity=sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF crossorigin=anonymous><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>
