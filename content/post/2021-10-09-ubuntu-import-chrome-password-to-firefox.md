@@ -1,7 +1,7 @@
 +++
 title = "ubuntu下将chrome中的密码导入到firefox中"
 date = 2021-10-09T11:00:49+08:00
-lastmod = 2021-10-09T11:05:55+08:00
+lastmod = 2021-10-09T11:21:47+08:00
 tags = ["hugo", "org", "emacs"]
 categories = ["emacs", "linux", "org"]
 draft = false
@@ -23,7 +23,7 @@ ubuntu下firefox的导入功能提示可以到入chrome的password，但是实�
 查到网络，发现了[这里](https://superuser.com/questions/1355790/import-chrome-passwords-to-firefox)
 
 
-### 导入chrome的密码 {#导入chrome的密码}
+### 导出chrome的密码 {#导出chrome的密码}
 
 首先通过chrome将密码导出为文件（csv）：
 
