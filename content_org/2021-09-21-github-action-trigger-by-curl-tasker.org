@@ -24,7 +24,7 @@
   因为本身有action的支持，先拿到这个项目的 actions id (需要自行申请 token)
 
   #+begin_src sh
-    token=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
+    token= # your token
     curl -XGET https://api.github.com/repos/chenzaichun/2021/actions/workflows \
          -H "Authorization: token ${token}" # change to your config
 
@@ -87,7 +87,7 @@
     "ref": "main"
     }' \
          https://api.github.com/repos/chenzaichun/2022/actions/workflows/17148798/dispatches  \
-         -H "Authorization: token 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"  # change to your config
+         -H "Authorization: token <yourtoken>"  # change to your config
   #+end_src
 
 
