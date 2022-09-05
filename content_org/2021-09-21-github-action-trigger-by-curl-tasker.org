@@ -24,9 +24,10 @@
   因为本身有action的支持，先拿到这个项目的 actions id (需要自行申请 token)
 
   #+begin_src sh
+    token=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
     curl -XGET https://api.github.com/repos/chenzaichun/2021/actions/workflows \
-         -H "Authorization: token d8xxxxxxxxxx" # change to your config
-    
+         -H "Authorization: token ${token}" # change to your config
+
   #+end_src
 
   #+RESULTS:
@@ -85,8 +86,8 @@
     "inputs": {},
     "ref": "main"
     }' \
-         https://api.github.com/repos/chenzaichun/2021/actions/workflows/12980024/dispatches  \
-         -H "Authorization: token d8e03d6xxxxxxxxxxxx"  # change to your config
+         https://api.github.com/repos/chenzaichun/2022/actions/workflows/17148798/dispatches  \
+         -H "Authorization: token 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"  # change to your config
   #+end_src
 
 
